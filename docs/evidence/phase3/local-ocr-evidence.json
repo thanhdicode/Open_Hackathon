@@ -1,0 +1,68 @@
+{
+  "baseUrl": "http://127.0.0.1:5173",
+  "generatedAt": "2026-09-16T12:58:55.078Z",
+  "checks": [
+    {
+      "name": "onboarding reaches the shell",
+      "pass": true,
+      "note": "five-tab shell visible"
+    },
+    {
+      "name": "photo capture surface is present",
+      "pass": true,
+      "note": "upload/camera affordance visible"
+    },
+    {
+      "name": "on-device OCR produced an overlay",
+      "pass": true,
+      "note": "8 text regions detected, first paint in ~3.0s"
+    },
+    {
+      "name": "the on-device step reports what it did",
+      "pass": true,
+      "note": "duration and next step shown"
+    },
+    {
+      "name": "no horizontal overflow at 390px",
+      "pass": true,
+      "note": "390/390"
+    },
+    {
+      "name": "no page errors",
+      "pass": true,
+      "note": "none"
+    },
+    {
+      "name": "no unexpected console errors",
+      "pass": true,
+      "note": "3 console error(s), all pre-existing Appwrite or OCR-worker probes"
+    },
+    {
+      "name": "the capture surface survives an outage",
+      "pass": true,
+      "note": "upload affordance still available"
+    },
+    {
+      "name": "local OCR still works with every provider unreachable",
+      "pass": true,
+      "note": "8 text regions read offline"
+    },
+    {
+      "name": "the offline result is still presented as useful",
+      "pass": true,
+      "note": "on-device overlay shown, not an error screen"
+    },
+    {
+      "name": "a retry path remains available offline",
+      "pass": true,
+      "note": "retry/scan-again control present"
+    }
+  ],
+  "ocrReason": null,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "[yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa92902c77c085affb' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js"
+  ],
+  "pageErrors": []
+}

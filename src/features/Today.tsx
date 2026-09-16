@@ -1,8 +1,57 @@
+import { useEffect, useState } from "react";
 import { useJourney } from "../context/JourneyContext";
 import { useNav } from "../context/NavContext";
 import { Scroll } from "../components/shell";
 import { Card, ProgressRing, Button, Badge, SectionHeader, OfflineBanner, Skeleton, ErrorState, EmptyState, Notice } from "../components/ui";
+import { Icon, type IconName } from "../components/icons";
 import { COUNTRIES } from "../data/countries";
+import { listChapters } from "../lib/greenbook";
+
+/**
+ * The Living Greenbook entry point.
+ *
+ * Deliberately not a new bottom-nav tab — the tab set is frozen (Today,
+ * Passport, Lens, Explore, Connect) and the Greenbook is a contextual overlay.
+ * The count is real: it is the number of verified points currently stored for
+ * the host country, so the card never advertises content that is not there.
+ */
+function GreenbookCard() {
+  const { journey } = useJourney();
+  const nav = useNav();
+  const [count, setCount] = useState<number | null>(null);
+  const host = COUNTRIES[journey.host];
+
+  useEffect(() => {
+    let cancelled = false;
+    void listChapters(journey.host).then((chapters) => {
+      if (!cancelled) setCount(chapters.reduce((sum, chapter) => sum + chapter.factCount, 0));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [journey.host]);
+
+  return (
+    <Card tone="ink" className="mb-4 p-4" onClick={() => nav.push("greenbook")}>
+      <div className="flex items-center gap-2 text-[12px] font-semibold text-white/70">
+        <Icon name="text" size={15} /> Living Greenbook
+      </div>
+      <h3 className="mt-1.5 text-[16px] font-bold leading-snug text-white">
+        {host.flag} Your {host.name.split(" ")[0]} field manual
+      </h3>
+      <p className="mt-1 text-[12px] leading-relaxed text-white/70">
+        {count === null
+          ? "Loading verified guidance…"
+          : count > 0
+            ? `${count} verified point${count === 1 ? "" : "s"} from official sources, with tasks and phrases for your first weeks.`
+            : "No verified official guidance for this country yet — the manual says so rather than inventing content."}
+      </p>
+      <div className="mt-3">
+        <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1.5 text-[13px] font-semibold text-white">Open Greenbook →</span>
+      </div>
+    </Card>
+  );
+}
 
 export default function Today() {
   const { journey, pair, forced, savedTasks, toggleTask } = useJourney();
@@ -24,12 +73,12 @@ export default function Today() {
   return (
     <Scroll className="px-5 pb-6 pt-1">
       {forced === "offline" && <div className="mb-4"><OfflineBanner /></div>}
-      {forced === "stale" && <div className="mb-4"><Notice tone="warning" icon="🕓" title="Working from saved data" body="Some cards may be out of date until we can refresh from official sources." /></div>}
+      {forced === "stale" && <div className="mb-4"><Notice tone="warning" icon="info" title="Working from saved data" body="Some cards may be out of date until we can refresh from official sources." /></div>}
 
       {/* Greeting */}
       <div className="mb-4">
         <p className="text-[14px] text-muted">Good morning,</p>
-        <h1 className="text-[26px] font-extrabold tracking-tight text-ink">{journey.name} 👋</h1>
+        <h1 className="text-[26px] font-extrabold tracking-tight text-ink">{journey.name}</h1>
         <div className="mt-1.5 flex items-center gap-2 text-[13px] font-medium text-muted">
           <span>{COUNTRIES[journey.home].flag} → {host.flag} {host.name}</span>
           <span className="text-line">·</span>
@@ -39,24 +88,31 @@ export default function Today() {
 
       {/* Quick actions */}
       <div className="mb-5 grid grid-cols-4 gap-2">
-        {[
-          { icon: "🔍", label: "Scan", onClick: () => nav.setTab("lens") },
-          { icon: "💬", label: "Ask", onClick: () => nav.push("study") },
-          { icon: "👥", label: "Message", onClick: () => nav.setTab("connect") },
-          { icon: "🎭", label: "Practice", onClick: () => nav.push("sim") },
-        ].map((a) => (
-          <button key={a.label} onClick={a.onClick} className="flex flex-col items-center gap-1.5 rounded-[16px] bg-surface py-3 shadow-card active:scale-95">
-            <span className="text-[22px]">{a.icon}</span>
+        {([
+          { icon: "lens", label: "Scan", onClick: () => nav.setTab("lens") },
+          { icon: "chat", label: "Ask", onClick: () => nav.push("study") },
+          { icon: "connect", label: "Message", onClick: () => nav.setTab("connect") },
+          { icon: "practice", label: "Practice", onClick: () => nav.push("sim") },
+        ] as { icon: IconName; label: string; onClick: () => void }[]).map((a) => (
+          <button
+            key={a.label}
+            onClick={a.onClick}
+            className="flex min-h-[76px] flex-col items-center justify-center gap-1.5 rounded-[12px] border border-line bg-surface py-3 active:scale-95"
+          >
+            <span className="text-ink"><Icon name={a.icon} size={22} /></span>
             <span className="text-[11px] font-semibold text-ink">{a.label}</span>
           </button>
         ))}
       </div>
 
+      {/* Living Greenbook */}
+      <GreenbookCard />
+
       {/* Primary task */}
       <SectionHeader title="Your focus today" />
       <Card className="mb-4 overflow-hidden">
         <div className="flex items-start gap-3 p-4">
-          <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-primary-soft text-[20px]">🏦</div>
+          <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-primary-soft text-primary"><Icon name="passport" size={20} /></div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <Badge tone="primary">{journey.primaryTask.phase}</Badge>
@@ -76,10 +132,12 @@ export default function Today() {
 
       {/* Practice mission */}
       <SectionHeader title="Today's practice" action="All" onAction={() => nav.push("sim")} />
-      <Card className="mb-4 bg-gradient-to-br from-[#3157D5] to-[#2544ad] p-4 text-white" onClick={() => nav.push("sim")}>
-        <div className="flex items-center gap-2 text-[12px] font-semibold text-white/80">🎭 AI roleplay · 3 min</div>
+      <Card tone="ink" className="mb-4 p-4" onClick={() => nav.push("sim")}>
+        <div className="flex items-center gap-2 text-[12px] font-semibold text-white/70">
+          <Icon name="practice" size={15} /> AI roleplay · 3 min
+        </div>
         <h3 className="mt-1.5 text-[16px] font-bold leading-snug">{journey.practiceMission.title}</h3>
-        <p className="mt-1 text-[12px] leading-relaxed text-white/80">{journey.practiceMission.reason}</p>
+        <p className="mt-1 text-[12px] leading-relaxed text-white/70">{journey.practiceMission.reason}</p>
         <div className="mt-3"><span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1.5 text-[13px] font-semibold">Start practice →</span></div>
       </Card>
 
@@ -97,17 +155,17 @@ export default function Today() {
       {/* Reminder + culture tip */}
       <SectionHeader title="Coming up" />
       <Card className="mb-3 flex items-center gap-3 p-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-amber-soft text-[18px]">📅</div>
+        <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-canvas text-ink"><Icon name="calendar" size={20} /></div>
         <div className="flex-1">
           <p className="text-[14px] font-semibold text-ink">{journey.reminder.title}</p>
           <p className="text-[12px] text-muted">{journey.reminder.when}</p>
         </div>
       </Card>
 
-      <Notice tone="primary" icon="💡" title={journey.cultureTip.title} body={journey.cultureTip.body} />
+      <Notice tone="primary" icon="info" title={journey.cultureTip.title} body={journey.cultureTip.body} />
 
       {forced === "empty" && (
-        <div className="mt-4"><EmptyState icon="✅" title="All caught up!" body="No tasks left for today. Explore your Passport or connect with a local." /></div>
+        <div className="mt-4"><EmptyState icon="check" title="All caught up!" body="No tasks left for today. Explore your Passport or connect with a local." /></div>
       )}
     </Scroll>
   );

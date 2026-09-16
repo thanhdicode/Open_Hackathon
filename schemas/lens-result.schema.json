@@ -1,8 +1,164 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "YapLensResult",
   "type": "object",
-  "additionalProperties": false,
+  "properties": {
+    "detectedLanguage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "literalMeaning": {
+      "type": "string",
+      "minLength": 1
+    },
+    "likelyIntents": {
+      "minItems": 1,
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "label",
+          "explanation"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "contextExplanation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expectedNextAction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "misunderstandingRisk": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "recommendedAction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suggestedReplies": {
+      "minItems": 1,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "casual",
+              "neutral",
+              "academic",
+              "very_respectful"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "why": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "mode",
+          "text",
+          "why"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "authorityLevel": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "retrievedAt": {
+            "type": "string"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "current",
+              "stale",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "sourceId",
+          "title",
+          "url",
+          "authorityLevel"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "individualVariationCaveat": {
+      "type": "string"
+    }
+  },
   "required": [
     "detectedLanguage",
     "literalMeaning",
@@ -15,138 +171,6 @@
     "confidence",
     "sources"
   ],
-  "properties": {
-    "detectedLanguage": {
-      "type": "string"
-    },
-    "literalMeaning": {
-      "type": "string"
-    },
-    "likelyIntents": {
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 3,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "label",
-          "explanation"
-        ],
-        "properties": {
-          "label": {
-            "type": "string"
-          },
-          "explanation": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "contextExplanation": {
-      "type": "string"
-    },
-    "expectedNextAction": {
-      "type": "string"
-    },
-    "misunderstandingRisk": {
-      "type": "string",
-      "enum": [
-        "low",
-        "medium",
-        "high"
-      ]
-    },
-    "recommendedAction": {
-      "type": "string"
-    },
-    "suggestedReplies": {
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 4,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "mode",
-          "text",
-          "why"
-        ],
-        "properties": {
-          "mode": {
-            "type": "string",
-            "enum": [
-              "casual",
-              "neutral",
-              "academic",
-              "very_respectful"
-            ]
-          },
-          "text": {
-            "type": "string"
-          },
-          "why": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "confidence": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "label",
-        "reason"
-      ],
-      "properties": {
-        "label": {
-          "type": "string",
-          "enum": [
-            "low",
-            "medium",
-            "high"
-          ]
-        },
-        "reason": {
-          "type": "string"
-        }
-      }
-    },
-    "sources": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "sourceId",
-          "title",
-          "url",
-          "authorityLevel"
-        ],
-        "properties": {
-          "sourceId": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          },
-          "authorityLevel": {
-            "type": "string",
-            "enum": [
-              "A",
-              "B",
-              "C",
-              "D"
-            ]
-          }
-        }
-      }
-    },
-    "individualVariationCaveat": {
-      "type": "string"
-    }
-  }
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-09-16T12:57:02.554Z",
+  "headless": {
+    "stage": "done",
+    "text": "KAK ROS - TAMAN UNIVERSITI\nNasi Lemak Ayam RM 6.50\nsambal, timun, kacang, ikan bilis\nNasi Lemak Telur RM 4.00\ntelur mata, sambal\nNasi Lemak Biasa RM 3.00\ntanpa lauk tambahan\nSambal Tambahan RM 0.50\npe",
+    "lines": 0
+  },
+  "headed": null,
+  "note": "Tesseract run directly in the browser with no app code in the path."
+}

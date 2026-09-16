@@ -1,0 +1,234 @@
+{
+  "generatedAt": "2026-09-16T13:10:23.021Z",
+  "runs": 3,
+  "pace": {
+    "text": 4000,
+    "interpret": 6000,
+    "vision": 45000,
+    "stt": 4000,
+    "tts": 6000
+  },
+  "capabilities": {
+    "text": {
+      "runs": 3,
+      "successes": 3,
+      "failures": 0,
+      "failureCodes": {},
+      "latencyMs": {
+        "count": 3,
+        "median": 14249,
+        "p95": 15151,
+        "min": 5063,
+        "max": 15151
+      },
+      "providersUsed": {
+        "explabs-luna": 2,
+        "groq-text": 1
+      },
+      "fallbackUsed": 2,
+      "samples": [
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 15151,
+          "provider": "explabs-luna",
+          "fallbackDepth": 1,
+          "degradedProviders": [],
+          "stages": null
+        },
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 5063,
+          "provider": "groq-text",
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "stages": null
+        },
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 14249,
+          "provider": "explabs-luna",
+          "fallbackDepth": 1,
+          "degradedProviders": [],
+          "stages": null
+        }
+      ]
+    },
+    "interpret": {
+      "runs": 3,
+      "successes": 3,
+      "failures": 0,
+      "failureCodes": {},
+      "latencyMs": {
+        "count": 3,
+        "median": 2523,
+        "p95": 3704,
+        "min": 1968,
+        "max": 3704
+      },
+      "providersUsed": {
+        "groq-text": 3
+      },
+      "fallbackUsed": 0,
+      "samples": [
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 2523,
+          "provider": "groq-text",
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "stages": null
+        },
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 3704,
+          "provider": "groq-text",
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "stages": null
+        },
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 1968,
+          "provider": "groq-text",
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "stages": null
+        }
+      ]
+    },
+    "vision": {
+      "runs": 3,
+      "successes": 3,
+      "failures": 0,
+      "failureCodes": {},
+      "latencyMs": {
+        "count": 3,
+        "median": 4381,
+        "p95": 13041,
+        "min": 3961,
+        "max": 13041
+      },
+      "providersUsed": {
+        "groq-vision": 2,
+        "explabs-luna": 1
+      },
+      "fallbackUsed": 1,
+      "samples": [
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 3961,
+          "provider": "groq-vision",
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "stages": {
+            "extraction": {
+              "provider": "groq-vision",
+              "degraded": false
+            }
+          }
+        },
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 13041,
+          "provider": "explabs-luna",
+          "fallbackDepth": 1,
+          "degradedProviders": [],
+          "stages": {
+            "extraction": {
+              "provider": "groq-vision",
+              "degraded": false
+            }
+          }
+        },
+        {
+          "ok": true,
+          "code": null,
+          "status": 200,
+          "ms": 4381,
+          "provider": "groq-vision",
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "stages": {
+            "extraction": {
+              "provider": "groq-vision",
+              "degraded": false
+            }
+          }
+        }
+      ]
+    },
+    "tts": {
+      "runs": 1,
+      "successes": 0,
+      "failures": 1,
+      "failureCodes": {
+        "AI_UNAVAILABLE": 1
+      },
+      "latencyMs": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "providersUsed": {},
+      "fallbackUsed": 0,
+      "samples": [
+        {
+          "ok": false,
+          "code": "AI_UNAVAILABLE"
+        }
+      ]
+    }
+  },
+  "tripRecovery": {
+    "trippedSkip": {
+      "ok": true,
+      "servedBy": "explabs-luna",
+      "skipped": [
+        "groq-text"
+      ],
+      "passed": true
+    },
+    "paymentRequired": {
+      "code": "PAYMENT_REQUIRED",
+      "breakerCode": "PAYMENT_REQUIRED",
+      "cooldownMs": 600000,
+      "passed": true
+    }
+  },
+  "budget": {
+    "mode": "free-only",
+    "sessionSpentUsd": 0,
+    "totalSpentUsd": 0,
+    "sessionBudgetUsd": 0.1,
+    "demoBudgetUsd": 1,
+    "remainingUsd": 0.1,
+    "costedCalls": 4,
+    "paidCalls": 0,
+    "refusals": 0,
+    "lastCostUsd": 0,
+    "startedAt": "2026-09-16T13:10:23.010Z"
+  },
+  "summary": {
+    "runs": 10,
+    "ok": 9,
+    "successRate": 0.9
+  }
+}

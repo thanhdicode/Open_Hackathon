@@ -1,0 +1,222 @@
+{
+  "title": "YapSceneResult",
+  "type": "object",
+  "properties": {
+    "sceneSummary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "sceneKind": {
+      "type": "string",
+      "enum": [
+        "menu",
+        "sign",
+        "document",
+        "product",
+        "place",
+        "screen",
+        "other"
+      ]
+    },
+    "detectedLanguages": {
+      "minItems": 1,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+      }
+    },
+    "targetLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "regions": {
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "object",
+              "mixed"
+            ]
+          },
+          "box": {
+            "type": "object",
+            "properties": {
+              "ymin": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "xmin": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "ymax": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "xmax": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              }
+            },
+            "required": [
+              "ymin",
+              "xmin",
+              "ymax",
+              "xmax"
+            ],
+            "additionalProperties": false
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "originalText": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "translatedText": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "romanization": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "meaning": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "uncertainty": {
+            "type": "string",
+            "enum": [
+              "none",
+              "low",
+              "high"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "box",
+          "label",
+          "uncertainty",
+          "confidence"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "usefulPhrases": {
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "translation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "romanization": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "whenToUse": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          }
+        },
+        "required": [
+          "text",
+          "translation",
+          "whenToUse"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "uncertaintyNotes": {
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "safetyNotice": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 280
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "reason"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "sceneSummary",
+    "sceneKind",
+    "detectedLanguages",
+    "targetLanguage",
+    "regions",
+    "usefulPhrases",
+    "uncertaintyNotes",
+    "safetyNotice",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

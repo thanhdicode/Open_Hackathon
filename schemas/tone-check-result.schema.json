@@ -1,0 +1,109 @@
+{
+  "title": "YapToneCheckResult",
+  "type": "object",
+  "properties": {
+    "register": {
+      "type": "string",
+      "enum": [
+        "too_direct",
+        "neutral",
+        "respectful",
+        "overly_formal",
+        "unclear"
+      ]
+    },
+    "issues": {
+      "maxItems": 6,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "type": "string",
+            "minLength": 1
+          },
+          "problem": {
+            "type": "string",
+            "minLength": 1
+          },
+          "suggestion": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "quote",
+          "problem",
+          "suggestion"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rewrites": {
+      "minItems": 1,
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "casual",
+              "neutral",
+              "academic",
+              "very_respectful"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "mode",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "contextNotes": {
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "reason"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "register",
+    "issues",
+    "rewrites",
+    "contextNotes",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

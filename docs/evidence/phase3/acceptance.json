@@ -1,0 +1,195 @@
+{
+  "generatedAt": "2026-09-16T11:10:12.328Z",
+  "latest": {
+    "total": 8,
+    "passed": 7,
+    "failed": [
+      "vision-independent"
+    ]
+  },
+  "bestEver": {
+    "text-independent": {
+      "pass": true,
+      "evidence": "provider=groq-text 4550ms",
+      "runAt": "2026-09-16T11:10:12.328Z"
+    },
+    "vision-independent": {
+      "pass": true,
+      "evidence": "provider=groq-vision regions=8 boxesInRange=true skipped=[] 4267ms",
+      "runAt": "2026-09-16T10:30:28.534Z"
+    },
+    "conversation-independent": {
+      "pass": true,
+      "evidence": "stt=groq-whisper translate=groq-text coach=groq-text reply=groq-text",
+      "runAt": "2026-09-16T11:10:12.328Z"
+    },
+    "yapsim-independent": {
+      "pass": true,
+      "evidence": "start=groq-text turn=groq-text finish=groq-text dims=6",
+      "runAt": "2026-09-16T11:10:12.328Z"
+    },
+    "health-endpoint": {
+      "pass": true,
+      "evidence": "groqText=healthy groqVision=degraded groqStt=healthy cloudflareText=healthy cloudflareVision=healthy cloudflareStt=healthy gemini=healthy openrouter=unconfigured",
+      "runAt": "2026-09-16T11:10:12.328Z"
+    },
+    "stt-two-providers": {
+      "pass": true,
+      "evidence": "groq-whisper -> cloudflare-whisper — cloudflare leg is healthy",
+      "runAt": "2026-09-16T11:10:12.328Z"
+    },
+    "no-secret-leak": {
+      "pass": true,
+      "evidence": "no key echoed",
+      "runAt": "2026-09-16T11:10:12.328Z"
+    },
+    "request-budget": {
+      "pass": true,
+      "evidence": "active=0 queued=0 max=4",
+      "runAt": "2026-09-16T11:10:12.328Z"
+    }
+  },
+  "runs": [
+    {
+      "runAt": "2026-09-16T10:28:31.265Z",
+      "passed": 6,
+      "total": 8,
+      "results": [
+        {
+          "id": "text-independent",
+          "pass": true,
+          "evidence": "provider=groq-text 4090ms"
+        },
+        {
+          "id": "vision-independent",
+          "pass": true,
+          "evidence": "provider=groq-vision regions=6 boxesInRange=true skipped=[] 3099ms"
+        },
+        {
+          "id": "conversation-independent",
+          "pass": true,
+          "evidence": "stt=groq-whisper translate=groq-text coach=groq-text reply=groq-text"
+        },
+        {
+          "id": "yapsim-independent",
+          "pass": false,
+          "evidence": "RATE_LIMITED"
+        },
+        {
+          "id": "health-endpoint",
+          "pass": true,
+          "evidence": "groqText=cooldown groqVision=cooldown groqStt=healthy cloudflareText=unconfigured cloudflareVision=unconfigured cloudflareStt=unconfigured gemini=healthy openrouter=unconfigured"
+        },
+        {
+          "id": "stt-two-providers",
+          "pass": false,
+          "evidence": "groq-whisper -> cloudflare-whisper — cloudflare leg is unconfigured"
+        },
+        {
+          "id": "no-secret-leak",
+          "pass": true,
+          "evidence": "no key echoed"
+        },
+        {
+          "id": "request-budget",
+          "pass": true,
+          "evidence": "active=0 queued=0 max=4"
+        }
+      ]
+    },
+    {
+      "runAt": "2026-09-16T10:30:28.534Z",
+      "passed": 6,
+      "total": 8,
+      "results": [
+        {
+          "id": "text-independent",
+          "pass": true,
+          "evidence": "provider=groq-text 6383ms"
+        },
+        {
+          "id": "vision-independent",
+          "pass": true,
+          "evidence": "provider=groq-vision regions=8 boxesInRange=true skipped=[] 4267ms"
+        },
+        {
+          "id": "conversation-independent",
+          "pass": false,
+          "evidence": "no audio available for the STT step"
+        },
+        {
+          "id": "yapsim-independent",
+          "pass": true,
+          "evidence": "start=groq-text turn=groq-text finish=groq-text dims=6"
+        },
+        {
+          "id": "health-endpoint",
+          "pass": true,
+          "evidence": "groqText=healthy groqVision=healthy groqStt=healthy cloudflareText=unconfigured cloudflareVision=unconfigured cloudflareStt=unconfigured gemini=healthy openrouter=unconfigured"
+        },
+        {
+          "id": "stt-two-providers",
+          "pass": false,
+          "evidence": "groq-whisper -> cloudflare-whisper — cloudflare leg is unconfigured"
+        },
+        {
+          "id": "no-secret-leak",
+          "pass": true,
+          "evidence": "no key echoed"
+        },
+        {
+          "id": "request-budget",
+          "pass": true,
+          "evidence": "active=0 queued=0 max=4"
+        }
+      ]
+    },
+    {
+      "runAt": "2026-09-16T11:10:12.328Z",
+      "passed": 7,
+      "total": 8,
+      "results": [
+        {
+          "id": "text-independent",
+          "pass": true,
+          "evidence": "provider=groq-text 4550ms"
+        },
+        {
+          "id": "vision-independent",
+          "pass": false,
+          "evidence": "RATE_LIMITED: The AI service is busy right now. Your input is kept — try again in a moment. | attempted=[{\"provider\":\"groq-vision\",\"code\":\"RATE_LIMITED\"},{\"provider\":\"cavoti-glm\",\"code\":\"AI_UNAVAILABLE\"},{\"provider\":\"cavoti-qwen\",\"code\":\"AI_UNAVAILABLE\"}]"
+        },
+        {
+          "id": "conversation-independent",
+          "pass": true,
+          "evidence": "stt=groq-whisper translate=groq-text coach=groq-text reply=groq-text"
+        },
+        {
+          "id": "yapsim-independent",
+          "pass": true,
+          "evidence": "start=groq-text turn=groq-text finish=groq-text dims=6"
+        },
+        {
+          "id": "health-endpoint",
+          "pass": true,
+          "evidence": "groqText=healthy groqVision=degraded groqStt=healthy cloudflareText=healthy cloudflareVision=healthy cloudflareStt=healthy gemini=healthy openrouter=unconfigured"
+        },
+        {
+          "id": "stt-two-providers",
+          "pass": true,
+          "evidence": "groq-whisper -> cloudflare-whisper — cloudflare leg is healthy"
+        },
+        {
+          "id": "no-secret-leak",
+          "pass": true,
+          "evidence": "no key echoed"
+        },
+        {
+          "id": "request-budget",
+          "pass": true,
+          "evidence": "active=0 queued=0 max=4"
+        }
+      ]
+    }
+  ]
+}

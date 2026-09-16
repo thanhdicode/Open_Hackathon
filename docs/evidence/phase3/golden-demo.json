@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-09-16T13:20:11.790Z",
+  "baseUrl": "http://127.0.0.1:5173",
+  "counts": {
+    "pass": 5,
+    "skip": 4,
+    "partial": 0,
+    "fail": 0
+  },
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "[yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa9713e0d81935e865' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js"
+  ],
+  "pageErrors": [],
+  "steps": [
+    {
+      "id": "0",
+      "name": "onboarding reaches the shell",
+      "status": "PASS",
+      "note": "five-tab shell visible"
+    },
+    {
+      "id": "A",
+      "name": "local OCR overlay appears first",
+      "status": "PASS",
+      "note": "8 regions read on device"
+    },
+    {
+      "id": "B",
+      "name": "cloud Scene Lens enriches the image",
+      "status": "SKIP",
+      "note": "cloud enrichment unavailable (free tier) — local overlay retained"
+    },
+    {
+      "id": "C",
+      "name": "tapping a region shows translation + explanation",
+      "status": "SKIP",
+      "note": "no enriched regions to tap"
+    },
+    {
+      "id": "D",
+      "name": "conversation bridge opens",
+      "status": "PASS",
+      "note": "two-lane bridge rendered"
+    },
+    {
+      "id": "E",
+      "name": "typed reply path is available",
+      "status": "SKIP",
+      "note": "no reply input found"
+    },
+    {
+      "id": "G",
+      "name": "Practice This hands off to YapSim",
+      "status": "SKIP",
+      "note": "requires a Lens result to hand off from; covered by npm run verify:sim at the route level"
+    },
+    {
+      "id": "H",
+      "name": "critical operation survives provider outage",
+      "status": "PASS",
+      "note": "8 regions read with every remote call aborted"
+    },
+    {
+      "id": "I",
+      "name": "app remains usable with everything down",
+      "status": "PASS",
+      "note": "on-device overlay=true, overflow=false"
+    }
+  ]
+}

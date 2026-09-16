@@ -1,5 +1,6 @@
 import type { CountryCode } from "./countries";
 import type { DnaScores } from "./dna";
+import type { JourneyDates } from "../lib/journey/dates";
 
 export interface TodayTask {
   id: string;
@@ -22,6 +23,15 @@ export interface Journey {
   major: string;
   arrival: string;
   departure: string;
+  /**
+   * The canonical timeline. `arrival` and `departure` above are the display
+   * strings for the same two dates; this is the machine-readable pair the stage
+   * is derived from, plus the programme dates the Greenbook and Today use.
+   *
+   * Stage is deliberately NOT a field here. It is computed from these dates
+   * (`deriveStage`), because a stored stage goes stale the moment a day passes.
+   */
+  dates: JourneyDates;
   dayCount: number;
   totalDays: number;
   languages: { name: string; level: string }[];
@@ -51,6 +61,7 @@ export const JOURNEYS: Journey[] = [
     major: "Computer Science",
     arrival: "12 Aug 2026",
     departure: "20 Dec 2026",
+    dates: { departureDate: "2026-08-09", arrivalDate: "2026-08-12", programStartDate: "2026-08-17", programEndDate: "2026-12-11", returnDate: "2026-12-20" },
     dayCount: 34,
     totalDays: 130,
     languages: [
@@ -81,6 +92,7 @@ export const JOURNEYS: Journey[] = [
     major: "International Business",
     arrival: "5 Aug 2026",
     departure: "15 Dec 2026",
+    dates: { departureDate: "2026-08-02", arrivalDate: "2026-08-05", programStartDate: "2026-08-10", programEndDate: "2026-12-04", returnDate: "2026-12-15" },
     dayCount: 41,
     totalDays: 132,
     languages: [
@@ -111,6 +123,7 @@ export const JOURNEYS: Journey[] = [
     major: "Communication",
     arrival: "1 Aug 2026",
     departure: "10 Dec 2026",
+    dates: { departureDate: "2026-07-29", arrivalDate: "2026-08-01", programStartDate: "2026-08-05", programEndDate: "2026-11-27", returnDate: "2026-12-10" },
     dayCount: 45,
     totalDays: 131,
     languages: [
@@ -140,6 +153,7 @@ export const JOURNEYS: Journey[] = [
     major: "Economics",
     arrival: "18 Aug 2026",
     departure: "22 Dec 2026",
+    dates: { departureDate: "2026-08-15", arrivalDate: "2026-08-18", programStartDate: "2026-08-24", programEndDate: "2026-12-11", returnDate: "2026-12-22" },
     dayCount: 28,
     totalDays: 126,
     languages: [
@@ -170,6 +184,7 @@ export const JOURNEYS: Journey[] = [
     major: "Business Analytics",
     arrival: "20 Aug 2026",
     departure: "24 Dec 2026",
+    dates: { departureDate: "2026-08-17", arrivalDate: "2026-08-20", programStartDate: "2026-08-24", programEndDate: "2026-12-11", returnDate: "2026-12-24" },
     dayCount: 26,
     totalDays: 126,
     languages: [

@@ -1,0 +1,228 @@
+{
+  "title": "YapStudyResult",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": [
+        "professor_message",
+        "group_chat",
+        "slide",
+        "lecture_audio",
+        "whiteboard",
+        "assignment",
+        "vocabulary",
+        "essay_draft",
+        "meeting_summary",
+        "presentation"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sections": {
+      "minItems": 1,
+      "maxItems": 6,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "body": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "label"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "actionItems": {
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner": {
+            "type": "string"
+          },
+          "dueHint": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "questionsToAsk": {
+      "maxItems": 6,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "terminology": {
+      "maxItems": 10,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "plainMeaning": {
+            "type": "string",
+            "minLength": 1
+          },
+          "academicUsage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "term",
+          "plainMeaning"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "practiceSuggestion": {
+      "type": "object",
+      "properties": {
+        "scenarioGoal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "food",
+            "transport",
+            "campus",
+            "classroom",
+            "group_work",
+            "professor",
+            "social",
+            "housing",
+            "banking",
+            "sim",
+            "health",
+            "safety",
+            "police",
+            "immigration",
+            "shopping",
+            "religion",
+            "events",
+            "clubs",
+            "part_time",
+            "travel"
+          ]
+        }
+      },
+      "required": [
+        "scenarioGoal",
+        "domain"
+      ],
+      "additionalProperties": false
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "sources": {
+      "maxItems": 6,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "authorityLevel": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "retrievedAt": {
+            "type": "string"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "current",
+              "stale",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "sourceId",
+          "title",
+          "url",
+          "authorityLevel"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "mode",
+    "summary",
+    "sections",
+    "actionItems",
+    "questionsToAsk",
+    "terminology",
+    "confidence",
+    "sources"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

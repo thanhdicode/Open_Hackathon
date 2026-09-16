@@ -1,0 +1,52 @@
+{
+  "baseUrl": "http://127.0.0.1:5173",
+  "generatedAt": "2026-09-16T13:15:45.096Z",
+  "checks": [
+    {
+      "name": "onboarding reaches the shell",
+      "pass": true,
+      "note": "five-tab shell visible"
+    },
+    {
+      "name": "Lens exposes its five input modes",
+      "pass": true,
+      "note": "5 mode buttons"
+    },
+    {
+      "name": "conversation bridge renders its two-lane explanation",
+      "pass": true,
+      "note": "coaching + translation lanes described"
+    },
+    {
+      "name": "no horizontal overflow at 390px",
+      "pass": true,
+      "note": "390/390"
+    },
+    {
+      "name": "mic control is present",
+      "pass": true,
+      "note": "hold-to-capture button visible"
+    },
+    {
+      "name": "denied microphone falls back instead of dead-ending",
+      "pass": true,
+      "note": "a usable fallback is offered"
+    },
+    {
+      "name": "no page errors",
+      "pass": true,
+      "note": "none"
+    },
+    {
+      "name": "no new console errors from the bridge",
+      "pass": true,
+      "note": "3 console error(s), all pre-existing Appwrite guest probes"
+    }
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "[yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa9685558947ce6050' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js"
+  ],
+  "pageErrors": []
+}

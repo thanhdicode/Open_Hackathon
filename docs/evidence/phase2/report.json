@@ -1,0 +1,119 @@
+{
+  "baseUrl": "http://localhost:5173",
+  "generatedAt": "2026-09-16T08:06:42.381Z",
+  "checks": [
+    {
+      "name": "save-your-journey prompt appears after Passport generation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Email OTP request reaches Appwrite and UI stays actionable",
+      "ok": true,
+      "detail": "Server Error"
+    },
+    {
+      "name": "two guests hold different journeys",
+      "ok": false,
+      "detail": "A host=, B host="
+    },
+    {
+      "name": "guest session restores after reload (no re-onboarding)",
+      "ok": true,
+      "detail": "host=, onboarding=false"
+    },
+    {
+      "name": "second guest restores its own journey",
+      "ok": true,
+      "detail": "host="
+    },
+    {
+      "name": "captured both account ids",
+      "ok": true,
+      "detail": "A=6aaa4de31eae14e98b39, B=6aaa4e006ff5932c4973"
+    },
+    {
+      "name": "guest A cannot read guest B's student profile",
+      "ok": false,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "social profile starts private (discoverable off)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "real Edit Profile screen opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings group ACCOUNT present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings group PREFERENCES present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings group PRIVACY present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings group SAFETY present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings group LEGAL present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings group SUPPORT present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings shows the guest upgrade prompt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no non-essential cookie banner (analytics not configured)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "cookies page lists the Appwrite session cookie",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "cookies page reports analytics off",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "consoleErrors": [
+    "[A] Failed to load resource: the server responded with a status of 401 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa4de31eae14e98b39' could not be found.\n    at Client.<anonymous> (http://localhost:",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 500 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()",
+    "[A] Failed to load resource: the server responded with a status of 404 ()"
+  ]
+}

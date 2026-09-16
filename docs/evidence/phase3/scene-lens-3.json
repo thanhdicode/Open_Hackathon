@@ -1,0 +1,627 @@
+{
+  "generatedAt": "2026-09-16T11:04:54.550Z",
+  "geminiDisabled": true,
+  "latest": {
+    "total": 3,
+    "passed": 3,
+    "servedByCavoti": 1,
+    "servedByGemini": 0
+  },
+  "bestEver": {
+    "A-menu-malaysia": {
+      "id": "A-menu-malaysia",
+      "describes": "Malaysian food menu",
+      "pass": true,
+      "provider": "cavoti-hy3",
+      "model": "hy3",
+      "latencyMs": 15220,
+      "fallbackDepth": 3,
+      "degradedProviders": [],
+      "contractValid": true,
+      "regions": 8,
+      "boxesValid": true,
+      "regionsWithOcr": 8,
+      "regionsWithTranslation": 8,
+      "detectedLanguages": [
+        "ms"
+      ],
+      "sceneKind": "menu",
+      "confidence": {
+        "label": "high",
+        "reason": "Chữ trên menu rõ ràng và dễ đọc."
+      },
+      "sceneSummary": "Thực đơn của quán Nasi Lemak ở Taman Universiti với các món và giá.",
+      "safetyNotice": "Ảnh này không thể xác nhận thành phần gây dị ứng, giá hiện tại, giờ mở cửa chính xác hay chứng nhận Halal thật sự của quán.",
+      "uncertaintyNotes": [
+        "Menu chỉ hiển thị vài món, có thể còn món khác không thấy trong ảnh.",
+        "Giá có thể đã thay đổi và không phải lúc nào cũng cập nhật trên menu."
+      ],
+      "sampleRegions": [
+        {
+          "label": "Tên quán",
+          "originalText": "GERAI NASI LEMAK",
+          "translatedText": "Quán Cơm Nasi Lemak",
+          "box": {
+            "ymin": 18,
+            "xmin": 154,
+            "ymax": 98,
+            "xmax": 818
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Logo Halal",
+          "originalText": "HALAL",
+          "translatedText": "Hồi giáo (được phép)",
+          "box": {
+            "ymin": 817,
+            "xmin": 868,
+            "ymax": 867,
+            "xmax": 996
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Tên địa điểm",
+          "originalText": "KAK ROS · TAMAN UNIVERSITI",
+          "translatedText": "Kak Ros · Taman Universiti",
+          "box": {
+            "ymin": 127,
+            "xmin": 263,
+            "ymax": 152,
+            "xmax": 717
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Nasi Lemak Ayam RM6.50",
+          "originalText": "Nasi Lemak Ayam — sambal, timun, kacang, ikan bilis — RM 6.50",
+          "translatedText": "Nasi Lemak gà 6.50 RM (sambal, dưa chuột, đậu, cá cơm)",
+          "box": {
+            "ymin": 272,
+            "xmin": 50,
+            "ymax": 336,
+            "xmax": 947
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Nasi Lemak Telur RM4.00",
+          "originalText": "Nasi Lemak Telur — telur mata, sambal — RM 4.00",
+          "translatedText": "Nasi Lemak trứng 4.00 RM (trứng ốp la, sambal)",
+          "box": {
+            "ymin": 371,
+            "xmin": 50,
+            "ymax": 436,
+            "xmax": 947
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Nasi Lemak Biasa RM3.00",
+          "originalText": "Nasi Lemak Biasa — tanpa lauk tambahan — RM 3.00",
+          "translatedText": "Nasi Lemak thường 3.00 RM (không có đồ ăn kèm thêm)",
+          "box": {
+            "ymin": 470,
+            "xmin": 50,
+            "ymax": 536,
+            "xmax": 947
+          },
+          "uncertainty": "none"
+        }
+      ],
+      "runAt": "2026-09-16T11:04:54.550Z"
+    },
+    "B-campus-singapore": {
+      "id": "B-campus-singapore",
+      "describes": "Singapore campus notice (English + Malay + Mandarin)",
+      "pass": true,
+      "provider": "groq-vision",
+      "model": "qwen/qwen3.8-27b",
+      "latencyMs": 3831,
+      "fallbackDepth": 0,
+      "degradedProviders": [],
+      "contractValid": true,
+      "regions": 5,
+      "boxesValid": true,
+      "regionsWithOcr": 5,
+      "regionsWithTranslation": 5,
+      "detectedLanguages": [
+        "en",
+        "ms",
+        "zh"
+      ],
+      "sceneKind": "document",
+      "confidence": {
+        "label": "high",
+        "reason": "The text in the image is clear, legible, and contains all necessary details."
+      },
+      "sceneSummary": "Một thông báo nội bộ của trường đại học về việc đóng cửa quầy dịch vụ sinh viên.",
+      "safetyNotice": "Ảnh này không thể xác nhận các quy định pháp lý, giá cả, tình trạng halal hay thành phần thực phẩm.",
+      "uncertaintyNotes": [
+        "Không có thông tin nào bị mờ hoặc không rõ ràng."
+      ],
+      "sampleRegions": [
+        {
+          "label": "Tiêu đề thông báo",
+          "originalText": "CAMPUS NOTICE",
+          "translatedText": "Thông báo nội bộ",
+          "box": {
+            "ymin": 50,
+            "xmin": 50,
+            "ymax": 100,
+            "xmax": 950
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Nội dung tiếng Anh",
+          "originalText": "The Student Services counter will be closed on Friday for staff training. Collect your student card from the library instead.",
+          "translatedText": "Quầy Dịch vụ Sinh viên sẽ đóng cửa vào thứ Sáu để đào tạo nhân viên. Hãy lấy thẻ sinh viên của bạn từ thư viện thay thế.",
+          "box": {
+            "ymin": 150,
+            "xmin": 50,
+            "ymax": 300,
+            "xmax": 950
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Nội dung tiếng Mã Lai",
+          "originalText": "Bahasa Melayu\nKaunter Perkhidmatan Pelajar akan ditutup pada hari Jumaat. Sila ambil kad pelajar di perpustakaan.",
+          "translatedText": "Tiếng Mã Lai\nQuầy Dịch vụ Sinh viên sẽ đóng cửa vào thứ Sáu. Vui lòng lấy thẻ sinh viên tại thư viện.",
+          "box": {
+            "ymin": 300,
+            "xmin": 50,
+            "ymax": 450,
+            "xmax": 950
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Chi tiết thời gian",
+          "originalText": "DETAILS\nClosed: Friday, 19 September\nReopens: Monday, 22 September, 9:00 am\nLocation: Library, Level 2, Room L2-07",
+          "translatedText": "CHI TIẾT\nĐóng cửa: Thứ Sáu, 19 tháng 9\nMở lại: Thứ Hai, 22 tháng 9, 9:00 sáng\nĐịa điểm: Thư viện, Tầng 2, Phòng L2-07",
+          "box": {
+            "ymin": 450,
+            "xmin": 50,
+            "ymax": 600,
+            "xmax": 950
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Email liên hệ",
+          "originalText": "Enquiries: student.services@example.edu",
+          "translatedText": "Hỏi đáp: student.services@example.edu",
+          "box": {
+            "ymin": 600,
+            "xmin": 50,
+            "ymax": 700,
+            "xmax": 950
+          },
+          "uncertainty": "none"
+        }
+      ],
+      "runAt": "2026-09-16T11:04:54.550Z"
+    },
+    "C-mixed-chat": {
+      "id": "C-mixed-chat",
+      "describes": "screenshot with mixed English/local text",
+      "pass": true,
+      "provider": "groq-vision",
+      "model": "qwen/qwen3.8-27b",
+      "latencyMs": 4291,
+      "fallbackDepth": 0,
+      "degradedProviders": [],
+      "contractValid": true,
+      "regions": 6,
+      "boxesValid": true,
+      "regionsWithOcr": 6,
+      "regionsWithTranslation": 6,
+      "detectedLanguages": [
+        "en",
+        "ms",
+        "vi"
+      ],
+      "sceneKind": "screen",
+      "confidence": {
+        "label": "high",
+        "reason": "Ảnh chụp màn hình rõ nét, chữ in đậm và dễ đọc."
+      },
+      "sceneSummary": "Ảnh chụp màn hình cuộc hội thoại nhóm trên ứng dụng nhắn tin, thảo luận về lịch gặp mặt và hạn chót nộp bài.",
+      "safetyNotice": "Ảnh này không thể xác minh tính chính xác của các hạn chót hay sự đồng ý thực sự của các thành viên khác.",
+      "uncertaintyNotes": [
+        "Toàn bộ văn bản trong ảnh đều rõ nét và dễ đọc.",
+        "Không có vùng nào bị mờ hoặc che khuất."
+      ],
+      "sampleRegions": [
+        {
+          "label": "Tên nhóm dự án",
+          "originalText": "Group Project · 4 members",
+          "translatedText": "Dự án nhóm · 4 thành viên",
+          "box": {
+            "ymin": 20,
+            "xmin": 80,
+            "ymax": 50,
+            "xmax": 350
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Đề xuất gặp mặt",
+          "originalText": "Guys can we meet at 4? The library is full so let's use the canteen.",
+          "translatedText": "Mọi người, mình có thể gặp lúc 4 giờ không? Thư viện đông quá nên mình dùng căng-tin nhé.",
+          "box": {
+            "ymin": 120,
+            "xmin": 80,
+            "ymax": 200,
+            "xmax": 600
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Lịch trình của Aisyah",
+          "originalText": "Boleh, saya ok. Tapi saya kena balik awal, ada kelas pukul 6.",
+          "translatedText": "Được, tôi ổn. Nhưng tôi phải về sớm, có lớp lúc 6 giờ.",
+          "box": {
+            "ymin": 220,
+            "xmin": 80,
+            "ymax": 300,
+            "xmax": 600
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Tin nhắn của bạn",
+          "originalText": "Mình ok nhưng cho mình xin outline trước nhé, để mình đọc trước.",
+          "translatedText": "Mình ok nhưng cho mình xin dàn ý trước nhé, để mình đọc trước.",
+          "box": {
+            "ymin": 320,
+            "xmin": 150,
+            "ymax": 400,
+            "xmax": 600
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Hạn chót bài tập",
+          "originalText": "Sure, I'll send the outline tonight. Also remember the report is due Friday 5pm.",
+          "translatedText": "Được, tôi sẽ gửi dàn ý tối nay. Ngoài ra nhớ là báo cáo phải nộp thứ Sáu 5 giờ chiều.",
+          "box": {
+            "ymin": 420,
+            "xmin": 80,
+            "ymax": 500,
+            "xmax": 600
+          },
+          "uncertainty": "none"
+        },
+        {
+          "label": "Nhắc nhở bảng đóng góp",
+          "originalText": "Jangan lupa letak nama semua orang dalam contribution form ya.",
+          "translatedText": "Đừng quên ghi tên mọi người vào mẫu đóng góp nhé.",
+          "box": {
+            "ymin": 520,
+            "xmin": 80,
+            "ymax": 600,
+            "xmax": 600
+          },
+          "uncertainty": "none"
+        }
+      ],
+      "runAt": "2026-09-16T11:04:54.550Z"
+    }
+  },
+  "bestEverPassed": 3,
+  "runs": [
+    {
+      "runAt": "2026-09-16T11:04:54.550Z",
+      "passed": 3,
+      "total": 3,
+      "servedByCavoti": 1,
+      "servedByGemini": 0,
+      "rows": [
+        {
+          "id": "A-menu-malaysia",
+          "describes": "Malaysian food menu",
+          "pass": true,
+          "provider": "cavoti-hy3",
+          "model": "hy3",
+          "latencyMs": 15220,
+          "fallbackDepth": 3,
+          "degradedProviders": [],
+          "contractValid": true,
+          "regions": 8,
+          "boxesValid": true,
+          "regionsWithOcr": 8,
+          "regionsWithTranslation": 8,
+          "detectedLanguages": [
+            "ms"
+          ],
+          "sceneKind": "menu",
+          "confidence": {
+            "label": "high",
+            "reason": "Chữ trên menu rõ ràng và dễ đọc."
+          },
+          "sceneSummary": "Thực đơn của quán Nasi Lemak ở Taman Universiti với các món và giá.",
+          "safetyNotice": "Ảnh này không thể xác nhận thành phần gây dị ứng, giá hiện tại, giờ mở cửa chính xác hay chứng nhận Halal thật sự của quán.",
+          "uncertaintyNotes": [
+            "Menu chỉ hiển thị vài món, có thể còn món khác không thấy trong ảnh.",
+            "Giá có thể đã thay đổi và không phải lúc nào cũng cập nhật trên menu."
+          ],
+          "sampleRegions": [
+            {
+              "label": "Tên quán",
+              "originalText": "GERAI NASI LEMAK",
+              "translatedText": "Quán Cơm Nasi Lemak",
+              "box": {
+                "ymin": 18,
+                "xmin": 154,
+                "ymax": 98,
+                "xmax": 818
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Logo Halal",
+              "originalText": "HALAL",
+              "translatedText": "Hồi giáo (được phép)",
+              "box": {
+                "ymin": 817,
+                "xmin": 868,
+                "ymax": 867,
+                "xmax": 996
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Tên địa điểm",
+              "originalText": "KAK ROS · TAMAN UNIVERSITI",
+              "translatedText": "Kak Ros · Taman Universiti",
+              "box": {
+                "ymin": 127,
+                "xmin": 263,
+                "ymax": 152,
+                "xmax": 717
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Nasi Lemak Ayam RM6.50",
+              "originalText": "Nasi Lemak Ayam — sambal, timun, kacang, ikan bilis — RM 6.50",
+              "translatedText": "Nasi Lemak gà 6.50 RM (sambal, dưa chuột, đậu, cá cơm)",
+              "box": {
+                "ymin": 272,
+                "xmin": 50,
+                "ymax": 336,
+                "xmax": 947
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Nasi Lemak Telur RM4.00",
+              "originalText": "Nasi Lemak Telur — telur mata, sambal — RM 4.00",
+              "translatedText": "Nasi Lemak trứng 4.00 RM (trứng ốp la, sambal)",
+              "box": {
+                "ymin": 371,
+                "xmin": 50,
+                "ymax": 436,
+                "xmax": 947
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Nasi Lemak Biasa RM3.00",
+              "originalText": "Nasi Lemak Biasa — tanpa lauk tambahan — RM 3.00",
+              "translatedText": "Nasi Lemak thường 3.00 RM (không có đồ ăn kèm thêm)",
+              "box": {
+                "ymin": 470,
+                "xmin": 50,
+                "ymax": 536,
+                "xmax": 947
+              },
+              "uncertainty": "none"
+            }
+          ]
+        },
+        {
+          "id": "B-campus-singapore",
+          "describes": "Singapore campus notice (English + Malay + Mandarin)",
+          "pass": true,
+          "provider": "groq-vision",
+          "model": "qwen/qwen3.8-27b",
+          "latencyMs": 3831,
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "contractValid": true,
+          "regions": 5,
+          "boxesValid": true,
+          "regionsWithOcr": 5,
+          "regionsWithTranslation": 5,
+          "detectedLanguages": [
+            "en",
+            "ms",
+            "zh"
+          ],
+          "sceneKind": "document",
+          "confidence": {
+            "label": "high",
+            "reason": "The text in the image is clear, legible, and contains all necessary details."
+          },
+          "sceneSummary": "Một thông báo nội bộ của trường đại học về việc đóng cửa quầy dịch vụ sinh viên.",
+          "safetyNotice": "Ảnh này không thể xác nhận các quy định pháp lý, giá cả, tình trạng halal hay thành phần thực phẩm.",
+          "uncertaintyNotes": [
+            "Không có thông tin nào bị mờ hoặc không rõ ràng."
+          ],
+          "sampleRegions": [
+            {
+              "label": "Tiêu đề thông báo",
+              "originalText": "CAMPUS NOTICE",
+              "translatedText": "Thông báo nội bộ",
+              "box": {
+                "ymin": 50,
+                "xmin": 50,
+                "ymax": 100,
+                "xmax": 950
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Nội dung tiếng Anh",
+              "originalText": "The Student Services counter will be closed on Friday for staff training. Collect your student card from the library instead.",
+              "translatedText": "Quầy Dịch vụ Sinh viên sẽ đóng cửa vào thứ Sáu để đào tạo nhân viên. Hãy lấy thẻ sinh viên của bạn từ thư viện thay thế.",
+              "box": {
+                "ymin": 150,
+                "xmin": 50,
+                "ymax": 300,
+                "xmax": 950
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Nội dung tiếng Mã Lai",
+              "originalText": "Bahasa Melayu\nKaunter Perkhidmatan Pelajar akan ditutup pada hari Jumaat. Sila ambil kad pelajar di perpustakaan.",
+              "translatedText": "Tiếng Mã Lai\nQuầy Dịch vụ Sinh viên sẽ đóng cửa vào thứ Sáu. Vui lòng lấy thẻ sinh viên tại thư viện.",
+              "box": {
+                "ymin": 300,
+                "xmin": 50,
+                "ymax": 450,
+                "xmax": 950
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Chi tiết thời gian",
+              "originalText": "DETAILS\nClosed: Friday, 19 September\nReopens: Monday, 22 September, 9:00 am\nLocation: Library, Level 2, Room L2-07",
+              "translatedText": "CHI TIẾT\nĐóng cửa: Thứ Sáu, 19 tháng 9\nMở lại: Thứ Hai, 22 tháng 9, 9:00 sáng\nĐịa điểm: Thư viện, Tầng 2, Phòng L2-07",
+              "box": {
+                "ymin": 450,
+                "xmin": 50,
+                "ymax": 600,
+                "xmax": 950
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Email liên hệ",
+              "originalText": "Enquiries: student.services@example.edu",
+              "translatedText": "Hỏi đáp: student.services@example.edu",
+              "box": {
+                "ymin": 600,
+                "xmin": 50,
+                "ymax": 700,
+                "xmax": 950
+              },
+              "uncertainty": "none"
+            }
+          ]
+        },
+        {
+          "id": "C-mixed-chat",
+          "describes": "screenshot with mixed English/local text",
+          "pass": true,
+          "provider": "groq-vision",
+          "model": "qwen/qwen3.8-27b",
+          "latencyMs": 4291,
+          "fallbackDepth": 0,
+          "degradedProviders": [],
+          "contractValid": true,
+          "regions": 6,
+          "boxesValid": true,
+          "regionsWithOcr": 6,
+          "regionsWithTranslation": 6,
+          "detectedLanguages": [
+            "en",
+            "ms",
+            "vi"
+          ],
+          "sceneKind": "screen",
+          "confidence": {
+            "label": "high",
+            "reason": "Ảnh chụp màn hình rõ nét, chữ in đậm và dễ đọc."
+          },
+          "sceneSummary": "Ảnh chụp màn hình cuộc hội thoại nhóm trên ứng dụng nhắn tin, thảo luận về lịch gặp mặt và hạn chót nộp bài.",
+          "safetyNotice": "Ảnh này không thể xác minh tính chính xác của các hạn chót hay sự đồng ý thực sự của các thành viên khác.",
+          "uncertaintyNotes": [
+            "Toàn bộ văn bản trong ảnh đều rõ nét và dễ đọc.",
+            "Không có vùng nào bị mờ hoặc che khuất."
+          ],
+          "sampleRegions": [
+            {
+              "label": "Tên nhóm dự án",
+              "originalText": "Group Project · 4 members",
+              "translatedText": "Dự án nhóm · 4 thành viên",
+              "box": {
+                "ymin": 20,
+                "xmin": 80,
+                "ymax": 50,
+                "xmax": 350
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Đề xuất gặp mặt",
+              "originalText": "Guys can we meet at 4? The library is full so let's use the canteen.",
+              "translatedText": "Mọi người, mình có thể gặp lúc 4 giờ không? Thư viện đông quá nên mình dùng căng-tin nhé.",
+              "box": {
+                "ymin": 120,
+                "xmin": 80,
+                "ymax": 200,
+                "xmax": 600
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Lịch trình của Aisyah",
+              "originalText": "Boleh, saya ok. Tapi saya kena balik awal, ada kelas pukul 6.",
+              "translatedText": "Được, tôi ổn. Nhưng tôi phải về sớm, có lớp lúc 6 giờ.",
+              "box": {
+                "ymin": 220,
+                "xmin": 80,
+                "ymax": 300,
+                "xmax": 600
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Tin nhắn của bạn",
+              "originalText": "Mình ok nhưng cho mình xin outline trước nhé, để mình đọc trước.",
+              "translatedText": "Mình ok nhưng cho mình xin dàn ý trước nhé, để mình đọc trước.",
+              "box": {
+                "ymin": 320,
+                "xmin": 150,
+                "ymax": 400,
+                "xmax": 600
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Hạn chót bài tập",
+              "originalText": "Sure, I'll send the outline tonight. Also remember the report is due Friday 5pm.",
+              "translatedText": "Được, tôi sẽ gửi dàn ý tối nay. Ngoài ra nhớ là báo cáo phải nộp thứ Sáu 5 giờ chiều.",
+              "box": {
+                "ymin": 420,
+                "xmin": 80,
+                "ymax": 500,
+                "xmax": 600
+              },
+              "uncertainty": "none"
+            },
+            {
+              "label": "Nhắc nhở bảng đóng góp",
+              "originalText": "Jangan lupa letak nama semua orang dalam contribution form ya.",
+              "translatedText": "Đừng quên ghi tên mọi người vào mẫu đóng góp nhé.",
+              "box": {
+                "ymin": 520,
+                "xmin": 80,
+                "ymax": 600,
+                "xmax": 600
+              },
+              "uncertainty": "none"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

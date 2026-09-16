@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-09-16T09:39:57.304Z",
+  "scenarioTitle": "Đặt Nasi Lemak tại quầy ăn",
+  "turns": [
+    {
+      "speaker": "PERSONA",
+      "text": "Selamat datang! Apa yang anda mahu pesan hari ini?"
+    },
+    {
+      "speaker": "USER",
+      "text": "Dua bungkus, satu tak pedas."
+    },
+    {
+      "speaker": "PERSONA",
+      "text": "Baik, jadi dua pek nasi lemak, satu tidak pedas. Boleh saya ambil makanan ini untuk dibawa pulang?"
+    },
+    {
+      "speaker": "USER",
+      "text": "Bungkus, terima kasih."
+    },
+    {
+      "speaker": "PERSONA",
+      "text": "Terima kasih. Jadi, anda mahu dua pek nasi lemak, satu tidak pedas, untuk dibawa pulang. Betul?"
+    },
+    {
+      "speaker": "USER",
+      "text": "Boleh, ini lima belas ringgit."
+    },
+    {
+      "speaker": "PERSONA",
+      "text": "Terima kasih, pembayaran diterima. Selamat menikmati! Sila ucapkan terima kasih kepada kami."
+    }
+  ],
+  "steps": [
+    {
+      "name": "sim/start",
+      "ok": true,
+      "ms": 4321,
+      "provider": "groq",
+      "note": "\"Đặt Nasi Lemak tại quầy ăn\" persona=Ahmad maxTurns=4 difficulty=1"
+    },
+    {
+      "name": "sim/turn #1",
+      "ok": true,
+      "ms": 1461,
+      "provider": "groq",
+      "note": "progress=on_track shouldEnd=false persona=\"Baik, jadi dua pek nasi lemak, satu tidak pedas.\""
+    },
+    {
+      "name": "sim/turn #2",
+      "ok": true,
+      "ms": 1477,
+      "provider": "groq",
+      "note": "progress=on_track shouldEnd=false persona=\"Terima kasih. Jadi, anda mahu dua pek nasi lemak\""
+    },
+    {
+      "name": "sim/turn #3",
+      "ok": true,
+      "ms": 1696,
+      "provider": "groq",
+      "note": "progress=on_track shouldEnd=false persona=\"Terima kasih, pembayaran diterima. Selamat menik\""
+    },
+    {
+      "name": "sim/finish",
+      "ok": true,
+      "ms": 2994,
+      "provider": "groq",
+      "note": "6 frozen dimensions=true scoresInRange=true priority=\"Try using more complete sentences when ordering, such as \"Sa\""
+    },
+    {
+      "name": "sim/finish",
+      "ok": false,
+      "note": "fallback-failed:gemini:429"
+    },
+    {
+      "name": "transcript is persistable",
+      "ok": true,
+      "ms": 0,
+      "provider": "n/a",
+      "note": "7 turns, 475 chars"
+    }
+  ]
+}

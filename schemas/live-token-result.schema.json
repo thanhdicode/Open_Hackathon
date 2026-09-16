@@ -1,0 +1,40 @@
+{
+  "title": "YapLiveTokenResult",
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "translate",
+        "agent"
+      ]
+    },
+    "constrained": {
+      "type": "boolean"
+    },
+    "expiresAt": {
+      "type": "string"
+    },
+    "newSessionExpiresAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "token",
+    "model",
+    "mode",
+    "constrained",
+    "expiresAt",
+    "newSessionExpiresAt"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

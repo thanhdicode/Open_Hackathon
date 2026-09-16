@@ -1,221 +1,1245 @@
-version: '1.0'
-verified_at: '2026-09-15'
+version: '2.0'
+verified_at: '2026-09-16'
+supersedes: '1.0'
+
+# YapYep Living Greenbook — Source Registry
+#
+# This registry is the input to the ingestion pipeline. Nothing may be written
+# to the knowledge tables that does not trace back to an entry here.
+#
+# v2.0 keeps every v1.0 entry and adds the fields the pipeline needs to decide
+# HOW to fetch a source, not just whether it is trustworthy.
+#
+# access_strategy is an ordered preference:
+#   api             official API, may need credentials
+#   dataset         official downloadable dataset (CSV/Parquet/JSON)
+#   structured_html official page with a stable, parseable structure
+#   pdf             official document
+#   html            ordinary official page, needs extraction
+#   manual          human-verified only; never auto-ingested
+#
+# authority: A = government/regulator/official university · B = official partner
+# body · C = reputable secondary · D = community anecdote (never authoritative)
+#
+# crawl_allowed: false means the source may be cited and linked but must never
+# be mirrored into R2. YouTube and TikTok are always false.
+
 policy:
   allowed_status:
-  - verified_official
-  - candidate_verify_before_ingest
+    - verified_official
+    - candidate_verify_before_ingest
   admin_fact_requires:
-  - authority A or B
-  - freshness metadata
-  - source URL
+    - authority A or B
+    - freshness metadata
+    - source URL
   robots_and_terms: must be checked before crawling
   people_scraping: forbidden
-sources:
-- id: asean-membership
-  country: ASEAN
-  categories:
+  tier_rule: Tier C/D content may never override a Tier A/B fact
+  no_url_rule: An administrative fact with no concrete source URL cannot become
+    verified. It may exist only as unverified and must not appear in critical guidance.
+
+coverage:
+  deep: [VN, SG, MY, TH, ID, PH]
+  baseline: [BN, KH, LA, MM, TL]
+
+categories:
+  - immigration
+  - higher_education
+  - university
+  - payments
+  - banking
+  - telecom
+  - transport
+  - healthcare
+  - emergency
+  - campus_support
+  - student_life
+  - culture_language
+  # Carried over from v1.0 entries. Kept so existing sources stay valid rather
+  # than being silently rewritten to fit a new taxonomy.
   - regional
-  url: https://asean.org/forging-a-new-era-timor-leste-admitted-into-asean/
-  status: verified_official
-  authority: A
-- id: asean-he-roadmap
-  country: ASEAN
-  categories:
-  - higher-education
   - mobility
-  url: https://asean.org/asean-roadmap-2025-to-realise-a-common-higher-education-space-in-southeast-asia/
-  status: verified_official
-  authority: A
-- id: unesco-intercultural
-  country: GLOBAL
-  categories:
+  - education
+  - higher-education
+  - student-pass
+  - student-visa
+  - visa
+  - arrival
+  - international-student
+  - government
   - culture
   - communication
   - research
-  url: https://unesdoc.unesco.org/ark:/48223/pf0000219768
-  status: verified_official
-  authority: B
-- id: bn-gov-immigration
-  country: BN
-  categories:
-  - immigration
-  - student-pass
-  url: https://www.gov.bn/services/Immigration.aspx
-  status: verified_official
-  authority: A
-- id: kh-moeys
-  country: KH
-  categories:
-  - education
-  url: https://moeys.gov.kh/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: kh-emis
-  country: KH
-  categories:
-  - education
-  url: https://emis.moeys.gov.kh/
-  status: verified_official
-  authority: A
-- id: kh-immigration-candidate
-  country: KH
-  categories:
-  - immigration
-  url: https://immigration.gov.kh/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: id-higher-ed
-  country: ID
-  categories:
-  - education
-  - higher-education
-  url: https://www.kemdiktisaintek.go.id/
-  status: verified_official
-  authority: A
-- id: id-dikti
-  country: ID
-  categories:
-  - education
-  - higher-education
-  url: https://dikti.kemdiktisaintek.go.id/
-  status: verified_official
-  authority: A
-- id: id-immigration-candidate
-  country: ID
-  categories:
-  - immigration
-  url: https://www.imigrasi.go.id/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: la-evisa
-  country: LA
-  categories:
-  - immigration
-  - visa
-  url: https://www.laoevisa.gov.la/
-  status: verified_official
-  authority: A
-- id: la-immigration-candidate
-  country: LA
-  categories:
-  - immigration
-  url: https://www.immigration.gov.la/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: my-immigration-student
-  country: MY
-  categories:
-  - immigration
-  - student-pass
-  url: https://www.imi.gov.my/index.php/en/main-services/pass/student-pass/
-  status: verified_official
-  authority: A
-- id: my-emgs
-  country: MY
-  categories:
-  - education
-  - international-student
-  - arrival
-  url: https://educationmalaysia.gov.my/
-  status: verified_official
-  authority: A
-- id: my-emgs-visa
-  country: MY
-  categories:
-  - student-pass
-  - visa
-  url: https://visa.educationmalaysia.gov.my/
-  status: verified_official
-  authority: A
-- id: mm-moe-candidate
-  country: MM
-  categories:
-  - education
-  url: https://www.moe.gov.mm/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: mm-evisa-candidate
-  country: MM
-  categories:
-  - immigration
-  - visa
-  url: https://evisa.moip.gov.mm/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: ph-ched-candidate
-  country: PH
-  categories:
-  - education
-  - higher-education
-  url: https://ched.gov.ph/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: ph-immigration-candidate
-  country: PH
-  categories:
-  - immigration
-  - student-visa
-  url: https://immigration.gov.ph/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: sg-ica-student
-  country: SG
-  categories:
-  - immigration
-  - student-pass
-  url: https://www.ica.gov.sg/reside/STP
-  status: verified_official
-  authority: A
-- id: sg-ica-ihl
-  country: SG
-  categories:
-  - immigration
-  - higher-education
-  url: https://www.ica.gov.sg/reside/STP/apply/ihl
-  status: verified_official
-  authority: A
-- id: th-mhesi-candidate
-  country: TH
-  categories:
-  - education
-  - higher-education
-  url: https://www.mhesi.go.th/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: th-immigration-candidate
-  country: TH
-  categories:
-  - immigration
-  url: https://www.immigration.go.th/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: tl-government
-  country: TL
-  categories:
-  - government
-  - higher-education
-  url: https://timor-leste.gov.tl/
-  status: verified_official
-  authority: A
-- id: tl-migration-candidate
-  country: TL
-  categories:
-  - immigration
-  url: https://migracao.gov.tl/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: vn-moet-candidate
-  country: VN
-  categories:
-  - education
-  url: https://moet.gov.vn/
-  status: candidate_verify_before_ingest
-  authority: A
-- id: vn-evisa-candidate
-  country: VN
-  categories:
-  - immigration
-  - visa
-  url: https://evisa.gov.vn/
-  status: candidate_verify_before_ingest
-  authority: A
+
+# Fetching policy. Measured, not assumed.
+fetch_policy:
+  user_agent: >
+    Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/140.0.0.0 Safari/537.36
+  user_agent_reason: >
+    Measured 2026-09-16: sbv.gov.vn returns 403 to an identifying custom agent and
+    200 to a browser agent. Other government hosts are indifferent to the agent.
+  respect_robots: true
+  request_delay_ms: 1500
+  timeout_ms: 20000
+  max_concurrency: 4
+  note: >
+    A user agent is not a bypass. Where a host refuses this environment's egress
+    IP regardless of agent, the source is recorded as blocked and is NOT fetched;
+    it stays citable in the UI with a link to the official page.
+
+sources:
+  # --------------------------------------------------------------------- ASEAN
+  - id: asean-membership
+    country: ASEAN
+    categories: [regional]
+    url: https://asean.org/forging-a-new-era-timor-leste-admitted-into-asean/
+    status: verified_official
+    authority: A
+    agency: ASEAN Secretariat
+    domain: asean.org
+    source_type: regional_body
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: yearly
+    parser: html-article
+
+  - id: asean-he-roadmap
+    country: ASEAN
+    categories: [higher-education, mobility]
+    url: https://asean.org/asean-roadmap-2025-to-realise-a-common-higher-education-space-in-southeast-asia/
+    status: verified_official
+    authority: A
+    agency: ASEAN Secretariat
+    domain: asean.org
+    source_type: regional_body
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: yearly
+    parser: html-article
+    notes: Roadmap on the ASEAN Higher Education Space — the policy backdrop for student mobility.
+
+  - id: unesco-intercultural
+    country: GLOBAL
+    categories: [culture, communication, research]
+    url: https://unesdoc.unesco.org/ark:/48223/pf0000219768
+    status: verified_official
+    authority: B
+    agency: UNESCO
+    domain: unesdoc.unesco.org
+    source_type: international_body
+    access_strategy: [pdf]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: yearly
+    parser: pdf
+
+  # --------------------------------------------------------------------- Brunei
+  - id: bn-gov-immigration
+    country: BN
+    categories: [immigration, student-pass]
+    url: https://www.gov.bn/services/Immigration.aspx
+    status: verified_official
+    authority: A
+    agency: Brunei Immigration and National Registration
+    domain: gov.bn
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    browser_render_required: true
+    language: ms
+    refresh_frequency: monthly
+    parser: html-article
+    notes: Student pass service.
+
+  # ------------------------------------------------------------------- Cambodia
+  - id: kh-moeys
+    country: KH
+    categories: [education]
+    url: https://moeys.gov.kh/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Ministry of Education, Youth and Sport
+    domain: moeys.gov.kh
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: km
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: kh-emis
+    country: KH
+    categories: [education]
+    url: https://emis.moeys.gov.kh/
+    status: verified_official
+    authority: A
+    agency: Ministry of Education, Youth and Sport — EMIS
+    domain: emis.moeys.gov.kh
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: km
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: kh-immigration-candidate
+    country: KH
+    categories: [immigration]
+    url: https://immigration.gov.kh/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: General Department of Immigration
+    domain: immigration.gov.kh
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    browser_render_required: true
+    language: km
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ------------------------------------------------------------------ Indonesia
+  - id: id-higher-ed
+    country: ID
+    categories: [education, higher-education]
+    url: https://www.kemdiktisaintek.go.id/
+    status: verified_official
+    authority: A
+    agency: Kementerian Pendidikan Tinggi, Sains, dan Teknologi
+    domain: kemdiktisaintek.go.id
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: weekly
+    parser: html-article
+
+  - id: id-dikti
+    country: ID
+    categories: [education, higher-education]
+    url: https://dikti.kemdiktisaintek.go.id/
+    status: verified_official
+    authority: A
+    agency: Direktorat Jenderal Pendidikan Tinggi
+    domain: dikti.kemdiktisaintek.go.id
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: weekly
+    parser: html-article
+    notes: Foreign-student study permit (Izin Belajar) process lives in this family.
+
+  # REPLACED 2026-09-16: `id-immigration-candidate` pointed at the imigrasi.go.id
+  # HOMEPAGE and produced press-release facts, which the trust gate correctly
+  # capped at needs_review — so Indonesia published nothing at all. Replaced with
+  # five DIRECT requirement pages, discovered by
+  # `node scripts/greenbook/discovery/probe.mjs https://www.imigrasi.go.id/`
+  # and each verified to return real server-rendered content (not a shell).
+  # Measured text after tag-stripping, 2026-09-16:
+  #   E30B 6,596 chars · izin-tinggal-keimigrasian 8,082 · faq/izin-tinggal 21,949
+  #   faq/visa 6,036 · daftar-visa-indonesia 7,292
+  # Two probe candidates were rejected on verification: /biaya-keimigrasian and
+  # /dokumen both return 404. They are NOT registered.
+  - id: id-immigration-student-visa
+    country: ID
+    categories: [immigration, student-pass, visa]
+    url: https://www.imigrasi.go.id/wna/daftar-visa-indonesia/E30B
+    status: verified_official
+    authority: A
+    agency: Direktorat Jenderal Imigrasi — Visa Pendidikan Tinggi (E30B)
+    domain: imigrasi.go.id
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: weekly
+    parser: html-article
+    notes: >
+      The higher-education student visa (Visa Pendidikan Tinggi, index E30B).
+      States the visa type, permitted length of stay, PNBP fee, sponsor
+      requirement, application route, special requirements and legal basis —
+      the Indonesian equivalent of a Student Pass page.
+
+  - id: id-immigration-visa-list
+    country: ID
+    categories: [immigration, visa]
+    url: https://www.imigrasi.go.id/wna/daftar-visa-indonesia
+    status: verified_official
+    authority: A
+    agency: Direktorat Jenderal Imigrasi — Daftar Visa
+    domain: imigrasi.go.id
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: weekly
+    parser: html-article
+    notes: >
+      The full visa index. Useful as the parent of E30B and E30F (student
+      exchange) and as the authority for which visa class a student needs.
+
+  - id: id-immigration-stay-permit
+    country: ID
+    categories: [immigration]
+    url: https://www.imigrasi.go.id/wna/izin-tinggal-keimigrasian
+    status: verified_official
+    authority: A
+    agency: Direktorat Jenderal Imigrasi — Izin Tinggal
+    domain: imigrasi.go.id
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: weekly
+    parser: html-article
+    notes: Stay-permit (ITAS/ITAP) classes and how a visa converts into one.
+
+  - id: id-immigration-faq-stay
+    country: ID
+    categories: [immigration]
+    url: https://www.imigrasi.go.id/faq/izin-tinggal
+    status: verified_official
+    authority: A
+    agency: Direktorat Jenderal Imigrasi — FAQ Izin Tinggal
+    domain: imigrasi.go.id
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: weekly
+    parser: html-article
+    notes: The single richest Indonesian page found (21,949 chars of real content).
+
+  - id: id-immigration-faq-visa
+    country: ID
+    categories: [immigration, visa]
+    url: https://www.imigrasi.go.id/faq/visa
+    status: verified_official
+    authority: A
+    agency: Direktorat Jenderal Imigrasi — FAQ Visa
+    domain: imigrasi.go.id
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: weekly
+    parser: html-article
+
+  - id: id-bank-indonesia
+    country: ID
+    categories: [payments, banking]
+    url: https://www.bi.go.id/
+    status: verified_official
+    authority: A
+    agency: Bank Indonesia
+    domain: bi.go.id
+    source_type: regulator
+    access_strategy: [html]
+    crawl_allowed: true
+    language: id
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      Payment-system rules and provider licensing. This is the regulatory
+      provenance for "how do I pay here" guidance, so the Greenbook never has to
+      say "people usually use X".
+
+  # REPLACED 2026-09-16: `id-ui-international` pointed at `www.ui.ac.id`, which
+  # this environment CANNOT reach (egress refusal), and the homepage carried no
+  # arrival guidance anyway. The International Office runs on its own host, which
+  # is reachable and publishes exactly the pages a first-week student needs.
+  # Verified 2026-09-16: every URL below returns 200 with server-rendered content
+  # (immigration 2,638 chars · living-in-indonesia 9,822 · pre-arrival 5,887 ·
+  # post-arrival 4,367 · student-visa-index-e30b 4,976).
+  # Discovered with:
+  #   node scripts/greenbook/discovery/probe.mjs https://international.ui.ac.id/
+  - id: id-ui-international
+    country: ID
+    categories: [university, international-student]
+    url: https://international.ui.ac.id/
+    status: verified_official
+    authority: A
+    agency: Universitas Indonesia — Directorate for Internationalization (Global Office)
+    domain: international.ui.ac.id
+    source_type: university
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: id-ui-student-visa
+    country: ID
+    categories: [immigration, student-pass, university]
+    url: https://international.ui.ac.id/student-visa-index-e30b
+    status: verified_official
+    authority: A
+    agency: Universitas Indonesia — Student Visa (index E30B)
+    domain: international.ui.ac.id
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      The university's own page for the same E30B visa the immigration
+      directorate publishes. The two together are what make the guidance
+      checkable: the ministry states the rule, UI states how its students meet it.
+
+  - id: id-ui-pre-arrival
+    country: ID
+    categories: [arrival, international-student]
+    url: https://international.ui.ac.id/pre-arrival-preparation/
+    status: verified_official
+    authority: A
+    agency: Universitas Indonesia — Pre-Arrival Preparation
+    domain: international.ui.ac.id
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: What to do before flying — the highest-value page for a first-week student.
+
+  - id: id-ui-post-arrival
+    country: ID
+    categories: [arrival, international-student]
+    url: https://international.ui.ac.id/post-arrival/
+    status: verified_official
+    authority: A
+    agency: Universitas Indonesia — Post Arrival
+    domain: international.ui.ac.id
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: id-ui-immigration
+    country: ID
+    categories: [immigration, student-pass]
+    url: https://international.ui.ac.id/immigration/
+    status: verified_official
+    authority: A
+    agency: Universitas Indonesia — Immigration
+    domain: international.ui.ac.id
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: id-ui-living
+    country: ID
+    categories: [student_life, culture_language]
+    url: https://international.ui.ac.id/living-in-indonesia/
+    status: verified_official
+    authority: A
+    agency: Universitas Indonesia — Living in Indonesia
+    domain: international.ui.ac.id
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ----------------------------------------------------------------------- Laos
+  - id: la-evisa
+    country: LA
+    categories: [immigration, visa]
+    url: https://www.laoevisa.gov.la/
+    status: verified_official
+    authority: A
+    agency: Lao eVisa Portal
+    domain: laoevisa.gov.la
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    browser_render_required: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: la-immigration-candidate
+    country: LA
+    categories: [immigration]
+    url: https://www.immigration.gov.la/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Lao Immigration Department
+    domain: immigration.gov.la
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    browser_render_required: true
+    language: lo
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ------------------------------------------------------------------- Malaysia
+  - id: my-immigration-student
+    country: MY
+    categories: [immigration, student-pass]
+    url: https://www.imi.gov.my/index.php/en/main-services/pass/student-pass/
+    status: verified_official
+    authority: A
+    agency: Jabatan Imigresen Malaysia
+    domain: imi.gov.my
+    source_type: government
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: weekly
+    parser: html-article
+
+  - id: my-emgs
+    country: MY
+    categories: [education, international-student, arrival]
+    url: https://educationmalaysia.gov.my/
+    status: verified_official
+    authority: A
+    agency: Education Malaysia Global Services
+    domain: educationmalaysia.gov.my
+    source_type: government
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: weekly
+    parser: html-article
+    notes: Student Pass applications run through EMGS.
+
+  - id: my-emgs-visa
+    country: MY
+    categories: [student-pass, visa]
+    url: https://visa.educationmalaysia.gov.my/
+    status: verified_official
+    authority: A
+    agency: Education Malaysia Global Services
+    domain: visa.educationmalaysia.gov.my
+    source_type: government
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: weekly
+    parser: html-article
+    notes: eVAL issuance and post-arrival medical screening steps.
+
+  - id: my-bnm
+    country: MY
+    categories: [banking, payments]
+    url: https://www.bnm.gov.my/
+    status: verified_official
+    authority: A
+    agency: Bank Negara Malaysia
+    domain: bnm.gov.my
+    source_type: regulator
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: my-data-gov
+    country: MY
+    categories: [transport]
+    url: https://data.gov.my/
+    status: verified_official
+    authority: A
+    agency: Malaysia Open Data
+    domain: data.gov.my
+    source_type: government
+    access_strategy: [api, dataset]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: daily
+    parser: json
+    notes: Catalogue with OpenAPI plus direct CSV and Parquet downloads.
+
+  - id: my-um-international
+    country: MY
+    categories: [university]
+    url: https://www.um.edu.my/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Universiti Malaya — International Office
+    domain: um.edu.my
+    source_type: university
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      The homepage carries no arrival guidance and is kept only as a parent
+      reference. MEASURED 2026-09-16: Universiti Malaya's own Student Pass page
+      at masd.um.edu.my/new-student-pass-overview — the page that would actually
+      answer the question — is UNREACHABLE from this environment (connection
+      refused, same for isc.um.edu.my). Recorded as blocked, not worked around.
+
+  # ADDED 2026-09-16. The EMGS site is one of the few government sites that
+  # publishes real arrival guidance as server-rendered HTML. Every URL below was
+  # verified to return content, measured after tag-stripping:
+  #   on-arrival 10,019 chars · ISAC 9,497 · cost-of-living 14,030
+  #   scholarship-listing 103,238 · graduate-pass 7,200
+  # The scholarship page exceeds the 24,000-char prompt budget and will be
+  # truncated by extraction; it is registered for its value to a human reader and
+  # because truncation is recorded honestly rather than hidden.
+  - id: my-emgs-on-arrival
+    country: MY
+    categories: [arrival, student-pass, immigration]
+    url: https://educationmalaysia.gov.my/living-in-malaysia/upon-arrival/on-arrival
+    status: verified_official
+    authority: A
+    agency: Education Malaysia Global Services — On-Arrival Guide
+    domain: educationmalaysia.gov.my
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: The single most valuable Malaysian page for a student in their first week.
+
+  - id: my-emgs-isac
+    country: MY
+    categories: [arrival, student-pass]
+    url: https://educationmalaysia.gov.my/plan-your-studies/start-to-prepare/international-student-arrival-centre-(isac)
+    status: verified_official
+    authority: A
+    agency: Education Malaysia Global Services — International Student Arrival Centre
+    domain: educationmalaysia.gov.my
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: ISAC is the 24-hour arrival desk a student meets at the airport.
+
+  - id: my-emgs-cost-of-living
+    country: MY
+    categories: [payments, student_life]
+    url: https://educationmalaysia.gov.my/plan-your-studies/plan-your-budget/cost-of-living
+    status: verified_official
+    authority: A
+    agency: Education Malaysia Global Services — Cost of Living
+    domain: educationmalaysia.gov.my
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: my-emgs-scholarships
+    country: MY
+    categories: [higher_education]
+    url: https://educationmalaysia.gov.my/plan-your-studies/choose-what-to-study/scholarship-listing
+    status: verified_official
+    authority: A
+    agency: Education Malaysia Global Services — Scholarship Listing
+    domain: educationmalaysia.gov.my
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: my-emgs-graduate-pass
+    country: MY
+    categories: [immigration, student-pass]
+    url: https://educationmalaysia.gov.my/notices/graduate-pass
+    status: verified_official
+    authority: A
+    agency: Education Malaysia Global Services — Graduate Pass
+    domain: educationmalaysia.gov.my
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: What happens to a Student Pass after graduation — relevant to final-year students.
+
+  # --------------------------------------------------------------------- Myanmar
+  - id: mm-moe-candidate
+    country: MM
+    categories: [education]
+    url: https://www.moe.gov.mm/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Ministry of Education
+    domain: moe.gov.mm
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: my
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: mm-evisa-candidate
+    country: MM
+    categories: [immigration, visa]
+    url: https://evisa.moip.gov.mm/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Ministry of Immigration and Population
+    domain: evisa.moip.gov.mm
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    browser_render_required: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ----------------------------------------------------------------- Philippines
+  - id: ph-ched-candidate
+    country: PH
+    categories: [education, higher-education]
+    url: https://ched.gov.ph/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Commission on Higher Education
+    domain: ched.gov.ph
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: ph-immigration-candidate
+    country: PH
+    categories: [immigration, student-visa]
+    url: https://immigration.gov.ph/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Bureau of Immigration
+    domain: immigration.gov.ph
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: weekly
+    parser: html-article
+
+  - id: ph-bsp
+    country: PH
+    categories: [banking, payments]
+    url: https://www.bsp.gov.ph/
+    status: verified_official
+    authority: A
+    agency: Bangko Sentral ng Pilipinas
+    domain: bsp.gov.ph
+    source_type: regulator
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ADDED 2026-09-16. `ph-ched-candidate` (ched.gov.ph) is egress-blocked — 403
+  # with a 58-byte body — as are up.edu.ph and dfa.gov.ph (same signature). The
+  # Bureau of Immigration host IS reachable and publishes the actual rule:
+  #   student-visa-9f 7,483 chars · online-application notice 5,216
+  # Discovered with:
+  #   node scripts/greenbook/discovery/probe.mjs https://immigration.gov.ph/
+  - id: ph-immigration-student-visa
+    country: PH
+    categories: [immigration, student-visa, visa]
+    url: https://immigration.gov.ph/student-visa-9f
+    status: verified_official
+    authority: A
+    agency: Bureau of Immigration Philippines — Student Visa (9F)
+    domain: immigration.gov.ph
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      The Philippine student visa rule. Registered as verified_official because
+      it is a requirement page on the regulator's own host, not a homepage.
+
+  - id: ph-immigration-student-visa-online
+    country: PH
+    categories: [immigration, student-visa]
+    url: https://immigration.gov.ph/bi-launches-online-student-visa-permit-application
+    status: verified_official
+    authority: A
+    agency: Bureau of Immigration Philippines — Online Student Visa Application
+    domain: immigration.gov.ph
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ------------------------------------------------------------------- Singapore
+  - id: sg-ica-student
+    country: SG
+    categories: [immigration, student-pass]
+    url: https://www.ica.gov.sg/reside/STP
+    status: verified_official
+    authority: A
+    agency: Immigration & Checkpoints Authority
+    domain: ica.gov.sg
+    source_type: government
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: weekly
+    parser: html-article
+
+  - id: sg-ica-ihl
+    country: SG
+    categories: [immigration, higher-education]
+    url: https://www.ica.gov.sg/reside/STP/apply/ihl
+    status: verified_official
+    authority: A
+    agency: Immigration & Checkpoints Authority
+    domain: ica.gov.sg
+    source_type: government
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: weekly
+    parser: html-article
+    notes: Student's Pass workflow for Institutes of Higher Learning — documents, timing, fees.
+
+  - id: sg-mas
+    country: SG
+    categories: [payments, banking]
+    url: https://www.mas.gov.sg/
+    status: verified_official
+    authority: A
+    agency: Monetary Authority of Singapore
+    domain: mas.gov.sg
+    source_type: regulator
+    access_strategy: [api, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: sg-lta-datamall
+    country: SG
+    categories: [transport]
+    url: https://datamall.lta.gov.sg/
+    status: verified_official
+    authority: A
+    agency: Land Transport Authority — DataMall
+    domain: datamall.lta.gov.sg
+    source_type: government
+    access_strategy: [api, dataset]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: daily
+    parser: json
+    credentials_required: true
+    notes: Dynamic transport APIs including GTFS schedule and realtime feeds.
+
+  - id: sg-data-gov
+    country: SG
+    categories: [transport, government]
+    url: https://data.gov.sg/
+    status: verified_official
+    authority: A
+    agency: Government Technology Agency
+    domain: data.gov.sg
+    source_type: government
+    access_strategy: [api, dataset]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: daily
+    parser: json
+
+  - id: sg-nus-international
+    country: SG
+    categories: [university]
+    url: https://nus.edu.sg/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: National University of Singapore — International Office
+    domain: nus.edu.sg
+    source_type: university
+    access_strategy: [structured_html, html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: Incoming exchange guide, pre-arrival briefing, orientation, buddy programme.
+
+  # -------------------------------------------------------------------- Thailand
+  - id: th-mhesi-candidate
+    country: TH
+    categories: [education, higher-education]
+    url: https://www.mhesi.go.th/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Ministry of Higher Education, Science, Research and Innovation
+    domain: mhesi.go.th
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: th
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: th-immigration-candidate
+    country: TH
+    categories: [immigration]
+    url: https://www.immigration.go.th/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Thai Immigration Bureau
+    domain: immigration.go.th
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: th
+    refresh_frequency: weekly
+    parser: html-article
+
+  - id: th-bot
+    country: TH
+    categories: [banking, payments]
+    url: https://www.bot.or.th/
+    status: verified_official
+    authority: A
+    agency: Bank of Thailand
+    domain: bot.or.th
+    source_type: regulator
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ADDED 2026-09-16. Thailand's two natural sources are BOTH blocked from this
+  # environment by egress-IP refusal, measured again today:
+  #   immigration.go.th  403 (58 chars)
+  #   mhesi.go.th        403 (408 chars)
+  # `thaievisa.go.th` answers 200 but returns 115 chars — a JavaScript shell.
+  # Per the brief, a blocked government host is answered with another CURRENT
+  # official source rather than a workaround. Chulalongkorn University is an
+  # official Thai university whose international office publishes real arrival
+  # and welfare guidance. Measured after tag-stripping:
+  #   international-students 14,115 chars · student-well-being 18,309
+  #   office-of-international-affairs 12,489 · MFA travel-document 5,365
+  - id: th-chula-international
+    country: TH
+    categories: [university, international-student, student-pass]
+    url: https://www.chula.ac.th/en/international-students
+    status: verified_official
+    authority: A
+    agency: Chulalongkorn University — International Students
+    domain: chula.ac.th
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      Registered as the reachable official Thai source while immigration.go.th
+      and mhesi.go.th remain egress-blocked. It is a university page, not a
+      government rule, and the UI labels it accordingly.
+
+  - id: th-chula-wellbeing
+    country: TH
+    categories: [healthcare, campus_support, student_life]
+    url: https://www.chula.ac.th/en/life-at-cu/student-well-being
+    status: verified_official
+    authority: A
+    agency: Chulalongkorn University — Student Well-being
+    domain: chula.ac.th
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: th-chula-intl-office
+    country: TH
+    categories: [university, international-student]
+    url: https://www.chula.ac.th/en/departments/office-of-international-affairs-and-global-network
+    status: verified_official
+    authority: A
+    agency: Chulalongkorn University — Office of International Affairs and Global Network
+    domain: chula.ac.th
+    source_type: university
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: th-mfa-travel-document
+    country: TH
+    categories: [immigration, visa]
+    url: https://www.mfa.go.th/en/page/travel-document-for-aliens
+    status: verified_official
+    authority: A
+    agency: Ministry of Foreign Affairs of Thailand — Travel Document for Aliens
+    domain: mfa.go.th
+    source_type: government
+    access_strategy: [structured_html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      The MFA is the visa authority and this host is reachable, unlike
+      immigration.go.th. It covers travel documents for foreign nationals rather
+      than the student visa itself — registered for what it actually states, not
+      relabelled as student guidance.
+
+  # --------------------------------------------------------------- Timor-Leste
+  - id: tl-government
+    country: TL
+    categories: [government, higher-education]
+    url: https://timor-leste.gov.tl/
+    status: verified_official
+    authority: A
+    agency: Government of Timor-Leste
+    domain: timor-leste.gov.tl
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: pt
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: tl-migration-candidate
+    country: TL
+    categories: [immigration]
+    url: https://migracao.gov.tl/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Timor-Leste Migration Service
+    domain: migracao.gov.tl
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: pt
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      Student temporary-stay category. Tetum is absent from the provider's Live
+      Translate list (ADR-004), so voice support for Timor-Leste falls back to
+      Portuguese, English or typed text.
+
+  # --------------------------------------------------------------------- Vietnam
+  - id: vn-moet-candidate
+    country: VN
+    categories: [education]
+    url: https://moet.gov.vn/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Ministry of Education and Training
+    domain: moet.gov.vn
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: vi
+    refresh_frequency: monthly
+    parser: html-article
+
+  - id: vn-evisa-candidate
+    country: VN
+    categories: [immigration, visa]
+    url: https://evisa.gov.vn/
+    status: candidate_verify_before_ingest
+    authority: A
+    agency: Vietnam Immigration Department
+    domain: evisa.gov.vn
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: vi
+    refresh_frequency: weekly
+    parser: html-article
+    notes: >
+      This IS the official Vietnam e-Visa portal, and the Vietnam Immigration
+      Department's own portal confirms it (see vn-imm-evisa). It is NOT fetched
+      from this environment, and the reason is measured rather than assumed:
+      Node's fetch fails with UNABLE_TO_VERIFY_LEAF_SIGNATURE — the host serves
+      an incomplete certificate chain. curl succeeds only because it is more
+      lenient. The fix is NOT to disable TLS verification, which would trade a
+      real security control for a demo; the portal stays a CITABLE link in the
+      UI and the facts about it come from the Department's own reachable portal.
+
+  - id: vn-imm-evisa
+    country: VN
+    categories: [immigration, visa]
+    url: https://evisa.xuatnhapcanh.gov.vn/
+    status: verified_official
+    authority: A
+    agency: Vietnam Immigration Department — electronic visa portal
+    domain: evisa.xuatnhapcanh.gov.vn
+    source_type: government
+    access_strategy: [html]
+    crawl_allowed: true
+    language: vi
+    refresh_frequency: weekly
+    parser: html-article
+    notes: >
+      Reachable and authoritative. Carries the Department's own notice naming
+      the official e-Visa domains, which is what lets the Greenbook describe the
+      e-Visa system without paraphrasing it. SCOPE RULE: an e-Visa is a general
+      entry document. It is NOT a Student Visa, and no fact from this source may
+      be presented as satisfying a university's student-visa requirement.
+
+  # --- FPT University Ho Chi Minh City: the Corridor B university layer -------
+  #
+  # Corridor B (Singapore -> Vietnam) is demoed through FPT HCMC, so this is a
+  # UNIVERSITY source, not a restatement of Vietnamese government rules. Facts
+  # from it validate to `university_verified`, which the UI renders as its own
+  # tier and RAG never cites as a national requirement.
+  #
+  # MEASURED, and it changes what this corridor can honestly claim: the page that
+  # would carry the incoming-exchange requirement modules
+  # (international.fpt.edu.vn/semester-abroad-program — "All international
+  # students must obtain Student Visa before coming to Vietnam") is a Vue SPA. It
+  # serves 21,575 bytes and 23 characters of text to a plain fetch, renders to
+  # 382 characters of navigation under headless Chromium, and returns the same
+  # shell to Googlebot and bingbot. It is therefore NOT registered: a source the
+  # pipeline cannot read is not evidence.
+  - id: vn-fpt-hcm-exchange
+    country: VN
+    categories: [university]
+    url: https://daihoc.fpt.edu.vn/en/hm/exchange-program/
+    status: verified_official
+    authority: A
+    agency: FPT University — Ho Chi Minh City Campus
+    domain: daihoc.fpt.edu.vn
+    source_type: university
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: >
+      The campus's own exchange-programme page, in English. Confirms that FPT
+      HCMC hosts incoming international exchange students. It is a programme
+      overview and news hub rather than a requirements list, so it is expected
+      to yield few facts — that is the honest result, not a parsing failure.
+
+  - id: vn-fpt-hcm-campus
+    country: VN
+    categories: [university, student_life]
+    url: https://daihoc.fpt.edu.vn/en/hm/
+    status: verified_official
+    authority: A
+    agency: FPT University — Ho Chi Minh City Campus
+    domain: daihoc.fpt.edu.vn
+    source_type: university
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: Campus overview for the Ho Chi Minh City site the corridor points at.
+
+  - id: vn-fpt-student-life
+    country: VN
+    categories: [student_life, university]
+    url: https://daihoc.fpt.edu.vn/en/student-life/
+    status: verified_official
+    authority: A
+    agency: FPT University
+    domain: daihoc.fpt.edu.vn
+    source_type: university
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: Student life, campus facilities and international-student support.
+
+  - id: vn-fpt-training
+    country: VN
+    categories: [university, higher-education]
+    url: https://daihoc.fpt.edu.vn/en/training-program/
+    status: verified_official
+    authority: A
+    agency: FPT University
+    domain: daihoc.fpt.edu.vn
+    source_type: university
+    access_strategy: [html]
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: html-article
+    notes: Programme structure and fields of study — the course-load layer.
+
+  - id: vn-sbv
+    country: VN
+    categories: [banking, payments]
+    url: https://www.sbv.gov.vn/
+    status: verified_official
+    authority: A
+    agency: State Bank of Vietnam
+    domain: sbv.gov.vn
+    source_type: regulator
+    access_strategy: [html]
+    crawl_allowed: true
+    language: vi
+    refresh_frequency: monthly
+    parser: html-article
+
+  # ----------------------------------------------------------------------- Media
+  - id: media-youtube
+    country: ALL
+    categories: [student_life]
+    url: https://www.youtube.com/
+    status: candidate_verify_before_ingest
+    authority: D
+    agency: YouTube
+    domain: youtube.com
+    source_type: media
+    access_strategy: [api, manual]
+    crawl_allowed: false
+    language: en
+    refresh_frequency: monthly
+    parser: youtube-data-api
+    credentials_required: true
+    notes: >
+      Curated public URLs only. Embed through the official IFrame player and keep
+      creator attribution. Never download or mirror a video and never scrape
+      captions through unsupported mechanisms. Derived insight may be produced
+      from the public URL where the model supports it.
+
+  - id: media-tiktok
+    country: ALL
+    categories: [student_life]
+    url: https://www.tiktok.com/
+    status: candidate_verify_before_ingest
+    authority: D
+    agency: TikTok
+    domain: tiktok.com
+    source_type: media
+    access_strategy: [manual]
+    crawl_allowed: false
+    language: en
+    refresh_frequency: monthly
+    parser: oembed
+    notes: >
+      Curated public URLs only, embedded through the official player. Bulk
+      scraping is not permitted. The Research API is not treated as available
+      unless the account is actually approved.

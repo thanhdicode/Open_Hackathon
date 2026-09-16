@@ -1,0 +1,51 @@
+{
+  "title": "YapSimTurn",
+  "type": "object",
+  "properties": {
+    "personaReply": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "translation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "romanization": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "translation"
+      ],
+      "additionalProperties": false
+    },
+    "hint": {
+      "type": "string"
+    },
+    "coachNote": {
+      "type": "string"
+    },
+    "goalProgress": {
+      "type": "string",
+      "enum": [
+        "on_track",
+        "at_risk",
+        "complete"
+      ]
+    },
+    "shouldEnd": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "personaReply",
+    "goalProgress",
+    "shouldEnd"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

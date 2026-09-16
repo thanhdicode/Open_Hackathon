@@ -1,0 +1,53 @@
+[
+  {
+    "root": "https://evisa.xuatnhapcanh.gov.vn/",
+    "origin": "https://evisa.xuatnhapcanh.gov.vn",
+    "robots": {
+      "disallow": 0,
+      "sitemaps": 0
+    },
+    "sitemaps": [],
+    "candidates": [
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/web/guest/trang-chu-ttdt",
+        "score": 2
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/web/guest/khai-bao-tam-tru",
+        "score": 2
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/home-theme/images/img/manifest.json",
+        "score": 2
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/html/portlet/journal_content/css/main.css",
+        "score": 2
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/html/portlet/dynamic_data_mapping/css/main.css",
+        "score": 2
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/en_US",
+        "score": 1
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/vi_VN",
+        "score": 1
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/abtc-search",
+        "score": 1
+      },
+      {
+        "url": "https://evisa.xuatnhapcanh.gov.vn/trang-chu-moi-bao-lanh-nhap-canh",
+        "score": 1
+      }
+    ],
+    "blocked": false,
+    "rendered": false,
+    "homepageLinks": 9,
+    "documentCandidates": []
+  }
+]

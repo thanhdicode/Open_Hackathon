@@ -5,6 +5,9 @@ import { DNA_DIMENSIONS } from "../data/dna";
 import { computePairDNA } from "../data/pairDNA";
 import { Button, Card, Chip, DnaBar, CultureGapMeter, ProgressRing, Notice } from "../components/ui";
 import { Icon } from "../components/icons";
+import { SaveJourneyCard } from "./Settings";
+import { completeEmailUpgrade, friendlyAuthError, requestEmailUpgradeCode, startGoogleUpgrade } from "../lib/appwrite/auth";
+import { account } from "../lib/appwrite/client";
 
 type Step =
   | "welcome"
@@ -19,7 +22,8 @@ type Step =
   | "assess"
   | "mydna"
   | "gap"
-  | "generate";
+  | "generate"
+  | "save";
 
 const GOALS = ["Speak with confidence", "Understand the culture", "Do well academically", "Make local friends", "Settle in smoothly"];
 const INTERESTS = ["AI", "Coffee", "Football", "Photography", "K-pop", "Startups", "Film", "Fashion", "Food", "Travel", "Gaming", "Music"];
@@ -38,6 +42,10 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
   const [qIdx, setQIdx] = useState(0);
   const [starting, setStarting] = useState(false);
   const [startError, setStartError] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
+  const [otpUserId, setOtpUserId] = useState<string | null>(null);
+  const [otpCooldown, setOtpCooldown] = useState(0);
 
   const myDna = useMemo(() => deriveMyDna(answers), [answers]);
   const pair = useMemo(() => (home && host ? computePairDNA(home, host, myDna) : null), [home, host, myDna]);
@@ -58,24 +66,43 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
     else setStartError(result.message ?? "We could not start your secure session. Please try again.");
   }
 
+  async function sendOtp() {
+    setStartError(null);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email.trim())) return setStartError("Enter a valid email address.");
+    setStarting(true);
+    try {
+      const ticket = await requestEmailUpgradeCode((await account.get()).$id, email);
+      setOtpUserId(ticket.userId); setOtpCooldown(30); setStep("signin");
+      const timer = window.setInterval(() => setOtpCooldown((value) => { if (value <= 1) { window.clearInterval(timer); return 0; } return value - 1; }), 1000);
+    } catch (cause) { setStartError(friendlyAuthError(cause)); } finally { setStarting(false); }
+  }
+
+  async function verifyOtp() {
+    if (!otpUserId || otp.length !== 6) return;
+    setStarting(true); setStartError(null);
+    try { await completeEmailUpgrade(otpUserId, otp); setStep("home"); }
+    catch (cause) { setStartError(friendlyAuthError(cause)); } finally { setStarting(false); }
+  }
+
   /* --------------------------------- Welcome -------------------------------- */
   if (step === "welcome")
     return (
-      <div className="flex h-full flex-col bg-primary px-7 pb-9 pt-16 text-white">
-        <div className="flex flex-1 flex-col justify-center">
+      <div data-testid="onboarding" className="flex h-full flex-col bg-ink px-7 pb-9 pt-16 text-white">
+        <div className="mx-auto flex w-full max-w-[560px] flex-1 flex-col justify-center">
           <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-[12px] font-semibold">
-            🌏 11 ASEAN countries · 110 journeys
+            <Icon name="globe" size={14} /> 11 ASEAN countries · 110 journeys
           </div>
-          <h1 className="text-[34px] font-extrabold leading-[1.1] tracking-tight">
-            Understand the culture.<br />Speak with confidence.<br /><span className="text-amber">Live like a local.</span>
+          <h1 className="text-[34px] font-extrabold leading-[1.1] tracking-tight text-white/70">
+            Understand the culture.<br />Speak with confidence.<br /><span className="text-white">Live like a local.</span>
           </h1>
           <p className="mt-4 max-w-[300px] text-[15px] leading-relaxed text-white/80">
             YapYep helps exchange students adapt to any ASEAN country — personalized to who you are and where you're going.
           </p>
         </div>
-        <div className="space-y-3">
+        <div className="mx-auto w-full max-w-[560px] space-y-3">
           {startError && <p role="alert" className="rounded-card bg-white/15 px-4 py-3 text-center text-[13px] leading-relaxed text-white">{startError}</p>}
-          <Button variant="amber" size="lg" full disabled={starting} onClick={startGuestJourney}>{starting ? "Starting securely…" : "Try YapYep"}</Button>
+          <Button variant="inverse" size="lg" full disabled={starting} onClick={startGuestJourney}>{starting ? "Starting securely…" : "Try YapYep"}</Button>
+          <button className="min-h-[44px] w-full text-center text-[13px] font-semibold text-white/85" onClick={() => setStep("signin")}>Sign in or save an existing journey</button>
           <p className="text-center text-[12px] leading-relaxed text-white/75">Start securely as a guest. You can create an account to save your progress later.</p>
         </div>
       </div>
@@ -86,15 +113,16 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
     return (
       <OnbFrame title="Sign in" onBack={() => setStep("welcome")} progress={5}>
         <div className="space-y-3">
-          <Button variant="outline" size="lg" full onClick={() => setStep("home")}>
-            <span>🎓</span> Continue with your university
+          {startError && <Notice tone="error" icon="close" title="Sign-in problem" body={startError} />}
+          <Button variant="outline" size="lg" full disabled={starting} onClick={async () => { try { await startGoogleUpgrade(); } catch (cause) { setStartError(friendlyAuthError(cause)); } }}>
+            Continue with Google
           </Button>
-          <Button variant="outline" size="lg" full onClick={() => setStep("home")}>
-            <span>✉️</span> Continue with email
-          </Button>
-          <Button variant="outline" size="lg" full onClick={() => setStep("home")}>
-            <span>🔵</span> Continue with Google
-          </Button>
+          <input className="w-full rounded-[12px] border border-line bg-surface px-3.5 py-3 text-[15px] text-ink" type="email" inputMode="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@gmail.com" />
+          {otpUserId ? <>
+            <input className="w-full rounded-[12px] border border-line bg-surface px-3.5 py-3 text-center font-mono text-[20px] tracking-[0.35em] text-ink" inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="000000" />
+            <Button size="lg" full disabled={starting || otp.length !== 6} onClick={verifyOtp}>{starting ? "Checking…" : "Confirm code"}</Button>
+          </> : <Button size="lg" full disabled={starting} onClick={sendOtp}>{starting ? "Sending…" : "Send email code"}</Button>}
+          {otpUserId && <button className="min-h-[44px] w-full text-[13px] font-semibold text-primary disabled:text-muted" disabled={otpCooldown > 0 || starting} onClick={sendOtp}>{otpCooldown > 0 ? `Resend in ${otpCooldown}s` : "Resend code"}</button>}
         </div>
         <p className="mt-5 text-center text-[12px] leading-relaxed text-muted">
           Your answers shape your experience. We never assume your culture from your nationality.
@@ -116,7 +144,7 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
     return (
       <OnbFrame title="Where are you going?" subtitle="Your host country" onBack={() => setStep("home")} progress={22}>
         {home && (
-          <div className="mb-4 flex items-center justify-center gap-2 rounded-[16px] bg-primary-soft py-3 text-[14px] font-semibold text-primary">
+          <div className="mb-4 flex items-center justify-center gap-2 rounded-[12px] bg-primary-soft py-3 text-[14px] font-semibold text-primary">
             {COUNTRIES[home].flag} {COUNTRIES[home].name} <span className="text-muted">→</span> {host ? `${COUNTRIES[host].flag} ${COUNTRIES[host].name}` : "…"}
           </div>
         )}
@@ -140,16 +168,33 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
   /* -------------------------------- Dates ----------------------------------- */
   if (step === "dates")
     return (
-      <OnbFrame title="Your exchange period" onBack={() => setStep("place")} progress={38}>
-        <div className="grid grid-cols-2 gap-3">
-          <Card className="p-4"><p className="text-[12px] text-muted">Arrival</p><p className="mt-1 text-[15px] font-bold text-ink">Aug 2026</p></Card>
-          <Card className="p-4"><p className="text-[12px] text-muted">Departure</p><p className="mt-1 text-[15px] font-bold text-ink">Dec 2026</p></Card>
+      <OnbFrame title="Your exchange period" subtitle="We phase your journey from these dates" onBack={() => setStep("place")} progress={38}>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <DateField label="Arrival in the host country" required value={dates.arrivalDate} onChange={(value) => setDates((current) => ({ ...current, arrivalDate: value }))} />
+          <DateField label="Return home" required value={dates.returnDate} onChange={(value) => setDates((current) => ({ ...current, returnDate: value }))} />
+          <DateField label="Departure from home" value={dates.departureDate} onChange={(value) => setDates((current) => ({ ...current, departureDate: value }))} />
+          <DateField label="Programme starts" value={dates.programStartDate} onChange={(value) => setDates((current) => ({ ...current, programStartDate: value }))} />
+          <DateField label="Programme ends" value={dates.programEndDate} onChange={(value) => setDates((current) => ({ ...current, programEndDate: value }))} />
         </div>
-        <Card className="mt-3 p-4">
-          <p className="text-[13px] font-semibold text-ink">One semester · ~130 days</p>
-          <p className="mt-1 text-[12px] text-muted">We'll phase your journey: Before Arrival → First Week → Settled.</p>
-        </Card>
-        <StickyNext onNext={() => setStep("languages")} />
+
+        {problems.length > 0 && (
+          <div className="mt-3">
+            <Notice tone="warning" icon="alert" title="Check these dates" body={problems.join(" ")} />
+          </div>
+        )}
+
+        {problems.length === 0 && lengthDays !== null && (
+          <Card className="mt-3 p-4">
+            <p className="text-[13px] font-semibold text-ink">
+              {stageLabel(stage)} · ~{lengthDays} days
+            </p>
+            <p className="mt-1 text-[12px] text-muted">
+              We phase your journey from these dates: Before departure → Arriving soon → First 24 hours → First week → Settling in → Studying → Returning home. Today, the Greenbook and every AI answer follow that stage, so you never set it by hand.
+            </p>
+          </Card>
+        )}
+
+        <StickyNext disabled={problems.length > 0} onNext={() => setStep("languages")} />
       </OnbFrame>
     );
 
@@ -164,7 +209,7 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
           ))}
         </div>
         {host && (
-          <Notice tone="primary" icon="🗣" title={`${COUNTRIES[host].languages[0]} basics`} body={`You'll pick up survival ${COUNTRIES[host].languages[0]} through daily situations and practice.`} />
+          <Notice tone="primary" icon="chat" title={`${COUNTRIES[host].languages[0]} basics`} body={`You'll pick up survival ${COUNTRIES[host].languages[0]} through daily situations and practice.`} />
         )}
         <StickyNext onNext={() => setStep("goals")} />
       </OnbFrame>
@@ -189,7 +234,7 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
       <OnbFrame title="Your interests" subtitle="Helps us connect you with the right people" onBack={() => setStep("goals")} progress={62}>
         <div className="flex flex-wrap gap-2">
           {INTERESTS.map((g) => (
-            <Chip key={g} tone="amber" active={interests.includes(g)} onClick={() => toggle(interests, setInterests, g)}>{g}</Chip>
+            <Chip key={g} tone="primary" active={interests.includes(g)} onClick={() => toggle(interests, setInterests, g)}>{g}</Chip>
           ))}
         </div>
         <StickyNext disabled={interests.length === 0} onNext={() => setStep("assess")} />
@@ -201,7 +246,7 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
     const q = ASSESSMENT[qIdx];
     return (
       <OnbFrame title="Communication style" subtitle={`${qIdx + 1} of ${ASSESSMENT.length}`} onBack={() => (qIdx === 0 ? setStep("interests") : setQIdx(qIdx - 1))} progress={62 + (qIdx / ASSESSMENT.length) * 20}>
-        <div className="mb-2 rounded-full bg-amber-soft px-3 py-1 text-[11px] font-semibold text-ink w-fit">Derived from your answers, not your nationality</div>
+        <div className="mb-2 w-fit rounded-full bg-primary-soft px-3 py-1 text-[11px] font-semibold text-primary">Derived from your answers, not your nationality</div>
         <h2 className="mb-5 mt-2 text-[19px] font-bold leading-snug text-ink">{q.prompt}</h2>
         <div className="space-y-2.5">
           {q.options.map((o, i) => {
@@ -216,7 +261,7 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
                     else setStep("mydna");
                   }, 180);
                 }}
-                className={`flex w-full items-center gap-3 rounded-[16px] border px-4 py-3.5 text-left text-[14px] font-medium transition active:scale-[.99] ${sel ? "border-primary bg-primary-soft text-primary" : "border-line bg-surface text-ink"}`}
+                className={`flex w-full items-center gap-3 rounded-[12px] border px-4 py-3.5 text-left text-[14px] font-medium transition active:scale-[.99] ${sel ? "border-primary bg-primary-soft text-primary" : "border-line bg-surface text-ink"}`}
               >
                 <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${sel ? "border-primary bg-primary text-white" : "border-line"}`}>
                   {sel && <Icon name="check" size={13} />}
@@ -266,7 +311,7 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
           <p className="text-[13px] font-bold text-ink">3 situations that may feel unfamiliar</p>
           <ul className="mt-2 space-y-1.5">
             {pair.unfamiliarSituations.map((s) => (
-              <li key={s} className="flex items-start gap-2 text-[13px] text-muted"><span className="text-amber">◆</span> {s}</li>
+              <li key={s} className="flex items-start gap-2 text-[13px] text-muted"><span className="text-muted">◆</span> {s}</li>
             ))}
           </ul>
           <p className="mt-3 text-[12px] italic leading-relaxed text-muted">
@@ -277,13 +322,28 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
       </OnbFrame>
     );
 
+  /* ------------------------- Save the journey (account) --------------------- */
+  if (step === "save")
+    return (
+      <OnbFrame title="Save your journey" subtitle="Keep your Passport, practice history and progress" onBack={() => setStep("generate")} progress={98}>
+        <SaveJourneyCard />
+        <div className="mt-4">
+          <Button size="lg" full onClick={finish}>Continue as guest</Button>
+          <p className="mt-3 text-center text-[12px] leading-relaxed text-muted">
+            You can always add an email later in Settings → Email &amp; accounts.
+          </p>
+        </div>
+      </OnbFrame>
+    );
+
   /* ------------------------------- Generate --------------------------------- */
   return (
-    <div className="flex h-full flex-col items-center justify-center bg-primary px-8 text-center text-white">
+    <div data-testid="onboarding" className="flex h-full flex-col items-center justify-center bg-ink px-8 text-center text-white">
+      <div className="mx-auto flex w-full max-w-[420px] flex-col items-center">
       <div className="relative mb-6">
         <div className="relative h-24 w-24">
           <div className="yy-ring absolute inset-0" />
-          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/15 text-4xl">📘</div>
+          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/15 text-white"><Icon name="passport" size={40} /></div>
         </div>
       </div>
       <h2 className="text-[24px] font-extrabold tracking-tight">Your {host ? COUNTRIES[host].name : ""} Passport is ready</h2>
@@ -291,7 +351,8 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
         Personalized to your MyDNA, your journey and your city. Everything adapts around you.
       </p>
       <div className="mt-8 w-full">
-        <Button variant="amber" size="lg" full onClick={finish}>Enter YapYep</Button>
+        <Button variant="inverse" size="lg" full onClick={() => setStep("save")}>Enter YapYep</Button>
+      </div>
       </div>
     </div>
   );
@@ -301,18 +362,18 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
 
 function OnbFrame({ title, subtitle, children, onBack, progress }: { title: string; subtitle?: string; children: React.ReactNode; onBack: () => void; progress: number }) {
   return (
-    <div className="flex h-full flex-col bg-canvas">
-      <div className="px-5 pt-4">
+    <div data-testid="onboarding" className="flex h-full flex-col bg-canvas">
+      <div className="mx-auto w-full max-w-[560px] px-5 pt-4">
         <div className="mb-4 flex items-center gap-3">
-          <button onClick={onBack} className="flex h-9 w-9 items-center justify-center rounded-full bg-surface shadow-card active:scale-90"><Icon name="back" size={20} /></button>
+          <button onClick={onBack} aria-label="Back" className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface active:scale-90"><Icon name="back" size={20} /></button>
           <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-line">
-            <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${progress}%` }} />
+            <div className="h-full rounded-full bg-ink transition-all" style={{ width: `${progress}%` }} />
           </div>
         </div>
         <h1 className="text-[24px] font-extrabold tracking-tight text-ink">{title}</h1>
         {subtitle && <p className="mt-0.5 text-[14px] text-muted">{subtitle}</p>}
       </div>
-      <div className="scroll-area flex-1 overflow-y-auto px-5 py-5">{children}</div>
+      <div className="scroll-area mx-auto w-full max-w-[560px] flex-1 overflow-y-auto px-5 py-5">{children}</div>
     </div>
   );
 }
@@ -328,7 +389,7 @@ function CountryGrid({ selected, onSelect, disabled }: { selected: CountryCode |
             key={c.code}
             disabled={isDisabled}
             onClick={() => onSelect(c.code)}
-            className={`flex items-center gap-2.5 rounded-[16px] border px-3 py-3 text-left transition active:scale-[.98] disabled:opacity-30 ${sel ? "border-primary bg-primary-soft" : "border-line bg-surface"}`}
+            className={`flex items-center gap-2.5 rounded-[12px] border px-3 py-3 text-left transition active:scale-[.98] disabled:opacity-30 ${sel ? "border-primary bg-primary-soft" : "border-line bg-surface"}`}
           >
             <span className="text-[22px]">{c.flag}</span>
             <span className={`text-[13px] font-semibold leading-tight ${sel ? "text-primary" : "text-ink"}`}>{c.name}</span>
@@ -341,7 +402,7 @@ function CountryGrid({ selected, onSelect, disabled }: { selected: CountryCode |
 
 function StickyNext({ onNext, disabled, label = "Continue" }: { onNext: () => void; disabled?: boolean; label?: string }) {
   return (
-    <div className="pt-6">
+    <div className="sticky bottom-0 -mx-5 mt-6 border-t border-line bg-canvas px-5 pb-4 pt-3">
       <Button size="lg" full disabled={disabled} onClick={onNext}>{label}</Button>
     </div>
   );

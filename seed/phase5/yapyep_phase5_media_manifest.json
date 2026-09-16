@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "name": "YapYep Phase 5 media seed manifest",
+    "generated_on": "2026-09-16",
+    "usage": "Demo/community seed only. Keep attribution visible in credits/about or per-asset metadata.",
+    "important": [
+      "These are real open-license/public-domain source images, not fake 'verified student' content.",
+      "Do not imply the people shown are YapYep users.",
+      "Community avatars/posts should remain synthetic demo data unless a real user uploads media."
+    ]
+  },
+  "assets": [
+    {
+      "id": "media_nus_library",
+      "country": "SG",
+      "kind": "campus_study",
+      "title": "NUS Central Library interior",
+      "file_name": "nus_library.jpg",
+      "commons_file": "NUS Central Library Interior 20240312 174526.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NUS%20Central%20Library%20Interior%2020240312%20174526.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:NUS_Central_Library_Interior_20240312_174526.jpg",
+      "author": "ZKang123",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Photo by ZKang123 / CC BY-SA 4.0",
+      "map_to": [
+        "sg_nus_library",
+        "post_04",
+        "post_05"
+      ]
+    },
+    {
+      "id": "media_um_campus",
+      "country": "MY",
+      "kind": "campus",
+      "title": "Universiti Malaya",
+      "file_name": "universiti_malaya.jpg",
+      "commons_file": "Universiti Malaya.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Universiti%20Malaya.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Universiti_Malaya.jpg",
+      "author": "Grayswoodsurrey",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Photo by Grayswoodsurrey / CC BY-SA 4.0",
+      "map_to": [
+        "campus_um",
+        "post_01",
+        "post_02"
+      ]
+    },
+    {
+      "id": "media_kl_foodcourt",
+      "country": "MY",
+      "kind": "food",
+      "title": "Kuala Lumpur food court",
+      "file_name": "kl_foodcourt.jpg",
+      "commons_file": "Anjung Selera Jalan Jujur food court, Bandar Tun Razak, Kuala Lumpur.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anjung%20Selera%20Jalan%20Jujur%20food%20court%2C%20Bandar%20Tun%20Razak%2C%20Kuala%20Lumpur.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Anjung_Selera_Jalan_Jujur_food_court,_Bandar_Tun_Razak,_Kuala_Lumpur.jpg",
+      "author": "Azreey",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Photo by Azreey / CC BY-SA 4.0",
+      "map_to": [
+        "my_um_food",
+        "post_03"
+      ]
+    },
+    {
+      "id": "media_mamak",
+      "country": "MY",
+      "kind": "food_social",
+      "title": "Malaysian Mamak restaurant",
+      "file_name": "malaysia_mamak.jpg",
+      "commons_file": "MamakModern.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:FilePath/MamakModern.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:MamakModern.jpg",
+      "author": "L joo",
+      "license": "Public domain",
+      "attribution": "Public domain image by L joo",
+      "map_to": [
+        "my_um_food"
+      ]
+    },
+    {
+      "id": "media_ui_library",
+      "country": "ID",
+      "kind": "campus_study",
+      "title": "Universitas Indonesia central library",
+      "file_name": "ui_library.jpg",
+      "commons_file": "Perpustakaan Universitas Indonesia.JPG",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Perpustakaan%20Universitas%20Indonesia.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Perpustakaan_Universitas_Indonesia.JPG",
+      "author": "D.W. Fisher-Freberg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Photo by D.W. Fisher-Freberg / CC BY-SA 3.0",
+      "map_to": [
+        "id_ui_library",
+        "post_07"
+      ]
+    },
+    {
+      "id": "media_ui_campus",
+      "country": "ID",
+      "kind": "campus",
+      "title": "Universitas Indonesia lakeside campus",
+      "file_name": "ui_campus.jpg",
+      "commons_file": "Universitas Indonesia.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Universitas%20Indonesia.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Universitas_Indonesia.jpg",
+      "author": "Diarahmaa",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Photo by Diarahmaa / CC BY-SA 4.0",
+      "map_to": [
+        "campus_ui",
+        "post_08",
+        "post_09"
+      ]
+    },
+    {
+      "id": "media_sg_hawker",
+      "country": "SG",
+      "kind": "food",
+      "title": "Singapore hawker centre",
+      "file_name": "sg_hawker.jpg",
+      "commons_file": "Image of a Singapore hawker center.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Image%20of%20a%20Singapore%20hawker%20center.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Image_of_a_Singapore_hawker_center.jpg",
+      "author": "Qvssjp",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Photo by Qvssjp / CC BY-SA 4.0",
+      "map_to": [
+        "sg_nus_food",
+        "post_06"
+      ]
+    }
+  ]
+}

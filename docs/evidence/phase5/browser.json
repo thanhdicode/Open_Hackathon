@@ -1,0 +1,279 @@
+{
+  "generatedAt": "2026-09-16T17:10:16.408Z",
+  "baseUrl": "http://127.0.0.1:5173",
+  "failures": 0,
+  "checks": [
+    {
+      "name": "anonymous onboarding reaches the app shell",
+      "ok": true,
+      "detail": "five-tab shell visible"
+    },
+    {
+      "name": "Explore renders a map container with real size",
+      "ok": true,
+      "detail": "348x319"
+    },
+    {
+      "name": "the map is a MapLibre canvas, not the SVG grid",
+      "ok": true,
+      "detail": "1 maplibregl canvas element(s)"
+    },
+    {
+      "name": "the hand-drawn SVG grid is gone",
+      "ok": true,
+      "detail": "0 legacy grid element(s)"
+    },
+    {
+      "name": "OpenStreetMap attribution is visible",
+      "ok": true,
+      "detail": "© OpenStreetMap contributors | OpenFreeMap © OpenMapTiles Data from OpenStreetMa"
+    },
+    {
+      "name": "the basemap style loaded",
+      "ok": true,
+      "detail": "no error overlay"
+    },
+    {
+      "name": "the map canvas is not blank",
+      "ok": true,
+      "detail": "247KB map screenshot"
+    },
+    {
+      "name": "Explore lists real seeded places",
+      "ok": true,
+      "detail": "found: NUS Central Library, Central Library"
+    },
+    {
+      "name": "no fabricated placeholder place appears",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "name": "the app survives a reload without a white screen",
+      "ok": true,
+      "detail": "shell rendered"
+    },
+    {
+      "name": "the community feed renders posts",
+      "ok": true,
+      "detail": "10 post card(s)"
+    },
+    {
+      "name": "seeded posts are labelled as demo content",
+      "ok": true,
+      "detail": "a Demo marker is visible"
+    },
+    {
+      "name": "feed post bodies are present, not skeletons",
+      "ok": true,
+      "detail": "post text rendered"
+    },
+    {
+      "name": "Connect has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "scrollWidth=390 clientWidth=390"
+    },
+    {
+      "name": "a location-tagged post can open its place on the map",
+      "ok": true,
+      "detail": "Explore shown"
+    },
+    {
+      "name": "430x932 onboarding reaches the app shell",
+      "ok": true,
+      "detail": "shell rendered"
+    },
+    {
+      "name": "430x932 renders the map with real size",
+      "ok": true,
+      "detail": "388x352"
+    },
+    {
+      "name": "430x932 map canvas is not blank",
+      "ok": true,
+      "detail": "294KB map screenshot"
+    },
+    {
+      "name": "430x932 Explore has no horizontal overflow",
+      "ok": true,
+      "detail": "scrollWidth=430 clientWidth=430"
+    },
+    {
+      "name": "430x932 Connect renders the feed",
+      "ok": true,
+      "detail": "10 post card(s)"
+    },
+    {
+      "name": "430x932 Connect has no horizontal overflow",
+      "ok": true,
+      "detail": "scrollWidth=430 clientWidth=430"
+    },
+    {
+      "name": "768x1024 onboarding reaches the app shell",
+      "ok": true,
+      "detail": "shell rendered"
+    },
+    {
+      "name": "768x1024 renders the map with real size",
+      "ok": true,
+      "detail": "650x387"
+    },
+    {
+      "name": "768x1024 map canvas is not blank",
+      "ok": true,
+      "detail": "235KB map screenshot"
+    },
+    {
+      "name": "768x1024 Explore has no horizontal overflow",
+      "ok": true,
+      "detail": "scrollWidth=768 clientWidth=768"
+    },
+    {
+      "name": "768x1024 Connect renders the feed",
+      "ok": true,
+      "detail": "10 post card(s)"
+    },
+    {
+      "name": "768x1024 Connect has no horizontal overflow",
+      "ok": true,
+      "detail": "scrollWidth=768 clientWidth=768"
+    },
+    {
+      "name": "1440x900 onboarding reaches the app shell",
+      "ok": true,
+      "detail": "shell rendered"
+    },
+    {
+      "name": "1440x900 renders the map with real size",
+      "ok": true,
+      "detail": "758x340"
+    },
+    {
+      "name": "1440x900 map canvas is not blank",
+      "ok": true,
+      "detail": "243KB map screenshot"
+    },
+    {
+      "name": "1440x900 Explore has no horizontal overflow",
+      "ok": true,
+      "detail": "scrollWidth=1440 clientWidth=1440"
+    },
+    {
+      "name": "1440x900 Connect renders the feed",
+      "ok": true,
+      "detail": "10 post card(s)"
+    },
+    {
+      "name": "1440x900 Connect has no horizontal overflow",
+      "ok": true,
+      "detail": "scrollWidth=1440 clientWidth=1440"
+    },
+    {
+      "name": "no uncaught page errors",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "name": "no console errors from app code",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "name": "no failed app requests",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "name": "no unexpected 4xx/5xx responses",
+      "ok": true,
+      "detail": "24 expected first-run probe(s): 401, 404, 404, 404, 404, 404, 401, 404, 404, 404, 404, 404, 401, 404, 404, 404, 404, 404, 401, 404, 404, 404, 404, 404"
+    }
+  ],
+  "shots": [
+    {
+      "name": "390-explore-map",
+      "path": "docs/evidence/phase5/390-explore-map.png",
+      "bytes": 252666,
+      "targeted": true
+    },
+    {
+      "name": "390-explore-full",
+      "path": "docs/evidence/phase5/390-explore-full.png",
+      "bytes": 355430,
+      "targeted": false
+    },
+    {
+      "name": "390-connect-feed",
+      "path": "docs/evidence/phase5/390-connect-feed.png",
+      "bytes": 277532,
+      "targeted": false
+    },
+    {
+      "name": "430-explore-map",
+      "path": "docs/evidence/phase5/430-explore-map.png",
+      "bytes": 300777,
+      "targeted": true
+    },
+    {
+      "name": "430-explore-full",
+      "path": "docs/evidence/phase5/430-explore-full.png",
+      "bytes": 362395,
+      "targeted": false
+    },
+    {
+      "name": "768-explore-map",
+      "path": "docs/evidence/phase5/768-explore-map.png",
+      "bytes": 240196,
+      "targeted": true
+    },
+    {
+      "name": "768-explore-full",
+      "path": "docs/evidence/phase5/768-explore-full.png",
+      "bytes": 169086,
+      "targeted": false
+    },
+    {
+      "name": "1440-explore-map",
+      "path": "docs/evidence/phase5/1440-explore-map.png",
+      "bytes": 248772,
+      "targeted": true
+    },
+    {
+      "name": "1440-explore-full",
+      "path": "docs/evidence/phase5/1440-explore-full.png",
+      "bytes": 178277,
+      "targeted": false
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "networkFailures": [],
+  "badResponses": [
+    "401 GET https://sgp.cloud.appwrite.io/v1/account",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd03689fe6ad97f4",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd03689fe6ad97f4",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd03689fe6ad97f4",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd03689fe6ad97f4",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaacd03689fe6ad97f4",
+    "401 GET https://sgp.cloud.appwrite.io/v1/account",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd28296b014cf366",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd28296b014cf366",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd28296b014cf366",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd28296b014cf366",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaacd28296b014cf366",
+    "401 GET https://sgp.cloud.appwrite.io/v1/account",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd422236e78db3de",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd422236e78db3de",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd422236e78db3de",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd422236e78db3de",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaacd422236e78db3de",
+    "401 GET https://sgp.cloud.appwrite.io/v1/account",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd5c3a410f38158d",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd5c3a410f38158d",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaacd5c3a410f38158d",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaacd5c3a410f38158d",
+    "404 GET https://sgp.cloud.appwrite.io/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaacd5c3a410f38158d"
+  ],
+  "saveAttempted": false,
+  "savedBefore": true
+}

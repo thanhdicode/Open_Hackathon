@@ -110,11 +110,42 @@ On schema failure:
 2. if still invalid, return safe fallback,
 3. log schema error without raw private user content where possible.
 
+**No default may be invented to make invalid output pass.** A payload missing
+`confidence`, `misunderstandingRisk` or a score dimension is rejected. The
+gateway must never coerce provider output into shape.
+
 ## 7. Model routing
 
-Pinned hackathon:
-- multimodal/core: `gemini-3.7-flash`
-- Live P1: `gemini-3.1-flash-live-preview`
-- embedding optional: `gemini-embedding-2`
+Current routing is recorded in `docs/adr/ADR-004-phase3-ai-interaction-core.md`
+and mirrored in `config/project-decisions.yaml`. Summary:
 
-No agent may silently change model ID. Model upgrades require a Project Decision Record because pricing/quotas/capabilities may change.
+| Task | Model |
+|---|---|
+| text reasoning / JSON | `groq/openai/gpt-oss-120b` |
+| image / screenshot / PDF / scene boxes | `gemini-3.8-flash` |
+| multimodal fallback | `gemini-3.7-flash` |
+| recorded STT | `groq/whisper-large-v3-turbo` |
+| streaming STT (P1) | `gemini-3.5-transcribe-live` |
+| pure live translation | `gemini-3.5-live-translate-preview` |
+| conversational voice agent (P1) | `gemini-3.8-live` |
+| TTS | `gemini-3.1-flash-tts-preview` |
+| embedding (optional) | `gemini-embedding-2` |
+
+Retired: `gemini-3.1-flash-live-preview` (legacy, superseded by `gemini-3.8-live`).
+
+No agent may silently change a model ID. Model upgrades require a Project
+Decision Record because pricing/quotas/capabilities may change.
+
+### 7.1 Translation and coaching are separate lanes
+
+`gemini-3.5-live-translate-preview` performs translation only. It supports no
+tools, no function calling, no structured output and no system instructions, and
+accepts audio input only. Context reasoning therefore runs as its own lane over
+the transcript on a reasoning model. The two lanes must never share a contract.
+
+### 7.2 Languages without voice support are refused, not degraded
+
+Tetum (Timor-Leste) is absent from the provider's supported set. `/live/token`
+with `mode: "translate"` returns `422 LANGUAGE_UNSUPPORTED` with real fallback
+options. The product must never claim voice coverage for all 11 ASEAN member
+states.

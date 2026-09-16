@@ -1,0 +1,10 @@
+{
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "[yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa8eb8de6ac15b7270' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js?v=21bbfb19:2704:11)\n    at Generator.next (<anonymous>)\n    at fulfilled (http://127.0.0.1:5173/nod"
+  ],
+  "pageErrors": [],
+  "failedRequests": []
+}

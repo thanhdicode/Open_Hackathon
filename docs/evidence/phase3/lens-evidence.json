@@ -1,0 +1,52 @@
+{
+  "baseUrl": "http://127.0.0.1:5173",
+  "generatedAt": "2026-09-16T13:05:44.933Z",
+  "viewports": [
+    {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": false,
+      "heading": true,
+      "segmentedButtons": 5
+    },
+    {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "overflow": false,
+      "heading": true,
+      "segmentedButtons": 5
+    },
+    {
+      "name": "768",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": false,
+      "heading": true,
+      "segmentedButtons": 5
+    },
+    {
+      "name": "1440x900",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": false,
+      "heading": true,
+      "segmentedButtons": 5
+    }
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "[yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa942a7d35db39faaa' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js"
+  ],
+  "pageErrors": []
+}

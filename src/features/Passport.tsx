@@ -21,7 +21,7 @@ export function PassportHome() {
   return (
     <Scroll className="px-5 pb-6 pt-1">
       {forced === "stale" && (
-        <div className="mb-3 mt-2"><Notice tone="warning" icon="🕓" title="Some guidance may be out of date" body="We haven't been able to re-verify a few sources recently. Check official links before relying on requirements." /></div>
+        <div className="mb-3 mt-2"><Notice tone="warning" icon="info" title="Some guidance may be out of date" body="We haven't been able to re-verify a few sources recently. Check official links before relying on requirements." /></div>
       )}
       <div className="mb-1 flex items-center gap-2 text-[13px] font-semibold text-muted">
         {COUNTRIES[journey.home].flag} <span>→</span> {host.flag} {host.name}
@@ -41,7 +41,7 @@ export function PassportHome() {
       <SectionHeader title={`${host.name.split(" ")[0]} DNA`} />
       <div className="mb-5 flex gap-2 overflow-x-auto scroll-area pb-1">
         {COUNTRY_DNA[journey.host].map((p) => (
-          <div key={p.key} className="w-[150px] shrink-0 rounded-[16px] bg-surface p-3 shadow-card">
+          <div key={p.key} className="w-[150px] shrink-0 rounded-[12px] border border-line bg-surface p-3">
             <div className="text-[20px]">{p.icon}</div>
             <p className="mt-1 text-[13px] font-bold text-ink">{p.title}</p>
             <p className="mt-1 text-[11px] leading-snug text-muted line-clamp-3">{p.points[0]}</p>
@@ -82,7 +82,7 @@ export function PassportSection({ sectionId, onBack }: { sectionId: string; onBa
             <PassportCardView key={c.id} card={c} onOpen={() => nav.push(c.id.includes("bank") ? "bankFlow" : "passportCard", { card: c })} />
           ))}
         </div>
-        {section.cards.length === 0 && <Notice tone="primary" icon="🧭" title="Coming soon" body="Detailed guidance for this section is being reviewed by local students." />}
+        {section.cards.length === 0 && <Notice tone="primary" icon="info" title="Coming soon" body="Detailed guidance for this section is being reviewed by local students." />}
       </Scroll>
     </div>
   );
@@ -124,7 +124,7 @@ export function PassportCardDetail({ card, onBack }: { card: PassportCard; onBac
           <FreshnessBadge reviewed={card.lastReviewed} status={card.verification} />
         </div>
         {card.verification === "outdated" && (
-          <div className="mt-4"><Notice tone="warning" icon="🕒" title="This may be out of date" body="This card was last reviewed a while ago. Confirm with an official source or Ask a Local before relying on it." /></div>
+          <div className="mt-4"><Notice tone="warning" icon="info" title="This may be out of date" body="This card was last reviewed a while ago. Confirm with an official source or Ask a Local before relying on it." /></div>
         )}
         <div className="mt-6 flex gap-2">
           <Button variant="soft" full>Save</Button>

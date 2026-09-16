@@ -1,0 +1,186 @@
+{
+  "generatedAt": "2026-09-16T17:08:10.457Z",
+  "failures": 0,
+  "results": [
+    {
+      "name": "places exist for all three demo corridors (MY/SG/ID)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every place declares a known provenance",
+      "ok": true,
+      "detail": "all osm_overpass / seed_pack_researched"
+    },
+    {
+      "name": "no place has a null or out-of-range coordinate",
+      "ok": true,
+      "detail": "all coordinates valid"
+    },
+    {
+      "name": "the three corridors are separate datasets, not one shared list",
+      "ok": true,
+      "detail": "MY=1004 SG=762 ID=365"
+    },
+    {
+      "name": "no place row is shared between countries",
+      "ok": true,
+      "detail": "distinct place ids per country"
+    },
+    {
+      "name": "demo profiles carry is_demo_seed = 1",
+      "ok": true,
+      "detail": "12 of 12 profiles"
+    },
+    {
+      "name": "every demo profile declares demo provenance",
+      "ok": true,
+      "detail": "verification in demo_seed | synthetic_demo"
+    },
+    {
+      "name": "no profile claims to be a verified real student",
+      "ok": true,
+      "detail": "no verified_student / real_user / partner_student"
+    },
+    {
+      "name": "no profile shares live location",
+      "ok": true,
+      "detail": "all rows false"
+    },
+    {
+      "name": "every location-tagged post points at a place that exists",
+      "ok": true,
+      "detail": "6 tagged posts all resolve"
+    },
+    {
+      "name": "every demo post declares demo provenance",
+      "ok": true,
+      "detail": "10 posts labelled"
+    },
+    {
+      "name": "demo posts cover all three corridors",
+      "ok": true,
+      "detail": "countries with posts: ID, MY, SG"
+    },
+    {
+      "name": "saved_posts row ids fit Appwrite's 36-character limit",
+      "ok": true,
+      "detail": "24 rows, longest=23"
+    },
+    {
+      "name": "place_saves row ids fit Appwrite's 36-character limit",
+      "ok": true,
+      "detail": "41 rows, longest=23"
+    },
+    {
+      "name": "post_reactions row ids fit Appwrite's 36-character limit",
+      "ok": true,
+      "detail": "68 rows, longest=23"
+    },
+    {
+      "name": "follows row ids fit Appwrite's 36-character limit",
+      "ok": true,
+      "detail": "0 rows, longest=0"
+    },
+    {
+      "name": "two real authenticated users created",
+      "ok": true,
+      "detail": "6aaaccf2… / 6aaaccf3…"
+    },
+    {
+      "name": "session A authenticates as user A",
+      "ok": true,
+      "detail": "phase5.a.1789578482820@example.com"
+    },
+    {
+      "name": "session B authenticates as user B",
+      "ok": true,
+      "detail": "phase5.b.1789578482820@example.com"
+    },
+    {
+      "name": "user A can create their own post",
+      "ok": true,
+      "detail": "6aaaccf4"
+    },
+    {
+      "name": "user B CAN read user A's public post",
+      "ok": true,
+      "detail": "readable by authenticated students"
+    },
+    {
+      "name": "user B CANNOT update user A's post",
+      "ok": true,
+      "detail": "denied:401"
+    },
+    {
+      "name": "user B CANNOT delete user A's post",
+      "ok": true,
+      "detail": "denied:401"
+    },
+    {
+      "name": "user A CAN update their own post",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "user B CANNOT read user A's private place save",
+      "ok": true,
+      "detail": "denied:404"
+    },
+    {
+      "name": "user B's query for A's saves returns nothing",
+      "ok": true,
+      "detail": "returned 0 rows"
+    },
+    {
+      "name": "user A CANNOT delete user B's post",
+      "ok": true,
+      "detail": "denied:401"
+    },
+    {
+      "name": "an anonymous caller CANNOT read a community post",
+      "ok": true,
+      "detail": "denied:404"
+    },
+    {
+      "name": "src/data/places.ts is gone",
+      "ok": true,
+      "detail": "removed"
+    },
+    {
+      "name": "src/data/people.ts is gone",
+      "ok": true,
+      "detail": "removed"
+    },
+    {
+      "name": "src/data/circles.ts is gone",
+      "ok": true,
+      "detail": "removed"
+    },
+    {
+      "name": "no production file references the fake SVG map",
+      "ok": true,
+      "detail": "scanned 36 files"
+    },
+    {
+      "name": "Explore renders the real MapLibre map",
+      "ok": true,
+      "detail": "ExploreMap imported by Explore"
+    }
+  ],
+  "summary": {
+    "seed": {
+      "places": 8430,
+      "profiles": 12,
+      "posts": 10,
+      "byCountry": {
+        "MY": 1004,
+        "SG": 762,
+        "ID": 365,
+        "TH": 3056,
+        "PH": 1745,
+        "VN": 1498
+      }
+    }
+  }
+}

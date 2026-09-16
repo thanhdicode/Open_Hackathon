@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { JourneyProvider, useJourney, makeCustomJourney } from "./context/JourneyContext";
+import { AccountProvider } from "./context/AccountContext";
 import { NavProvider, useNav } from "./context/NavContext";
 import { AppShell, TopHeader, BottomNavigation, type TabKey } from "./components/shell";
+import { Notice } from "./components/ui";
 import Onboarding from "./features/Onboarding";
 import Today from "./features/Today";
 import { PassportHome, PassportSection, PassportCardDetail } from "./features/Passport";
@@ -9,34 +11,55 @@ import BankFlow from "./features/BankFlow";
 import Lens from "./features/Lens";
 import YapSim from "./features/YapSim";
 import Study from "./features/Study";
-import { Explore, PlaceDetail } from "./features/Explore";
-import { ConnectHome, MatchProfile, Chat, AskALocal } from "./features/Connect";
-import { Profile, Settings, Compass } from "./features/Profile";
+import { Explore } from "./features/Explore";
+import { AddExperience } from "./features/explore/AddExperience";
+import { ConnectHome } from "./features/Connect";
+import { Greenbook, ChapterBrowse, EntryDetail, AskGreenbookScreen, Phrases, StudentReality } from "./features/greenbook";
+import type { GreenbookPracticeContext } from "./features/YapSim";
+import { Profile, Compass } from "./features/Profile";
+import { Settings, EditProfile, AccountSettings, PreferencesScreen, PrivacyData, BlockedUsers, LegalDoc, About } from "./features/Settings";
 import { ensureAnonymousSession } from "./lib/appwrite/session";
 import { loadJourney } from "./lib/appwrite/journeyPersistence";
 import { fetchTaskProgress } from "./lib/appwrite/taskProgress";
 import { journeyById } from "./data/journeys";
 import type { PassportCard } from "./data/passports";
-import type { Place, PlaceCategory } from "./data/places";
-import type { Person } from "./data/people";
+import type { ExploreCategory, Place } from "./lib/phase5/contract";
+import { useCurrentUserId } from "./lib/phase5/use-user";
 
 export default function App() {
   return (
     <JourneyProvider>
-      <NavProvider>
-        <AppShell>
-          <Root />
-        </AppShell>
-      </NavProvider>
+      <AccountProvider>
+        <NavProvider>
+          <AppShell>
+            <Root />
+          </AppShell>
+        </NavProvider>
+      </AccountProvider>
     </JourneyProvider>
   );
 }
 
 function Root() {
   const [onboarded, setOnboarded] = useState(false);
+  const [authNotice, setAuthNotice] = useState<{ tone: "primary" | "warning"; title: string; body: string } | null>(null);
   const restored = useRef(false);
   const { setCustom, setJourneyId, hydrate } = useJourney();
   const nav = useNav();
+
+  useEffect(() => {
+    // OAuth returns to /?auth=google or /?auth_error=google — surface the result
+    // and strip the parameters so a refresh does not repeat the message.
+    const params = new URLSearchParams(window.location.search);
+    const success = params.get("auth");
+    const failure = params.get("auth_error");
+    if (success === "google") {
+      setAuthNotice({ tone: "primary", title: "Signed in with Google", body: "Your journey, Passport and progress are saved to this account." });
+    } else if (failure === "google") {
+      setAuthNotice({ tone: "warning", title: "Google sign-in did not finish", body: "Nothing was lost — try again or continue with Email instead." });
+    }
+    if (success || failure) window.history.replaceState({}, "", window.location.pathname);
+  }, []);
 
   useEffect(() => {
     if (restored.current) return;
@@ -66,18 +89,24 @@ function Root() {
       />
     );
 
-  return <Main onReonboard={() => { setJourneyId("minh"); nav.reset(); setOnboarded(false); }} />;
+  return <Main onReonboard={() => { setJourneyId("minh"); nav.reset(); setOnboarded(false); }} authNotice={authNotice} onDismissAuthNotice={() => setAuthNotice(null)} />;
 }
 
-function Main({ onReonboard }: { onReonboard: () => void }) {
+function Main({ onReonboard, authNotice, onDismissAuthNotice }: { onReonboard: () => void; authNotice: { tone: "primary" | "warning"; title: string; body: string } | null; onDismissAuthNotice: () => void }) {
   const nav = useNav();
   const top = nav.stack[nav.stack.length - 1];
 
   return (
-    <div className="relative flex h-full flex-col">
+    <div className="relative flex h-full min-h-0 flex-col">
       {/* Tab content */}
       <div className="flex min-h-0 flex-1 flex-col">
         <TopHeader onAvatar={() => nav.push("profile")} onCompass={() => nav.push("compass")} />
+        {authNotice && (
+          <div className="px-5 pt-3">
+            <Notice tone={authNotice.tone} icon="info" title={authNotice.title} body={authNotice.body} />
+            <button onClick={onDismissAuthNotice} className="mt-1.5 min-h-[44px] text-[12px] font-semibold text-muted">Dismiss</button>
+          </div>
+        )}
         <div className="flex min-h-0 flex-1 flex-col">
           <TabView tab={nav.tab} />
         </div>
@@ -85,7 +114,7 @@ function Main({ onReonboard }: { onReonboard: () => void }) {
 
       <BottomNavigation active={nav.tab} onChange={(t: TabKey) => nav.setTab(t)} />
 
-      {/* Overlay stack */}
+      {/* Overlay stack — scoped to the workspace column so rail stays usable */}
       {top && (
         <div className="absolute inset-0 z-40 bg-canvas">
           <Overlay frame={top} onReonboard={onReonboard} />
@@ -123,33 +152,96 @@ function Overlay({ frame, onReonboard }: { frame: { screen: string; params?: Rec
     case "bankFlow":
       return <BankFlow onBack={back} />;
     case "sim":
-      return <YapSim onBack={back} fromLens={p.fromLens as boolean} />;
+      return <YapSim onBack={back} fromLens={p.fromLens as boolean} incident={p.incident as string | undefined} greenbook={p.greenbook as GreenbookPracticeContext | undefined} />;
     case "study":
       return <Study onBack={back} />;
-    case "placeDetail":
-      return <PlaceDetail place={p.place as Place} onBack={back} />;
+    /* ------------------------- Living Greenbook (Phase 4) ------------------------- */
+    case "greenbook":
+      return <Greenbook onBack={back} />;
+    case "greenbookBrowse":
+      return <ChapterBrowse countryCode={p.countryCode as string} onBack={back} />;
+    case "greenbookEntry":
+      return <EntryDetail entryId={p.entryId as string} onBack={back} />;
+    case "greenbookAsk":
+      return <AskGreenbookScreen countryCode={p.countryCode as string} chapter={(p.chapter as string | null) ?? null} onBack={back} />;
+    case "greenbookPhrases":
+      return <Phrases countryCode={p.countryCode as string} chapter={(p.chapter as string | null) ?? null} onBack={back} />;
+    case "greenbookReality":
+      return <StudentReality countryCode={p.countryCode as string} onBack={back} />;
+    /* ---------------------------- Explore (Phase 5) ---------------------------- */
+    case "addExperience": {
+      const place = p.place as Place;
+      return <AddExperienceScreen place={place} onBack={back} />;
+    }
     case "placeCategory":
       return (
         <div className="flex h-full flex-col">
           <div className="flex items-center gap-2 border-b border-line bg-surface px-4 py-3">
             <button onClick={back} className="text-[15px] font-semibold text-primary">← Back</button>
           </div>
-          <Explore initialCategory={p.category as PlaceCategory} />
+          <Explore initialCategory={p.category as ExploreCategory} />
         </div>
       );
-    case "matchProfile":
-      return <MatchProfile person={p.person as Person} onBack={back} />;
-    case "chat":
-      return <Chat person={p.person as Person} onBack={back} />;
-    case "askLocal":
-      return <AskALocal onBack={back} />;
     case "profile":
       return <Profile onBack={back} />;
     case "settings":
       return <Settings onBack={back} />;
+    case "editProfile":
+      return <EditProfile onBack={back} />;
+    case "account":
+      return <AccountSettings onBack={back} />;
+    case "preferences":
+      return <PreferencesScreen onBack={back} />;
+    case "privacyData":
+      return <PrivacyData onBack={back} />;
+    case "blockedUsers":
+      return <BlockedUsers onBack={back} />;
+    case "legal":
+      return <LegalDoc doc={(p.doc as string) ?? "privacy"} onBack={back} />;
+    case "about":
+      return <About onBack={back} />;
     case "compass":
       return <Compass onBack={back} onReonboard={onReonboard} />;
     default:
       return null;
   }
+}
+
+/**
+ * Wrapper that supplies the session and the active journey to the Add Experience
+ * form, so the form itself stays a pure component that can be rendered with
+ * fixtures in a test.
+ */
+function AddExperienceScreen({ place, onBack }: { place: Place; onBack: () => void }) {
+  const nav = useNav();
+  const { journey } = useJourney();
+  const { userId } = useCurrentUserId();
+  const [notice, setNotice] = useState<string | null>(null);
+
+  if (!userId) {
+    return (
+      <div className="flex h-full flex-col bg-canvas">
+        <div className="flex flex-1 items-center justify-center px-8 text-center">
+          <p className="text-[14px] text-muted">Your session is still starting. Try again in a moment.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <AddExperience
+        place={place}
+        userId={userId}
+        countryCode={journey.host}
+        universityId={journey.university}
+        onBack={onBack}
+        onSaved={() => {
+          setNotice("Experience shared");
+          nav.pop();
+        }}
+      />
+      {notice && <span className="sr-only">{notice}</span>}
+    </>
+  );
 }

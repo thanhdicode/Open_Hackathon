@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-09-16T16:07:59.741Z",
+  "factsScanned": 284,
+  "actionableFacts": 276,
+  "tasks": {
+    "total": 153,
+    "byCountry": {
+      "MY": 25,
+      "SG": 25,
+      "ID": 25,
+      "TH": 13,
+      "PH": 15,
+      "KH": 18,
+      "MM": 20,
+      "LA": 6,
+      "VN": 6
+    }
+  },
+  "phrases": {
+    "total": 34,
+    "byCountry": {
+      "MY": 12,
+      "ID": 12,
+      "TH": 10
+    }
+  },
+  "media": {
+    "total": 0,
+    "reason": "no verifiable real media id available; not fabricated"
+  },
+  "dryRun": false
+}

@@ -24,7 +24,7 @@ export default function BankFlow({ onBack }: { onBack: () => void }) {
     <div className="flex h-full flex-col bg-canvas">
       <ScreenHeader title="Open a bank account" onBack={onBack} />
       <Scroll className="px-5 py-4">
-        <div className="mb-1 flex items-center gap-2 text-[12px] font-semibold text-muted">🏦 Money & Banking · {host.name}</div>
+        <div className="mb-1 flex items-center gap-2 text-[12px] font-semibold text-muted"><Icon name="passport" size={14} /> Money & Banking · {host.name}</div>
         <p className="text-[14px] leading-relaxed text-ink">
           {isSG ? "DBS/POSB, OCBC and UOB offer student accounts with no minimum balance." : `Local banks in ${host.name} offer student accounts.`} Gather these documents first.
         </p>
@@ -54,7 +54,7 @@ export default function BankFlow({ onBack }: { onBack: () => void }) {
         </div>
 
         <Card className="mt-4 flex items-center gap-3 p-4" onClick={() => nav.push("placeCategory", { category: "banks" })}>
-          <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-primary-soft text-[18px]">📍</div>
+          <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-primary-soft text-primary"><Icon name="pin" size={18} /></div>
           <div className="flex-1">
             <p className="text-[14px] font-semibold text-ink">Find the nearest bank</p>
             <p className="text-[12px] text-muted">See student-friendly branches on Explore</p>
@@ -62,7 +62,7 @@ export default function BankFlow({ onBack }: { onBack: () => void }) {
           <Icon name="chevron" size={18} />
         </Card>
 
-        {pct === 100 && <div className="mt-4"><Notice tone="primary" icon="✅" title="You're ready!" body="You have every document. Book an appointment or open in-app, then mark this task complete." /></div>}
+        {pct === 100 && <div className="mt-4"><Notice tone="primary" icon="check" title="You're ready!" body="You have every document. Book an appointment or open in-app, then mark this task complete." /></div>}
 
         <div className="mt-6">
           <Button size="lg" full disabled={pct !== 100} onClick={() => { toggleTask(journey.primaryTask.id); onBack(); }}>

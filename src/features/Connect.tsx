@@ -1,247 +1,451 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useJourney } from "../context/JourneyContext";
 import { useNav } from "../context/NavContext";
-import { Scroll, ScreenHeader } from "../components/shell";
-import { Card, Button, Badge, Chip, Avatar, EmptyState, Notice, Segmented, BottomSheet } from "../components/ui";
+import { Scroll } from "../components/shell";
+import { Button, Chip, EmptyState, Notice, Segmented, Skeleton, Toast } from "../components/ui";
 import { Icon } from "../components/icons";
-import { peopleFor, ASK_A_LOCAL_SAMPLE, type Person, type ConnectRole } from "../data/people";
-import { circlesFor, CIRCLE_FILTERS } from "../data/circles";
 import { COUNTRIES } from "../data/countries";
+import { campusForJourney } from "../data/campuses";
+import {
+  createPost,
+  loadFeed,
+  toggleReaction,
+  toggleSavePost,
+} from "../lib/appwrite/community";
+import { loadPlaces } from "../lib/appwrite/explore";
+import { loadBlockedIds } from "../lib/appwrite/social";
+import { useCurrentUserId } from "../lib/phase5/use-user";
+import { translateText } from "../lib/phase5/translate";
+import { FEED_FILTERS, type CommunityPost, type FeedFilter, type Place, type SocialProfile } from "../lib/phase5/contract";
+import { languageCodes, type ViewerContext } from "../lib/phase5/matching";
+import { client, APPWRITE_DATABASE_ID } from "../lib/appwrite/client";
+import { PostCard } from "./community/PostCard";
+import { PostDetail } from "./community/PostDetail";
+import { Composer } from "./community/Composer";
+import { PeopleTab } from "./community/PeopleTab";
+import { CommunityProfile } from "./community/CommunityProfile";
+import { PlacesForAuthor } from "./community/PlacesForAuthor";
 
-const ROLE_TABS: { key: ConnectRole | "All"; label: string }[] = [
-  { key: "All", label: "All" },
-  { key: "Local", label: "Local" },
-  { key: "Current Exchange", label: "Exchange" },
-  { key: "Incoming", label: "Incoming" },
-  { key: "Returned", label: "Returned" },
-];
+/**
+ * Connect.
+ *
+ * The brief changes this tab's centre of gravity: it is no longer a random
+ * people directory. Community is the default view and People is a second tab,
+ * because the lived experience of students who were actually there is the thing
+ * this product has that a knowledge base does not.
+ *
+ * Messaging is deliberately absent. The previous implementation had a chat screen
+ * with scripted replies and a fake auto-translation notice; the brief puts
+ * messaging out of scope for this sprint, so it is removed rather than left
+ * looking functional.
+ */
+
+type ConnectTab = "community" | "people";
 
 export function ConnectHome() {
   const { journey, forced } = useJourney();
   const nav = useNav();
-  const [role, setRole] = useState<ConnectRole | "All">("All");
-  const [tab, setTab] = useState<"people" | "circles">("people");
-  const people = useMemo(() => peopleFor(journey.host, journey.home), [journey.host, journey.home]);
-  const filtered = role === "All" ? people : people.filter((p) => p.role === role);
+  const { userId } = useCurrentUserId();
+  const campus = campusForJourney(journey);
+
+  const [tab, setTab] = useState<ConnectTab>("community");
+  const [filter, setFilter] = useState<FeedFilter>("for_you");
+  const [posts, setPosts] = useState<CommunityPost[] | null>(null);
+  const [cursor, setCursor] = useState<string | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [places, setPlaces] = useState<Place[]>([]);
+  const [blocked, setBlocked] = useState<Set<string>>(new Set());
+  const [busyId, setBusyId] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+  const [composing, setComposing] = useState(false);
+  const [openPost, setOpenPost] = useState<CommunityPost | null>(null);
+  const [openProfile, setOpenProfile] = useState<SocialProfile | null>(null);
+  const [sharedMapFor, setSharedMapFor] = useState<SocialProfile | null>(null);
+  const [realtimeState, setRealtimeState] = useState<"off" | "live" | "disconnected">("off");
+
+  const placeById = useMemo(() => new Map(places.map((place) => [place.id, place])), [places]);
+
+  const viewer: ViewerContext = useMemo(
+    () => ({
+      userId,
+      homeCountry: journey.home,
+      hostCountry: journey.host,
+      city: journey.city,
+      university: journey.university,
+      major: "",
+      interests: journey.interests ?? [],
+      // The journey stores display names ("Bahasa Indonesia"); a profile stores
+      // ISO codes ("id"). Normalise here or the language reason never fires.
+      languages: languageCodes((journey.languages ?? []).map((language) => language.name)),
+      blockedIds: blocked,
+    }),
+    [userId, journey, blocked],
+  );
+
+  /* ------------------------------ feed loading ------------------------------ */
+  const load = useCallback(
+    async (nextFilter: FeedFilter, nextCursor: string | null) => {
+      const result = await loadFeed({
+        filter: nextFilter,
+        hostCountry: journey.host,
+        universityId: campus?.universityId ?? journey.university,
+        viewerId: userId,
+        cursor: nextCursor,
+      });
+      if (!result.ok) {
+        setFailed(true);
+        setPosts((current) => current ?? []);
+        return;
+      }
+      setFailed(false);
+      setPosts((current) => (nextCursor ? [...(current ?? []), ...result.value.posts] : result.value.posts));
+      setCursor(result.value.nextCursor);
+    },
+    [journey.host, journey.university, campus?.universityId, userId],
+  );
+
+  useEffect(() => {
+    setPosts(null);
+    setCursor(null);
+    void load(filter, null);
+  }, [filter, load]);
+
+  useEffect(() => {
+    void loadPlaces({ countryCode: journey.host }).then((result) => {
+      if (result.ok) setPlaces(result.value);
+    });
+  }, [journey.host]);
+
+  useEffect(() => {
+    if (!userId) return;
+    void loadBlockedIds(userId).then(setBlocked);
+  }, [userId]);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = window.setTimeout(() => setToast(null), 2200);
+    return () => window.clearTimeout(timer);
+  }, [toast]);
+
+  /*
+   * Realtime: new posts appear without a refresh, and a dropped socket is
+   * invisible because the HTTP query already produced the list. Subscribing only
+   * after authentication is a requirement, not a nicety — an unauthenticated
+   * socket is rejected by the server and would retry forever.
+   *
+   * The channel is the whole table, so it does not depend on which filter is
+   * active. Keying this effect on `filter` tore the socket down and rebuilt it on
+   * every chip tap, and two teardowns racing produced
+   * "WebSocket is already in CLOSING or CLOSED state" in the console. The current
+   * filter is read from a ref instead, so the subscription outlives filter changes.
+   */
+  const reloadRef = useRef(load);
+  reloadRef.current = load;
+  const filterRef = useRef(filter);
+  filterRef.current = filter;
+  useEffect(() => {
+    if (!userId || !APPWRITE_DATABASE_ID) return;
+    let unsubscribe: (() => void) | null = null;
+    try {
+      unsubscribe = client.subscribe(`databases.${APPWRITE_DATABASE_ID}.tables.community_posts.rows`, (event) => {
+        // Only a create changes what the top of the feed should show. An update
+        // to a reaction count is already applied optimistically by the viewer.
+        if (String(event.events?.some((name) => name.endsWith(".create")))) {
+          setRealtimeState("live");
+          void reloadRef.current(filterRef.current, null);
+        }
+      });
+      setRealtimeState("live");
+    } catch {
+      setRealtimeState("disconnected");
+    }
+    return () => {
+      // Unsubscribing a socket that is already closing throws inside the SDK; a
+      // teardown during navigation is normal, so it must not surface as an error.
+      try {
+        unsubscribe?.();
+      } catch {
+        /* already torn down */
+      }
+    };
+  }, [userId]);
+
+  /* -------------------------------- mutations ------------------------------- */
+  async function react(post: CommunityPost) {
+    if (!userId) {
+      setToast("Reacting needs a session");
+      return;
+    }
+    const wasReacted = post.viewerReacted;
+    setBusyId(post.id);
+    // Optimistic, with a rollback that restores the exact previous number.
+    setPosts((current) =>
+      current?.map((entry) =>
+        entry.id === post.id
+          ? { ...entry, viewerReacted: !wasReacted, reactionCount: Math.max(0, entry.reactionCount + (wasReacted ? -1 : 1)) }
+          : entry,
+      ) ?? current,
+    );
+    const result = await toggleReaction(post.id, userId, post.reactionCount, wasReacted);
+    setBusyId(null);
+    if (!result.ok) {
+      setPosts((current) =>
+        current?.map((entry) => (entry.id === post.id ? { ...entry, viewerReacted: wasReacted, reactionCount: post.reactionCount } : entry)) ?? current,
+      );
+      setToast(result.message);
+      return;
+    }
+    setPosts((current) =>
+      current?.map((entry) => (entry.id === post.id ? { ...entry, viewerReacted: result.value.reacted, reactionCount: result.value.count } : entry)) ?? current,
+    );
+  }
+
+  async function save(post: CommunityPost) {
+    if (!userId) {
+      setToast("Saving needs a session");
+      return;
+    }
+    const wasSaved = post.viewerSaved;
+    setBusyId(post.id);
+    setPosts((current) =>
+      current?.map((entry) =>
+        entry.id === post.id
+          ? { ...entry, viewerSaved: !wasSaved, saveCount: Math.max(0, entry.saveCount + (wasSaved ? -1 : 1)) }
+          : entry,
+      ) ?? current,
+    );
+    const result = await toggleSavePost(post.id, userId, post.saveCount, wasSaved);
+    setBusyId(null);
+    if (!result.ok) {
+      setPosts((current) =>
+        current?.map((entry) => (entry.id === post.id ? { ...entry, viewerSaved: wasSaved, saveCount: post.saveCount } : entry)) ?? current,
+      );
+      setToast(result.message);
+      return;
+    }
+    setPosts((current) =>
+      current?.map((entry) => (entry.id === post.id ? { ...entry, viewerSaved: result.value.saved, saveCount: result.value.count } : entry)) ?? current,
+    );
+    setToast(result.value.saved ? "Saved" : "Removed from saved");
+  }
+
+  function hideAuthor(authorId: string) {
+    setBlocked((current) => new Set(current).add(authorId));
+    setPosts((current) => current?.filter((entry) => entry.authorId !== authorId) ?? current);
+  }
+
+  /* --------------------------------- render --------------------------------- */
+  const visible = useMemo(() => (posts ?? []).filter((post) => !blocked.has(post.authorId)), [posts, blocked]);
+
+  if (openPost) {
+    const live = posts?.find((entry) => entry.id === openPost.id) ?? openPost;
+    return (
+      <PostDetail
+        post={live}
+        userId={userId}
+        placeName={live.placeId ? placeById.get(live.placeId)?.name : undefined}
+        onBack={() => setOpenPost(null)}
+        onToggleReaction={() => void react(live)}
+        onToggleSave={() => void save(live)}
+        onTranslate={() => translateText(live.body, journey)}
+        onOpenOnMap={
+          live.placeId
+            ? () => {
+                setOpenPost(null);
+                nav.setTab("explore");
+              }
+            : undefined
+        }
+        onBlocked={hideAuthor}
+      />
+    );
+  }
+
+  if (openProfile) {
+    return (
+      <CommunityProfile
+        profile={openProfile}
+        viewer={viewer}
+        onBack={() => setOpenProfile(null)}
+        onOpenSharedMap={(profile) => {
+          setOpenProfile(null);
+          setSharedMapFor(profile);
+        }}
+        onBlocked={(id) => {
+          hideAuthor(id);
+          setOpenProfile(null);
+        }}
+      />
+    );
+  }
+
+  if (sharedMapFor) {
+    return (
+      <PlacesForAuthor
+        profile={sharedMapFor}
+        places={places}
+        onBack={() => setSharedMapFor(null)}
+        onOpenOnMap={() => {
+          setSharedMapFor(null);
+          nav.setTab("explore");
+        }}
+      />
+    );
+  }
+
+  if (composing) {
+    return (
+      <Composer
+        authorName={journey.name}
+        authorInitials={journey.initials}
+        authorColor={journey.avatarColor}
+        places={places}
+        onCancel={() => setComposing(false)}
+        onCreate={async (input) => {
+          if (!userId) return { ok: false, message: "Posting needs a session." };
+          const result = await createPost({
+            authorId: userId,
+            countryCode: journey.host,
+            universityId: campus?.universityId ?? journey.university,
+            postType: input.postType,
+            body: input.body,
+            placeId: input.placeId,
+            tags: [input.postType, journey.host.toLowerCase()],
+            file: input.file,
+          });
+          if (!result.ok) return { ok: false, message: result.message };
+          setComposing(false);
+          setFilter("for_you");
+          await load("for_you", null);
+          setToast("Posted to the community");
+          return { ok: true };
+        }}
+      />
+    );
+  }
+
+  const countryName = COUNTRIES[journey.host]?.name ?? journey.host;
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full min-h-0 flex-col">
       <div className="px-5 pt-2">
-        <h1 className="mb-3 text-[22px] font-extrabold tracking-tight text-ink">Connect</h1>
-        <Segmented value={tab} onChange={setTab} options={[{ value: "people" as const, label: "People" }, { value: "circles" as const, label: "Country Circles" }]} />
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-[22px] font-extrabold tracking-tight text-ink">Connect</h1>
+            <p className="mt-0.5 text-[12px] text-muted">
+              {countryName}
+              {campus ? ` · ${campus.universityId.toUpperCase()}` : ""}
+            </p>
+          </div>
+          {tab === "community" && (
+            <Button size="sm" onClick={() => setComposing(true)}>
+              <Icon name="plus" size={16} /> Post
+            </Button>
+          )}
+        </div>
+        <div className="mt-3">
+          <Segmented
+            value={tab}
+            onChange={setTab}
+            options={[
+              { value: "community" as const, label: "Community" },
+              { value: "people" as const, label: "People" },
+            ]}
+          />
+        </div>
       </div>
 
       {tab === "people" ? (
+        <PeopleTab viewer={viewer} onOpenProfile={setOpenProfile} />
+      ) : (
         <>
           <div className="mt-3 flex gap-2 overflow-x-auto scroll-area px-5 pb-2">
-            {ROLE_TABS.map((r) => (
-              <Chip key={r.key} tone="primary" active={role === r.key} onClick={() => setRole(r.key)}>{r.label}</Chip>
+            {FEED_FILTERS.map((entry) => (
+              <Chip key={entry.key} tone="primary" active={filter === entry.key} onClick={() => setFilter(entry.key)}>
+                {entry.label}
+              </Chip>
             ))}
           </div>
+
+          {realtimeState === "disconnected" && (
+            <div className="px-5 pb-2">
+              <Notice tone="warning" icon="signal" title="Live updates paused" body="The feed still works — pull a filter to refresh." />
+            </div>
+          )}
+
           <Scroll className="px-5 pb-6">
-            <p className="mb-3 text-[12px] text-muted">Matched on city, university, major, interests, languages & cross-country experience.</p>
-            {forced === "empty" || filtered.length === 0 ? (
-              <EmptyState icon="🔎" title="No matches yet" body="Try a different filter or widen your interests." />
-            ) : (
+            {posts === null && (
               <div className="space-y-3">
-                {filtered.map((p) => <StudentCard key={p.id} person={p} onOpen={() => nav.push("matchProfile", { person: p })} />)}
+                {[0, 1, 2].map((key) => (
+                  <Skeleton key={key} className="h-[180px] w-full" />
+                ))}
+              </div>
+            )}
+
+            {failed && posts !== null && posts.length === 0 && (
+              <EmptyState icon="alert" title="The feed did not load" body="Check your connection and try another filter." action="Retry" onAction={() => void load(filter, null)} />
+            )}
+
+            {forced === "empty" && <EmptyState icon="chat" title="Nothing here yet" body="No posts match this filter." />}
+
+            {posts !== null && !failed && visible.length === 0 && forced !== "empty" && (
+              <EmptyState
+                icon={filter === "saved" ? "bookmark" : "chat"}
+                title={filter === "saved" ? "Nothing saved yet" : "No posts here yet"}
+                body={
+                  filter === "saved"
+                    ? "Save a post and it will appear here."
+                    : `Be the first to share something useful about ${countryName}.`
+                }
+                action={filter === "saved" ? undefined : "Write a post"}
+                onAction={filter === "saved" ? undefined : () => setComposing(true)}
+              />
+            )}
+
+            {visible.length > 0 && (
+              <div data-testid="community-feed" className="space-y-3">
+                {visible.map((post) => (
+                  <PostCard
+                    key={post.id}
+                    post={post}
+                    placeName={post.placeId ? placeById.get(post.placeId)?.name : undefined}
+                    onOpen={() => setOpenPost(post)}
+                    onToggleReaction={() => void react(post)}
+                    onToggleSave={() => void save(post)}
+                    onTranslate={() => translateText(post.body, journey)}
+                    onOpenOnMap={
+                      post.placeId
+                        ? () => {
+                            nav.setTab("explore");
+                          }
+                        : undefined
+                    }
+                    busy={busyId === post.id}
+                  />
+                ))}
+
+                {cursor && (
+                  <Button
+                    variant="outline"
+                    full
+                    disabled={loadingMore}
+                    onClick={async () => {
+                      setLoadingMore(true);
+                      await load(filter, cursor);
+                      setLoadingMore(false);
+                    }}
+                  >
+                    {loadingMore ? "Loading…" : "Load more"}
+                  </Button>
+                )}
               </div>
             )}
           </Scroll>
         </>
-      ) : (
-        <Circles />
-      )}
-    </div>
-  );
-}
-
-function StudentCard({ person, onOpen }: { person: Person; onOpen: () => void }) {
-  return (
-    <Card className="p-4" onClick={onOpen}>
-      <div className="flex items-start gap-3">
-        <Avatar initials={person.initials} color={person.color} size={48} />
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <h3 className="text-[15px] font-bold text-ink">{person.name} {person.flag}</h3>
-            {person.verified && <Badge tone="success">✓ Local helper</Badge>}
-          </div>
-          <p className="text-[12px] text-muted">{person.university} · {person.major}</p>
-          <div className="mt-1.5 flex flex-wrap gap-1.5">
-            {person.interests.slice(0, 3).map((i) => <Badge key={i} tone="muted">{i}</Badge>)}
-          </div>
-        </div>
-        <div className="text-right">
-          <p className="text-[16px] font-extrabold text-primary">{person.matchScore}%</p>
-          <p className="text-[10px] font-semibold text-muted">match</p>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-export function MatchProfile({ person, onBack }: { person: Person; onBack: () => void }) {
-  const nav = useNav();
-  return (
-    <div className="flex h-full flex-col bg-canvas">
-      <ScreenHeader title={person.name} onBack={onBack} />
-      <Scroll className="px-5 py-4">
-        <div className="flex flex-col items-center text-center">
-          <Avatar initials={person.initials} color={person.color} size={72} />
-          <h2 className="mt-3 text-[20px] font-bold text-ink">{person.name}, {person.age} {person.flag}</h2>
-          <p className="text-[13px] text-muted">{person.university} · {person.major}</p>
-          <div className="mt-2 flex items-center gap-2">
-            <Badge tone="primary">{person.role}</Badge>
-            {person.verified && <Badge tone="success">✓ Verified · replies {person.repliesIn}</Badge>}
-          </div>
-        </div>
-
-        <Card className="mt-5 p-4">
-          <div className="mb-2 flex items-center justify-between">
-            <p className="text-[13px] font-bold text-ink">Why YapYep matched you</p>
-            <span className="text-[16px] font-extrabold text-primary">{person.matchScore}%</span>
-          </div>
-          <div className="space-y-1.5">
-            {person.matchReasons.map((r) => (
-              <div key={r} className="flex items-start gap-2 text-[13px] text-ink"><span className="text-success">✓</span> {r}</div>
-            ))}
-          </div>
-        </Card>
-
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {person.interests.map((i) => <Badge key={i} tone="amber">{i}</Badge>)}
-          {person.languages.map((l) => <Badge key={l} tone="muted">🗣 {l}</Badge>)}
-        </div>
-
-        <div className="mt-6 flex gap-2">
-          <Button variant="primary" full onClick={() => nav.push("chat", { person })}>Say hi</Button>
-          <Button variant="outline" full onClick={() => nav.push("chat", { person })}>Ask about here</Button>
-        </div>
-      </Scroll>
-    </div>
-  );
-}
-
-export function Chat({ person, onBack }: { person: Person; onBack: () => void }) {
-  const [messages, setMessages] = useState<{ from: "me" | "them"; text: string; translated?: string }[]>([]);
-  const [showIce, setShowIce] = useState(true);
-  const [reported, setReported] = useState(false);
-  const [sheet, setSheet] = useState(false);
-
-  function send(text: string) {
-    setMessages((m) => [...m, { from: "me", text }]);
-    setShowIce(false);
-    setTimeout(() => setMessages((m) => [...m, { from: "them", text: person.icebreakers.length ? "Hey! Great to hear from you 😊 happy to help — what would you like to know?" : "Hi!", translated: "Auto-translated from local language" }]), 900);
-  }
-
-  return (
-    <div className="flex h-full flex-col bg-canvas">
-      <ScreenHeader title={`${person.name} ${person.flag}`} onBack={onBack} right={<button onClick={() => setSheet(true)} className="text-[20px]">⋯</button>} />
-      {reported ? (
-        <div className="flex flex-1 items-center justify-center px-8"><EmptyState icon="🛡" title="User blocked & reported" body="You won't see messages from this person. Our team will review the report." /></div>
-      ) : (
-        <>
-          <Scroll className="px-5 py-4">
-            <Notice tone="primary" icon="🌐" title="Auto-translation on" body="Messages are translated between your languages when needed." />
-            <div className="mt-4 space-y-3">
-              {messages.map((m, i) => (
-                <div key={i} className={`flex ${m.from === "me" ? "justify-end" : "justify-start"}`}>
-                  <div className="max-w-[78%]">
-                    <div className={`rounded-[18px] px-3.5 py-2.5 text-[14px] leading-relaxed ${m.from === "me" ? "bg-primary text-white" : "bg-surface text-ink shadow-card"}`}>{m.text}</div>
-                    {m.translated && <p className="mt-1 px-1 text-[11px] italic text-muted">🌐 {m.translated}</p>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Scroll>
-
-          {showIce && (
-            <div className="border-t border-line bg-surface px-5 py-3">
-              <p className="mb-2 text-[12px] font-semibold text-primary">✨ AI icebreakers</p>
-              <div className="space-y-2">
-                {person.icebreakers.map((ib) => (
-                  <button key={ib} onClick={() => send(ib)} className="w-full rounded-[14px] bg-canvas px-3.5 py-2.5 text-left text-[13px] text-ink active:scale-[.99]">{ib}</button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="flex items-center gap-2 border-t border-line bg-surface px-4 py-3">
-            <div className="flex-1 rounded-full bg-canvas px-4 py-2.5 text-[14px] text-muted">Message…</div>
-            <button onClick={() => send("Hi! 👋")} className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white active:scale-95"><Icon name="chevron" size={20} /></button>
-          </div>
-        </>
       )}
 
-      <BottomSheet open={sheet} onClose={() => setSheet(false)} title="Options">
-        <div className="space-y-2">
-          <Button variant="outline" full onClick={() => setSheet(false)}>Translate whole chat</Button>
-          <Button variant="outline" full onClick={() => setSheet(false)}>Verify as local helper</Button>
-          <Button variant="danger" full onClick={() => { setReported(true); setSheet(false); }}>Block & report</Button>
-        </div>
-      </BottomSheet>
+      {toast && <Toast text={toast} />}
     </div>
-  );
-}
-
-export function AskALocal({ onBack }: { onBack: () => void }) {
-  const [asked, setAsked] = useState(false);
-  const s = ASK_A_LOCAL_SAMPLE;
-  return (
-    <div className="flex h-full flex-col bg-canvas">
-      <ScreenHeader title="Ask a Local" onBack={onBack} />
-      <Scroll className="px-5 py-4">
-        <Card className="p-4">
-          <p className="text-[12px] font-bold uppercase tracking-wide text-muted">Your question</p>
-          <p className="mt-1.5 text-[14px] text-ink">Which bank is easiest for exchange students to open an account with?</p>
-        </Card>
-        <div className="mt-4"><Notice tone="warning" icon="🤔" title="AI confidence: Medium" body="This can depend heavily on the university and individual branch. A local student can confirm." /></div>
-
-        {!asked ? (
-          <div className="mt-4"><Button size="lg" full onClick={() => setAsked(true)}>Ask a local student</Button></div>
-        ) : (
-          <>
-            <Card className="mt-4 p-4">
-              <div className="flex items-center gap-2">
-                <span className="text-[18px]">{s.flag}</span>
-                <p className="text-[14px] font-bold text-ink">{s.from}</p>
-                <Badge tone="success">✓ Verified local</Badge>
-              </div>
-              <p className="mt-2 text-[14px] leading-relaxed text-ink">{s.text}</p>
-            </Card>
-            <div className="mt-3"><Notice tone="primary" icon="✅" title={`Verified by ${s.verifiedBy} local students`} body={`${s.extraContext} added extra context. This is building the ASEAN Student Knowledge Graph.`} /></div>
-          </>
-        )}
-      </Scroll>
-    </div>
-  );
-}
-
-function Circles() {
-  const { journey } = useJourney();
-  const nav = useNav();
-  const groups = circlesFor(journey.host, journey.home);
-  const [filters, setFilters] = useState<string[]>([]);
-  return (
-    <Scroll className="px-5 pb-6 pt-3">
-      <p className="mb-3 text-[13px] text-muted">{COUNTRIES[journey.host].flag} {COUNTRIES[journey.host].name} Circle — find your people.</p>
-      <div className="mb-4 flex flex-wrap gap-2">
-        {CIRCLE_FILTERS.map((f) => (
-          <Chip key={f} active={filters.includes(f)} onClick={() => setFilters((x) => x.includes(f) ? x.filter((y) => y !== f) : [...x, f])}>{f}</Chip>
-        ))}
-      </div>
-      <div className="space-y-3">
-        {groups.map((g) => (
-          <Card key={g.label} className="flex items-center gap-3 p-4" onClick={() => nav.setTab("connect")}>
-            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-primary-soft text-[16px]">👥</div>
-            <div className="flex-1">
-              <p className="text-[14px] font-semibold text-ink">{g.label}</p>
-              <p className="text-[12px] text-muted">{g.count.toLocaleString()} members{g.online ? ` · ${g.online} online` : ""}</p>
-            </div>
-            <Icon name="chevron" size={18} />
-          </Card>
-        ))}
-      </div>
-    </Scroll>
   );
 }

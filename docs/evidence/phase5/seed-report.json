@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-09-16T17:05:35.118Z",
+  "seed_pack": "seed/phase5/yapyep_phase5_seed_pack.json",
+  "demo_marker": {
+    "is_demo_seed": 1,
+    "seed_origin": "demo"
+  },
+  "counts": {
+    "places": 11,
+    "profiles": 12,
+    "posts": 10,
+    "comments": 28,
+    "reactions": 68,
+    "post_saves": 24,
+    "media": 9,
+    "contributions": 6,
+    "place_saves": 41
+  },
+  "poi_resolution": [
+    {
+      "id": "my_um_library",
+      "name": "Universiti Malaya Central Library",
+      "campus_id": "campus_um",
+      "coordinate_source": "nominatim",
+      "lat": 3.1257602,
+      "lng": 101.6558796,
+      "matched_osm_name": null
+    },
+    {
+      "id": "my_um_study24",
+      "name": "24 Hours Study Area, UM Library",
+      "campus_id": "campus_um",
+      "coordinate_source": "nominatim",
+      "lat": 3.1216356,
+      "lng": 101.6588422,
+      "matched_osm_name": null
+    },
+    {
+      "id": "my_um_clinic",
+      "name": "Klinik Kesihatan Pelajar Universiti Malaya",
+      "campus_id": "campus_um",
+      "coordinate_source": "osm_match",
+      "lat": 3.12182,
+      "lng": 101.652593,
+      "matched_osm_name": "Klinik Kesihatan Pelajar Universiti Malaya"
+    },
+    {
+      "id": "my_um_bank",
+      "name": "Bank Islam Universiti Malaya",
+      "campus_id": "campus_um",
+      "coordinate_source": "osm_match",
+      "lat": 3.121022,
+      "lng": 101.655185,
+      "matched_osm_name": "Bank Islam"
+    },
+    {
+      "id": "my_um_food",
+      "name": "Foody Avenue Twelve",
+      "campus_id": "campus_um",
+      "coordinate_source": "osm_match",
+      "lat": 3.125605,
+      "lng": 101.661186,
+      "matched_osm_name": "Foody Avenue Twelve"
+    },
+    {
+      "id": "my_um_coffee",
+      "name": "Kona Mokapot Coffee",
+      "campus_id": "campus_um",
+      "coordinate_source": "osm_match",
+      "lat": 3.120134,
+      "lng": 101.658482,
+      "matched_osm_name": "Kona Mokapot Coffee"
+    },
+    {
+      "id": "sg_nus_library",
+      "name": "NUS Central Library",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.296621,
+      "lng": 103.773076,
+      "matched_osm_name": "Central Library"
+    },
+    {
+      "id": "sg_nus_health",
+      "name": "NUS University Health Centre",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.29907,
+      "lng": 103.776427,
+      "matched_osm_name": "University Health Centre"
+    },
+    {
+      "id": "sg_nus_coffee",
+      "name": "TOMORO COFFEE (NUS)",
+      "campus_id": "campus_nus",
+      "coordinate_source": "unresolved",
+      "lat": null,
+      "lng": null,
+      "matched_osm_name": null
+    },
+    {
+      "id": "sg_nus_food",
+      "name": "Makan Malah @ NUS",
+      "campus_id": "campus_nus",
+      "coordinate_source": "unresolved",
+      "lat": null,
+      "lng": null,
+      "matched_osm_name": null
+    },
+    {
+      "id": "id_ui_library",
+      "name": "University of Indonesia Library",
+      "campus_id": "campus_ui",
+      "coordinate_source": "nominatim",
+      "lat": -6.3652177,
+      "lng": 106.8297627,
+      "matched_osm_name": null
+    },
+    {
+      "id": "id_ui_clinic",
+      "name": "Makara UI Satellite Clinic",
+      "campus_id": "campus_ui",
+      "coordinate_source": "nominatim",
+      "lat": -6.353996,
+      "lng": 106.8251154,
+      "matched_osm_name": null
+    },
+    {
+      "id": "id_ui_coffee",
+      "name": "Suar Ruang Coffee Ground",
+      "campus_id": "campus_ui",
+      "coordinate_source": "unresolved",
+      "lat": null,
+      "lng": null,
+      "matched_osm_name": null
+    },
+    {
+      "id": "id_ui_food",
+      "name": "JChicken UI",
+      "campus_id": "campus_ui",
+      "coordinate_source": "unresolved",
+      "lat": null,
+      "lng": null,
+      "matched_osm_name": null
+    },
+    {
+      "id": "id_ui_transport",
+      "name": "Go-ride instan Stasiun UI",
+      "campus_id": "campus_ui",
+      "coordinate_source": "nominatim",
+      "lat": -6.3612022,
+      "lng": 106.8320103,
+      "matched_osm_name": null
+    }
+  ],
+  "aggregates": [
+    {
+      "place_id": "my_um_library",
+      "student_saves": 5,
+      "student_stories": 1
+    },
+    {
+      "place_id": "my_um_study24",
+      "student_saves": 3,
+      "student_stories": 1
+    },
+    {
+      "place_id": "my_um_clinic",
+      "student_saves": 1,
+      "student_stories": 0
+    },
+    {
+      "place_id": "my_um_bank",
+      "student_saves": 4,
+      "student_stories": 0
+    },
+    {
+      "place_id": "my_um_food",
+      "student_saves": 5,
+      "student_stories": 0
+    },
+    {
+      "place_id": "my_um_coffee",
+      "student_saves": 5,
+      "student_stories": 0
+    },
+    {
+      "place_id": "sg_nus_library",
+      "student_saves": 1,
+      "student_stories": 2
+    },
+    {
+      "place_id": "sg_nus_health",
+      "student_saves": 2,
+      "student_stories": 0
+    },
+    {
+      "place_id": "id_ui_library",
+      "student_saves": 5,
+      "student_stories": 1
+    },
+    {
+      "place_id": "id_ui_clinic",
+      "student_saves": 6,
+      "student_stories": 1
+    },
+    {
+      "place_id": "id_ui_transport",
+      "student_saves": 4,
+      "student_stories": 0
+    }
+  ],
+  "errors": []
+}

@@ -1,26 +1,9 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "YapSimFeedback",
   "type": "object",
-  "additionalProperties": false,
-  "required": [
-    "scores",
-    "priorityFeedback",
-    "strengths",
-    "retryGoal"
-  ],
   "properties": {
     "scores": {
       "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "languageClarity",
-        "tone",
-        "intentRecognition",
-        "contextAwareness",
-        "adaptability",
-        "confidence"
-      ],
       "properties": {
         "languageClarity": {
           "type": "integer",
@@ -52,43 +35,64 @@
           "minimum": 0,
           "maximum": 100
         }
-      }
+      },
+      "required": [
+        "languageClarity",
+        "tone",
+        "intentRecognition",
+        "contextAwareness",
+        "adaptability",
+        "confidence"
+      ],
+      "additionalProperties": false
     },
     "priorityFeedback": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "strengths": {
-      "type": "array",
       "maxItems": 3,
+      "type": "array",
       "items": {
         "type": "string"
       }
     },
     "examples": {
-      "type": "array",
       "maxItems": 3,
+      "type": "array",
       "items": {
         "type": "object",
-        "additionalProperties": false,
+        "properties": {
+          "userText": {
+            "type": "string",
+            "minLength": 1
+          },
+          "feedback": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
         "required": [
           "userText",
           "feedback"
         ],
-        "properties": {
-          "userText": {
-            "type": "string"
-          },
-          "feedback": {
-            "type": "string"
-          }
-        }
+        "additionalProperties": false
       }
     },
     "retryGoal": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "recommendedPractice": {
       "type": "string"
     }
-  }
+  },
+  "required": [
+    "scores",
+    "priorityFeedback",
+    "strengths",
+    "retryGoal"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

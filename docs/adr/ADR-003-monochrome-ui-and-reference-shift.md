@@ -130,6 +130,13 @@ as a tiny centered phone in empty space.
 - Existing `src/index.css` `@theme` tokens and `shell.tsx` phone frame do
   **not** yet match this ADR — implementation is explicitly deferred until
   the product owner assigns the UI rework. No code is changed in this ADR.
+  **Implemented 2026-09-16** (Phase 1, single-owner productionization): the
+  monochrome token set, 10–14px geometry, no-default-card-shadow rule,
+  icon-driven controls, and the 3-zone responsive shell (bottom nav / compact
+  rail / rail + 680–800px workspace + claim-based 300px context panel) are in
+  `src/index.css`, `src/components/shell.tsx`, `src/components/ui.tsx`,
+  `src/components/icons.tsx` and the feature screens. Browser evidence at
+  360/390/430/768/1024/1440 is in `docs/evidence/phase1/`.
 - All future UI work (including any Figma Make output) must follow the
   monochrome tokens, hard rules, and responsive layout above, and must keep
   the frozen bottom nav, DNA concepts, and trust/safety rules unchanged.

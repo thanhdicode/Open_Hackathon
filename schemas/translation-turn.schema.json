@@ -1,0 +1,68 @@
+{
+  "title": "YapTranslationTurn",
+  "type": "object",
+  "properties": {
+    "sourceLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "targetLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "originalText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "translatedText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "romanization": {
+      "type": "string"
+    },
+    "literalMeaning": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "engine": {
+      "type": "string",
+      "enum": [
+        "live_translate",
+        "text_translation",
+        "user_override"
+      ]
+    }
+  },
+  "required": [
+    "sourceLanguage",
+    "targetLanguage",
+    "originalText",
+    "translatedText",
+    "confidence",
+    "engine"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

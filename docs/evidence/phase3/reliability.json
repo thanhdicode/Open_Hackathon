@@ -1,0 +1,159 @@
+{
+  "generatedAt": "2026-09-16T11:07:32.482Z",
+  "soakIncluded": false,
+  "summary": {
+    "total": 10,
+    "passed": 8,
+    "failed": [
+      "Scene Lens with Gemini in cooldown",
+      "stt fails over when the primary is tripped"
+    ]
+  },
+  "chains": {
+    "text": [
+      "groq-text",
+      "groq-vision",
+      "cavoti-qwen",
+      "cavoti-glm",
+      "cavoti-hy3",
+      "cavoti-mimo",
+      "cavoti-minimax",
+      "cavoti-deepseek",
+      "cloudflare-text",
+      "gemini",
+      "openrouter"
+    ],
+    "vision": [
+      "groq-vision",
+      "cavoti-glm",
+      "cavoti-qwen",
+      "cavoti-hy3",
+      "cavoti-mimo",
+      "cloudflare-vision",
+      "gemini",
+      "openrouter"
+    ],
+    "stt": [
+      "groq-whisper",
+      "cloudflare-whisper"
+    ],
+    "tts": [
+      "gemini"
+    ]
+  },
+  "providers": {
+    "groqText": {
+      "state": "healthy",
+      "model": "openai/gpt-oss-120b"
+    },
+    "groqVision": {
+      "state": "healthy",
+      "model": "qwen/qwen3.8-27b"
+    },
+    "groqStt": {
+      "state": "healthy",
+      "model": "whisper-large-v3-turbo"
+    },
+    "cloudflareText": {
+      "state": "healthy",
+      "model": "@cf/zai-org/glm-4.7-flash"
+    },
+    "cloudflareVision": {
+      "state": "healthy",
+      "model": "@cf/google/gemma-4-26b-a4b-it"
+    },
+    "cloudflareStt": {
+      "state": "healthy",
+      "model": "@cf/openai/whisper-large-v3-turbo"
+    },
+    "gemini": {
+      "state": "healthy",
+      "model": "gemini-3.8-flash"
+    },
+    "openrouter": {
+      "state": "unconfigured",
+      "model": "openrouter/free"
+    },
+    "cavotiMimo": {
+      "state": "healthy",
+      "model": "mimo-v2.5"
+    },
+    "cavotiQwen": {
+      "state": "healthy",
+      "model": "qwen3.8-flash"
+    },
+    "cavotiGlm": {
+      "state": "healthy",
+      "model": "glm-5.3-flash"
+    },
+    "cavotiMinimax": {
+      "state": "healthy",
+      "model": "minimax-m3"
+    },
+    "cavotiDeepseek": {
+      "state": "healthy",
+      "model": "deepseek-v4-flash-0731"
+    },
+    "cavotiHy3": {
+      "state": "healthy",
+      "model": "hy3"
+    }
+  },
+  "concurrency": {
+    "active": 0,
+    "queued": 0,
+    "max": 4
+  },
+  "checks": [
+    {
+      "name": "provider probe",
+      "pass": true,
+      "note": "13/8 providers configured; cloudflare configured, openrouter unconfigured"
+    },
+    {
+      "name": "lens/text on the primary chain",
+      "pass": true,
+      "note": "provider=groq-text model=openai/gpt-oss-120b fallbackDepth=0 4493ms"
+    },
+    {
+      "name": "text fails over when the primary is tripped",
+      "pass": true,
+      "note": "served by groq-vision; degradedProviders=[groq-text]"
+    },
+    {
+      "name": "Scene Lens with Gemini in cooldown",
+      "pass": false,
+      "note": "RATE_LIMITED: The AI service is busy right now. Your input is kept — try again in a moment. | attempted=[{\"provider\":\"groq-vision\",\"code\":\"RATE_LIMITED\"},{\"provider\":\"cavoti-glm\",\"code\":\"AI_UNAVAILABLE\"},{\"provider\":\"cavoti-qwen\",\"code\":\"AI_UNAVAILABLE\"},{\"provider\":\"cavoti-hy3\",\"code\":\"AI_UNAVAILABLE\"},{\"provider\":\"cavoti-mimo\",\"code\":\"AI_UNAVAILABLE\"},{\"provider\":\"cloudflare-vision\",\"code\":\"AI_UNAVAILABLE\"}]"
+    },
+    {
+      "name": "YapSim with Gemini in cooldown",
+      "pass": true,
+      "note": "provider=groq-text scenario=\"Ordering Food at a Malaysian Stall\" persona=Ahmad"
+    },
+    {
+      "name": "stt primary",
+      "pass": true,
+      "note": "provider=groq-whisper detected=ms \"2 bungkus, 1 tak pedas.\""
+    },
+    {
+      "name": "stt fails over when the primary is tripped",
+      "pass": false,
+      "note": "AI_UNAVAILABLE: The AI service is temporarily unavailable. Your input is kept — try again. (cloudflare configured but failed)"
+    },
+    {
+      "name": "vision chain depth",
+      "pass": true,
+      "note": "groq-vision -> cavoti-glm -> cavoti-qwen -> cavoti-hy3 -> cavoti-mimo -> cloudflare-vision -> gemini -> openrouter"
+    },
+    {
+      "name": "stt chain depth",
+      "pass": true,
+      "note": "groq-whisper -> cloudflare-whisper (cloudflare leg healthy)"
+    },
+    {
+      "name": "tripped providers are skipped, not retried",
+      "pass": true,
+      "note": "chain exhausted as expected: AI_UNAVAILABLE; attempted=[{\"provider\":\"cavoti-qwen\",\"code\":\"AI_UNAVAILABLE\"}]"
+    }
+  ]
+}

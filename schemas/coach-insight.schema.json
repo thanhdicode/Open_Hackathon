@@ -1,0 +1,158 @@
+{
+  "title": "YapCoachInsight",
+  "type": "object",
+  "properties": {
+    "literalMeaning": {
+      "type": "string",
+      "minLength": 1
+    },
+    "likelyIntent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "missingInformation": {
+      "maxItems": 5,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "whatTheyMayExpect": {
+      "type": "string",
+      "minLength": 1
+    },
+    "whatUserNeedsToDecide": {
+      "type": "string",
+      "minLength": 1
+    },
+    "safeReplyOptions": {
+      "minItems": 1,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tone": {
+            "type": "string",
+            "enum": [
+              "casual",
+              "neutral",
+              "academic",
+              "very_respectful"
+            ]
+          },
+          "why": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "text",
+          "tone",
+          "why"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "clarificationQuestion": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "caveat": {
+      "type": "string",
+      "minLength": 1
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "entities": {
+          "maxItems": 6,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "quantity": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "location": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "price": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "intent": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "openQuestions": {
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 160
+          }
+        },
+        "resolvedFacts": {
+          "maxItems": 6,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 160
+          }
+        }
+      },
+      "required": [
+        "entities",
+        "openQuestions",
+        "resolvedFacts"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "literalMeaning",
+    "likelyIntent",
+    "missingInformation",
+    "whatTheyMayExpect",
+    "whatUserNeedsToDecide",
+    "safeReplyOptions",
+    "confidence",
+    "caveat"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

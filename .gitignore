@@ -21,3 +21,12 @@ logs/
 # beside it.
 /.plugins/
 /.opencode-skills/
+
+# Raw Greenbook source snapshots — archived to object storage, not committed.
+.greenbook-snapshots/
+
+# WorkBuddy AI workspace state (memory, session data) — not project source.
+.workbuddy-ai/
+
+# Stray empty files left by sandboxed shells.
+_tmp_*

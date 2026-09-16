@@ -1,0 +1,610 @@
+{
+  "meta": {
+    "name": "YapYep Phase 5 Connect + Explore seed pack",
+    "generated_on": "2026-09-16",
+    "rules": [
+      "POIs are researched real-world seeds; resolve/cache coordinates from OSM/Overpass before rendering.",
+      "Community profiles/posts are synthetic demo data and must never be marked as verified real students.",
+      "Synthetic opinions must never override official Greenbook facts.",
+      "Do not expose precise live user location publicly by default."
+    ]
+  },
+  "campus_centers": [
+    {
+      "id": "campus_um",
+      "country": "MY",
+      "city": "Kuala Lumpur",
+      "university": "Universiti Malaya",
+      "approx_center": {
+        "lat": 3.1209,
+        "lng": 101.6538
+      }
+    },
+    {
+      "id": "campus_nus",
+      "country": "SG",
+      "city": "Singapore",
+      "university": "National University of Singapore",
+      "approx_center": {
+        "lat": 1.2966,
+        "lng": 103.7764
+      }
+    },
+    {
+      "id": "campus_ui",
+      "country": "ID",
+      "city": "Depok",
+      "university": "Universitas Indonesia",
+      "approx_center": {
+        "lat": -6.362,
+        "lng": 106.8249
+      }
+    }
+  ],
+  "poi_seeds": [
+    {
+      "id": "my_um_library",
+      "country": "MY",
+      "campus_id": "campus_um",
+      "name": "Universiti Malaya Central Library",
+      "category": "study",
+      "address": "Universiti Malaya, 50603 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "my_um_study24",
+      "country": "MY",
+      "campus_id": "campus_um",
+      "name": "24 Hours Study Area, UM Library",
+      "category": "study",
+      "address": "Lingkungan Budi, 50603 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "my_um_clinic",
+      "country": "MY",
+      "campus_id": "campus_um",
+      "name": "Klinik Kesihatan Pelajar Universiti Malaya",
+      "category": "health",
+      "address": "Universiti Malaya, Lingkungan Budi, 50603 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "my_um_bank",
+      "country": "MY",
+      "campus_id": "campus_um",
+      "name": "Bank Islam Universiti Malaya",
+      "category": "banking",
+      "address": "Ground Floor, Bangunan High Impact Research Universiti Malaya, Jalan Pantai Baharu, 50603 Kuala Lumpur, Malaysia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "my_um_food",
+      "country": "MY",
+      "campus_id": "campus_um",
+      "name": "Foody Avenue Twelve",
+      "category": "food",
+      "address": "Kolej Kediaman Raja Dr. Nazrin Shah (KK12), Universiti Malaya, Lingkaran Wawasan, Lembah Pantai, 50603 Kuala Lumpur, Malaysia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "my_um_coffee",
+      "country": "MY",
+      "campus_id": "campus_um",
+      "name": "Kona Mokapot Coffee",
+      "category": "hangout",
+      "address": "Universiti Malaya, Lingkungan Budi, 50603 Kuala Lumpur, Malaysia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "sg_nus_library",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "NUS Central Library",
+      "category": "study",
+      "address": "12 Kent Ridge Cres, Singapore 119275",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "sg_nus_health",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "NUS University Health Centre",
+      "category": "health",
+      "address": "20 Lower Kent Ridge Rd, Singapore 119080",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "sg_nus_coffee",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "TOMORO COFFEE (NUS)",
+      "category": "hangout",
+      "address": "1 Hon Sui Sen Dr Level 2, Singapore 117588",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "sg_nus_food",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Makan Malah @ NUS",
+      "category": "food",
+      "address": "1 Create Way, #01-02, Singapore 138602",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "id_ui_library",
+      "country": "ID",
+      "campus_id": "campus_ui",
+      "name": "University of Indonesia Library",
+      "category": "study",
+      "address": "Gedung Crystal of Knowledge, Jl. Letjen DR. Sjarif Thajeb, Pondok Cina, Beji, Depok City, West Java 16424, Indonesia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "id_ui_clinic",
+      "country": "ID",
+      "campus_id": "campus_ui",
+      "name": "Makara UI Satellite Clinic",
+      "category": "health",
+      "address": "Jalan Lingkar Utara, Kukusan, Beji, Depok City, West Java 16425, Indonesia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "id_ui_coffee",
+      "country": "ID",
+      "campus_id": "campus_ui",
+      "name": "Suar Ruang Coffee Ground",
+      "category": "hangout",
+      "address": "Jl. H. Amat No.2, Kukusan, Beji, Depok City, West Java 16425, Indonesia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "id_ui_food",
+      "country": "ID",
+      "campus_id": "campus_ui",
+      "name": "JChicken UI",
+      "category": "food",
+      "address": "Universitas Indonesia, Gedung Takoru FISIP, Pondok Cina, Beji, Depok City, West Java 16424, Indonesia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    },
+    {
+      "id": "id_ui_transport",
+      "country": "ID",
+      "campus_id": "campus_ui",
+      "name": "Go-ride instan Stasiun UI",
+      "category": "transport",
+      "address": "Stasiun UI, Pondok Cina, Beji, Depok City, West Java 16424, Indonesia",
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true
+    }
+  ],
+  "community_profiles": [
+    {
+      "id": "seed_aina",
+      "display_name": "Aina",
+      "home_country": "MY",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Computer Science",
+      "interests": [
+        "cafes",
+        "study spots",
+        "photography"
+      ],
+      "languages": [
+        "ms",
+        "en"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_minh",
+      "display_name": "Minh",
+      "home_country": "VN",
+      "host_country": "MY",
+      "university": "UM",
+      "major": "Business",
+      "interests": [
+        "food",
+        "budget tips",
+        "football"
+      ],
+      "languages": [
+        "vi",
+        "en",
+        "ms"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_rafa",
+      "display_name": "Rafa",
+      "home_country": "ID",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Engineering",
+      "interests": [
+        "transport",
+        "tech",
+        "running"
+      ],
+      "languages": [
+        "id",
+        "en"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_nok",
+      "display_name": "Nok",
+      "home_country": "TH",
+      "host_country": "MY",
+      "university": "UM",
+      "major": "Psychology",
+      "interests": [
+        "culture",
+        "cafes",
+        "museums"
+      ],
+      "languages": [
+        "th",
+        "en"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_lya",
+      "display_name": "Lya",
+      "home_country": "PH",
+      "host_country": "ID",
+      "university": "UI",
+      "major": "Communication",
+      "interests": [
+        "student clubs",
+        "music",
+        "food"
+      ],
+      "languages": [
+        "en",
+        "tl",
+        "id"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_han",
+      "display_name": "Han",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "VNU",
+      "major": "Economics",
+      "interests": [
+        "payments",
+        "city walks",
+        "coffee"
+      ],
+      "languages": [
+        "en",
+        "zh",
+        "vi"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_putri",
+      "display_name": "Putri",
+      "home_country": "ID",
+      "host_country": "MY",
+      "university": "UM",
+      "major": "Data Science",
+      "interests": [
+        "library",
+        "cheap food",
+        "public transport"
+      ],
+      "languages": [
+        "id",
+        "en",
+        "ms"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_quang",
+      "display_name": "Quang",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Software Engineering",
+      "interests": [
+        "hackathons",
+        "food",
+        "study rooms"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_mia",
+      "display_name": "Mia",
+      "home_country": "PH",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Design",
+      "interests": [
+        "art",
+        "campus life",
+        "cafes"
+      ],
+      "languages": [
+        "en",
+        "tl"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_faris",
+      "display_name": "Faris",
+      "home_country": "MY",
+      "host_country": "ID",
+      "university": "UI",
+      "major": "International Relations",
+      "interests": [
+        "language",
+        "clubs",
+        "travel"
+      ],
+      "languages": [
+        "ms",
+        "en",
+        "id"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_sokha",
+      "display_name": "Sokha",
+      "home_country": "KH",
+      "host_country": "MY",
+      "university": "UM",
+      "major": "Marketing",
+      "interests": [
+        "budget",
+        "food",
+        "networking"
+      ],
+      "languages": [
+        "km",
+        "en"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    },
+    {
+      "id": "seed_mai",
+      "display_name": "Mai",
+      "home_country": "VN",
+      "host_country": "ID",
+      "university": "UI",
+      "major": "Information Systems",
+      "interests": [
+        "transport",
+        "campus",
+        "language"
+      ],
+      "languages": [
+        "vi",
+        "en",
+        "id"
+      ],
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false
+    }
+  ],
+  "community_posts": [
+    {
+      "id": "post_01",
+      "author_id": "seed_minh",
+      "country": "MY",
+      "university": "UM",
+      "type": "tip",
+      "body": "Three things I wish I did in my first week: save campus contacts, learn one food-ordering phrase, and mark two quiet study spots.",
+      "place_id": "my_um_library",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_02",
+      "author_id": "seed_putri",
+      "country": "MY",
+      "university": "UM",
+      "type": "place",
+      "body": "Found a reliable late study routine around the library area. Pinning it so incoming students can save it.",
+      "place_id": "my_um_study24",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_03",
+      "author_id": "seed_sokha",
+      "country": "MY",
+      "university": "UM",
+      "type": "question",
+      "body": "What was the easiest way for you to get comfortable ordering food in Malay during week one?",
+      "place_id": null,
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_04",
+      "author_id": "seed_aina",
+      "country": "SG",
+      "university": "NUS",
+      "type": "tip",
+      "body": "For long study days, I save one library, one food stop and one health resource in the same map collection.",
+      "place_id": "sg_nus_library",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_05",
+      "author_id": "seed_quang",
+      "country": "SG",
+      "university": "NUS",
+      "type": "place",
+      "body": "This is one of my default study pins when I need a structured environment.",
+      "place_id": "sg_nus_library",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_06",
+      "author_id": "seed_mia",
+      "country": "SG",
+      "university": "NUS",
+      "type": "moment",
+      "body": "A tiny coffee break near campus turned into my easiest way to meet classmates outside lectures.",
+      "place_id": "sg_nus_coffee",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_07",
+      "author_id": "seed_lya",
+      "country": "ID",
+      "university": "UI",
+      "type": "place",
+      "body": "Saving the library as a first-week anchor helped me learn the campus around it.",
+      "place_id": "id_ui_library",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_08",
+      "author_id": "seed_mai",
+      "country": "ID",
+      "university": "UI",
+      "type": "tip",
+      "body": "If Bahasa Indonesia is still hard, save a few transaction phrases and practice them before going out.",
+      "place_id": "id_ui_food",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_09",
+      "author_id": "seed_faris",
+      "country": "ID",
+      "university": "UI",
+      "type": "moment",
+      "body": "The best part of exchange is when a random practical place becomes part of your routine.",
+      "place_id": "id_ui_coffee",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    },
+    {
+      "id": "post_10",
+      "author_id": "seed_mai",
+      "country": "ID",
+      "university": "UI",
+      "type": "place",
+      "body": "Pinning the clinic now so I do not have to search from scratch when I actually need it.",
+      "place_id": "id_ui_clinic",
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo"
+    }
+  ],
+  "feed_filters": [
+    "For You",
+    "Host Country",
+    "My University",
+    "Tips",
+    "Places",
+    "Questions",
+    "Moments",
+    "Saved"
+  ],
+  "explore_categories": [
+    "Campus",
+    "Study",
+    "Food",
+    "Coffee",
+    "Health",
+    "Pharmacy",
+    "Banking",
+    "Transport",
+    "Culture",
+    "Religion",
+    "Hangout",
+    "Student Life"
+  ],
+  "safety_defaults": {
+    "precise_live_location_public": false,
+    "home_address_public": false,
+    "place_visit_sharing": "opt_in",
+    "discoverable_profile": "opt_in",
+    "blocked_users_hidden": true,
+    "reports_supported": true
+  }
+}

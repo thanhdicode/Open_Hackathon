@@ -1,0 +1,324 @@
+{
+  "title": "YapConversationSession",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "userId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hostCountry": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "userLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "localLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "ended"
+      ]
+    },
+    "startedAt": {
+      "type": "string"
+    },
+    "endedAt": {
+      "type": "string"
+    },
+    "turns": {
+      "maxItems": 200,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "speaker": {
+            "type": "string",
+            "enum": [
+              "local",
+              "user"
+            ]
+          },
+          "sourceLanguage": {
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+          },
+          "targetLanguage": {
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+          },
+          "originalText": {
+            "type": "string",
+            "minLength": 1
+          },
+          "translatedText": {
+            "type": "string",
+            "minLength": 1
+          },
+          "romanization": {
+            "type": "string"
+          },
+          "coach": {
+            "type": "object",
+            "properties": {
+              "literalMeaning": {
+                "type": "string",
+                "minLength": 1
+              },
+              "likelyIntent": {
+                "type": "string",
+                "minLength": 1
+              },
+              "missingInformation": {
+                "maxItems": 5,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "whatTheyMayExpect": {
+                "type": "string",
+                "minLength": 1
+              },
+              "whatUserNeedsToDecide": {
+                "type": "string",
+                "minLength": 1
+              },
+              "safeReplyOptions": {
+                "minItems": 1,
+                "maxItems": 4,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "tone": {
+                      "type": "string",
+                      "enum": [
+                        "casual",
+                        "neutral",
+                        "academic",
+                        "very_respectful"
+                      ]
+                    },
+                    "why": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "tone",
+                    "why"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "clarificationQuestion": {
+                "type": "string"
+              },
+              "confidence": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "label",
+                  "reason"
+                ],
+                "additionalProperties": false
+              },
+              "caveat": {
+                "type": "string",
+                "minLength": 1
+              },
+              "memory": {
+                "type": "object",
+                "properties": {
+                  "topic": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "entities": {
+                    "maxItems": 6,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 80
+                    }
+                  },
+                  "quantity": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "location": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "price": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "intent": {
+                    "type": "string",
+                    "maxLength": 160
+                  },
+                  "openQuestions": {
+                    "maxItems": 4,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 160
+                    }
+                  },
+                  "resolvedFacts": {
+                    "maxItems": 6,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 160
+                    }
+                  }
+                },
+                "required": [
+                  "entities",
+                  "openQuestions",
+                  "resolvedFacts"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "literalMeaning",
+              "likelyIntent",
+              "missingInformation",
+              "whatTheyMayExpect",
+              "whatUserNeedsToDecide",
+              "safeReplyOptions",
+              "confidence",
+              "caveat"
+            ],
+            "additionalProperties": false
+          },
+          "decision": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "minLength": 1
+              },
+              "options": {
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "chosen": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "question",
+              "options"
+            ],
+            "additionalProperties": false
+          },
+          "spoken": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "language": {
+                "type": "string",
+                "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+              },
+              "audioRef": {
+                "type": "string"
+              },
+              "synthesized": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "text",
+              "language",
+              "synthesized"
+            ],
+            "additionalProperties": false
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "index",
+          "speaker",
+          "sourceLanguage",
+          "targetLanguage",
+          "originalText",
+          "translatedText",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "id",
+    "userId",
+    "hostCountry",
+    "userLanguage",
+    "localLanguage",
+    "level",
+    "status",
+    "startedAt",
+    "turns"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

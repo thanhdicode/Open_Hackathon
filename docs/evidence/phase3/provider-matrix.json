@@ -1,0 +1,290 @@
+{
+  "generatedAt": "2026-09-16T09:19:20.513Z",
+  "node": "v22.22.2",
+  "summary": {
+    "total": 16,
+    "passed": 14,
+    "failed": [
+      "lens/scene",
+      "study/analyze"
+    ]
+  },
+  "checks": [
+    {
+      "name": "health",
+      "pass": true,
+      "route": "/health",
+      "status": 200,
+      "ms": 2,
+      "providers": {
+        "gemini": {
+          "configured": true,
+          "model": "gemini-3.8-flash",
+          "fallbackModel": "gemini-3.7-flash",
+          "ttsModel": "gemini-3.1-flash-tts-preview"
+        },
+        "groq": {
+          "configured": true,
+          "textModel": "openai/gpt-oss-120b",
+          "whisperModel": "whisper-large-v3-turbo"
+        },
+        "cloudflare": {
+          "configured": false
+        }
+      }
+    },
+    {
+      "name": "lens/text",
+      "pass": true,
+      "route": "/lens/text",
+      "status": 200,
+      "ms": 3459,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "attempts": 1,
+      "note": "intents=2 replies=3 risk=low",
+      "sample": {
+        "literalMeaning": "Bao nhiêu gói?",
+        "recommendedAction": "Trả lời ngắn gọn, cung cấp số lượng cụ thể hoặc yêu cầu làm rõ nếu cần."
+      }
+    },
+    {
+      "name": "lens/scene",
+      "pass": false,
+      "route": "/lens/scene",
+      "status": 503,
+      "ms": 29678,
+      "note": "AI_UNAVAILABLE: The AI service is temporarily unavailable. Your input is kept — try again."
+    },
+    {
+      "name": "reply",
+      "pass": true,
+      "route": "/reply",
+      "status": 200,
+      "ms": 2411,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "note": "variants=3",
+      "sample": {
+        "mode": "casual",
+        "text": "Dua pinggan, satu tak pedas.",
+        "romanization": "Dua pinggan, satu tak pedas.",
+        "backTranslation": "Two plates, one not spicy.",
+        "why": "This phrasing uses informal, everyday language that a beginner can say quickly when ordering."
+      }
+    },
+    {
+      "name": "tone-check",
+      "pass": true,
+      "route": "/tone-check",
+      "status": 200,
+      "ms": 1843,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "note": "register=unclear issues=0"
+    },
+    {
+      "name": "coach",
+      "pass": true,
+      "route": "/coach",
+      "status": 200,
+      "ms": 2343,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "note": "decision=\"How many packs you want to purchase.\" options=3",
+      "sample": {
+        "literalMeaning": "How many packs?",
+        "likelyIntent": "The seller probably wants to know how many packs you would like to buy.",
+        "missingInformation": [
+          "Số lượng gói bạn muốn mua"
+        ],
+        "whatTheyMayExpect": "A reply indicating the number of packs you want, possibly confirming the price per pack.",
+        "whatUserNeedsToDecide": "How many packs you want to purchase.",
+        "safeReplyOptions": [
+          {
+            "text": "Tôi muốn mua 2 gói.",
+            "tone": "neutral",
+            "why": "Directly answers the seller's question about quantity."
+          },
+          {
+            "text": "Bạn có bán gói 1kg không?",
+            "tone": "neutral",
+            "why": "Seeks clarification on the product size before deciding quantity."
+          },
+          {
+            "text": "Bạn có thể cho biết giá mỗi gói không?",
+            "tone": "neutral",
+            "why": "Requests price information which may affect the quantity you decide to buy."
+          }
+        ],
+        "clarificationQuestion": "Giá mỗi gói là bao nhiêu?",
+        "confidence": {
+          "label": "medium",
+          "reason": "Based on typical marketplace exchanges, the seller is asking for quantity, but exact expectations may vary."
+        },
+        "caveat": "Lưu ý rằng đây chỉ là diễn giải ngữ cảnh và không chắc chắn."
+      }
+    },
+    {
+      "name": "sim/start",
+      "pass": true,
+      "route": "/sim/start",
+      "status": 200,
+      "ms": 2019,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "note": "persona=Ahmad turns=4 difficulty=1",
+      "sample": {
+        "title": "Ordering Nasi Lemak at a Malaysian Food Stall",
+        "context": "A Vietnamese exchange student in Malaysia wants to order food at a local stall, practicing beginner-level Malay.",
+        "goal": "Student orders two packs of nasi lemak, specifying that one should be not spicy.",
+        "domain": "food",
+        "difficulty": 1,
+        "targetLanguage": "ms",
+        "coachingLanguage": "vi",
+        "persona": {
+          "name": "Ahmad",
+          "role": "Food stall vendor",
+          "traits": [
+            "friendly",
+            "patient",
+            "helpful"
+          ],
+          "register": "neutral"
+        },
+        "openingLine": {
+          "text": "Selamat datang! Apa yang anda mahu pesan hari ini?",
+          "translation": "Chào mừng! Bạn muốn gọi gì hôm nay?"
+        },
+        "successCriteria": [
+          "Student says \"dua bungkus nasi lemak\" correctly",
+          "Student specifies \"satu tidak pedas\" (one not spicy) clearly",
+          "Student responds appropriately to any clarification question from the vendor"
+        ],
+        "maxTurns": 4
+      }
+    },
+    {
+      "name": "sim/turn",
+      "pass": true,
+      "route": "/sim/turn",
+      "status": 200,
+      "ms": 1554,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "note": "progress=on_track shouldEnd=false",
+      "sample": {
+        "personaReply": {
+          "text": "Anda mahu dua bungkus nasi lemak, satu tidak pedas dan satu pedas, betul?",
+          "translation": "You want two packs of nasi lemak, one not spicy and one spicy, correct?",
+          "romanization": "Anda mahu dua bungkus nasi lemak, satu tidak pedas dan satu pedas, betul?"
+        },
+        "goalProgress": "on_track",
+        "shouldEnd": false
+      }
+    },
+    {
+      "name": "sim/finish",
+      "pass": true,
+      "route": "/sim/finish",
+      "status": 200,
+      "ms": 3543,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "note": "dimensions=6 matchesFrozenSchema=true",
+      "sample": {
+        "scores": {
+          "languageClarity": 80,
+          "tone": 85,
+          "intentRecognition": 90,
+          "contextAwareness": 85,
+          "adaptability": 80,
+          "confidence": 75
+        },
+        "priorityFeedback": "Try using a slightly longer sentence to confirm your order, e.g., 'Saya mahu dua bungkus nasi lemak, satu tidak pedas, tolong bungkus.'",
+        "strengths": [
+          "You clearly stated the quantity and spice preference: \"Dua bungkus, satu tak pedas.\"",
+          "You responded correctly to the take‑out question with \"Bungkus.\"",
+          "You ended politely with \"Terima kasih.\""
+        ],
+        "examples": [
+          {
+            "userText": "Dua bungkus, satu tak pedas.",
+            "feedback": "Clear expression of quantity and preference, helping the vendor understand your order."
+          },
+          {
+            "userText": "Bungkus.",
+            "feedback": "Shows you understood the take‑out option, though a fuller sentence could sound more polite."
+          },
+          {
+            "userText": "Terima kasih.",
+            "feedback": "Polite closing that maintains a friendly tone."
+          }
+        ],
+        "retryGoal": "In your next order, use a full sentence that includes the dish name and the non‑spicy request, such as \"Saya mahu dua bungkus nasi lemak, satu tidak pedas.\"",
+        "recommendedPractice": "Practice common ordering phrases like \"Saya mahu...\", \"Tidak pedas\", and polite particles such as \"tolong\" or \"sila\"."
+      }
+    },
+    {
+      "name": "study/analyze",
+      "pass": false,
+      "route": "/study/analyze",
+      "status": 429,
+      "ms": 810,
+      "note": "RATE_LIMITED: The AI provider is rate limiting requests. Your input is kept — try again in a moment."
+    },
+    {
+      "name": "tts",
+      "pass": true,
+      "route": "/tts",
+      "status": 200,
+      "ms": 4887,
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-tts-preview",
+      "note": "mimeType=audio/wav bytes=140205"
+    },
+    {
+      "name": "transcribe",
+      "pass": true,
+      "route": "/transcribe",
+      "status": 200,
+      "ms": 614,
+      "provider": "groq",
+      "model": "whisper-large-v3-turbo",
+      "note": "detected=ms segments=1 transcript=\"Dua bungkus, satu tak pedas.\""
+    },
+    {
+      "name": "live/token agent",
+      "pass": true,
+      "route": "/live/token",
+      "status": 200,
+      "ms": 318,
+      "provider": "gemini",
+      "model": "gemini-3.8-live",
+      "note": "model=gemini-3.8-live tokenPrefix=auth_t… expires=2026-09-16T09:49:19.888Z"
+    },
+    {
+      "name": "live/token translate",
+      "pass": true,
+      "route": "/live/token",
+      "status": 200,
+      "ms": 307,
+      "provider": "gemini",
+      "model": "gemini-3.5-live-translate-preview",
+      "note": "model=gemini-3.5-live-translate-preview"
+    },
+    {
+      "name": "live/token tetum gate",
+      "pass": true,
+      "route": "/live/token",
+      "status": 422,
+      "ms": 0,
+      "note": "LANGUAGE_UNSUPPORTED fallbackOptions=[\"en\"]"
+    },
+    {
+      "name": "response hygiene",
+      "pass": true,
+      "note": "no key, no raw media, no reasoning trace"
+    }
+  ]
+}

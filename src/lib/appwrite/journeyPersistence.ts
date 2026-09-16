@@ -1,7 +1,8 @@
-import { ID, Permission, Role, type Models } from "appwrite";
+import { AppwriteException, ID, Permission, Role, type Models } from "appwrite";
 import type { DnaScores } from "../../data/dna";
 import type { Journey } from "../../data/journeys";
 import { APPWRITE_DATABASE_ID, tablesDB } from "./client";
+import { appError } from "./errors";
 
 const PROFILE_TABLE = "student_profiles";
 const DNA_TABLE = "my_dna_profiles";
@@ -20,6 +21,40 @@ function permissions(userId: string) {
 
 function text(value: unknown): string {
   return JSON.stringify(value ?? []);
+}
+
+/**
+ * Deterministic upsert for owner-scoped rows.
+ *
+ * `TablesDB.upsertRow` was returning 409 "row already exists" for rows it had
+ * just created when several writes ran concurrently (React StrictMode double
+ * invocation), which silently dropped journey/MyDNA persistence on the first
+ * onboarding save. An explicit read → update / create sequence is idempotent
+ * and reports the real failure instead of masking it.
+ */
+async function upsertRow(tableId: string, rowId: string, data: Record<string, unknown>, userId: string): Promise<void> {
+  const create = () =>
+    tablesDB.createRow({ databaseId: APPWRITE_DATABASE_ID!, tableId, rowId, data, permissions: permissions(userId) });
+
+  try {
+    await tablesDB.getRow({ databaseId: APPWRITE_DATABASE_ID!, tableId, rowId });
+  } catch (error) {
+    if (error instanceof AppwriteException && error.code === 404) {
+      try {
+        await create();
+      } catch (createError) {
+        // A concurrent writer won the race — update the row it created.
+        if (createError instanceof AppwriteException && createError.code === 409) {
+          await tablesDB.updateRow({ databaseId: APPWRITE_DATABASE_ID!, tableId, rowId, data });
+          return;
+        }
+        throw createError;
+      }
+      return;
+    }
+    throw error;
+  }
+  await tablesDB.updateRow({ databaseId: APPWRITE_DATABASE_ID!, tableId, rowId, data });
 }
 
 export async function saveJourney(userId: string, journey: Journey): Promise<boolean> {
@@ -66,9 +101,9 @@ export async function saveJourney(userId: string, journey: Journey): Promise<boo
   };
   try {
     await Promise.all([
-      tablesDB.upsertRow({ databaseId: APPWRITE_DATABASE_ID!, tableId: PROFILE_TABLE, rowId: userId, data: profile, permissions: permissions(userId) }),
-      tablesDB.upsertRow({ databaseId: APPWRITE_DATABASE_ID!, tableId: DNA_TABLE, rowId: userId, data: dna, permissions: permissions(userId) }),
-      tablesDB.upsertRow({ databaseId: APPWRITE_DATABASE_ID!, tableId: JOURNEY_TABLE, rowId: userId, data: current, permissions: permissions(userId) }),
+      upsertRow(PROFILE_TABLE, userId, profile, userId),
+      upsertRow(DNA_TABLE, userId, dna, userId),
+      upsertRow(JOURNEY_TABLE, userId, current, userId),
     ]);
     return true;
   } catch (error) {
@@ -87,8 +122,13 @@ export async function loadJourney(userId: string, fallback: Journey): Promise<Jo
     const myDna: DnaScores = { directness: dna.explicitness, formality: dna.formality, hierarchy: dna.hierarchy_sensitivity, conflict: dna.conflict_openness, relationship: dna.relationship_orientation, time: dna.time_structure, participation: dna.participation_confidence, uncertainty: dna.uncertainty_tolerance };
     return { ...fallback, id: "custom", name: profile.display_name || fallback.name, home: profile.home_country_code, host: profile.host_country_code, city: profile.host_city || fallback.city, university: profile.university_id || fallback.university, languages: JSON.parse(profile.languages || "[]"), interests: JSON.parse(profile.interests || "[]"), concerns: JSON.parse(profile.concerns || "[]"), myDna };
   } catch (error) {
-    // Missing rows fall back to seed data; other failures still surface in the console.
-    console.error("[yapyep] loadJourney failed", error);
+    /*
+     * Missing rows fall back to seed data; other failures still surface in the
+     * console. A brand-new guest has no saved journey yet, so a 404 here is the
+     * normal first-run path — logging it as an error made every fresh session look
+     * broken and buried the failures that do matter.
+     */
+    if (appError(error) !== "not_found") console.error("[yapyep] loadJourney failed", error);
     return null;
   }
 }

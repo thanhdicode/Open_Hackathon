@@ -1,0 +1,341 @@
+{
+  "generatedAt": "2026-09-16T13:32:41.159Z",
+  "policy": "Ranged GET, browser user agent, 20s timeout, 4 concurrent.",
+  "finding": "A 403 that persists across a custom agent, a browser agent and Googlebot is an egress-IP refusal, not a client-identity problem. Only sbv.gov.vn responded to the agent change.",
+  "summary": {
+    "total": 39,
+    "reachable": 30,
+    "blocked_by_ip": [
+      "id-dikti",
+      "ph-ched-candidate",
+      "th-immigration-candidate",
+      "th-mhesi-candidate",
+      "unesco-intercultural",
+      "vn-sbv"
+    ],
+    "unresolvable": [
+      {
+        "id": "vn-evisa-candidate",
+        "error": "TypeError"
+      }
+    ],
+    "redirect_not_followed": [
+      "asean-he-roadmap",
+      "asean-membership"
+    ]
+  },
+  "results": [
+    {
+      "id": "asean-he-roadmap",
+      "country": "ASEAN",
+      "status": 307,
+      "ok": false,
+      "ms": 360,
+      "finalUrl": "https://asean.org/asean-roadmap-2025-to-realise-a-common-higher-education-space-in-southeast-asia/"
+    },
+    {
+      "id": "asean-membership",
+      "country": "ASEAN",
+      "status": 307,
+      "ok": false,
+      "ms": 300,
+      "finalUrl": "https://asean.org/forging-a-new-era-timor-leste-admitted-into-asean/"
+    },
+    {
+      "id": "bn-gov-immigration",
+      "country": "BN",
+      "status": 200,
+      "ok": true,
+      "ms": 1618,
+      "finalUrl": "https://www.gov.bn/services/Immigration.aspx/"
+    },
+    {
+      "id": "id-bank-indonesia",
+      "country": "ID",
+      "status": 200,
+      "ok": true,
+      "ms": 1463,
+      "finalUrl": "https://www.bi.go.id/id/default.aspx"
+    },
+    {
+      "id": "id-dikti",
+      "country": "ID",
+      "status": 403,
+      "ok": false,
+      "ms": 425,
+      "finalUrl": "https://dikti.kemdiktisaintek.go.id/"
+    },
+    {
+      "id": "id-higher-ed",
+      "country": "ID",
+      "status": 200,
+      "ok": true,
+      "ms": 528,
+      "finalUrl": "https://www.kemdiktisaintek.go.id/"
+    },
+    {
+      "id": "id-immigration-candidate",
+      "country": "ID",
+      "status": 200,
+      "ok": true,
+      "ms": 1030,
+      "finalUrl": "https://www.imigrasi.go.id/"
+    },
+    {
+      "id": "id-ui-international",
+      "country": "ID",
+      "status": 200,
+      "ok": true,
+      "ms": 1715,
+      "finalUrl": "https://www.ui.ac.id/"
+    },
+    {
+      "id": "kh-emis",
+      "country": "KH",
+      "status": 206,
+      "ok": true,
+      "ms": 173,
+      "finalUrl": "https://emis.moeys.gov.kh/"
+    },
+    {
+      "id": "kh-immigration-candidate",
+      "country": "KH",
+      "status": 206,
+      "ok": true,
+      "ms": 134,
+      "finalUrl": "https://immigration.gov.kh/"
+    },
+    {
+      "id": "kh-moeys",
+      "country": "KH",
+      "status": 200,
+      "ok": true,
+      "ms": 268,
+      "finalUrl": "https://moeys.gov.kh/"
+    },
+    {
+      "id": "la-evisa",
+      "country": "LA",
+      "status": 200,
+      "ok": true,
+      "ms": 396,
+      "finalUrl": "https://www.laoevisa.gov.la/"
+    },
+    {
+      "id": "la-immigration-candidate",
+      "country": "LA",
+      "status": 200,
+      "ok": true,
+      "ms": 210,
+      "finalUrl": "https://www.immigration.gov.la/"
+    },
+    {
+      "id": "mm-evisa-candidate",
+      "country": "MM",
+      "status": 206,
+      "ok": true,
+      "ms": 790,
+      "finalUrl": "https://evisa.moip.gov.mm/"
+    },
+    {
+      "id": "mm-moe-candidate",
+      "country": "MM",
+      "status": 200,
+      "ok": true,
+      "ms": 1236,
+      "finalUrl": "https://www.moe.gov.mm/"
+    },
+    {
+      "id": "my-bnm",
+      "country": "MY",
+      "status": 200,
+      "ok": true,
+      "ms": 631,
+      "finalUrl": "https://www.bnm.gov.my/"
+    },
+    {
+      "id": "my-data-gov",
+      "country": "MY",
+      "status": 200,
+      "ok": true,
+      "ms": 499,
+      "finalUrl": "https://data.gov.my/"
+    },
+    {
+      "id": "my-emgs",
+      "country": "MY",
+      "status": 200,
+      "ok": true,
+      "ms": 1309,
+      "finalUrl": "https://educationmalaysia.gov.my/"
+    },
+    {
+      "id": "my-emgs-visa",
+      "country": "MY",
+      "status": 200,
+      "ok": true,
+      "ms": 282,
+      "finalUrl": "https://visa.educationmalaysia.gov.my/"
+    },
+    {
+      "id": "my-immigration-student",
+      "country": "MY",
+      "status": 206,
+      "ok": true,
+      "ms": 1245,
+      "finalUrl": "https://www.imi.gov.my/index.php/en/main-services/pass/student-pass/"
+    },
+    {
+      "id": "my-um-international",
+      "country": "MY",
+      "status": 206,
+      "ok": true,
+      "ms": 359,
+      "finalUrl": "https://www.um.edu.my/"
+    },
+    {
+      "id": "ph-bsp",
+      "country": "PH",
+      "status": 206,
+      "ok": true,
+      "ms": 1478,
+      "finalUrl": "https://www.bsp.gov.ph/SitePages/Default.aspx"
+    },
+    {
+      "id": "ph-ched-candidate",
+      "country": "PH",
+      "status": 403,
+      "ok": false,
+      "ms": 331,
+      "finalUrl": "https://ched.gov.ph/"
+    },
+    {
+      "id": "ph-immigration-candidate",
+      "country": "PH",
+      "status": 200,
+      "ok": true,
+      "ms": 1814,
+      "finalUrl": "https://immigration.gov.ph/"
+    },
+    {
+      "id": "sg-data-gov",
+      "country": "SG",
+      "status": 200,
+      "ok": true,
+      "ms": 521,
+      "finalUrl": "https://data.gov.sg/"
+    },
+    {
+      "id": "sg-ica-ihl",
+      "country": "SG",
+      "status": 206,
+      "ok": true,
+      "ms": 28,
+      "finalUrl": "https://www.ica.gov.sg/reside/STP/apply/ihl"
+    },
+    {
+      "id": "sg-ica-student",
+      "country": "SG",
+      "status": 206,
+      "ok": true,
+      "ms": 85,
+      "finalUrl": "https://www.ica.gov.sg/reside/STP"
+    },
+    {
+      "id": "sg-lta-datamall",
+      "country": "SG",
+      "status": 206,
+      "ok": true,
+      "ms": 452,
+      "finalUrl": "https://datamall.lta.gov.sg/content/datamall/en.html"
+    },
+    {
+      "id": "sg-mas",
+      "country": "SG",
+      "status": 200,
+      "ok": true,
+      "ms": 374,
+      "finalUrl": "https://www.mas.gov.sg/"
+    },
+    {
+      "id": "sg-nus-international",
+      "country": "SG",
+      "status": 200,
+      "ok": true,
+      "ms": 102,
+      "finalUrl": "https://nus.edu.sg/"
+    },
+    {
+      "id": "th-bot",
+      "country": "TH",
+      "status": 200,
+      "ok": true,
+      "ms": 463,
+      "finalUrl": "https://www.bot.or.th/th/coverpage.html"
+    },
+    {
+      "id": "th-immigration-candidate",
+      "country": "TH",
+      "status": 403,
+      "ok": false,
+      "ms": 159,
+      "finalUrl": "https://www.immigration.go.th/"
+    },
+    {
+      "id": "th-mhesi-candidate",
+      "country": "TH",
+      "status": 403,
+      "ok": false,
+      "ms": 433,
+      "finalUrl": "https://www.mhesi.go.th/"
+    },
+    {
+      "id": "tl-government",
+      "country": "TL",
+      "status": 200,
+      "ok": true,
+      "ms": 740,
+      "finalUrl": "https://timor-leste.gov.tl/"
+    },
+    {
+      "id": "tl-migration-candidate",
+      "country": "TL",
+      "status": 200,
+      "ok": true,
+      "ms": 1483,
+      "finalUrl": "https://migracao.gov.tl/wp/"
+    },
+    {
+      "id": "unesco-intercultural",
+      "country": "GLOBAL",
+      "status": 403,
+      "ok": false,
+      "ms": 374,
+      "finalUrl": "https://unesdoc.unesco.org/ark:/48223/pf0000219768"
+    },
+    {
+      "id": "vn-evisa-candidate",
+      "country": "VN",
+      "status": null,
+      "ok": false,
+      "ms": 133,
+      "error": "TypeError"
+    },
+    {
+      "id": "vn-moet-candidate",
+      "country": "VN",
+      "status": 200,
+      "ok": true,
+      "ms": 157,
+      "finalUrl": "https://moet.gov.vn/"
+    },
+    {
+      "id": "vn-sbv",
+      "country": "VN",
+      "status": 403,
+      "ok": false,
+      "ms": 175,
+      "finalUrl": "https://www.sbv.gov.vn/"
+    }
+  ]
+}

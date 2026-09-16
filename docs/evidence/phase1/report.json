@@ -1,0 +1,572 @@
+{
+  "baseUrl": "http://127.0.0.1:5173",
+  "generatedAt": "2026-09-16T03:41:18.222Z",
+  "aiOutcome": "result-rendered",
+  "results": [
+    {
+      "viewport": {
+        "name": "360",
+        "width": 360,
+        "height": 800,
+        "expect": "bottom-nav"
+      },
+      "onboarding": "onboarded",
+      "innerWidth": 360,
+      "docScrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "horizontalOverflow": false,
+      "bottomNavVisible": true,
+      "railVisible": false,
+      "railWidth": 0,
+      "panelPresent": true,
+      "panelVisible": false,
+      "panelWidth": 0,
+      "workspaceWidth": 360,
+      "bodyBackground": "rgb(247, 247, 245)",
+      "cardShadow": "none",
+      "navTargets": [
+        {
+          "label": "Today",
+          "h": 51,
+          "w": 69
+        },
+        {
+          "label": "Passport",
+          "h": 51,
+          "w": 69
+        },
+        {
+          "label": "Lens",
+          "h": 51,
+          "w": 69
+        },
+        {
+          "label": "Explore",
+          "h": 51,
+          "w": 69
+        },
+        {
+          "label": "Connect",
+          "h": 51,
+          "w": 69
+        }
+      ],
+      "minTargetHeight": 51,
+      "lens": null
+    },
+    {
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844,
+        "expect": "bottom-nav"
+      },
+      "onboarding": "onboarded",
+      "innerWidth": 390,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": false,
+      "bottomNavVisible": true,
+      "railVisible": false,
+      "railWidth": 0,
+      "panelPresent": true,
+      "panelVisible": false,
+      "panelWidth": 0,
+      "workspaceWidth": 390,
+      "bodyBackground": "rgb(247, 247, 245)",
+      "cardShadow": "none",
+      "navTargets": [
+        {
+          "label": "Today",
+          "h": 51,
+          "w": 75
+        },
+        {
+          "label": "Passport",
+          "h": 51,
+          "w": 75
+        },
+        {
+          "label": "Lens",
+          "h": 51,
+          "w": 75
+        },
+        {
+          "label": "Explore",
+          "h": 51,
+          "w": 75
+        },
+        {
+          "label": "Connect",
+          "h": 51,
+          "w": 75
+        }
+      ],
+      "minTargetHeight": 51,
+      "lens": {
+        "panelVisible": false,
+        "panelWidth": 0,
+        "evidenceInPanel": false
+      }
+    },
+    {
+      "viewport": {
+        "name": "430",
+        "width": 430,
+        "height": 932,
+        "expect": "bottom-nav"
+      },
+      "onboarding": "onboarded",
+      "innerWidth": 430,
+      "docScrollWidth": 430,
+      "bodyScrollWidth": 430,
+      "horizontalOverflow": false,
+      "bottomNavVisible": true,
+      "railVisible": false,
+      "railWidth": 0,
+      "panelPresent": true,
+      "panelVisible": false,
+      "panelWidth": 0,
+      "workspaceWidth": 430,
+      "bodyBackground": "rgb(247, 247, 245)",
+      "cardShadow": "none",
+      "navTargets": [
+        {
+          "label": "Today",
+          "h": 51,
+          "w": 83
+        },
+        {
+          "label": "Passport",
+          "h": 51,
+          "w": 83
+        },
+        {
+          "label": "Lens",
+          "h": 51,
+          "w": 83
+        },
+        {
+          "label": "Explore",
+          "h": 51,
+          "w": 83
+        },
+        {
+          "label": "Connect",
+          "h": 51,
+          "w": 83
+        }
+      ],
+      "minTargetHeight": 51,
+      "lens": null
+    },
+    {
+      "viewport": {
+        "name": "768",
+        "width": 768,
+        "height": 1024,
+        "expect": "rail"
+      },
+      "onboarding": "onboarded",
+      "innerWidth": 768,
+      "docScrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "horizontalOverflow": false,
+      "bottomNavVisible": false,
+      "railVisible": true,
+      "railWidth": 76,
+      "panelPresent": true,
+      "panelVisible": false,
+      "panelWidth": 0,
+      "workspaceWidth": 692,
+      "bodyBackground": "rgb(247, 247, 245)",
+      "cardShadow": "none",
+      "navTargets": [
+        {
+          "label": "Today",
+          "h": 44,
+          "w": 59
+        },
+        {
+          "label": "Passport",
+          "h": 44,
+          "w": 59
+        },
+        {
+          "label": "Lens",
+          "h": 44,
+          "w": 59
+        },
+        {
+          "label": "Explore",
+          "h": 44,
+          "w": 59
+        },
+        {
+          "label": "Connect",
+          "h": 44,
+          "w": 59
+        },
+        {
+          "label": "Profile",
+          "h": 44,
+          "w": 59
+        }
+      ],
+      "minTargetHeight": 44,
+      "lens": null
+    },
+    {
+      "viewport": {
+        "name": "1024",
+        "width": 1024,
+        "height": 768,
+        "expect": "rail+panel"
+      },
+      "onboarding": "onboarded",
+      "innerWidth": 1024,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": false,
+      "bottomNavVisible": false,
+      "railVisible": true,
+      "railWidth": 220,
+      "panelPresent": true,
+      "panelVisible": false,
+      "panelWidth": 0,
+      "workspaceWidth": 800,
+      "bodyBackground": "rgb(247, 247, 245)",
+      "cardShadow": "none",
+      "navTargets": [
+        {
+          "label": "🇻🇳→🇸🇬Singapore",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Today",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Passport",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Lens",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Explore",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Connect",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Profile",
+          "h": 44,
+          "w": 195
+        }
+      ],
+      "minTargetHeight": 44,
+      "lens": null
+    },
+    {
+      "viewport": {
+        "name": "1440",
+        "width": 1440,
+        "height": 900,
+        "expect": "rail+panel"
+      },
+      "onboarding": "onboarded",
+      "innerWidth": 1440,
+      "docScrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "horizontalOverflow": false,
+      "bottomNavVisible": false,
+      "railVisible": true,
+      "railWidth": 220,
+      "panelPresent": true,
+      "panelVisible": false,
+      "panelWidth": 0,
+      "workspaceWidth": 800,
+      "bodyBackground": "rgb(247, 247, 245)",
+      "cardShadow": "none",
+      "navTargets": [
+        {
+          "label": "🇻🇳→🇸🇬Singapore",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Today",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Passport",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Lens",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Explore",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Connect",
+          "h": 44,
+          "w": 195
+        },
+        {
+          "label": "Profile",
+          "h": 44,
+          "w": 195
+        }
+      ],
+      "minTargetHeight": 44,
+      "lens": {
+        "panelVisible": true,
+        "panelWidth": 300,
+        "evidenceInPanel": true
+      }
+    }
+  ],
+  "consoleErrors": [
+    "[360] Failed to load resource: the server responded with a status of 401 ()",
+    "[360] Failed to load resource: the server responded with a status of 404 ()",
+    "[360] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0f8da3227b008299' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
+    "[360] Failed to load resource: the server responded with a status of 404 ()",
+    "[360] Failed to load resource: the server responded with a status of 404 ()",
+    "[360] Failed to load resource: the server responded with a status of 404 ()",
+    "[360] Failed to load resource: the server responded with a status of 404 ()",
+    "[390] Failed to load resource: the server responded with a status of 401 ()",
+    "[390] Failed to load resource: the server responded with a status of 404 ()",
+    "[390] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0f96e904c4fe0027' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
+    "[390] Failed to load resource: the server responded with a status of 404 ()",
+    "[390] Failed to load resource: the server responded with a status of 404 ()",
+    "[390] Failed to load resource: the server responded with a status of 404 ()",
+    "[390] Failed to load resource: the server responded with a status of 404 ()",
+    "[430] Failed to load resource: the server responded with a status of 401 ()",
+    "[430] Failed to load resource: the server responded with a status of 404 ()",
+    "[430] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fac73b60f65f60b' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
+    "[430] Failed to load resource: the server responded with a status of 404 ()",
+    "[430] Failed to load resource: the server responded with a status of 404 ()",
+    "[430] Failed to load resource: the server responded with a status of 404 ()",
+    "[430] Failed to load resource: the server responded with a status of 404 ()",
+    "[768] Failed to load resource: the server responded with a status of 401 ()",
+    "[768] Failed to load resource: the server responded with a status of 404 ()",
+    "[768] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fb6257068730b44' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
+    "[768] Failed to load resource: the server responded with a status of 404 ()",
+    "[768] Failed to load resource: the server responded with a status of 404 ()",
+    "[768] Failed to load resource: the server responded with a status of 404 ()",
+    "[768] Failed to load resource: the server responded with a status of 404 ()",
+    "[1024] Failed to load resource: the server responded with a status of 401 ()",
+    "[1024] Failed to load resource: the server responded with a status of 404 ()",
+    "[1024] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fc018bea63cd191' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
+    "[1024] Failed to load resource: the server responded with a status of 404 ()",
+    "[1024] Failed to load resource: the server responded with a status of 404 ()",
+    "[1024] Failed to load resource: the server responded with a status of 404 ()",
+    "[1024] Failed to load resource: the server responded with a status of 404 ()",
+    "[1440] Failed to load resource: the server responded with a status of 401 ()",
+    "[1440] Failed to load resource: the server responded with a status of 404 ()",
+    "[1440] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fc9c1feacae86fd' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
+    "[1440] Failed to load resource: the server responded with a status of 404 ()",
+    "[1440] Failed to load resource: the server responded with a status of 404 ()",
+    "[1440] Failed to load resource: the server responded with a status of 404 ()",
+    "[1440] Failed to load resource: the server responded with a status of 404 ()"
+  ],
+  "networkFailures": [
+    {
+      "viewport": "360",
+      "status": 401,
+      "url": "/v1/account"
+    },
+    {
+      "viewport": "360",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f8da3227b008299"
+    },
+    {
+      "viewport": "360",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f8da3227b008299"
+    },
+    {
+      "viewport": "360",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f8da3227b008299"
+    },
+    {
+      "viewport": "360",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f8da3227b008299"
+    },
+    {
+      "viewport": "360",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0f8da3227b008299"
+    },
+    {
+      "viewport": "390",
+      "status": 401,
+      "url": "/v1/account"
+    },
+    {
+      "viewport": "390",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f96e904c4fe0027"
+    },
+    {
+      "viewport": "390",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f96e904c4fe0027"
+    },
+    {
+      "viewport": "390",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f96e904c4fe0027"
+    },
+    {
+      "viewport": "390",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f96e904c4fe0027"
+    },
+    {
+      "viewport": "390",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0f96e904c4fe0027"
+    },
+    {
+      "viewport": "430",
+      "status": 401,
+      "url": "/v1/account"
+    },
+    {
+      "viewport": "430",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fac73b60f65f60b"
+    },
+    {
+      "viewport": "430",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fac73b60f65f60b"
+    },
+    {
+      "viewport": "430",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fac73b60f65f60b"
+    },
+    {
+      "viewport": "430",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fac73b60f65f60b"
+    },
+    {
+      "viewport": "430",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fac73b60f65f60b"
+    },
+    {
+      "viewport": "768",
+      "status": 401,
+      "url": "/v1/account"
+    },
+    {
+      "viewport": "768",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fb6257068730b44"
+    },
+    {
+      "viewport": "768",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fb6257068730b44"
+    },
+    {
+      "viewport": "768",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fb6257068730b44"
+    },
+    {
+      "viewport": "768",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fb6257068730b44"
+    },
+    {
+      "viewport": "768",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fb6257068730b44"
+    },
+    {
+      "viewport": "1024",
+      "status": 401,
+      "url": "/v1/account"
+    },
+    {
+      "viewport": "1024",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc018bea63cd191"
+    },
+    {
+      "viewport": "1024",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc018bea63cd191"
+    },
+    {
+      "viewport": "1024",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc018bea63cd191"
+    },
+    {
+      "viewport": "1024",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc018bea63cd191"
+    },
+    {
+      "viewport": "1024",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fc018bea63cd191"
+    },
+    {
+      "viewport": "1440",
+      "status": 401,
+      "url": "/v1/account"
+    },
+    {
+      "viewport": "1440",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc9c1feacae86fd"
+    },
+    {
+      "viewport": "1440",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc9c1feacae86fd"
+    },
+    {
+      "viewport": "1440",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc9c1feacae86fd"
+    },
+    {
+      "viewport": "1440",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc9c1feacae86fd"
+    },
+    {
+      "viewport": "1440",
+      "status": 404,
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fc9c1feacae86fd"
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "generatedAt": "2026-09-16T13:33:23.747Z",
+  "results": [
+    {
+      "sourceId": "my-bnm",
+      "country": "MY",
+      "url": "https://www.bnm.gov.my/",
+      "authority": "A",
+      "categories": [
+        "banking",
+        "payments"
+      ],
+      "checkedAt": "2026-09-16T13:33:18.928Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "bytes": 277042,
+      "contentHash": "7cfb9070ef698cd79c5bb34858181899ed6a89547a15e3a1353d26de950ee687",
+      "snapshotKey": "my/banking/my-bnm/2026-09-16.html",
+      "text": "Home - Bank Negara Malaysia\nLanguage Selector\nmelayu\nBreadcrumb\nBank Negara Malaysia, as the central bank for Malaysia, is mandated to promote monetary stability and financial stability conducive to the sustainable growth of the Malaysian economy\nNested Applications\nAsset Publisher\nLatest News & Announcements\n15 September 2026\nrecent\nSigning of Memorandum of Cooperation between Ministry of Finance",
+      "textLength": 6229,
+      "latencyMs": 698,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\my\\banking\\my-bnm\\2026-09-16.html"
+    },
+    {
+      "sourceId": "my-data-gov",
+      "country": "MY",
+      "url": "https://data.gov.my/",
+      "authority": "A",
+      "categories": [
+        "transport"
+      ],
+      "checkedAt": "2026-09-16T13:33:19.377Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 149539,
+      "contentHash": "68e2505fa17de0335554b4eaf6027a95bcecc1c3e39233a6dca03338f5b55da8",
+      "snapshotKey": "my/transport/my-data-gov/2026-09-16.html",
+      "text": "data.gov.my\ndata.gov.my\nHome Dashboards Data Catalogue API Docs Community FAQ Legacy Site\nEnglish\nEnglish\nHome Dashboards Data Catalogue API Docs Community FAQ Legacy Site\nBrought to you by the\nVisit our portal\nGovernment of Malaysia\nBrought to you by the\nVisit our portal\nGovernment of Malaysia\nMalaysia&#x27;s official open data portal\nHigh frequency. High granularity. High impact.\nYour one-stop c",
+      "textLength": 2018,
+      "latencyMs": 229,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\my\\transport\\my-data-gov\\2026-09-16.html"
+    },
+    {
+      "sourceId": "my-emgs",
+      "country": "MY",
+      "url": "https://educationmalaysia.gov.my/",
+      "authority": "A",
+      "categories": [
+        "education",
+        "international-student",
+        "arrival"
+      ],
+      "checkedAt": "2026-09-16T13:33:17.862Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 170721,
+      "contentHash": "36fa11e56aa0587bfa817424fbab43fbfb7f4c7ccf458b277a68e879d4dd5413",
+      "snapshotKey": "my/education/my-emgs/2026-09-16.html",
+      "text": "- Education Malaysia Global Services | Study in Malaysia\nREADY TO KICK-START YOUR\n#STUDYINMALAYSIA\nJOURNEY\nEverything you need, under one roof.\nExplore valuable information and tips to help you get ready for your study adventure in Malaysia. Learn how to plan your academic journey and immerse yourself in the dynamic, exciting life that Malaysia has to offer\nWhy Malaysia?\nIMPORTANT NOTICE\nREMOVAL O",
+      "textLength": 11075,
+      "latencyMs": 1475,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\my\\education\\my-emgs\\2026-09-16.html"
+    },
+    {
+      "sourceId": "my-emgs-visa",
+      "country": "MY",
+      "url": "https://visa.educationmalaysia.gov.my/",
+      "authority": "A",
+      "categories": [
+        "student-pass",
+        "visa"
+      ],
+      "checkedAt": "2026-09-16T13:33:17.864Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 118110,
+      "contentHash": "cdbb3d0cb3ac692238e769178212857a7aadc83debf7e114623ccfcac93aa6eb",
+      "snapshotKey": "my/student-pass/my-emgs-visa/2026-09-16.html",
+      "text": "Visa Home\nRegister\nLog In\nStudent Visa Apply Student Visa Online\nTrack My Application\nCalculate Application Fees\nApply for Online Distance Learning\nApply for Graduate Pass\nGraduate Pass\nGuidelines Required Documents\nMedical Screening\nRegistered Malaysian Clinic\nInsurance - New\nInsurance - Old\nOnline Photo Checker\nPassport Photo Guidelines\nSEV Required Countries\nPolicies Refund Policy\nPrivacy Polic",
+      "textLength": 3164,
+      "latencyMs": 208,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\my\\student-pass\\my-emgs-visa\\2026-09-16.html"
+    },
+    {
+      "sourceId": "my-immigration-student",
+      "country": "MY",
+      "url": "https://www.imi.gov.my/index.php/en/main-services/pass/student-pass/",
+      "authority": "A",
+      "categories": [
+        "immigration",
+        "student-pass"
+      ],
+      "checkedAt": "2026-09-16T13:33:17.831Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 240387,
+      "contentHash": "2a44ab0f506bc8fc5f659affc992d4bad3d57d5ab6e90e90ff71e86d5a409b8f",
+      "snapshotKey": "my/immigration/my-immigration-student/2026-09-16.html",
+      "text": "Student Pass &#8211; Malaysian Immigration Department\nMYHRMIS Mobile\nMYHRMIS Mobile\nsplwpk-electronic-archive\nsplwpk-publicising\nsplwpk-w3c\nsplwpk-boradcast\nsplwpk-about-us\nsplwpk-client-charter\nsplwpk-news\nsplwpk-faq\nsplwpk-contact-details\nsplwpk-procurement\nsplwpk-online-e-participation\nSkip to content\nHome\nDepartment Profile\nIntroduction\nDepartment History\nOrganization Chart\nMalaysian Immigrati",
+      "textLength": 12321,
+      "latencyMs": 509,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\my\\immigration\\my-immigration-student\\2026-09-16.html"
+    },
+    {
+      "sourceId": "my-um-international",
+      "country": "MY",
+      "url": "https://www.um.edu.my/",
+      "authority": "A",
+      "categories": [
+        "university"
+      ],
+      "checkedAt": "2026-09-16T13:33:20.153Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 92791,
+      "contentHash": "4e88a3c7816f8be3afdfe19aedeee227795642bfaf470db4885863497e3ebd21",
+      "snapshotKey": "my/university/my-um-international/2026-09-16.html",
+      "text": "Welcome to Universiti Malaya\nUM121\nAbout UM121\nTop 2% Scientist in The World\nUM121 Event Highlights\nUM121 Photo Gallery\nMake a Contribution\nAbout UM\nVision & Mission\nLeadership\nChancellor & Pro-Chancellors\nBoard of Directors\nUniversity Management\nSenate\nAdministration\nOrganizational Chart\nVice-Chancellor's Office\nDeputy Vice-Chancellor's Office\nAssociate Vice-Chancellor's Office\nRegistrar's Office",
+      "textLength": 2549,
+      "latencyMs": 1027,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\my\\university\\my-um-international\\2026-09-16.html"
+    },
+    {
+      "sourceId": "sg-data-gov",
+      "country": "SG",
+      "url": "https://data.gov.sg/",
+      "authority": "A",
+      "categories": [
+        "transport",
+        "government"
+      ],
+      "checkedAt": "2026-09-16T13:33:22.330Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 199873,
+      "contentHash": "7c0494291018a2e7a18d1efce0f0e3e4696b3437bfbf8953af5e666d68a9d967",
+      "snapshotKey": "sg/transport/sg-data-gov/2026-09-16.html",
+      "text": "data.gov.sg\nA Singapore Government Agency Website How to identify\nOfficial website links end with .gov.sg\nGovernment agencies communicate via .gov.sg websites (e.g. go.gov.sg/open). Trusted websites\nSecure websites use HTTPS\nLook for a lock ( ) or https:// as an added precaution. Share sensitive information only on official, secure websites.\nScam alert\nGovernment officers will never ask you to sen",
+      "textLength": 3362,
+      "latencyMs": 508,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\sg\\transport\\sg-data-gov\\2026-09-16.html"
+    },
+    {
+      "sourceId": "sg-ica-ihl",
+      "country": "SG",
+      "url": "https://www.ica.gov.sg/reside/STP/apply/ihl",
+      "authority": "A",
+      "categories": [
+        "immigration",
+        "higher-education"
+      ],
+      "checkedAt": "2026-09-16T13:33:20.571Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 31625,
+      "contentHash": "b4d5c7a9651b62ac8412307acf6613bb76fba3881aa7b8aea53b8dd8d089cfca",
+      "snapshotKey": "sg/immigration/sg-ica-ihl/2026-09-16.html",
+      "text": "ICA | Institutes of Higher Learning\nHome\nReside, Study and Work in Singapore\nBecoming a Student's Pass Holder\nInstitutes of Higher Learning\nInstitutes of Higher Learning\nBack to top\nYou will need to apply for a Student’s Pass if you are a foreigner who has been accepted for admission as a full-time matriculated or registered student at one of the following Institutes of Higher Learning (IHL) in Si",
+      "textLength": 4196,
+      "latencyMs": 921,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\sg\\immigration\\sg-ica-ihl\\2026-09-16.html"
+    },
+    {
+      "sourceId": "sg-ica-student",
+      "country": "SG",
+      "url": "https://www.ica.gov.sg/reside/STP",
+      "authority": "A",
+      "categories": [
+        "immigration",
+        "student-pass"
+      ],
+      "checkedAt": "2026-09-16T13:33:20.415Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 29845,
+      "contentHash": "96558deda5c28fa8455206aebb942097c7e4d2bfc3c85ebc1e9186259fa70b64",
+      "snapshotKey": "sg/immigration/sg-ica-student/2026-09-16.html",
+      "text": "ICA | Becoming a Student's Pass Holder\nHome\nReside, Study and Work in Singapore\nBecoming a Student's Pass Holder\nBecoming a Student's Pass Holder\nBack to top\nOverview\nA foreigner who has been accepted by an educational institution to pursue full-time studies in Singapore will need to apply for a Student's Pass unless he/she has a valid:\nDependant's Pass^,\nLong-Term Visit Pass^,\nImmigration Exempti",
+      "textLength": 2908,
+      "latencyMs": 330,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\sg\\immigration\\sg-ica-student\\2026-09-16.html"
+    },
+    {
+      "sourceId": "sg-lta-datamall",
+      "country": "SG",
+      "url": "https://datamall.lta.gov.sg/",
+      "authority": "A",
+      "categories": [
+        "transport"
+      ],
+      "checkedAt": "2026-09-16T13:33:22.298Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html;charset=utf-8",
+      "bytes": 43772,
+      "contentHash": "2eb68563331d05c976d5c32bb2dd76fad965a321f06b00d03c3964034cb0d9e1",
+      "snapshotKey": "sg/transport/sg-lta-datamall/2026-09-16.html",
+      "text": "DataMall | Land Transport Authority (LTA)\nIMPORTANT: Government officials will NEVER ask you to transfer money or disclose bank log-in details over a phone call, email, SMS or other text message. If in doubt, call the 24/7 ScamShield Helpline at 1799 or visit www.scamshield.gov.sg .\nLTA publishes a wide variety of land transport-related datasets (static and dynamic / real-time) on DataMall for ent",
+      "textLength": 2533,
+      "latencyMs": 447,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\sg\\transport\\sg-lta-datamall\\2026-09-16.html"
+    },
+    {
+      "sourceId": "sg-mas",
+      "country": "SG",
+      "url": "https://www.mas.gov.sg/",
+      "authority": "A",
+      "categories": [
+        "payments",
+        "banking"
+      ],
+      "checkedAt": "2026-09-16T13:33:21.567Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 281060,
+      "contentHash": "b584eda9f2a0f90bfb4fba8cd025ad20bdb08691f5448b66527d46159c3ea44f",
+      "snapshotKey": "sg/payments/sg-mas/2026-09-16.html",
+      "text": "Monetary Authority of Singapore\nMAS Commits S$220 Million to Support Next Phase of FinTech Innovation\nMAS announced a S$220 million commitment over three years under the renewed Financial Sector Technology and Innovation Scheme (FSTI 4.0) to strengthen and accelerate innovation and technology adoption.\nRead the Media Release\nMAS Consults on Legislative Amendments for Stablecoin Framework\nMAS publi",
+      "textLength": 3160,
+      "latencyMs": 316,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\sg\\payments\\sg-mas\\2026-09-16.html"
+    },
+    {
+      "sourceId": "sg-nus-international",
+      "country": "SG",
+      "url": "https://nus.edu.sg/",
+      "authority": "A",
+      "categories": [
+        "university"
+      ],
+      "checkedAt": "2026-09-16T13:33:22.841Z",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html",
+      "bytes": 842,
+      "contentHash": "4a1681d1df1bacf6ca51d4c7ef2d3c28c4533f9781fc39f3cf1e3c8893e5b921",
+      "snapshotKey": "sg/university/sg-nus-international/2026-09-16.html",
+      "text": "Request unsuccessful. Incapsula incident ID: 285000440132824314-297156572341930770",
+      "textLength": 82,
+      "latencyMs": 94,
+      "error": null,
+      "snapshotLocation": ".greenbook-snapshots\\sg\\university\\sg-nus-international\\2026-09-16.html"
+    }
+  ]
+}

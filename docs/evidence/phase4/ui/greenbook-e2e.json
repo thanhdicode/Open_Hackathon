@@ -1,0 +1,181 @@
+{
+  "generatedAt": "2026-09-16T16:27:07.260Z",
+  "baseUrl": "http://localhost:8443",
+  "hostRoute": "Viet → Singapore",
+  "verifiedPoints": 32,
+  "viewports": [
+    "390x844",
+    "430x932",
+    "1440x900"
+  ],
+  "screenshots": [
+    "today-390.png",
+    "greenbook-open-390.png",
+    "greenbook-390.png",
+    "entry-390.png",
+    "ask-sources-390.png",
+    "ask-390.png",
+    "ask-1440.png",
+    "reality-my-390.png",
+    "corridor-my-390.png",
+    "reality-id-390.png",
+    "corridor-id-390.png",
+    "sparse-th-390.png"
+  ],
+  "results": [
+    {
+      "step": "onboarding reaches the five-tab shell",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "Today card resolves to a real corpus count",
+      "ok": true,
+      "detail": "32 points"
+    },
+    {
+      "step": "Greenbook opens as an overlay",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "host country can be switched in-app",
+      "ok": true,
+      "detail": "opened via \"🇸🇬\", picked SG"
+    },
+    {
+      "step": "cover shows a home → host route",
+      "ok": true,
+      "detail": "Viet → Singapore"
+    },
+    {
+      "step": "cover reports the verified corpus for the host country",
+      "ok": true,
+      "detail": "32 verified points"
+    },
+    {
+      "step": "no horizontal overflow at 390",
+      "ok": true,
+      "detail": "390 vs 390"
+    },
+    {
+      "step": "an entry with real facts opens",
+      "ok": true,
+      "detail": "opened \"Before you go\""
+    },
+    {
+      "step": "entry shows trust states",
+      "ok": true,
+      "detail": "Official, University, Community, Stale, Needs review"
+    },
+    {
+      "step": "entry shows a source sentence or source count",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "Ask this Greenbook opens",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "Ask returns a grounded or no-LLM answer",
+      "ok": true,
+      "detail": "answer rendered"
+    },
+    {
+      "step": "answer cites retrieved sources",
+      "ok": true,
+      "detail": "SOURCES (2)"
+    },
+    {
+      "step": "answer states its provenance mode",
+      "ok": true,
+      "detail": "no-LLM (facts only)"
+    },
+    {
+      "step": "no horizontal overflow at 1440",
+      "ok": true,
+      "detail": "1440 vs 1440"
+    },
+    {
+      "step": "no horizontal overflow at 430",
+      "ok": true,
+      "detail": "430 vs 430"
+    },
+    {
+      "step": "corridor 1 (Malaysia) reports its own corpus",
+      "ok": true,
+      "detail": "66 verified points"
+    },
+    {
+      "step": "corridor 1 (Malaysia) plays its own official video",
+      "ok": true,
+      "detail": "15 embedded player(s)"
+    },
+    {
+      "step": "corridor 1 (Malaysia) labels media trust tier",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "corridor 1 (Malaysia) entry renders facts",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "corridor 1 (Malaysia) cites its own national sources",
+      "ok": true,
+      "detail": "cites imi.gov.my / educationmalaysia.gov.my"
+    },
+    {
+      "step": "corridor 3 (Indonesia) reports its own corpus",
+      "ok": true,
+      "detail": "93 verified points"
+    },
+    {
+      "step": "corridor 3 (Indonesia) plays its own official video",
+      "ok": true,
+      "detail": "1 embedded player(s)"
+    },
+    {
+      "step": "corridor 3 (Indonesia) labels media trust tier",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "corridor 3 (Indonesia) entry renders facts",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "step": "corridor 3 (Indonesia) cites its own national sources",
+      "ok": true,
+      "detail": "cites imigrasi.go.id / international.ui.ac.id"
+    },
+    {
+      "step": "sparse country renders a graceful baseline (no crash)",
+      "ok": true,
+      "detail": "baseline rendered"
+    },
+    {
+      "step": "no uncaught page errors",
+      "ok": true,
+      "detail": "none"
+    }
+  ],
+  "passed": 28,
+  "failed": 0,
+  "answerTail": " hold an exemption. Verify if you hold a valid exempted pass type to avoid applying. Prepare original documents and official translations. Ensure all translations are properly attested or notarized. SOURCES (2) A Immigration & Checkpoints Authority https://www.ica.gov.sg/reside/STP Checked 16 thg 9, 2026 · en A Immigration & Checkpoints Authority https://www.ica.gov.sg/reside/STP/apply/ihl Checked 16 thg 9, 2026 · en",
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "[yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaac31c390422202ed7' could not be found.\n    at Client.<anonymous> (http://localhost:8443/node_modules/.vite/deps/appwrite.js",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Permissions policy violation: compute-pressure is not allowed in this document."
+  ]
+}

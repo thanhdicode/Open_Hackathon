@@ -31,7 +31,7 @@ export default function Study({ onBack }: { onBack: () => void }) {
                 {o.items && (
                   <ul className="mt-2 space-y-1.5">
                     {o.items.map((it) => (
-                      <li key={it} className="flex items-start gap-2 text-[13px] text-ink"><span className="text-amber">◆</span> {it}</li>
+                      <li key={it} className="flex items-start gap-2 text-[13px] text-ink"><span className="text-muted">◆</span> {it}</li>
                     ))}
                   </ul>
                 )}
@@ -49,7 +49,7 @@ export default function Study({ onBack }: { onBack: () => void }) {
     <div className="flex h-full flex-col bg-canvas">
       <ScreenHeader title="Study Copilot" onBack={onBack} />
       <Scroll className="px-5 py-4">
-        <Notice tone="primary" icon="🎓" title="Academic support, not answer-cheating" body="YapYep helps you understand lectures, slides and communication — so you can do the work with confidence." />
+        <Notice tone="primary" icon="info" title="Academic support, not answer-cheating" body="YapYep helps you understand lectures, slides and communication — so you can do the work with confidence." />
         <div className="mt-4 space-y-3">
           {STUDY_MODES.map((m) => (
             <Card key={m.id} className="flex items-center gap-3 p-4" onClick={() => setModeId(m.id)}>

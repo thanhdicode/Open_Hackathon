@@ -1,8 +1,9 @@
-import { createContext, useContext, useMemo, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { CountryCode } from "../data/countries";
 import { JOURNEYS, journeyById, type Journey } from "../data/journeys";
 import { computePairDNA, type PairDNA } from "../data/pairDNA";
 import type { DnaScores } from "../data/dna";
+import type { JourneyDates } from "../lib/journey/dates";
 import { fetchTaskProgress, setTaskProgress } from "../lib/appwrite/taskProgress";
 import { loadJourney, saveJourney } from "../lib/appwrite/journeyPersistence";
 import { currentUser } from "../lib/appwrite/user";
@@ -44,14 +45,28 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
   const [savedTasks, setSavedTasks] = useState<Record<string, boolean>>({});
   const [saved, setSavedItems] = useState<SavedItem[]>([]);
   const userIdRef = useRef<string | null>(null);
+  /**
+   * Persistence runs from a single effect, never from inside a state updater:
+   * React StrictMode double-invokes updaters to surface impurity, which used to
+   * fire two concurrent `saveJourney` writes for the same user (409 unique
+   * column constraint) and silently drop the first journey save.
+   */
+  const dirty = useRef(false);
 
-  const persistJourney = (next: Journey) => {
+  useEffect(() => {
+    if (!dirty.current) return;
+    dirty.current = false;
     void (async () => {
       const result = await currentUser();
       if (!result.ok) return;
       userIdRef.current = result.user.$id;
-      await saveJourney(result.user.$id, next);
+      await saveJourney(result.user.$id, journey);
     })().catch((error) => console.error("[yapyep] journey persistence failed", error));
+  }, [journey]);
+
+  const editJourney = (updater: (current: Journey) => Journey) => {
+    dirty.current = true;
+    setJourney(updater);
   };
 
   const pair = useMemo(() => computePairDNA(journey.home, journey.host, journey.myDna as DnaScores), [journey]);
@@ -62,20 +77,15 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
     setJourneyId: (id) => setJourney(journeyById(id)),
     hydrate: (userId, nextJourney, tasks) => {
       userIdRef.current = userId;
+      dirty.current = false;
       setJourney(nextJourney);
       setSavedTasks(tasks);
     },
-    setCustom: (patch) => setJourney((j) => {
-      const next = { ...j, ...patch };
-      persistJourney(next);
-      return next;
-    }),
+    setCustom: (patch) => editJourney((j) => ({ ...j, ...patch })),
     setRoute: (home, host) =>
-      setJourney((j) => {
+      editJourney((j) => {
         const p = computePairDNA(home, host, j.myDna as DnaScores);
-        const next = { ...j, home, host, readiness: p.readiness };
-        persistJourney(next);
-        return next;
+        return { ...j, home, host, readiness: p.readiness };
       }),
     forced,
     setForced,
@@ -108,7 +118,7 @@ export function useJourney() {
   return c;
 }
 
-export function makeCustomJourney(home: CountryCode, host: CountryCode, myDna: DnaScores): Partial<Journey> {
+export function makeCustomJourney(home: CountryCode, host: CountryCode, myDna: DnaScores, dates?: JourneyDates): Partial<Journey> {
   const base = JOURNEYS[0];
   const pair = computePairDNA(home, host, myDna);
   return {
@@ -120,5 +130,9 @@ export function makeCustomJourney(home: CountryCode, host: CountryCode, myDna: D
     name: "You",
     initials: "Y",
     avatarColor: "#3157D5",
+    // The canonical timeline travels with the profile. Without it the stage
+    // cannot be derived and Today falls back to the seed journey's dates, which
+    // is how a brand-new student used to be shown another student's schedule.
+    ...(dates ? { dates } : {}),
   };
 }

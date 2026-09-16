@@ -1,32 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 
+/*
+ * Frozen design tokens — docs/adr/ADR-003-monochrome-ui-and-reference-shift.md
+ * and config/project-decisions.yaml (design_tokens / layout).
+ *
+ * Country flags are the primary source of colour; the rest of the UI stays
+ * restrained. Warm amber (#FFB648), the green-tinted canvas (#F6F7F3), ink
+ * #172033 and muted #667085 are retired. `--shadow-card` is intentionally
+ * gone: shadows belong to overlays/floating sheets only.
+ */
 @theme {
   --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-  --color-primary: #3157d5;
-  --color-primary-soft: #eaeffb;
-  --color-amber: #ffb648;
-  --color-amber-soft: #fff3df;
-  --color-canvas: #f6f7f3;
+  --color-canvas: #f7f7f5;
   --color-surface: #ffffff;
-  --color-ink: #172033;
-  --color-muted: #667085;
-  --color-success: #169b62;
-  --color-success-soft: #e5f4ec;
-  --color-warning: #f59e0b;
-  --color-warning-soft: #fdf1dc;
-  --color-error: #e5484d;
-  --color-error-soft: #fceceb;
-  --color-line: #eaecef;
+  --color-ink: #111111;
+  --color-muted: #6b6b68;
+  --color-line: #e5e5e1;
 
-  --radius-card: 20px;
-  --radius-btn: 14px;
+  /* accent cobalt — only when truly needed */
+  --color-primary: #3157d5;
+  --color-primary-soft: #eef2ff;
+
+  --color-success: #1f7a45;
+  --color-success-soft: #e8f3ec;
+  --color-warning: #b7791f;
+  --color-warning-soft: #fbf1de;
+  --color-error: #c43b3b;
+  --color-error-soft: #fbeceb;
+
+  --radius-card: 12px;
+  --radius-btn: 12px;
   --radius-pill: 999px;
 
-  --shadow-card: 0 1px 2px rgba(23, 32, 51, 0.04), 0 8px 24px rgba(23, 32, 51, 0.05);
-  --shadow-pop: 0 12px 40px rgba(23, 32, 51, 0.14);
+  /* overlays / floating sheets only */
+  --shadow-pop: 0 12px 40px rgba(17, 17, 17, 0.16);
+
+  /* content-based breakpoints (ADR-003 §5) — not device models */
+  --breakpoint-rail: 600px;
+  --breakpoint-desk: 1024px;
+  /* context panel only when rail + 680px workspace + panel still fit */
+  --breakpoint-wide: 1200px;
 }
 
 html,
@@ -38,7 +54,7 @@ body,
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: #e7e9e3;
+  background: var(--color-canvas);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -91,7 +107,7 @@ body {
   }
 }
 .yy-skeleton {
-  background: linear-gradient(90deg, #eef0ec 25%, #f6f7f3 37%, #eef0ec 63%);
+  background: linear-gradient(90deg, #eeeeea 25%, #f7f7f5 37%, #eeeeea 63%);
   background-size: 800px 100%;
   animation: yy-shimmer 1.4s infinite linear;
 }

@@ -1,0 +1,102 @@
+{
+  "title": "YapSceneRegion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 16
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "text",
+        "object",
+        "mixed"
+      ]
+    },
+    "box": {
+      "type": "object",
+      "properties": {
+        "ymin": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "xmin": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "ymax": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "xmax": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "required": [
+        "ymin",
+        "xmin",
+        "ymax",
+        "xmax"
+      ],
+      "additionalProperties": false
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "originalText": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "translatedText": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "romanization": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "meaning": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "uncertainty": {
+      "type": "string",
+      "enum": [
+        "none",
+        "low",
+        "high"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "note": {
+      "type": "string",
+      "maxLength": 200
+    }
+  },
+  "required": [
+    "id",
+    "kind",
+    "box",
+    "label",
+    "uncertainty",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -20,14 +20,56 @@ backend: Appwrite
 ai_primary: gemini-3.8-flash
 ai_primary_fallback: gemini-3.7-flash
 ai_primary_decision: docs/adr/ADR-001-gemini-3-8-flash.md
-ai_live_optional: gemini-3.1-flash-live-preview
-embedding_optional: gemini-embedding-2
+ai_live_optional: gemini-3.8-live
+ai_voice_translate: gemini-3.5-live-translate-preview
+ai_stt_streaming: gemini-3.5-transcribe-live
+ai_tts: gemini-3.1-flash-tts-preview
+ai_embedding_optional: gemini-embedding-2
 ai_routing_decision: docs/adr/ADR-002-multi-provider-ai-routing.md
+ai_phase3_decision: docs/adr/ADR-004-phase3-ai-interaction-core.md
 ai_text_fast: groq/gpt-oss-120b
 ai_text_cheap_fallback: groq/qwen3-27b
 ai_speech_to_text: groq/whisper-large-v3-turbo
 ai_emergency_fallback: cloudflare-workers-ai
 ai_last_resort_router: openrouter
+ai_cavoti: cavoti.com/v1   # OpenAI-compatible aggregator; per-model circuits
+ai_cavoti_decision: docs/adr/ADR-006-cavoti-provider.md
+ai_cavoti_measured:
+  # Verified 2026-09-16 by real probe — docs/evidence/phase3/cavoti-matrix.json
+  # An HTTP 200 is NOT an acceptance: two models refused audio inside a 200 body.
+  text_verified: [qwen3.8-flash, glm-5.3-flash, minimax-m3, deepseek-v4-flash-0731, hy3]
+  vision_verified: [qwen3.8-flash, glm-5.3-flash, hy3]
+  audio_verified: []   # no Cavoti model accepted audio input
+  unavailable_on_plan: [mimo-v2.5, qwen-3.8-flash]   # 402 balance required
+  vision_disabled: [minimax-m3, deepseek-v4-flash-0731]
+ai_chains:
+  text: [groq-text, groq-vision, cavoti-qwen, cavoti-glm, cavoti-hy3, cavoti-mimo, cavoti-minimax, cavoti-deepseek, cloudflare-text, gemini, openrouter]
+  vision: [groq-vision, cavoti-glm, cavoti-qwen, cavoti-hy3, cavoti-mimo, cloudflare-vision, gemini, openrouter]
+  stt: [groq-whisper, cloudflare-whisper]
+  tts: [gemini]
+ai_chain_deadline_ms:
+  vision: 75000
+  text: 60000
+ai_retired:
+- gemini-3.1-flash-live-preview   # legacy; superseded by gemini-3.8-live (ADR-004)
+ai_live_translate_unsupported:
+- tet    # Timor-Leste: no Live Translate voice. Use typed text or a shared language.
+ai_gateway_routes:
+- /lens/text
+- /lens/scene
+- /lens/document
+- /reply
+- /tone-check
+- /translate
+- /coach
+- /transcribe
+- /tts
+- /live/token
+- /sim/start
+- /sim/turn
+- /sim/finish
+- /study/analyze
+- /health
 bottom_nav:
 - Today
 - Passport

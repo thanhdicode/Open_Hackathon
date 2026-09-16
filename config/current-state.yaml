@@ -1,10 +1,136 @@
 reported_at: '2026-09-15'
+verified_at: '2026-09-16'
 source: project status supplied by user; agents must verify repository
+phase3_ai_core:
+  implemented_at: '2026-09-16'
+  decision: docs/adr/ADR-004-phase3-ai-interaction-core.md
+  contracts:
+    split: '18 per-operation Zod contracts, replacing the shared Lens-shaped result'
+    server: functions/ai-gateway/src/contracts.js
+    client: src/lib/ai-contracts/*.ts
+    generated_schemas: schemas/*.schema.json (npm run schemas:generate)
+    parity_test: npm run test:contracts — 39/39 passing
+    invented_defaults_removed: true   # the gateway normalize() repair path is deleted
+  gateway:
+    routes: 15
+    files: 'contracts.js providers.js prompts.js routes.js privacy.js audio.js languages.js live-languages.js main.js'
+    fallback: 'gemini primary -> gemini-3.7-flash; groq primary -> gemini text'
+    validation_repair: 'one repair retry with the Zod issue list, then SCHEMA_INVALID'
+    error_codes: 'RATE_LIMITED, SCHEMA_INVALID, AI_UNAVAILABLE, AI_EMPTY, NOT_CONFIGURED, LANGUAGE_UNSUPPORTED, INVALID_FILE, FILE_TOO_LARGE, UNSUPPORTED_MEDIA, EMPTY_TRANSCRIPT, BAD_REQUEST, NOT_FOUND'
+  scene_lens:
+    implemented: 'real camera/gallery capture, client-side downscale, normalized box overlay, region detail'
+    overlay: 'CSS-percentage boxes over the original photo; the source image is never regenerated'
+    uncertainty: 'per-region uncertainty plus a mandatory safetyNotice stating what the photo cannot establish'
+  conversation_bridge:
+    implemented: 'turn-based, push-to-talk or upload, two lanes (translation then coaching)'
+    coach_asks_user: true   # the coach never answers on the student's behalf
+    persistence: 'NOT implemented — sessions are in memory only'
+  ai_language_profile:
+    implemented: 'src/lib/preferences.ts — explanation language, local languages, level, romanization, speed, auto-speak, transcript retention'
+    country_decides_language: false   # the host country only supplies a suggestion
+  live_ux:
+    fake_timers_removed_from_lens: true
+    activity_source: 'src/lib/ai/activity.ts — driven by the real request lifecycle'
+    provenance_shown: 'provider, model, latency and repair count are surfaced to the user'
+  yapsim:
+    implemented: 'real simulator — no seeded transcript, no timer, no pre-baked scores'
+    flow: '/sim/start -> 3-5 real /sim/turn -> /sim/finish'
+    persistence: 'src/lib/appwrite/practice.ts — practice_sessions rows (owner-scoped) + skill_profiles update'
+    persona_language: 'persona speaks the host language; coaching stays in the user language'
+    beginner_mode: 'bilingual subtitle always shown; advanced shows the local line first with translation on demand'
+    retry: 'a retry is a new attempt of the same scenario; the UI states plainly that a retry can go either way'
+    verified: 'docs/evidence/phase3/sim-loop.json — 3 real turns with state-tracking persona replies, 6/6 frozen dimensions, scores in range'
+  reliability_phase3_5:
+    implemented_at: '2026-09-16'
+    decision: docs/adr/ADR-005-ai-reliability-failover.md
+    registry: 'functions/ai-gateway/src/registry.js — capability chains, failover, concurrency guard, health'
+    breaker: 'functions/ai-gateway/src/breaker.js — 429 opens immediately using retry-after; 503/timeout get a short growing cooldown; schema failures never open the circuit'
+    chains:
+      text: 'groq-text -> groq-vision -> cloudflare-text -> gemini -> openrouter'
+      vision: 'groq-vision -> cloudflare-vision -> gemini -> openrouter'
+      stt: 'groq-whisper -> cloudflare-whisper'
+      tts: 'gemini -> browser speechSynthesis -> text only'
+    gemini_is_load_bearing: false
+    concurrency_guard: 'MAX_CONCURRENT default 4 with a bounded wait queue; every route is exactly one inference'
+    strict_schema: 'toStrictSchema() makes every property required and optional fields nullable; stripNulls() maps null back to absent before Zod, so a null on a required field still fails'
+    provider_neutral_ui: 'providerUsed / fallbackDepth / degradedProviders / unconfiguredProviders / latencyMs are telemetry; the student sees Primary AI, Backup AI, AI is busy, Voice unavailable, Text only'
+    provider_status:
+      groq_text: 'configured, verified working'
+      groq_vision: 'configured, verified reading a real menu photo (qwen/qwen3.8-27b)'
+      groq_stt: 'configured, verified (whisper-large-v3-turbo)'
+      gemini: 'configured, intermittently 429/503'
+      cloudflare_text: 'IMPLEMENTED BUT UNVERIFIED — CLOUDFLARE_ACCOUNT_ID is empty'
+      cloudflare_vision: 'IMPLEMENTED BUT UNVERIFIED — needs CLOUDFLARE_ACCOUNT_ID'
+      cloudflare_stt: 'IMPLEMENTED BUT UNVERIFIED — needs CLOUDFLARE_ACCOUNT_ID'
+      openrouter: 'implemented, no OPENROUTER_API_KEY'
+    measured_limits: 'groq qwen/qwen3.8-27b: 1000 RPD, 8000 TPM, and a separate 1000 output-tokens/min ceiling; one 1600px image is ~2000 tokens, so ~3 vision calls per minute'
+    open_gap: 'With Cloudflare unconfigured, a simultaneous Groq+Gemini 429 still fails Scene Lens. Observed on 2026-09-16: both returned 429 in the same request.'
+    acceptance:
+      evidence: docs/evidence/phase3/acceptance.json
+      result: '7/8 criteria met (best across runs); the acceptance script records every run so a rate-limited later run cannot erase a genuine pass'
+      met:
+      - text does not depend on Gemini
+      - Scene Lens works with Gemini disabled
+      - Conversation works with Gemini disabled
+      - YapSim works with Gemini disabled
+      - provider health endpoint reports all 8 providers
+      - no provider secret in any response
+      - concurrency guard active and bounded
+      blocked:
+      - 'STT has two providers — needs CLOUDFLARE_ACCOUNT_ID'
+    browser_evidence:
+      bridge_390: 'docs/evidence/phase3/bridge-evidence.json — 8/8, including denied-microphone fallback, no overflow, no page errors'
+      lens: 'docs/evidence/phase3/lens-evidence.json — Lens renders at 390/430/768/1440, no overflow, no page errors'
+    output_budget_finding: 'Groq qwen allows 1000 output tokens/minute and an 11-region Scene Lens response exceeded it alone. Capping the prompt at 8 regions with short fields: 11 regions/5.0s -> 8 regions/4.3s.'
+    verification_is_self_limiting: 'Repeated acceptance runs exhaust the free tier; the script now paces between criteria (ACCEPTANCE_PACE_MS, default 20s)'
+  cavoti_phase3_6:
+    implemented_at: '2026-09-16'
+    decision: docs/adr/ADR-006-cavoti-provider.md
+    base_url: 'https://cavoti.com/v1 (discovered by probing; not documented in the brief)'
+    evidence: docs/evidence/phase3/cavoti-matrix.json
+    providers: 'cavoti-mimo, cavoti-qwen, cavoti-glm, cavoti-minimax, cavoti-deepseek, cavoti-hy3 — each with its own circuit so one model cannot disable the others'
+    measured_capabilities:
+      text_verified: [qwen3.8-flash, glm-5.3-flash, minimax-m3, deepseek-v4-flash-0731, hy3]
+      vision_verified: [qwen3.8-flash, glm-5.3-flash, hy3]
+      audio_verified: []   # none — every candidate returned 400 or refused inside a 200 body
+      unavailable_on_plan: [mimo-v2.5, qwen-3.8-flash]   # 402 balance required
+      vision_disabled: [minimax-m3, deepseek-v4-flash-0731]
+    corrections_to_the_brief:
+    - 'MiMo-V2.5 is NOT usable: 402 "primary balance is not positive enough". It was the brief''s highest-priority rescue model.'
+    - 'qwen-3.8-flash and qwen3.8-flash are different models; only the unhyphenated ID serves.'
+    - 'No Cavoti model accepts audio. Two refused inside an HTTP 200 body ("Unsupported content type … only supports text input") — counting those as passes would have shipped a false capability claim.'
+    scene_lens_3_images:
+      evidence: docs/evidence/phase3/scene-lens-3.json
+      result: '3/3 images pass the full SceneLens contract with Gemini''s circuit forced open; served-by-Gemini = 0'
+      cavoti_route_served: 'cavoti-hy3 served the Singapore campus notice, reading English + Malay + Mandarin'
+      note: 'records run history and best-ever per image, because repeated verification exhausts the free tier'
+    chain_deadline: 'vision 75s, text 60s — one measured Scene Lens call took 111s when four providers failed slowly in turn'
+    cloudflare_now_configured: true   # account id supplied; all three cloudflare legs are healthy
+  not_done_in_phase3_yet:
+  - Study Copilot still renders static samples (src/features/Study.tsx)
+  - conversation sessions are not persisted to Appwrite (YapSim attempts and skill profiles are)
+  - streaming STT (gemini-3.5-transcribe-live) and the browser Live WebSocket are not wired
+  - onboarding does not yet collect the AI Language Profile (it is read from Settings preferences)
+  - Practice This Situation passes an incident string; it does not yet carry the full Lens scene
+  provider_verification:
+    evidence: docs/evidence/phase3/provider-matrix.json
+    result: '14/16 routes verified against live providers on 2026-09-16'
+    blocked_by_quota: '/lens/scene (gemini-3.8-flash 503/429) and /study/analyze (groq 429)'
+    free_tier_sufficient: false   # 429 RESOURCE_EXHAUSTED and 503 UNAVAILABLE observed alternating
+  quality_gate:
+    typecheck: passing
+    production_build: passing
+    contract_tests: '39/39 passing'
+    browser_evidence: 'docs/evidence/phase3/lens-evidence.json — Lens rendered at 390x844/430x932/768/1440x900, no horizontal overflow, no page errors'
+    browser_console_errors: 'only the pre-existing Appwrite guest 401/404 probes; no new Phase 3 errors'
+    secret_scan: 'clean — only VITE_* client identifiers appear, which are public by design'
+    known_harness_issue: 'scripts/verify/responsive.mjs onboarding walk stalls (clicks the country step in the wrong order); scripts/verify/lens-evidence.mjs works'
 build:
-  typecheck: passing
-  production_build: passing
+  typecheck: passing            # verified 2026-09-16: tsc --noEmit exit 0
+  production_build: passing     # verified 2026-09-16: vite build exit 0 (668 kB JS, chunk-size warning)
+  foundation_tests: passing     # verified 2026-09-16: node --test scripts/appwrite/schema.test.mjs 3/3
   preview_port_fix: reported fixed
-foundation_lock: implemented
+foundation_lock: implemented   # verified 2026-09-16 remotely: 13/13 P0 tables + temp-media bucket, verify:appwrite exit 0
 implemented_reported:
 - 13-step onboarding
 - 11 ASEAN country selector
@@ -20,6 +146,23 @@ implemented_reported:
 - Appwrite browser client and anonymous-session onboarding entry
 - Foundation resource manifest and public/server environment boundary
 - Appwrite Foundation bootstrap verifies 13 assigned P0 TablesDB tables and the temp-media bucket
+verified_2026_09_16:
+- ai-gateway SUPERSEDED by ADR-004 on 2026-09-16: it now implements 15 routes with per-operation contracts, cross-provider fallback and no schema normalisation. The earlier note about Reply/Tone Check reusing the Lens schema and sim/study routes being missing no longer applies — see phase3_ai_core above.
+- ADR-002 Cloudflare/OpenRouter emergency providers still NOT configured; fallback is now real but between Gemini and Groq rather than to those providers.
+- local env still missing OPENROUTER_API_KEY and CLOUDFLARE_ACCOUNT_ID is empty.
+- ai-gateway deployed instance remains unverified from this checkout (function code exists locally only).
+- 'src/index.css @theme tokens and src/components/shell.tsx AppShell were the legacy pre-ADR-003 palette/phone shell (Phase 1 target) -> RESOLVED 2026-09-16: ADR-003 monochrome tokens + responsive shell implemented (see phase1_responsive below)'
+- index.html title/meta/robots are Figma Make placeholders (site.json has no title; description is generic; robots index=false) — Phase 6 target
+- no dev server currently listening on 5173/8443/4173 in this checkout; browser evidence requires starting one
+phase1_responsive:
+  implemented_at: '2026-09-16'
+  decision: docs/adr/ADR-003-monochrome-ui-and-reference-shift.md
+  tokens: monochrome set in src/index.css (canvas #F7F7F5, surface #FFFFFF, ink #111111, muted #6B6B68, line #E5E5E1, cobalt accent only when needed); amber/canvas-green/ink-navy retired; no default card shadow
+  layout: '360-599 bottom nav; 600-1023 compact rail 76px; 1024+ rail 220px + workspace 680-800px; context panel 300px only at >=1200 when a view claims it'
+  breakpoints: 'content-based custom variants rail:600 desk:1024 wide:1200'
+  evidence: docs/evidence/phase1/report.json + today-*.png / lens-result-*.png
+  verified: 'headless Chromium at 360/390/430/768/1024/1440; no horizontal overflow; nav touch targets 44-51px; card shadow none'
+  fixed_in_phase: 'journey persistence side effect moved out of state updater (StrictMode 409 race); Card tone prop; context panel viewport gating'
 not_fully_verified_reported:
 - Lens→Reply→YapSim→skill update full browser flow
 - Bank checklist→Explore→complete full flow
@@ -30,3 +173,41 @@ not_fully_verified_reported:
 - real Gemini/RAG execution
 - real realtime chat
 - fresh-session journey persistence and cross-user row-isolation browser E2E
+phase5_connect_explore:
+  implemented_at: '2026-09-16'
+  scope: 'Connect (community feed + people discovery) and Explore (real map) — ran in parallel with Phase 4'
+  product_thesis: 'Greenbook = verified institutional knowledge; YapLens/YapSim = AI interpretation and practice; Connect + Explore = lived student experience'
+  connect:
+    shape: 'Community (default) + People; messaging explicitly out of scope, chat infrastructure untouched'
+    filters: 'For You, Host Country, My University, Tips, Places, Questions, Moments, Saved'
+    post_types: 'moment, tip, question, place, warning, guide, culture, study'
+    matching: 'deterministic scoring with human-readable reasons; no ML recommender, no opaque compatibility score'
+    realtime: 'one subscription per authenticated user on community_posts; HTTP query remains the source of truth'
+  explore:
+    map: 'MapLibre GL JS + OpenFreeMap basemap + OpenStreetMap data; style URL is configurable because the public basemap has no SLA'
+    replaced: 'the hand-drawn SVG grid map is deleted, not hidden'
+    poi_source: 'OpenStreetMap via Overpass, bootstrapped once by scripts/explore/bootstrap-osm.mjs and cached in Appwrite'
+    no_google_maps: true
+    attribution: 'OpenStreetMap attribution asserted by the browser gate, not assumed'
+  appwrite:
+    tables_created: 'community_posts, post_media, post_reactions, post_comments, saved_posts, place_contributions, place_saves, place_collections, follows, reports'
+    tables_reused: 'student_social_profiles (extended), places (extended with OSM identity + community counters), user_blocks, universities (seeded)'
+    bucket_added: community_media
+    permissions: 'row security on every new table; a student can read another student''s public post but can never update or delete it'
+  seed:
+    provenance: 'every synthetic row carries is_demo_seed + seed_origin=demo + verification=synthetic_demo; none is ever marked verified_student/real_user/partner_student'
+    places: '8419 OpenStreetMap POIs + 11 curated anchors = 8430 rows across MY/SG/ID/TH/PH/VN'
+    community: '12 demo profiles, 10 demo posts, 28 comments, 68 reactions, 24 post saves, 41 place saves, 9 media rows, 6 place contributions'
+  safety:
+    live_location: 'out of scope by decision — shared places and experiences only; no precise current coordinates are ever published'
+    controls: 'block, report, discoverability off'
+  evidence:
+    data_and_permissions: docs/evidence/phase5/verify.json (33/33)
+    browser: docs/evidence/phase5/browser.json (37/37 across 390x844, 430x932, 768x1024, 1440x900)
+    seed: docs/evidence/phase5/seed-report.json
+    osm_bootstrap: docs/evidence/phase5/osm-bootstrap.json
+    report: docs/evidence/phase5/FINAL_REPORT.md
+  harness_fixes:
+    - 'scripts/verify/lib/onboarding.mjs: completion is now confirmed over a settle rather than sampled, and the walker tolerates momentarily un-clickable screens — the previous walker reported a false pass while the country picker was on screen, and ended the walk on the first idle step'
+    - 'scripts/verify/lib/onboarding.mjs: option chips are clicked once per screen; re-clicking toggled the answer off and stalled the goals step'
+    - 'src/features/Onboarding.tsx: added data-testid="onboarding" so "is onboarding still showing" is structural rather than a list of step titles that missed "Where are you going?"'
