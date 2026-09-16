@@ -51,7 +51,7 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
       if (!result.ok) return;
       userIdRef.current = result.user.$id;
       await saveJourney(result.user.$id, next);
-    })();
+    })().catch((error) => console.error("[yapyep] journey persistence failed", error));
   };
 
   const pair = useMemo(() => computePairDNA(journey.home, journey.host, journey.myDna as DnaScores), [journey]);
@@ -83,13 +83,13 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
     toggleTask: (id) => {
       setSavedTasks((s) => {
         const next = !s[id];
-        if (userIdRef.current) void setTaskProgress(userIdRef.current, id, next);
+        if (userIdRef.current) void setTaskProgress(userIdRef.current, id, next).catch((error) => console.error("[yapyep] task progress persistence failed", error));
         else {
           void currentUser().then((result) => {
             if (!result.ok) return;
             userIdRef.current = result.user.$id;
             return setTaskProgress(result.user.$id, id, next);
-          });
+          }).catch((error) => console.error("[yapyep] task progress persistence failed", error));
         }
         return { ...s, [id]: next };
       });

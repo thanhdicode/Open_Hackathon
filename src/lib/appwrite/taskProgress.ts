@@ -25,14 +25,15 @@ export async function fetchTaskProgress(userId: string): Promise<Record<string, 
       queries: [Query.equal("user_id", userId), Query.limit(200)],
     });
     return Object.fromEntries(res.rows.map((row) => [row.task_id, row.status === "done"]));
-  } catch {
+  } catch (error) {
     // Table not provisioned yet, or the user has no rows — fail closed to local-only state.
+    console.error("[yapyep] fetchTaskProgress failed", error);
     return {};
   }
 }
 
-export async function setTaskProgress(userId: string, taskId: string, done: boolean): Promise<void> {
-  if (!ready()) return;
+export async function setTaskProgress(userId: string, taskId: string, done: boolean): Promise<boolean> {
+  if (!ready()) return false;
   try {
     const existing = await tablesDB.listRows<TaskProgressRow>({
       databaseId: APPWRITE_DATABASE_ID!,
@@ -45,7 +46,10 @@ export async function setTaskProgress(userId: string, taskId: string, done: bool
     } else {
       await tablesDB.createRow({ databaseId: APPWRITE_DATABASE_ID!, tableId: TABLE_ID, rowId: ID.unique(), data, permissions: [Permission.read(Role.user(userId)), Permission.update(Role.user(userId)), Permission.delete(Role.user(userId))] });
     }
-  } catch {
+    return true;
+  } catch (error) {
     // Best-effort persistence; local optimistic state already reflects the toggle.
+    console.error("[yapyep] setTaskProgress failed", error);
+    return false;
   }
 }
