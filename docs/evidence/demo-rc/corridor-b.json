@@ -1,0 +1,106 @@
+{
+  "id": "B",
+  "persona": "Kai",
+  "label": "Singapore → Viet Nam (FPT University HCMC)",
+  "checks": [
+    {
+      "name": "fresh account completes onboarding into the five-tab shell",
+      "ok": true
+    },
+    {
+      "name": "Today shows a derived exchange stage",
+      "ok": true,
+      "note": "Before departure",
+      "stage": "Before departure"
+    },
+    {
+      "name": "Today shows this corridor's route, not a seed journey",
+      "ok": true,
+      "note": "🇸🇬 → 🇻🇳 Viet Nam (expected 🇸🇬 → Viet Nam)"
+    },
+    {
+      "name": "journey persisted to Appwrite",
+      "ok": true,
+      "note": "host=VN city=Ho Chi Minh City",
+      "userId": "6aaada79de3df5fce326"
+    },
+    {
+      "name": "the home country was persisted too",
+      "ok": true,
+      "note": "home=SG expected=SG"
+    },
+    {
+      "name": "the canonical timeline was persisted",
+      "ok": true,
+      "note": "arrival=2026-10-16 return=2027-02-20",
+      "dates": {
+        "departureDate": "2026-10-14",
+        "arrivalDate": "2026-10-16",
+        "programStartDate": "2026-10-21",
+        "programEndDate": "2027-02-11",
+        "returnDate": "2027-02-20"
+      }
+    },
+    {
+      "name": "exchange_stage is derived, not hardcoded 'studying'",
+      "ok": true,
+      "note": "exchange_stage=before_departure"
+    },
+    {
+      "name": "journey survives a reload",
+      "ok": true,
+      "note": "route restored: 🇸🇬 → 🇻🇳 Viet Nam"
+    },
+    {
+      "name": "host country Greenbook has a published corpus",
+      "ok": true,
+      "note": "24 point(s) for Viet Nam",
+      "points": 24
+    },
+    {
+      "name": "no horizontal overflow at 1440",
+      "ok": true,
+      "note": "1440 vs 1440"
+    },
+    {
+      "name": "no horizontal overflow at 390",
+      "ok": true,
+      "note": "390 vs 390"
+    },
+    {
+      "name": "zero fatal console errors",
+      "ok": true,
+      "note": "6 expected guest probe(s), 0 fatal",
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()",
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ]
+    }
+  ],
+  "persisted": {
+    "userId": "6aaada79de3df5fce326",
+    "host": "VN",
+    "home": "SG",
+    "city": "Ho Chi Minh City",
+    "exchangeStage": "before_departure",
+    "exchangeStart": "2026-10-16T00:00:00.000+00:00",
+    "exchangeEnd": "2027-02-20T00:00:00.000+00:00",
+    "dates": {
+      "departureDate": "2026-10-14",
+      "arrivalDate": "2026-10-16",
+      "programStartDate": "2026-10-21",
+      "programEndDate": "2027-02-11",
+      "returnDate": "2027-02-20"
+    }
+  },
+  "greenbook": {
+    "hostName": "Viet Nam",
+    "points": 24,
+    "sparse": false
+  },
+  "finalText": "Y\nYapYep\n🇸🇬\n→\n🇻🇳\nViet\nToday\nPassport\nLens\nExplore\nConnect\nM\nProfile\nToday\nM\n\nGood morning,\n\nYou\n🇸🇬 → 🇻🇳 Viet Nam\n·\nBefore departure\nScan\nAsk\nMessage\nPractice\nLiving Greenbook\n🇻🇳 Your Viet field manual\n\n24 verified points from official sources, with tasks and phrases for your first weeks.\n\nOpen Greenbook →\nYour focus today\nFirst Week\nOpen a student bank account\n\nMoney & Banking · needs 3 "
+}
