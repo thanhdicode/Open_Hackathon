@@ -123,16 +123,27 @@ function tokenize(text) {
     .filter((token) => token.length > 2 && !STOPWORDS.has(token));
 }
 
-function scoreFact(fact, terms) {
+/** Mirrors `inverseDocumentFrequency` in src/lib/greenbook/ask.ts. */
+function inverseDocumentFrequency(term, facts) {
+  let documentFrequency = 0;
+  for (const fact of facts) {
+    const haystack = `${fact.claim} ${fact.action ?? ""} ${fact.evidenceQuote ?? ""}`.toLowerCase();
+    if (haystack.includes(term)) documentFrequency += 1;
+  }
+  return Math.log(1 + facts.length / (1 + documentFrequency));
+}
+
+function scoreFact(fact, terms, idf) {
   if (!terms.length) return 0;
   const claim = fact.claim.toLowerCase();
   const action = (fact.action ?? "").toLowerCase();
   const quote = (fact.evidenceQuote ?? "").toLowerCase();
   let score = 0;
   for (const term of terms) {
-    if (claim.includes(term)) score += 3;
-    if (action.includes(term)) score += 2;
-    if (quote.includes(term)) score += 1;
+    const weight = idf.get(term) ?? 1;
+    if (claim.includes(term)) score += 3 * weight;
+    if (action.includes(term)) score += 2 * weight;
+    if (quote.includes(term)) score += 1 * weight;
   }
   return score;
 }
@@ -144,16 +155,39 @@ function buildPacket({ countryCode, question, allFacts, sourcesById, chapter = n
   steps.push(`metadata filter: ${facts.length} fact(s) for ${countryCode}${chapter ? `/${chapter}` : ""}`);
 
   const terms = question ? tokenize(question) : [];
+  const scores = new Map();
   if (terms.length) {
-    const matched = facts.map((fact) => ({ fact, score: scoreFact(fact, terms) })).filter((entry) => entry.score > 0);
+    const idf = new Map(terms.map((term) => [term, inverseDocumentFrequency(term, facts)]));
+    for (const fact of facts) scores.set(fact.factId, scoreFact(fact, terms, idf));
+    const matched = facts.filter((fact) => (scores.get(fact.factId) ?? 0) > 0);
     if (matched.length) {
-      matched.sort((a, b) => b.score - a.score);
-      facts = matched.map((entry) => entry.fact);
+      facts = matched;
       steps.push(`fulltext: ${facts.length} fact(s) matched ${terms.length} term(s)`);
     } else {
       steps.push("fulltext: no term matched — keeping the chapter set as context");
     }
   }
+
+  // Group expansion: siblings carry score 0, so they cannot outrank a match.
+  if (facts.length) {
+    const chapters = new Set(facts.map((fact) => fact.chapter));
+    const expansion = allFacts.filter(
+      (fact) => fact.countryCode === countryCode && PUBLISHED_STATUSES.includes(fact.verificationStatus) && chapters.has(fact.chapter) && !facts.some((kept) => kept.factId === fact.factId),
+    );
+    if (expansion.length) {
+      for (const fact of expansion) if (!scores.has(fact.factId)) scores.set(fact.factId, 0);
+      facts = [...facts, ...expansion];
+      steps.push(`group expansion: +${expansion.length} related fact(s)`);
+    }
+  }
+
+  // Relevance first — mirrors src/lib/greenbook/ask.ts.
+  const rank = (fact) => (fact.authorityLevel === "A" ? 0 : fact.authorityLevel === "B" ? 1 : 2);
+  facts = [...facts].sort((a, b) => {
+    const byScore = (scores.get(b.factId) ?? 0) - (scores.get(a.factId) ?? 0);
+    if (byScore !== 0) return byScore;
+    return rank(a) - rank(b) || String(b.checkedAt).localeCompare(String(a.checkedAt));
+  });
 
   const sourceIds = [...new Set(facts.map((fact) => fact.sourceId))];
   const sources = sourceIds.map((id) => sourcesById.get(id)).filter(Boolean);
@@ -167,6 +201,52 @@ function buildPacket({ countryCode, question, allFacts, sourcesById, chapter = n
 const argv = process.argv.slice(2);
 const corridorIndex = argv.indexOf("--corridor");
 const only = corridorIndex >= 0 ? argv[corridorIndex + 1] : null;
+/**
+ * `--deployed` calls the route through the live Appwrite function instead of
+ * invoking the handler in-process.
+ *
+ * The two are not equivalent and both matter. In-process proves the route logic;
+ * deployed proves the product. Before this flag existed the route could pass
+ * every local check while the browser still fell back to no-LLM, because the
+ * deployed function was older code with no such route — a gap that only the
+ * deployed call can close.
+ */
+const useDeployed = argv.includes("--deployed");
+
+const deployedCall = useDeployed ? await (async () => {
+  const { Client, Functions, ExecutionMethod } = await import("node-appwrite");
+  const client = new Client()
+    .setEndpoint(process.env.VITE_APPWRITE_ENDPOINT)
+    .setProject(process.env.VITE_APPWRITE_PROJECT_ID)
+    .setKey(process.env.APPWRITE_API_KEY);
+  const functions = new Functions(client);
+  return async (route, body) => {
+    const execution = await functions.createExecution({ functionId: "ai-gateway", body: JSON.stringify(body), async: false, xpath: route, method: ExecutionMethod.POST });
+    const payload = JSON.parse(execution.responseBody || "{}");
+    if (!payload.ok) {
+      const error = new Error(payload.message || "deployed call failed");
+      error.code = payload.code;
+      error.retryable = payload.retryable;
+      throw error;
+    }
+    return { data: payload.data, provider: payload.meta?.providerUsed ?? "unknown", model: payload.meta?.model ?? "unknown", attempts: payload.meta?.attempts };
+  };
+})() : null;
+
+/** Route invocation, local or deployed, behind one signature. */
+async function invokeRoute(route, body) {
+  if (deployedCall) {
+    const outcome = await deployedCall(route, body);
+    const parsed = routes[route].result.safeParse(outcome.data);
+    if (!parsed.success) throw new Error(`contract mismatch: ${parsed.error.issues.slice(0, 3).map((issue) => `${issue.path.join(".")}: ${issue.message}`).join("; ")}`);
+    return { data: parsed.data, provider: outcome.provider, model: outcome.model, attempts: outcome.attempts };
+  }
+  const input = routes[route].request.parse(body);
+  const outcome = await routes[route].handler(input);
+  const parsed = routes[route].result.safeParse(outcome.data);
+  if (!parsed.success) throw new Error(`contract mismatch: ${parsed.error.issues.slice(0, 3).map((issue) => `${issue.path.join(".")}: ${issue.message}`).join("; ")}`);
+  return { data: parsed.data, provider: outcome.provider, model: outcome.model, attempts: outcome.attempts };
+}
 
 const CORRIDORS = [
   {
@@ -249,11 +329,8 @@ for (const corridor of CORRIDORS.filter((entry) => !only || entry.id === only)) 
   let grounded = null;
   let failure = null;
   try {
-    const input = routes["/greenbook/ask"].request.parse(body);
-    const outcome = await routes["/greenbook/ask"].handler(input);
-    const parsed = routes["/greenbook/ask"].result.safeParse(outcome.data);
-    if (!parsed.success) throw new Error(`contract mismatch: ${parsed.error.issues.slice(0, 3).map((issue) => `${issue.path.join(".")}: ${issue.message}`).join("; ")}`);
-    grounded = { data: parsed.data, provider: outcome.provider, model: outcome.model, attempts: outcome.attempts, ms: Date.now() - started };
+    const outcome = await invokeRoute("/greenbook/ask", body);
+    grounded = { data: outcome.data, provider: outcome.provider, model: outcome.model, attempts: outcome.attempts, ms: Date.now() - started };
   } catch (error) {
     failure = { code: error.code ?? "UNKNOWN", message: error.message, retryable: error.retryable ?? null, ms: Date.now() - started };
   }
@@ -292,25 +369,37 @@ for (const corridor of CORRIDORS.filter((entry) => !only || entry.id === only)) 
   }
 
   /* ------------- 2. every provider down → the route must fail cleanly ------ */
-  const tripped = ["groq-text", "explabs-luna", "explabs-deepseek", "groq-vision", "cavoti-qwen", "cavoti-glm", "cavoti-hy3", "cavoti-mimo", "cavoti-minimax", "cavoti-deepseek", "openrouter-ling", "cloudflare-text", "gemini", "explabs-qwen-paid", "openrouter"];
-  breaker.reset();
-  for (const id of tripped) breaker.trip(id, 60_000);
+  /*
+   * Only meaningful in-process. The breaker is a module-level singleton inside
+   * whichever process is serving the request, so tripping it here cannot reach a
+   * deployed function — the call would succeed and the check would report a false
+   * pass. Recording it as skipped is the honest outcome; the fallback itself is
+   * still proven below, and the browser E2E exercises the real degraded path.
+   */
+  if (useDeployed) {
+    check("provider-outage handling is verified in-process, not remotely", true, { note: "skipped in --deployed mode; run without the flag to exercise the breaker", skipped: true });
+  } else {
+    const tripped = ["groq-text", "explabs-luna", "explabs-deepseek", "groq-vision", "cavoti-qwen", "cavoti-glm", "cavoti-hy3", "cavoti-mimo", "cavoti-minimax", "cavoti-deepseek", "openrouter-ling", "cloudflare-text", "gemini", "explabs-qwen-paid", "openrouter"];
+    breaker.reset();
+    for (const id of tripped) breaker.trip(id, 60_000);
 
-  let outageFailure = null;
-  try {
-    const input = routes["/greenbook/ask"].request.parse(body);
-    const outcome = await routes["/greenbook/ask"].handler(input);
-    outageFailure = { unexpected: true, provider: outcome.provider, answer: outcome.data?.answer };
-  } catch (error) {
-    outageFailure = { code: error.code ?? "UNKNOWN", message: error.message, retryable: error.retryable ?? null };
+    let outageFailure = null;
+    try {
+      const outcome = await invokeRoute("/greenbook/ask", body);
+      outageFailure = { unexpected: true, provider: outcome.provider, answer: outcome.data?.answer };
+    } catch (error) {
+      outageFailure = { code: error.code ?? "UNKNOWN", message: error.message, retryable: error.retryable ?? null };
+    }
+    const cleanFailure = Boolean(outageFailure && !outageFailure.unexpected && outageFailure.retryable !== false);
+    check("with every provider tripped the route fails cleanly, not silently", cleanFailure, {
+      note: outageFailure?.unexpected
+        ? `UNEXPECTED SUCCESS via ${outageFailure.provider} — the trip did not take effect`
+        : `code=${outageFailure.code} retryable=${outageFailure.retryable}`,
+      failure: outageFailure,
+    });
+
+    breaker.reset();
   }
-  const cleanFailure = Boolean(outageFailure && !outageFailure.unexpected && outageFailure.retryable !== false);
-  check("with every provider tripped the route fails cleanly, not silently", cleanFailure, {
-    note: outageFailure?.unexpected
-      ? `UNEXPECTED SUCCESS via ${outageFailure.provider} — the trip did not take effect`
-      : `code=${outageFailure.code} retryable=${outageFailure.retryable}`,
-    failure: outageFailure,
-  });
 
   /* ------------- 3. the deterministic fallback on the same packet ---------- */
   const fallback = buildNoLlmAnswer(packet, []);

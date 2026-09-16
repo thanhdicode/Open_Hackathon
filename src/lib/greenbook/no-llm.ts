@@ -26,6 +26,14 @@ import type { EvidencePacket, GreenbookAnswer, GreenbookFact, TrustState } from 
 export const UNVERIFIED_ANSWER = "I couldn't verify this from a current authoritative source yet.";
 
 /**
+ * How many top-ranked facts the briefing is assembled from.
+ *
+ * Large enough to cover several chapters, small enough that an expanded sibling
+ * cannot lead the answer. See `buildNoLlmAnswer`.
+ */
+export const BRIEFING_FACTS = 12;
+
+/**
  * How much a stored row can be trusted, derived from its verification status
  * plus freshness. A row past its `validUntil` is stale no matter how it was
  * verified: an expired Student Pass rule is not official guidance any more.
@@ -105,9 +113,20 @@ export function buildNoLlmAnswer(packet: EvidencePacket, phrases: string[]): Gre
   const official = facts.filter((fact) => trustStateOf(fact) === "official");
   const lead = official.length ? official : facts;
 
-  // Grouped by chapter so the answer reads as a short briefing rather than a list.
+  /*
+   * The briefing is built from the TOP-RANKED facts, not from everything
+   * retrieved.
+   *
+   * The packet is ordered by relevance, so the first entries are what the
+   * question was actually about. Group expansion deliberately adds siblings from
+   * the matched chapters, and without this cap a question about a Student's Pass
+   * produced a briefing led by a bank's investment disclaimer — true, verified,
+   * and useless. The cap changes what is shown, never what is stored:
+   * `answer.facts` still carries the whole packet for the UI.
+   */
+  const ranked = facts.slice(0, BRIEFING_FACTS);
   const byChapter = new Map<string, GreenbookFact[]>();
-  for (const fact of facts) {
+  for (const fact of ranked) {
     const list = byChapter.get(fact.chapter) ?? [];
     list.push(fact);
     byChapter.set(fact.chapter, list);

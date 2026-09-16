@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-16T16:27:07.260Z",
-  "baseUrl": "http://localhost:8443",
+  "generatedAt": "2026-09-16T17:48:32.591Z",
+  "baseUrl": "http://127.0.0.1:5173",
   "hostRoute": "Viet → Singapore",
   "verifiedPoints": 32,
   "viewports": [
@@ -160,22 +160,24 @@
     },
     {
       "step": "no uncaught page errors",
-      "ok": true,
-      "detail": "none"
+      "ok": false,
+      "detail": "A network error occurred. | A network error occurred."
     }
   ],
-  "passed": 28,
-  "failed": 0,
-  "answerTail": " hold an exemption. Verify if you hold a valid exempted pass type to avoid applying. Prepare original documents and official translations. Ensure all translations are properly attested or notarized. SOURCES (2) A Immigration & Checkpoints Authority https://www.ica.gov.sg/reside/STP Checked 16 thg 9, 2026 · en A Immigration & Checkpoints Authority https://www.ica.gov.sg/reside/STP/apply/ihl Checked 16 thg 9, 2026 · en",
-  "pageErrors": [],
+  "passed": 27,
+  "failed": 1,
+  "answerTail": "nd before applying. Apply for a Student's Pass if you do not hold an exemption. Verify if you hold a valid exempted pass type to avoid applying. Prepare original documents and official translations. SOURCES (2) A Immigration & Checkpoints Authority https://www.ica.gov.sg/reside/STP Checked 16 thg 9, 2026 · en A Immigration & Checkpoints Authority https://www.ica.gov.sg/reside/STP/apply/ihl Checked 16 thg 9, 2026 · en",
+  "pageErrors": [
+    "A network error occurred.",
+    "A network error occurred."
+  ],
   "consoleErrors": [
     "Failed to load resource: the server responded with a status of 401 ()",
     "Failed to load resource: the server responded with a status of 404 ()",
-    "[yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaac31c390422202ed7' could not be found.\n    at Client.<anonymous> (http://localhost:8443/node_modules/.vite/deps/appwrite.js",
     "Failed to load resource: the server responded with a status of 404 ()",
     "Failed to load resource: the server responded with a status of 404 ()",
     "Failed to load resource: the server responded with a status of 404 ()",
     "Failed to load resource: the server responded with a status of 404 ()",
-    "Permissions policy violation: compute-pressure is not allowed in this document."
+    "Failed to load resource: net::ERR_CONNECTION_CLOSED"
   ]
 }

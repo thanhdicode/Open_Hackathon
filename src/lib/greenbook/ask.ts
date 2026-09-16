@@ -52,24 +52,49 @@ function tokenize(text: string): string[] {
 }
 
 /**
- * Step 2 of the retrieval order: fulltext scoring.
+ * Step 2 of the retrieval order: fulltext scoring, weighted by term rarity.
  *
  * Scored client-side rather than through a TablesDB fulltext index. The corpus is
- * ~100 facts, so a linear scan is faster than a round trip, and it avoids
+ * ~300 facts, so a linear scan is faster than a round trip, and it avoids
  * requiring an index that would need re-provisioning on a database that is being
  * written to by another process right now. When the corpus grows past a few
  * thousand facts this should move server-side — noted rather than pretended.
+ *
+ * WHY THE WEIGHTING IS NOT OPTIONAL
+ *
+ * Plain term overlap ranks a common word as high as a specific one. Measured on
+ * the corridor questions: "Singapore", "student" and "university" appear in a
+ * large share of the Singapore corpus, so a question about the Student's Pass
+ * pulled a transport-authority data-licence fact into the top three, and the
+ * Vietnam corridor led with a campus address rather than entry requirements.
+ * Every retrieved fact was true and verified; the ORDER was wrong, which is the
+ * difference between retrieval and a keyword search.
+ *
+ * `idf = ln(1 + N / df)` is the standard fix and needs no tuning: a term in
+ * every fact contributes ~0, a term in one fact contributes the most.
  */
-function scoreFact(fact: GreenbookFact, terms: string[]): number {
+function inverseDocumentFrequency(term: string, facts: GreenbookFact[]): number {
+  let documentFrequency = 0;
+  for (const fact of facts) {
+    const haystack = `${fact.claim} ${fact.action ?? ""} ${fact.evidenceQuote ?? ""}`.toLowerCase();
+    if (haystack.includes(term)) documentFrequency += 1;
+  }
+  return Math.log(1 + facts.length / (1 + documentFrequency));
+}
+
+function scoreFact(fact: GreenbookFact, terms: string[], idf: Map<string, number>): number {
   if (!terms.length) return 0;
   const claim = fact.claim.toLowerCase();
   const action = (fact.action ?? "").toLowerCase();
   const quote = (fact.evidenceQuote ?? "").toLowerCase();
   let score = 0;
   for (const term of terms) {
-    if (claim.includes(term)) score += 3;
-    if (action.includes(term)) score += 2;
-    if (quote.includes(term)) score += 1;
+    const weight = idf.get(term) ?? 1;
+    // The claim carries the requirement, so it is worth the most; the evidence
+    // quote is the raw source text and is worth the least.
+    if (claim.includes(term)) score += 3 * weight;
+    if (action.includes(term)) score += 2 * weight;
+    if (quote.includes(term)) score += 1 * weight;
   }
   return score;
 }
@@ -94,13 +119,21 @@ export async function retrieveEvidence(query: GreenbookQuery): Promise<EvidenceP
   steps.push(`metadata filter: ${facts.length} fact(s) for ${countryCode}${query.chapter ? `/${query.chapter}` : ""}`);
 
   // 2. fulltext
+  //
+  // The score is kept, not discarded. An earlier version sorted by score here
+  // and then threw the score away in the rerank below, which re-sorted by
+  // authority and recency — so a question about the Student's Pass could end up
+  // led by whichever Authority-A fact happened to be checked most recently, and
+  // the ranked order the rest of the function assumes did not exist. Carrying
+  // the score through is what makes "top-ranked" mean "most relevant".
   const terms = query.question ? tokenize(query.question) : [];
+  const scores = new Map<string, number>();
   if (terms.length) {
-    const scored = facts.map((fact) => ({ fact, score: scoreFact(fact, terms) }));
-    const matched = scored.filter((entry) => entry.score > 0);
+    const idf = new Map(terms.map((term) => [term, inverseDocumentFrequency(term, facts)]));
+    for (const fact of facts) scores.set(fact.factId, scoreFact(fact, terms, idf));
+    const matched = facts.filter((fact) => (scores.get(fact.factId) ?? 0) > 0);
     if (matched.length) {
-      matched.sort((a, b) => b.score - a.score);
-      facts = matched.map((entry) => entry.fact);
+      facts = matched;
       steps.push(`fulltext: ${facts.length} fact(s) matched ${terms.length} term(s)`);
     } else {
       steps.push("fulltext: no term matched — keeping the chapter set as context");
@@ -109,27 +142,31 @@ export async function retrieveEvidence(query: GreenbookQuery): Promise<EvidenceP
     steps.push("fulltext: skipped (no question, browsing context)");
   }
 
-  // 3. related fact-group expansion
+  // 3. related fact-group expansion.
+  // Expanded siblings carry no score, so they can never outrank a direct match.
   if (facts.length) {
     const chapters = new Set(facts.map((fact) => fact.chapter));
     const siblings = await listFacts({ countryCode, limit: 200 });
     const expansion = siblings.filter((fact) => chapters.has(fact.chapter) && !facts.some((kept) => kept.factId === fact.factId));
     if (expansion.length) {
+      for (const fact of expansion) if (!scores.has(fact.factId)) scores.set(fact.factId, 0);
       facts = [...facts, ...expansion];
       steps.push(`group expansion: +${expansion.length} related fact(s)`);
     }
   }
 
-  // 4. rerank — listFacts already ranked; re-apply so expansion respects order
+  // 4. rerank — relevance first, then journey stage, then authority, then recency.
   const stageOrder = ["before_arrival", "arrival", "first_week", "settling", "ongoing"];
   const target = query.journeyStage ? stageOrder.indexOf(query.journeyStage) : -1;
+  const rank = (fact: GreenbookFact) => (fact.authorityLevel === "A" ? 0 : fact.authorityLevel === "B" ? 1 : 2);
   facts = [...facts].sort((a, b) => {
+    const byScore = (scores.get(b.factId) ?? 0) - (scores.get(a.factId) ?? 0);
+    if (byScore !== 0) return byScore;
     if (target >= 0) {
       const da = Math.abs(stageOrder.indexOf(a.journeyStage) - target);
       const db = Math.abs(stageOrder.indexOf(b.journeyStage) - target);
       if (da !== db) return da - db;
     }
-    const rank = (fact: GreenbookFact) => (fact.authorityLevel === "A" ? 0 : fact.authorityLevel === "B" ? 1 : 2);
     return rank(a) - rank(b) || String(b.checkedAt).localeCompare(String(a.checkedAt));
   });
 

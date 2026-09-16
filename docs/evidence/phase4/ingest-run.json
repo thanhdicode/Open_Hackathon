@@ -1,128 +1,22 @@
 {
-  "generatedAt": "2026-09-16T17:39:02.085Z",
+  "generatedAt": "2026-09-16T17:41:55.427Z",
   "dryRun": false,
   "sources": [
     {
       "sourceId": "vn-moet-candidate",
       "stage": "done",
       "ok": true,
-      "bytes": 115058,
-      "contentHash": "31fb6b7067bbe620ec9d32e049be068f12625e7a3f6be4796d8c221fd2baa3ef",
+      "bytes": 115057,
+      "contentHash": "f30b84a111f668f8b8016fc927462b0b346191028f09b0919afdd47953c64f43",
       "snapshotKey": "vn/education/vn-moet-candidate/2026-09-16.html",
       "extraction": {
-        "model": "deepseek-v4-flash",
-        "latencyMs": 67411,
-        "candidates": 4,
-        "usage": {
-          "prompt_tokens": 4628,
-          "completion_tokens": 1490,
-          "total_tokens": 6118,
-          "completion_tokens_details": {
-            "reasoning_tokens": 0
-          },
-          "prompt_tokens_details": {
-            "cached_tokens": 0
-          }
-        }
-      },
-      "summary": {
-        "accepted": 4,
-        "duplicates": 0,
-        "byStatus": {
-          "needs_review": 4
-        },
-        "guidanceReady": 0,
-        "community": 0,
-        "needsReview": 4,
-        "unverified": 0
-      },
-      "persisted": {
-        "created": 3,
-        "statusChanged": 0,
-        "unchanged": 1,
-        "skipped": 0
-      },
-      "guidanceSample": []
-    },
-    {
-      "sourceId": "vn-imm-evisa",
-      "stage": "done",
-      "ok": true,
-      "bytes": 30192,
-      "contentHash": "d0e839415b20e8f0215437996f45b5dce203073b15973fc70b838921a83d26ec",
-      "snapshotKey": "vn/immigration/vn-imm-evisa/2026-09-16.html",
-      "extraction": {
         "model": "agnes-3.0-flash",
-        "latencyMs": 6964,
-        "candidates": 3,
-        "usage": {
-          "prompt_tokens": 627,
-          "completion_tokens": 421,
-          "total_tokens": 1048,
-          "completion_tokens_details": {
-            "reasoning_tokens": 0
-          },
-          "prompt_tokens_details": {
-            "cached_tokens": 0
-          }
-        }
-      },
-      "summary": {
-        "accepted": 3,
-        "duplicates": 0,
-        "byStatus": {
-          "official_verified": 3
-        },
-        "guidanceReady": 3,
-        "community": 0,
-        "needsReview": 0,
-        "unverified": 0
-      },
-      "persisted": {
-        "created": 3,
-        "statusChanged": 0,
-        "unchanged": 0,
-        "skipped": 0
-      },
-      "guidanceSample": [
-        {
-          "chapter": "get_ready",
-          "claim": "The Vietnam Electronic Visa Portal operates on the domains https://thithucdientu.gov.vn and https://evisa.gov.vn.",
-          "action": "Visit https://thithucdientu.gov.vn or https://evisa.gov.vn to submit visa applications and check results.",
-          "quote": "From 08:00 on 11/11/2024 (GMT+7) , the Vietnam Electronic Visa Portal will operate on two new domains: https://thithucdientu.gov.vn and http",
-          "status": "official_verified"
-        },
-        {
-          "chapter": "get_ready",
-          "claim": "Students can apply for an e-visa through the Vietnam Electronic Visa Portal.",
-          "action": "Use the e-visa issuance service on the portal to apply for a visa.",
-          "quote": "The Vietnam Immigration portal provides the following services: E-visa issuance",
-          "status": "official_verified"
-        },
-        {
-          "chapter": "land_and_settle",
-          "claim": "Foreigners can declare their temporary residence through the Vietnam Immigration portal.",
-          "action": "Use the portal to declare temporary residence.",
-          "quote": "Declare temporary residence for foreigners",
-          "status": "official_verified"
-        }
-      ]
-    },
-    {
-      "sourceId": "vn-fpt-hcm-exchange",
-      "stage": "done",
-      "ok": true,
-      "bytes": 122264,
-      "contentHash": "f178a029cc72488239b6c03db5c995d9010602d95d25a6f1def281574c5fac71",
-      "snapshotKey": "vn/university/vn-fpt-hcm-exchange/2026-09-16.html",
-      "extraction": {
-        "model": "agnes-3.0-flash",
-        "latencyMs": 3658,
+        "latencyMs": 8311,
         "candidates": 1,
         "usage": {
-          "prompt_tokens": 1107,
-          "completion_tokens": 166,
-          "total_tokens": 1273,
+          "prompt_tokens": 3095,
+          "completion_tokens": 137,
+          "total_tokens": 3232,
           "completion_tokens_details": {
             "reasoning_tokens": 0
           },
@@ -149,6 +43,257 @@
         "skipped": 0
       },
       "guidanceSample": []
+    },
+    {
+      "sourceId": "vn-imm-evisa",
+      "stage": "done",
+      "ok": true,
+      "bytes": 30192,
+      "contentHash": "84a589fe3e11e0ec17d0b680ea67056af32eeb85a96c2bdd1e49e3d1caaacf72",
+      "snapshotKey": "vn/immigration/vn-imm-evisa/2026-09-16.html",
+      "extraction": {
+        "model": "agnes-3.0-flash",
+        "latencyMs": 5906,
+        "candidates": 1,
+        "usage": {
+          "prompt_tokens": 627,
+          "completion_tokens": 223,
+          "total_tokens": 850,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "summary": {
+        "accepted": 1,
+        "duplicates": 0,
+        "byStatus": {
+          "official_verified": 1
+        },
+        "guidanceReady": 1,
+        "community": 0,
+        "needsReview": 0,
+        "unverified": 0
+      },
+      "persisted": {
+        "created": 0,
+        "statusChanged": 0,
+        "unchanged": 1,
+        "skipped": 0
+      },
+      "guidanceSample": [
+        {
+          "chapter": "get_ready",
+          "claim": "The Vietnam Electronic Visa Portal operates on the domains https://thithucdientu.gov.vn and https://evisa.gov.vn from 08:00 on 11/11/2024.",
+          "action": "Visit the new domains to submit visa applications and check results.",
+          "quote": "From 08:00 on 11/11/2024 (GMT+7) , the Vietnam Electronic Visa Portal will operate on two new domains: https://thithucdientu.gov.vn and http",
+          "status": "official_verified"
+        }
+      ]
+    },
+    {
+      "sourceId": "vn-fpt-hcm-exchange",
+      "stage": "unchanged",
+      "ok": true,
+      "bytes": 122264,
+      "contentHash": "f178a029cc72488239b6c03db5c995d9010602d95d25a6f1def281574c5fac71",
+      "snapshotKey": "vn/university/vn-fpt-hcm-exchange/2026-09-16.html",
+      "skippedReason": "content hash unchanged"
+    },
+    {
+      "sourceId": "vn-fpt-hcm-campus",
+      "stage": "done",
+      "ok": true,
+      "bytes": 295900,
+      "contentHash": "7ad1233e4e5d8c1fe956876f9c5cb2f3a30a3de22793fe698b07f02792cf3ae3",
+      "snapshotKey": "vn/university/vn-fpt-hcm-campus/2026-09-16.html",
+      "extraction": {
+        "model": "agnes-3.0-flash",
+        "latencyMs": 11381,
+        "candidates": 7,
+        "usage": {
+          "prompt_tokens": 2110,
+          "completion_tokens": 660,
+          "total_tokens": 2770,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "summary": {
+        "accepted": 7,
+        "duplicates": 0,
+        "byStatus": {
+          "university_verified": 7
+        },
+        "guidanceReady": 7,
+        "community": 0,
+        "needsReview": 0,
+        "unverified": 0
+      },
+      "persisted": {
+        "created": 7,
+        "statusChanged": 0,
+        "unchanged": 0,
+        "skipped": 0
+      },
+      "guidanceSample": [
+        {
+          "chapter": "land_and_settle",
+          "claim": "FPT University Ho Chi Minh City campus is located in the Ho Chi Minh City High-Tech Park.",
+          "action": "Note the campus location for travel planning.",
+          "quote": "Located in the Ho Chi Minh City High-Tech Park – home to high-tech companies such as FPT Software, Intel (USA), Nidec (Japan), and modern sc",
+          "status": "university_verified"
+        },
+        {
+          "chapter": "study_here",
+          "claim": "All FPT University students are equipped with a second foreign language, either Chinese or Japanese.",
+          "action": "Prepare to study or assess proficiency in Chinese or Japanese.",
+          "quote": "100 % Students are equipped with a second foreign language, either Chinese or Japanese.",
+          "status": "university_verified"
+        },
+        {
+          "chapter": "study_here",
+          "claim": "The library is a quiet, comfortable space with a rich source of materials for learning and research.",
+          "action": "Use the library for academic work and research.",
+          "quote": "The library is a quiet, comfortable space with a rich source of materials, serving the learning, research, and knowledge development needs o",
+          "status": "university_verified"
+        }
+      ]
+    },
+    {
+      "sourceId": "vn-fpt-student-life",
+      "stage": "done",
+      "ok": true,
+      "bytes": 106837,
+      "contentHash": "614227c791b30db3bcadfa971b74396fa86dfe847370b33b5921fbc37bd59b6b",
+      "snapshotKey": "vn/student_life/vn-fpt-student-life/2026-09-16.html",
+      "extraction": {
+        "model": "agnes-3.0-flash",
+        "latencyMs": 15306,
+        "candidates": 7,
+        "usage": {
+          "prompt_tokens": 1018,
+          "completion_tokens": 932,
+          "total_tokens": 1950,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "summary": {
+        "accepted": 7,
+        "duplicates": 0,
+        "byStatus": {
+          "university_verified": 7
+        },
+        "guidanceReady": 7,
+        "community": 0,
+        "needsReview": 0,
+        "unverified": 0
+      },
+      "persisted": {
+        "created": 7,
+        "statusChanged": 0,
+        "unchanged": 0,
+        "skipped": 0
+      },
+      "guidanceSample": [
+        {
+          "chapter": "culture_and_people",
+          "claim": "FPT University offers access to over 50 student clubs covering academics, arts, sports, and technology.",
+          "action": "Explore and join a club during the first week or settling period to build a network.",
+          "quote": "At FPTU, students participate in a vibrant extracurricular ecosystem with over 50 clubs ranging from academics, arts, sports to technology.",
+          "status": "university_verified"
+        },
+        {
+          "chapter": "study_here",
+          "claim": "FPT University students are entitled to register for at least one semester of study or international exchange at a partner university abroad.",
+          "action": "Inquire with academic advisors about international exchange registration eligibility.",
+          "quote": "Each FPTU student is entitled to register for at least one semester of study or international exchange at a partner university abroad.",
+          "status": "university_verified"
+        },
+        {
+          "chapter": "study_here",
+          "claim": "Students can participate in the On-the-Job Training (OJT) program in a real-world work environment starting from their third year.",
+          "action": "Plan for internship opportunities beginning in the third year of study.",
+          "quote": "The On-the-Job Training (OJT) program at FPTU allows students to experience a real-world work environment from their third year, participati",
+          "status": "university_verified"
+        }
+      ]
+    },
+    {
+      "sourceId": "vn-fpt-training",
+      "stage": "done",
+      "ok": true,
+      "bytes": 222600,
+      "contentHash": "a9a30bfb821ae6e1167564c27bfe67dc57bf7d0e7ee2ba34c435b5e0540f74f3",
+      "snapshotKey": "vn/university/vn-fpt-training/2026-09-16.html",
+      "extraction": {
+        "model": "agnes-3.0-flash",
+        "latencyMs": 13698,
+        "candidates": 5,
+        "usage": {
+          "prompt_tokens": 1594,
+          "completion_tokens": 706,
+          "total_tokens": 2300,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "summary": {
+        "accepted": 5,
+        "duplicates": 0,
+        "byStatus": {
+          "university_verified": 5
+        },
+        "guidanceReady": 5,
+        "community": 0,
+        "needsReview": 0,
+        "unverified": 0
+      },
+      "persisted": {
+        "created": 5,
+        "statusChanged": 0,
+        "unchanged": 0,
+        "skipped": 0
+      },
+      "guidanceSample": [
+        {
+          "chapter": "speak_and_understand",
+          "claim": "FPTU students must acquire English as a mandatory foundation and a second language, which is Japanese for Information Technology majors and Chinese for Economic",
+          "action": "Plan to study both English and your major-specific second language.",
+          "quote": "FPTU students are equipped with comprehensive foreign language skills, with English as a mandatory foundation and a second language (Japanes",
+          "status": "university_verified"
+        },
+        {
+          "chapter": "study_here",
+          "claim": "During the Foundation English stage, students must achieve a minimum English proficiency level equivalent to IELTS 6.0.",
+          "action": "Prepare to pass the Foundation English stage by reaching an IELTS 6.0 equivalent proficiency level.",
+          "quote": "Achieve a minimum English proficiency level equivalent to IELTS 6.0.",
+          "status": "university_verified"
+        },
+        {
+          "chapter": "study_here",
+          "claim": "Students who hold an English certificate equivalent to IELTS 6.0 are exempt from the preparatory English training phase.",
+          "action": "If you have an IELTS 6.0 equivalent certificate, claim exemption from the preparatory English training phase.",
+          "quote": "Students with an English certificate equivalent to IELTS 6.0 are exempt from the preparatory English training phase.",
+          "status": "university_verified"
+        }
+      ]
     }
   ]
 }

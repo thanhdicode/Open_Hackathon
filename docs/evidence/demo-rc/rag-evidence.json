@@ -1,14 +1,15 @@
 {
-  "generatedAt": "2026-09-16T17:37:40.808Z",
+  "generatedAt": "2026-09-16T18:00:16.085Z",
   "corpus": {
-    "facts": 284,
-    "sources": 46,
+    "facts": 313,
+    "sources": 51,
     "publishedByCountry": {
       "MY": 66,
       "SG": 32,
       "ID": 93,
       "TH": 13,
-      "PH": 15
+      "PH": 15,
+      "VN": 24
     }
   },
   "corridors": [
@@ -21,30 +22,166 @@
         {
           "name": "evidence packet is non-empty",
           "ok": true,
-          "note": "20 fact(s), 4 source(s)"
+          "note": "29 fact(s), 4 source(s)"
         },
         {
           "name": "a live model returned a grounded answer",
           "ok": true,
-          "note": "provider=explabs-luna model=gpt-5.6-luna attempts=undefined 11934ms",
-          "provider": "explabs-luna",
-          "model": "gpt-5.6-luna",
-          "ms": 11934
+          "note": "provider=groq-text model=openai/gpt-oss-120b attempts=undefined 4041ms",
+          "provider": "groq-text",
+          "model": "openai/gpt-oss-120b",
+          "ms": 4041
         },
         {
           "name": "every citation is inside the evidence allowlist",
           "ok": true,
-          "note": "3 cited, 0 outside the packet",
+          "note": "2 cited, 0 outside the packet",
           "cited": [
             "sg-ica-ihl",
-            "sg-ica-student",
-            "sg-mas"
+            "sg-ica-student"
           ],
           "allowlist": [
             "sg-ica-ihl",
             "sg-ica-student",
             "sg-lta-datamall",
             "sg-mas"
+          ]
+        },
+        {
+          "name": "the answer cites at least one retrieved source",
+          "ok": true,
+          "note": "2 citation(s)"
+        },
+        {
+          "name": "with every provider tripped the route fails cleanly, not silently",
+          "ok": true,
+          "note": "code=AI_UNAVAILABLE retryable=true",
+          "failure": {
+            "code": "AI_UNAVAILABLE",
+            "message": "chain-exhausted",
+            "retryable": true
+          }
+        },
+        {
+          "name": "the no-LLM fallback answers the same question from the same packet",
+          "ok": true,
+          "note": "mode=no_llm confidence=high actions=8 sources=4"
+        }
+      ],
+      "retrieval": {
+        "steps": [
+          "metadata filter: 32 fact(s) for SG",
+          "fulltext: 20 fact(s) matched 12 term(s)",
+          "group expansion: +9 related fact(s)",
+          "evidence packet: 29 fact(s), 4 source(s)"
+        ],
+        "facts": 29,
+        "sources": [
+          "sg-ica-ihl",
+          "sg-ica-student",
+          "sg-lta-datamall",
+          "sg-mas"
+        ]
+      },
+      "answer": {
+        "answer": "You will likely need to apply for a Student's Pass before you travel.  The ICA requires that a foreign student accepted for full‑time study submit the application 2‑3 months before the course starts and that the application can be filed while you are still in Vietnam.  You do not need to be in Singapore while it is processed, but you must enter Singapore after approval to complete the issuance formalities.  Prepare the required documents (passport, recent passport‑size colour photo, the school’s Registration Acknowledgement Letter, original documents and any official translations) and be ready to pay the non‑refundable S$45 processing fee.  Expect a processing time of up to one week (or two weeks if a visa is required).",
+        "whatToDo": [
+          "Plan to apply for the Student's Pass before arriving in Singapore",
+          "Submit the application 2‑3 months before your NUS semester begins",
+          "Check that you are enrolled in an approved full‑time programme and that you do not already hold an exempted pass",
+          "Take a recent passport‑size digital colour photo (within three months)",
+          "Obtain the Registration Acknowledgement Letter from NUS",
+          "Prepare original documents and official translations for any non‑English papers",
+          "Pay the S$45 processing fee using an accepted method",
+          "Enter Singapore after approval to complete the pass issuance formalities"
+        ],
+        "whatToPrepare": [
+          "Valid passport",
+          "Recent passport‑size digital colour photo",
+          "Registration Acknowledgement Letter from NUS",
+          "Original academic and identity documents plus official translations where required",
+          "Proof of payment method for the S$45 fee"
+        ],
+        "warnings": [
+          "Students cannot extend their stay in Singapore while a Student's Pass application is processing",
+          "You must not be in Singapore during processing; you need to enter after approval to collect the pass",
+          "Processing may take up to two weeks if a visa is required, so allow extra time"
+        ],
+        "confidence": "high",
+        "citedSourceIds": [
+          "sg-ica-ihl",
+          "sg-ica-student"
+        ],
+        "provider": "groq-text",
+        "model": "openai/gpt-oss-120b",
+        "latencyMs": 4041
+      },
+      "fallback": {
+        "mode": "no_llm",
+        "answer": "get ready: Students cannot extend their stay in Singapore while a Student's Pass application is processing. land and settle: After approval, the student must enter Singapore to complete formalities to issue the Student's Pass. study here: Using LTA’s datasets and APIs on DataMall means accepting the Singapore Open Data Licence and Terms of Service.",
+        "whatToDo": [
+          "Plan to apply for the Student's Pass before arriving in Singapore.",
+          "Submit your application within the specified time window before your course starts.",
+          "Apply for a Student's Pass if you do not hold an exemption.",
+          "Check your current immigration status to see if you need to apply for a Student's Pass.",
+          "Submit a new Student's Pass application if you change schools after approval but before collection.",
+          "Enter Singapore to complete the formalities once your application is approved.",
+          "Monitor your pass expiry date and apply for a Student's Pass immediately if your current pass lapses before your studies end.",
+          "Ensure your institution and course are on the ICA's list of approved full-time programmes."
+        ],
+        "whatToPrepare": [
+          "Plan to apply for the Student's Pass before arriving in Singapore.",
+          "Submit your application within the specified time window before your course starts.",
+          "Apply for a Student's Pass if you do not hold an exemption.",
+          "Check your current immigration status to see if you need to apply for a Student's Pass.",
+          "Submit a new Student's Pass application if you change schools after approval but before collection."
+        ],
+        "warnings": [],
+        "confidence": "high",
+        "sources": [
+          "sg-ica-ihl",
+          "sg-ica-student",
+          "sg-lta-datamall",
+          "sg-mas"
+        ],
+        "trustStates": [
+          "official"
+        ]
+      }
+    },
+    {
+      "id": "B",
+      "label": "Singapore → Vietnam (FPT HCMC)",
+      "countryCode": "VN",
+      "question": "I'm a Singapore student going to FPT University in Ho Chi Minh City for a semester. What visa or entry requirements apply, and what should I prepare before I arrive?",
+      "checks": [
+        {
+          "name": "evidence packet is non-empty",
+          "ok": true,
+          "note": "24 fact(s), 4 source(s)"
+        },
+        {
+          "name": "a live model returned a grounded answer",
+          "ok": true,
+          "note": "provider=explabs-luna model=gpt-5.6-luna attempts=undefined 10420ms",
+          "provider": "explabs-luna",
+          "model": "gpt-5.6-luna",
+          "ms": 10420
+        },
+        {
+          "name": "every citation is inside the evidence allowlist",
+          "ok": true,
+          "note": "3 cited, 0 outside the packet",
+          "cited": [
+            "vn-imm-evisa",
+            "vn-fpt-hcm-campus",
+            "vn-fpt-student-life"
+          ],
+          "allowlist": [
+            "vn-fpt-hcm-campus",
+            "vn-imm-evisa",
+            "vn-fpt-student-life",
+            "vn-fpt-training"
           ]
         },
         {
@@ -70,103 +207,83 @@
       ],
       "retrieval": {
         "steps": [
-          "metadata filter: 32 fact(s) for SG",
-          "fulltext: 20 fact(s) matched 12 term(s)",
-          "evidence packet: 20 fact(s), 4 source(s)"
+          "metadata filter: 24 fact(s) for VN",
+          "fulltext: 23 fact(s) matched 16 term(s)",
+          "group expansion: +1 related fact(s)",
+          "evidence packet: 24 fact(s), 4 source(s)"
         ],
-        "facts": 20,
+        "facts": 24,
         "sources": [
-          "sg-ica-ihl",
-          "sg-ica-student",
-          "sg-lta-datamall",
-          "sg-mas"
+          "vn-fpt-hcm-campus",
+          "vn-imm-evisa",
+          "vn-fpt-student-life",
+          "vn-fpt-training"
         ]
       },
       "answer": {
-        "answer": "If your NUS exchange semester is an approved full-time course and you do not hold an exempted immigration pass, you must apply for a Student’s Pass. Apply from Vietnam, ideally at least two months and no more than three months before the course begins; you do not need to be in Singapore while the application is processed. After approval, enter Singapore to complete the formalities for issuing the pass. Do not rely on extending your stay while the application is processing, because students cannot extend their stay for that purpose.",
+        "answer": "From the evidence, students can apply for a Vietnam e-visa through the Vietnam Electronic Visa Portal. The listed portal domains are https://thithucdientu.gov.vn and https://evisa.gov.vn. Foreigners can declare temporary residence through the Vietnam Immigration portal. The evidence does not specify Singapore-specific visa exemptions, passport-validity rules, permitted stay length, entry documents, fees, processing times, or other entry requirements, so these could not be verified from a current authoritative source.",
         "whatToDo": [
-          "Check whether your current immigration status gives you an exemption from the Student’s Pass requirement.",
-          "Confirm that your NUS exchange course is full-time and an approved programme.",
-          "Submit the Student’s Pass application within the required window: at least two months and no more than three months before the course begins.",
-          "Apply while still in Vietnam; you do not need to be in Singapore during processing.",
-          "After approval, enter Singapore and complete the formalities to issue the Student’s Pass.",
-          "Monitor any existing pass’s expiry date and apply immediately if it will lapse before your studies end."
+          "Apply for an e-visa through the Vietnam Electronic Visa Portal at https://thithucdientu.gov.vn or https://evisa.gov.vn.",
+          "Check your e-visa application result using the listed portal domains.",
+          "Arrange temporary-residence declaration through the Vietnam Immigration portal.",
+          "Note that the FPT University Ho Chi Minh City campus is in the Ho Chi Minh City High-Tech Park for travel planning.",
+          "Contact FPT University student services for help with administrative procedures.",
+          "Ask the university about dormitory accommodation and use its support services to register if needed."
         ],
         "whatToPrepare": [
-          "A recent passport-sized digital colour photo taken within the last three months.",
-          "Properly attested or notarized translations for documents that require translation.",
-          "A payment method accepted for the relevant fee: Visa, MasterCard, American Express, Internet Direct Debit, or PayNow.",
-          "Your current immigration-status information, so you can check whether an exemption applies."
+          "Prepare the information and materials required by the Vietnam Electronic Visa Portal; the evidence does not list the specific items.",
+          "Keep your e-visa application result available after checking it on the portal.",
+          "Prepare your accommodation plan, including dormitory registration if applicable.",
+          "Keep the FPT University Ho Chi Minh City campus location in your travel plans."
         ],
         "warnings": [
-          "A valid Long-Term Visit Pass or Dependant’s Pass may remove the need for a Student’s Pass for non-religious full-time studies if it remains valid for the full study period.",
-          "The evidence does not specify the full document list, fee amount, or arrival formalities; these could not be verified from the provided authoritative sources.",
-          "If you change schools after approval but before collecting the pass, you must submit a new application.",
-          "Check that any Singapore government website you use ends with .gov.sg."
+          "Singapore-specific visa or entry rules could not be verified from the evidence provided.",
+          "The evidence does not give an e-visa fee, processing time, validity period, permitted stay, passport requirement, or deadline.",
+          "The portal information states that the listed domains operate from 08:00 on 11/11/2024; check the current portal information before applying.",
+          "Temporary-residence declaration is mentioned, but the evidence does not explain when or how it must be completed."
         ],
-        "confidence": "high",
+        "confidence": "low",
         "citedSourceIds": [
-          "sg-ica-ihl",
-          "sg-ica-student",
-          "sg-mas"
+          "vn-imm-evisa",
+          "vn-fpt-hcm-campus",
+          "vn-fpt-student-life"
         ],
         "provider": "explabs-luna",
         "model": "gpt-5.6-luna",
-        "latencyMs": 11934
+        "latencyMs": 10420
       },
       "fallback": {
         "mode": "no_llm",
-        "answer": "get ready: Students cannot extend their stay in Singapore while a Student's Pass application is processing. land and settle: After approval, the student must enter Singapore to complete formalities to issue the Student's Pass. study here: Using LTA’s datasets and APIs on DataMall means accepting the Singapore Open Data Licence and Terms of Service. money and pay: Before making any investment decision or transferring money, verify the institution’s identity and use only official channels.",
+        "answer": "land and settle: FPT University Ho Chi Minh City campus is located in the Ho Chi Minh City High-Tech Park. get ready: Students can apply for an e-visa through the Vietnam Electronic Visa Portal. study here: All FPT University students are equipped with a second foreign language, either Chinese or Japanese. student reality: FPT University has strong partnerships with hundreds of domestic and international businesses providing internship and job opportunities.",
         "whatToDo": [
-          "Plan to apply for the Student's Pass before arriving in Singapore.",
-          "Check your current immigration status to see if you need to apply for a Student's Pass.",
-          "Apply for a Student's Pass if you do not hold an exemption.",
-          "Monitor your pass expiry date and apply for a Student's Pass immediately if your current pass lapses before your studies end.",
-          "Submit a new Student's Pass application if you change schools after approval but before collection.",
-          "Submit your application within the specified time window before your course starts.",
-          "Enter Singapore to complete the formalities once your application is approved.",
-          "Verify that your existing pass is valid for the full duration of your studies to avoid needing a Student's Pass."
+          "Note the campus location for travel planning.",
+          "Use the e-visa issuance service on the portal to apply for a visa.",
+          "Prepare to study or assess proficiency in Chinese or Japanese.",
+          "Inquire with academic advisors about international exchange registration eligibility.",
+          "Leverage university partnerships for internships and career exploration.",
+          "Prepare for and complete your on-the-job training in Semester 6 by participating in real-world company projects.",
+          "Prepare to pass the Foundation English stage by reaching an IELTS 6.0 equivalent proficiency level.",
+          "Plan to study both English and your major-specific second language."
         ],
         "whatToPrepare": [
-          "Plan to apply for the Student's Pass before arriving in Singapore.",
-          "Check your current immigration status to see if you need to apply for a Student's Pass.",
-          "Apply for a Student's Pass if you do not hold an exemption.",
-          "Monitor your pass expiry date and apply for a Student's Pass immediately if your current pass lapses before your studies end.",
-          "Submit a new Student's Pass application if you change schools after approval but before collection."
+          "Use the e-visa issuance service on the portal to apply for a visa.",
+          "Prepare to study or assess proficiency in Chinese or Japanese.",
+          "Prepare for and complete your on-the-job training in Semester 6 by participating in real-world company projects.",
+          "Prepare to pass the Foundation English stage by reaching an IELTS 6.0 equivalent proficiency level.",
+          "Visit the new domains to submit visa applications and check results."
         ],
         "warnings": [],
         "confidence": "high",
         "sources": [
-          "sg-ica-ihl",
-          "sg-ica-student",
-          "sg-lta-datamall",
-          "sg-mas"
+          "vn-fpt-hcm-campus",
+          "vn-imm-evisa",
+          "vn-fpt-student-life",
+          "vn-fpt-training"
         ],
         "trustStates": [
+          "university",
           "official"
         ]
-      }
-    },
-    {
-      "id": "B",
-      "label": "Singapore → Vietnam (FPT HCMC)",
-      "countryCode": "VN",
-      "question": "I'm a Singapore student going to FPT University in Ho Chi Minh City for a semester. What visa or entry requirements apply, and what should I prepare before I arrive?",
-      "checks": [
-        {
-          "name": "evidence packet is non-empty",
-          "ok": false,
-          "note": "0 fact(s), 0 source(s)"
-        }
-      ],
-      "retrieval": {
-        "steps": [
-          "metadata filter: 0 fact(s) for VN",
-          "fulltext: no term matched — keeping the chapter set as context",
-          "evidence packet: 0 fact(s), 0 source(s)"
-        ],
-        "facts": 0,
-        "sources": []
       }
     }
   ]
