@@ -5,6 +5,7 @@ import { Scroll } from "../components/shell";
 import { Card, ProgressRing, Button, Badge, SectionHeader, OfflineBanner, Skeleton, ErrorState, EmptyState, Notice } from "../components/ui";
 import { Icon, type IconName } from "../components/icons";
 import { COUNTRIES } from "../data/countries";
+import { dayOfExchange, deriveStage, exchangeLengthDays, stageLabel } from "../lib/journey/dates";
 import { listChapters } from "../lib/greenbook";
 
 /**
@@ -69,6 +70,17 @@ export default function Today() {
   if (forced === "error") return <Scroll className="px-5"><ErrorState /></Scroll>;
 
   const bankDone = savedTasks[journey.primaryTask.id];
+  /**
+   * The journey's phase, derived from the student's own dates.
+   *
+   * `primaryTask.phase` is seed copy ("First Week") and `dayCount`/`totalDays`
+   * are seed numbers, so both were wrong for anyone who onboarded with their own
+   * timeline. These are computed instead, and fall back to the seed copy only
+   * when a timeline is genuinely absent.
+   */
+  const stage = deriveStage(journey.dates);
+  const dayNumber = dayOfExchange(journey.dates);
+  const totalDays = exchangeLengthDays(journey.dates);
 
   return (
     <Scroll className="px-5 pb-6 pt-1">
@@ -80,10 +92,32 @@ export default function Today() {
         <p className="text-[14px] text-muted">Good morning,</p>
         <h1 className="text-[26px] font-extrabold tracking-tight text-ink">{journey.name}</h1>
         <div className="mt-1.5 flex items-center gap-2 text-[13px] font-medium text-muted">
-          <span>{COUNTRIES[journey.home].flag} → {host.flag} {host.name}</span>
+          {/*
+            * `today-route` exists because the shell header also renders a route
+            * chip ("🇻🇳 → 🇸🇬 Singapore"), and it is present behind the onboarding
+            * overlay too. A whole-page text search for the host country therefore
+            * passes while the student is still onboarding. This hook scopes the
+            * claim "Today shows this corridor's route" to Today itself.
+            */}
+          <span data-testid="today-route">{COUNTRIES[journey.home].flag} → {host.flag} {host.name}</span>
           <span className="text-line">·</span>
-          <span>Day {journey.dayCount} of {journey.totalDays}</span>
+          {/*
+            * The derived stage is always on screen, but which element carries it
+            * depends on the timeline: an arrived student sees "Day N of M" here
+            * plus the stage underneath, a pre-departure student sees the stage
+            * here only. The test hook follows the stage so that exactly one
+            * `today-stage` node exists in both cases — a hook that disappears
+            * before arrival cannot verify the state it exists to verify.
+            */}
+          {dayNumber > 0 && totalDays !== null ? (
+            <span>Day {dayNumber} of {totalDays}</span>
+          ) : (
+            <span data-testid="today-stage">{stageLabel(stage)}</span>
+          )}
         </div>
+        {dayNumber > 0 && totalDays !== null && (
+          <p className="mt-1 text-[12px] text-muted" data-testid="today-stage">{stageLabel(stage)}</p>
+        )}
       </div>
 
       {/* Quick actions */}

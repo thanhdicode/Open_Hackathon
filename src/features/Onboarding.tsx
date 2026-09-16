@@ -5,6 +5,14 @@ import { DNA_DIMENSIONS } from "../data/dna";
 import { computePairDNA } from "../data/pairDNA";
 import { Button, Card, Chip, DnaBar, CultureGapMeter, ProgressRing, Notice } from "../components/ui";
 import { Icon } from "../components/icons";
+import {
+  EMPTY_JOURNEY_DATES,
+  type JourneyDates,
+  deriveStage,
+  exchangeLengthDays,
+  stageLabel,
+  timelineProblems,
+} from "../lib/journey/dates";
 import { SaveJourneyCard } from "./Settings";
 import { completeEmailUpgrade, friendlyAuthError, requestEmailUpgradeCode, startGoogleUpgrade } from "../lib/appwrite/auth";
 import { account } from "../lib/appwrite/client";
@@ -29,7 +37,54 @@ const GOALS = ["Speak with confidence", "Understand the culture", "Do well acade
 const INTERESTS = ["AI", "Coffee", "Football", "Photography", "K-pop", "Startups", "Film", "Fashion", "Food", "Travel", "Gaming", "Music"];
 const LANG_LEVELS = ["A1", "A2", "B1", "B2", "C1", "Native"];
 
-export default function Onboarding({ onComplete, onStart }: { onComplete: (data: { home: CountryCode; host: CountryCode; city: string; university: string; myDna: ReturnType<typeof deriveMyDna> }) => void; onStart: () => Promise<{ ok: boolean; message?: string }> }) {
+const DAY_MS = 86_400_000;
+
+/** A `YYYY-MM-DD` day, `offset` days from today, in UTC. */
+function dayFromToday(offset: number): string {
+  const now = new Date();
+  const base = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return new Date(base + offset * DAY_MS).toISOString().slice(0, 10);
+}
+
+/**
+ * A suggested semester, not a silent default.
+ *
+ * The dates step used to render a hardcoded "Aug 2026 / Dec 2026" card that
+ * collected nothing and wrote nothing, so every student was stored as
+ * `exchange_stage: "studying"` regardless of their real timeline. This is a real
+ * starting point the student can edit, and the stage it implies is shown live
+ * underneath so the suggestion is never mistaken for a decision.
+ */
+function suggestedTimeline(): JourneyDates {
+  return {
+    ...EMPTY_JOURNEY_DATES,
+    departureDate: dayFromToday(28),
+    arrivalDate: dayFromToday(30),
+    programStartDate: dayFromToday(35),
+    programEndDate: dayFromToday(148),
+    returnDate: dayFromToday(157),
+  };
+}
+
+/** A labelled native date input, so the value is a plain calendar day. */
+function DateField({ label, value, onChange, required = false }: { label: string; value: string | null; onChange: (value: string | null) => void; required?: boolean }) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-[13px] font-medium text-ink">
+        {label}
+        {required && <span className="ml-1 text-muted">required</span>}
+      </span>
+      <input
+        type="date"
+        value={value ?? ""}
+        onChange={(event) => onChange(event.target.value || null)}
+        className="w-full rounded-[14px] border border-line bg-surface px-4 py-3 text-[15px] text-ink outline-none focus:border-primary"
+      />
+    </label>
+  );
+}
+
+export default function Onboarding({ onComplete, onStart }: { onComplete: (data: { home: CountryCode; host: CountryCode; city: string; university: string; dates: JourneyDates; myDna: ReturnType<typeof deriveMyDna> }) => void; onStart: () => Promise<{ ok: boolean; message?: string }> }) {
   const [step, setStep] = useState<Step>("welcome");
   const [home, setHome] = useState<CountryCode | null>(null);
   const [host, setHost] = useState<CountryCode | null>(null);
@@ -38,6 +93,16 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
   const [goals, setGoals] = useState<string[]>([]);
   const [interests, setInterests] = useState<string[]>([]);
   const [langLevel, setLangLevel] = useState("B1");
+  /**
+   * The canonical timeline.
+   *
+   * Seeded with a suggested semester rather than left blank, because an empty
+   * required field cannot be stepped past and a student would have to invent
+   * dates before they know them. The suggestion is derived from today and the
+   * resulting stage is shown live underneath, so the student sees exactly what
+   * the dates mean — and can change either one.
+   */
+  const [dates, setDates] = useState<JourneyDates>(() => suggestedTimeline());
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [qIdx, setQIdx] = useState(0);
   const [starting, setStarting] = useState(false);
@@ -50,11 +115,21 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
   const myDna = useMemo(() => deriveMyDna(answers), [answers]);
   const pair = useMemo(() => (home && host ? computePairDNA(home, host, myDna) : null), [home, host, myDna]);
 
+  /**
+   * The date rules, the derived stage and the length all come from the same
+   * module the rest of the app reads. The form does not re-implement validation:
+   * it renders whatever `timelineProblems` reports, so the form and the
+   * persistence layer cannot disagree about what a valid timeline is.
+   */
+  const problems = useMemo(() => timelineProblems(dates), [dates]);
+  const stage = useMemo(() => deriveStage(dates), [dates]);
+  const lengthDays = useMemo(() => exchangeLengthDays(dates), [dates]);
+
   const toggle = (arr: string[], set: (v: string[]) => void, v: string) =>
     set(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v]);
 
   function finish() {
-    if (home && host) onComplete({ home, host, city: city || COUNTRIES[host].name, university: university || "Host University", myDna });
+    if (home && host) onComplete({ home, host, city: city || COUNTRIES[host].name, university: university || "Host University", dates, myDna });
   }
 
   async function startGuestJourney() {

@@ -82,8 +82,8 @@ function Root() {
           const result = await ensureAnonymousSession();
           return result.ok ? { ok: true } : { ok: false, message: result.message };
         }}
-        onComplete={({ home, host, city, university, myDna }) => {
-          setCustom({ ...makeCustomJourney(home, host, myDna), city, university, myDna, home, host });
+        onComplete={({ home, host, city, university, dates, myDna }) => {
+          setCustom({ ...makeCustomJourney(home, host, myDna, dates), city, university, myDna, home, host });
           setOnboarded(true);
         }}
       />

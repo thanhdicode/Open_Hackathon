@@ -230,6 +230,23 @@ export function exchangeLengthDays(dates: JourneyDates): number | null {
 }
 
 /**
+ * Which day of the exchange it is, 1-based, counted from arrival.
+ *
+ * Before arrival this is 0, not a negative number and not 1 — "Day 0" is the
+ * honest answer to "how far into your exchange are you" when the answer is
+ * "you have not left yet". The seed journeys carried a hardcoded `dayCount` of
+ * 34, which a brand-new student inherited because `makeCustomJourney` spreads
+ * the first seed; deriving it is what stops one student seeing another's
+ * schedule.
+ */
+export function dayOfExchange(dates: JourneyDates, now: Date = new Date()): number {
+  const arrival = parseDay(dates.arrivalDate);
+  if (arrival === null) return 0;
+  const diff = Math.round((todayAsDay(now) - arrival) / DAY_MS);
+  return diff < 0 ? 0 : diff + 1;
+}
+
+/**
  * The role a timeline implies, unless the student is a local student.
  *
  * A local student has no arrival: they are already there. Everything else is
