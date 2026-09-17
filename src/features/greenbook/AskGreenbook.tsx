@@ -24,6 +24,7 @@ import { AiThinking, Section, SourceRow, formatDate } from "../../components/gre
 import { useJourney } from "../../context/JourneyContext";
 import { COUNTRIES, type CountryCode } from "../../data/countries";
 import { UNVERIFIED_ANSWER, askGreenbook, retrieveEvidence, type GreenbookAnswer } from "../../lib/greenbook";
+import StreamingText from "../../components/streaming-text";
 
 const SUGGESTIONS: Record<string, string[]> = {
   MY: ["What do I need for my Student Pass?", "How do I open a bank account?", "How do I get from the airport to campus?"],
@@ -182,13 +183,10 @@ function AnswerCard({ answer }: { answer: GreenbookAnswer }) {
               <Icon name="info" size={11} /> {answer.sources.length ? "From verified guidance" : "More context needed"}
             </Badge>
           )}
-          <Badge tone={answer.confidence === "high" ? "success" : answer.confidence === "medium" ? "warning" : "muted"}>
-            Confidence {answer.confidence}
-          </Badge>
           {answer.lastChecked && <span className="text-[11px] text-muted">Sources checked {formatDate(answer.lastChecked)}</span>}
         </div>
 
-        <p className={`text-[14px] leading-relaxed ${isRefusal ? "font-semibold text-warning" : "text-ink"}`}>{answer.answer}</p>
+        <p className={`text-[14px] leading-relaxed ${isRefusal ? "font-semibold text-warning" : "text-ink"}`}><StreamingText text={answer.answer} /></p>
 
         {answer.mode === "no_llm" && !isRefusal && (
           <p className="mt-2 border-t border-line pt-2 text-[11px] leading-relaxed text-muted">

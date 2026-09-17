@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Badge, Button, Card, Notice } from "../../components/ui";
 import { Icon } from "../../components/icons";
 import { toPercentBox, type SceneRegion, type SceneResult, type VisualEvidence } from "../../lib/ai-contracts/scene";
+import StreamingText from "../../components/streaming-text";
 
 /**
  * Immediate on-device overlay (Tier 0).
@@ -97,7 +98,7 @@ export function SceneOverlay({ result, imageUrl }: { result: SceneResult; imageU
 
       <Card className="p-4">
         <p className="text-[12px] font-bold uppercase tracking-wide text-muted">What this is</p>
-        <p className="mt-1.5 text-[14px] leading-relaxed text-ink">{result.sceneSummary}</p>
+        <p className="mt-1.5 text-[14px] leading-relaxed text-ink"><StreamingText text={result.sceneSummary} /></p>
       </Card>
 
       <Notice tone="warning" icon="info" title="What this photo cannot tell you" body={result.safetyNotice} />
@@ -168,15 +169,14 @@ function RegionDetail({ region }: { region: SceneRegion }) {
     <Card className="p-4">
       <div className="flex items-start justify-between gap-3">
         <p className="text-[15px] font-bold text-ink">{region.label}</p>
-        <Badge tone={region.confidence === "high" ? "success" : region.confidence === "medium" ? "muted" : "warning"}>{region.confidence} confidence</Badge>
       </div>
 
       {region.originalText && (
         <p className="mt-2.5 rounded-[10px] bg-canvas px-3 py-2.5 text-[15px] font-medium text-ink">{region.originalText}</p>
       )}
       {region.romanization && <p className="mt-1 text-[12px] italic text-muted">{region.romanization}</p>}
-      {region.translatedText && <p className="mt-2 text-[14px] leading-relaxed text-ink">{region.translatedText}</p>}
-      {region.meaning && <p className="mt-2 text-[13px] leading-relaxed text-muted">{region.meaning}</p>}
+      {region.translatedText && <p className="mt-2 text-[14px] leading-relaxed text-ink"><StreamingText text={region.translatedText} /></p>}
+      {region.meaning && <p className="mt-2 text-[13px] leading-relaxed text-muted"><StreamingText text={region.meaning} /></p>}
       {region.note && <p className="mt-2 text-[13px] leading-relaxed text-ink">{region.note}</p>}
 
       {region.uncertainty !== "none" && (

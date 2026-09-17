@@ -14,7 +14,9 @@ import type { ScenarioDomain } from "../lib/ai-contracts/common";
 import { fetchPracticeAttempts, savePracticeAttempt, updateSkillProfile, type PracticeAttempt } from "../lib/appwrite/practice";
 import { prepareAudio } from "../lib/media";
 import { LOCAL_LANGUAGE_SUGGESTIONS, loadPreferences, needsRomanization, type AiLanguageProfile } from "../lib/preferences";
-import { startRecording, type ActiveRecording } from "./lens/capture";
+import { CaptureError } from "./lens/capture";
+import { useHoldToRecord } from "./lens/use-hold-to-record";
+import StreamingText from "../components/streaming-text";
 
 /**
  * YapSim — a real practice simulator.
@@ -86,7 +88,6 @@ export default function YapSim({
   const [persistNote, setPersistNote] = useState<string | null>(null);
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
   const [userText, setUserText] = useState("");
-  const [recording, setRecording] = useState<ActiveRecording | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [profile, setProfile] = useState<AiLanguageProfile | null>(null);
   const activity = useAiActivity();
@@ -277,25 +278,10 @@ export default function YapSim({
 
   /* ------------------------------- recording ------------------------------- */
 
-  const beginRecording = useCallback(async () => {
-    setNotice(null);
-    try {
-      setRecording(await startRecording());
-    } catch (cause) {
-      setNotice(cause instanceof Error ? cause.message : "Recording is unavailable. Type your reply instead.");
-    }
-  }, []);
-
-  const endRecording = useCallback(async () => {
-    if (!recording) return;
-    setRecording(null);
-    try {
-      const captured = await recording.stop();
-      await handleAudio(captured.file);
-    } catch (cause) {
-      setNotice(cause instanceof Error ? cause.message : "That recording could not be used.");
-    }
-  }, [handleAudio, recording]);
+  const holdToRecord = useHoldToRecord({
+    onCapture: handleAudio,
+    onError: (cause) => setNotice(cause instanceof CaptureError ? cause.message : "That recording could not be used."),
+  });
 
   const busy = activity.isBusy;
 
@@ -416,10 +402,10 @@ export default function YapSim({
                 <div key={`${index}-${turn.text.slice(0, 12)}`} className={`yy-fade flex ${isUser ? "justify-end" : "justify-start"}`}>
                   <div className="max-w-[85%]">
                     <div className={`rounded-[12px] px-3.5 py-2.5 ${isUser ? "bg-ink text-white" : "border border-line bg-surface"}`}>
-                      <p className={`text-[14px] leading-relaxed ${isUser ? "text-white" : "text-ink"}`}>{turn.text}</p>
+                      <p className={`text-[14px] leading-relaxed ${isUser ? "text-white" : "text-ink"}`}>{isUser ? turn.text : <StreamingText text={turn.text} />}</p>
                       {!isUser && romanize && turn.romanization && <p className="mt-1 text-[12px] italic text-muted">{turn.romanization}</p>}
                       {!isUser && showTranslation && turn.translation && (
-                        <p className="mt-1.5 border-t border-line pt-1.5 text-[13px] leading-relaxed text-muted">{turn.translation}</p>
+                        <p className="mt-1.5 border-t border-line pt-1.5 text-[13px] leading-relaxed text-muted"><StreamingText text={turn.translation} /></p>
                       )}
                     </div>
                     {!isUser && !showTranslation && turn.translation && (
@@ -452,11 +438,11 @@ export default function YapSim({
             <>
               <div className="flex items-center gap-3">
                 <button
-                  onPointerDown={beginRecording}
-                  onPointerUp={endRecording}
-                  onPointerLeave={() => recording && endRecording()}
+                  onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); void holdToRecord.begin(); }}
+                  onPointerUp={() => { void holdToRecord.end(); }}
+                  onPointerCancel={() => { void holdToRecord.end(); }}
                   aria-label="Hold to speak your reply"
-                  className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white transition ${recording ? "bg-danger" : "bg-ink"}`}
+                  className={`flex h-14 w-14 touch-none select-none shrink-0 items-center justify-center rounded-full text-white transition ${holdToRecord.recording ? "bg-danger" : "bg-ink"}`}
                 >
                   <Icon name="mic" size={22} />
                 </button>

@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { useJourney } from "../context/JourneyContext";
 import { useNav } from "../context/NavContext";
 import { Scroll, useContextPanel, useContextPanelClaim } from "../components/shell";
-import { Card, Button, Segmented, RiskBadge, ConfidenceBadge, Badge, Notice, Toast } from "../components/ui";
+import { Card, Button, Segmented, RiskBadge, Badge, Notice, Toast } from "../components/ui";
 import { Icon, type IconName } from "../components/icons";
 import { AiActivity, AiProvenance } from "../components/ai-activity";
 import YepGuide from "../components/yep-guide";
@@ -19,7 +19,9 @@ import { evidenceFromLocalOcr, runLocalOcr } from "../lib/local-ocr";
 import { LOCAL_LANGUAGE_SUGGESTIONS, loadPreferences, type AiLanguageProfile } from "../lib/preferences";
 import { EvidenceOverlay, SceneOverlay } from "./lens/SceneOverlay";
 import { ConversationBridge } from "./lens/ConversationBridge";
-import { CaptureError, pickAudio, pickImage, startRecording, type ActiveRecording } from "./lens/capture";
+import { CaptureError, pickAudio, pickImage } from "./lens/capture";
+import { useHoldToRecord } from "./lens/use-hold-to-record";
+import StreamingText from "../components/streaming-text";
 
 type Mode = "text" | "screenshot" | "camera" | "voice" | "conversation";
 
@@ -51,7 +53,6 @@ export default function Lens() {
   const [scene, setScene] = useState<SceneState | null>(null);
   const [ocrProgress, setOcrProgress] = useState<number | null>(null);
   const [transcript, setTranscript] = useState<TranscriptionResult | null>(null);
-  const [recording, setRecording] = useState<ActiveRecording | null>(null);
   const [fallbackNotice, setFallbackNotice] = useState<string | null>(null);
   const [profile, setProfile] = useState<AiLanguageProfile | null>(null);
   const activity = useAiActivity();
@@ -226,25 +227,10 @@ export default function Lens() {
     [activity, aiContext, runText],
   );
 
-  const beginRecording = useCallback(async () => {
-    setFallbackNotice(null);
-    try {
-      setRecording(await startRecording());
-    } catch (cause) {
-      setFallbackNotice(cause instanceof CaptureError ? cause.message : "Recording is unavailable. Upload an audio file instead.");
-    }
-  }, []);
-
-  const endRecording = useCallback(async () => {
-    if (!recording) return;
-    setRecording(null);
-    try {
-      const captured = await recording.stop();
-      await runAudio(captured.file);
-    } catch (cause) {
-      setFallbackNotice(cause instanceof CaptureError ? cause.message : "That recording could not be used.");
-    }
-  }, [recording, runAudio]);
+  const holdToRecord = useHoldToRecord({
+    onCapture: runAudio,
+    onError: (cause) => setFallbackNotice(cause instanceof CaptureError ? cause.message : "That recording could not be used."),
+  });
 
   /* --------------------------------- render -------------------------------- */
 
@@ -315,16 +301,16 @@ export default function Lens() {
 
           {!scene && !textResult && !busy && (
             <div data-yep="input">
-            {!recording && <YepGuide key={mode} screen="lens" title="Let’s understand it together" pose={mode === "voice" ? "practice" : "think"}>{mode === "text" ? "Paste a message, then interpret it. I’ll help explain likely intent; you choose what to do next." : mode === "voice" ? "Hold to record, or upload audio. Read the interpretation before replying; microphone permission is optional." : "Choose a screenshot or photo. Review what was read and the AI’s confidence before following its suggestions."}</YepGuide>}
+            {!holdToRecord.recording && <YepGuide key={mode} screen="lens" title="Let’s understand it together" pose={mode === "voice" ? "practice" : "think"}>{mode === "text" ? "Paste a message, then interpret it. I’ll help explain likely intent; you choose what to do next." : mode === "voice" ? "Hold to record, or upload audio. Read the interpretation before replying; microphone permission is optional." : "Choose a screenshot or photo. Review what was read before following its suggestions."}</YepGuide>}
             <InputPanel
               mode={mode}
               text={text}
               setText={setText}
               hostName={COUNTRIES[journey.host].name}
               permissionDenied={permissionDenied}
-              recording={Boolean(recording)}
-              onBeginRecording={beginRecording}
-              onEndRecording={endRecording}
+              recording={holdToRecord.recording}
+              onBeginRecording={holdToRecord.begin}
+              onEndRecording={holdToRecord.end}
               onUploadAudio={async () => {
                 const captured = await pickAudio();
                 if (captured) await runAudio(captured.file);
@@ -408,11 +394,11 @@ function InputPanel({
     return (
       <div className="flex flex-col items-center gap-4 rounded-[12px] border border-line bg-surface p-6">
         <button
-          onPointerDown={onBeginRecording}
-          onPointerUp={onEndRecording}
-          onPointerLeave={() => recording && onEndRecording()}
+          onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); void onBeginRecording(); }}
+          onPointerUp={() => { void onEndRecording(); }}
+          onPointerCancel={() => { void onEndRecording(); }}
           aria-label="Hold to record"
-          className={`relative flex h-20 w-20 items-center justify-center rounded-full text-white transition ${recording ? "bg-danger" : "bg-ink"}`}
+          className={`relative flex h-20 w-20 touch-none select-none items-center justify-center rounded-full text-white transition ${recording ? "bg-danger" : "bg-ink"}`}
         >
           <div className={`yy-ring absolute inset-0 ${recording ? "" : "motion-reduce:hidden"}`} />
           <Icon name="mic" size={26} />
@@ -463,7 +449,6 @@ function LensTextResult({ result, transcript, onReset, onPractice }: { result: L
   const [tone, setTone] = useState<ReplyTone>("Neutral");
   const [toast, setToast] = useState(false);
 
-  const confidence = result.confidence.label === "high" ? 85 : result.confidence.label === "medium" ? 60 : 35;
   const risk = result.misunderstandingRisk === "high" ? 75 : result.misunderstandingRisk === "medium" ? 50 : 25;
   const replies = result.suggestedReplies.map((entry) => ({
     tone: (entry.mode === "very_respectful" ? "Very Respectful" : ((entry.mode[0].toUpperCase() + entry.mode.slice(1)) as ReplyTone)) as ReplyTone,
@@ -511,7 +496,6 @@ function LensTextResult({ result, transcript, onReset, onPractice }: { result: L
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <RiskBadge value={risk} />
-        <ConfidenceBadge value={confidence} />
       </div>
 
       {panel
@@ -519,20 +503,10 @@ function LensTextResult({ result, transcript, onReset, onPractice }: { result: L
             <div className="space-y-5">
               {evidence}
               <div>
-                <p className="text-[12px] font-bold text-muted">CONFIDENCE</p>
+                <p className="text-[12px] font-bold text-muted">DETAILS</p>
                 <div className="mt-2 space-y-1.5 text-[13px]">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted">Interpretation</span>
-                    <span className="text-ink">{confidence}%</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted">Misunderstanding risk</span>
-                    <span className="text-ink">{risk}%</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted">Detected language</span>
-                    <span className="text-ink">{result.detectedLanguage}</span>
-                  </div>
+                  <div className="flex items-center justify-between"><span className="text-muted">Misunderstanding risk</span><span className="text-ink">{risk}%</span></div>
+                  <div className="flex items-center justify-between"><span className="text-muted">Detected language</span><span className="text-ink">{result.detectedLanguage}</span></div>
                 </div>
               </div>
             </div>,
@@ -586,7 +560,7 @@ function ResultRow({ label, body, accent }: { label: string; body: string; accen
   return (
     <div className={`rounded-[12px] border px-4 py-3 ${accent ? "border-primary/20 bg-primary-soft" : "border-line bg-surface"}`}>
       <p className={`text-[11px] font-bold uppercase tracking-wide ${accent ? "text-primary" : "text-muted"}`}>{label}</p>
-      <p className="mt-1 text-[14px] leading-relaxed text-ink">{body}</p>
+      <p className="mt-1 text-[14px] leading-relaxed text-ink"><StreamingText text={body} /></p>
     </div>
   );
 }

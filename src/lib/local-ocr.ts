@@ -245,7 +245,13 @@ export async function runLocalOcr(file: File, { languages = [], onProgress, time
  * no separate region list exists.
  */
 export function evidenceFromLocalOcr(ocr: LocalOcrResult, sceneHint = "A photo the student took."): VisualEvidence | null {
-  const withBoxes = ocr.texts.filter((entry) => entry.text.length > 1);
+  const seen = new Set<string>();
+  const withBoxes = ocr.texts.filter((entry) => {
+    const key = entry.text.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+    if (key.length <= 1 || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
   if (withBoxes.length === 0) return null;
 
   return {

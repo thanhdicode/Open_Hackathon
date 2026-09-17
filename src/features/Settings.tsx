@@ -1035,7 +1035,7 @@ const LEGAL: Record<string, { title: string; body: { heading: string; text: stri
     body: [
       { heading: "AI is contextual, not authoritative", text: "YapLens and YapSim generate probable interpretations using context. They can be wrong. Cultural guidance is always probabilistic and never a claim about a nationality." },
       { heading: "Check what matters", text: "Administrative facts (visas, banking, enrolment) come with an authority tier, source and freshness. Anything marked unverified must be confirmed with the official source." },
-      { heading: "How to read confidence", text: "Low confidence results are labelled and can be routed to Ask a Local. Individual variation is expected — treat every interpretation as a starting point for a real conversation." },
+      { heading: "How to use AI guidance", text: "AI interpretations are contextual starting points. Check the linked evidence and ask the person when the situation is unclear." },
     ],
   },
 };

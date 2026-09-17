@@ -255,11 +255,6 @@ export function FreshnessBadge({ reviewed, status }: { reviewed?: string; status
   );
 }
 
-export function ConfidenceBadge({ value }: { value: number }) {
-  const tone = value >= 75 ? "success" : value >= 55 ? "warning" : "error";
-  return <Badge tone={tone}>Confidence {value}%</Badge>;
-}
-
 export function RiskBadge({ value }: { value: number }) {
   const tone = value >= 60 ? "error" : value >= 40 ? "warning" : "success";
   const color = value >= 60 ? "var(--color-error)" : value >= 40 ? "var(--color-warning)" : "var(--color-success)";

@@ -95,6 +95,17 @@ function composeSceneResult({ evidence, interpretation, localLanguage, userLangu
   });
 }
 
+function dedupeVisualEvidence(evidence) {
+  const seen = new Set();
+  const visibleTexts = evidence.visibleTexts.filter((entry) => {
+    const key = entry.text.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  return { ...evidence, visibleTexts: visibleTexts.slice(0, 8) };
+}
+
 /**
  * Structured inference over a capability chain.
  *
@@ -201,13 +212,13 @@ export const routes = {
           buildPrompt: () => T.visualExtraction({ localLanguage, localOcrText: input.deviceOcr }),
           timeoutMs: 45_000,
         });
-        evidence = extraction.data;
+        evidence = dedupeVisualEvidence(extraction.data);
         extractionProvider = extraction.provider;
       } catch (cause) {
         extractionFailure = cause?.code ?? "AI_UNAVAILABLE";
         // Fall back to whatever the device observed. A useful degraded result
         // beats an error screen.
-        evidence = input.deviceEvidence ?? null;
+        evidence = input.deviceEvidence ? dedupeVisualEvidence(input.deviceEvidence) : null;
       }
 
       if (!evidence) {

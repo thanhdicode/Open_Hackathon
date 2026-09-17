@@ -11,7 +11,9 @@ import { speakWithFallback, stopBrowserSpeech, type SpeechMode } from "../../lib
 import { TranscriptionResultSchema } from "../../lib/ai-contracts/transcription";
 import { TranslationTurnSchema } from "../../lib/ai-contracts/translation";
 import type { LanguageLevel } from "../../lib/preferences";
-import { startRecording, type ActiveRecording } from "./capture";
+import { CaptureError } from "./capture";
+import { useHoldToRecord } from "./use-hold-to-record";
+import StreamingText from "../../components/streaming-text";
 
 /**
  * Conversation Bridge.
@@ -40,7 +42,6 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
   const [stage, setStage] = useState<Stage>("waiting_local");
   const [userText, setUserText] = useState("");
   const [notice, setNotice] = useState<string | null>(null);
-  const [recording, setRecording] = useState<ActiveRecording | null>(null);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [speechMode, setSpeechMode] = useState<SpeechMode | null>(null);
   const activity = useAiActivity();
@@ -120,24 +121,10 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
     [activity, appendTurn, context, localLanguage, transcriptText, turns.length, userLanguage],
   );
 
-  const recordLocal = useCallback(async () => {
-    try {
-      setRecording(await startRecording());
-    } catch (cause) {
-      setNotice(cause instanceof Error ? cause.message : "Recording is unavailable. Upload an audio file instead.");
-    }
-  }, []);
-
-  const stopRecording = useCallback(async () => {
-    if (!recording) return;
-    setRecording(null);
-    try {
-      const captured = await recording.stop();
-      await handleLocalAudio(captured.file);
-    } catch (cause) {
-      setNotice(cause instanceof Error ? cause.message : "Recording failed.");
-    }
-  }, [handleLocalAudio, recording]);
+  const holdToRecord = useHoldToRecord({
+    onCapture: handleLocalAudio,
+    onError: (cause) => setNotice(cause instanceof CaptureError ? cause.message : "Recording failed."),
+  });
 
   /* ----------------------------- Lane 3: reply ----------------------------- */
 
@@ -255,10 +242,9 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
           <Card className="mt-4 p-4">
             <div className="flex items-center justify-between">
               <p className="text-[12px] font-bold uppercase tracking-wide text-primary">What they need from you</p>
-              <Badge tone={coach.confidence.label === "high" ? "success" : "muted"}>{coach.confidence.label}</Badge>
             </div>
-            <p className="mt-2 text-[15px] font-semibold text-ink">{coach.whatUserNeedsToDecide}</p>
-            <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{coach.likelyIntent}</p>
+            <p className="mt-2 text-[15px] font-semibold text-ink"><StreamingText text={coach.whatUserNeedsToDecide} /></p>
+            <p className="mt-1.5 text-[13px] leading-relaxed text-muted"><StreamingText text={coach.likelyIntent} /></p>
             {coach.missingInformation.length > 0 && (
               <ul className="mt-2 space-y-1">
                 {coach.missingInformation.map((item) => (
@@ -334,9 +320,9 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
         {reply && stage !== "coaching" && (
           <Card className="mt-4 p-4">
             <p className="text-[12px] font-bold uppercase tracking-wide text-muted">In {localLanguage}</p>
-            <p className="mt-1.5 text-[16px] font-semibold text-ink">{reply.variants[0].text}</p>
+            <p className="mt-1.5 text-[16px] font-semibold text-ink"><StreamingText text={reply.variants[0].text} /></p>
             {reply.variants[0].romanization && <p className="mt-1 text-[13px] italic text-muted">{reply.variants[0].romanization}</p>}
-            <p className="mt-2 text-[13px] text-muted">Back in your language: {reply.variants[0].backTranslation}</p>
+            <p className="mt-2 text-[13px] text-muted">Back in your language: <StreamingText text={reply.variants[0].backTranslation} /></p>
             <div className="mt-3 flex gap-2">
               <Button variant="soft" full onClick={() => speak(reply.variants[0].text)}>
                 <Icon name="signal" size={16} /> Speak it
@@ -371,11 +357,11 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
           <div data-yep="controls" className="flex items-center gap-3">
             {voiceEnabled ? (
               <button
-                onPointerDown={recordLocal}
-                onPointerUp={stopRecording}
-                onPointerLeave={() => recording && stopRecording()}
+                onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); void holdToRecord.begin(); }}
+                onPointerUp={() => { void holdToRecord.end(); }}
+                onPointerCancel={() => { void holdToRecord.end(); }}
                 aria-label="Hold to capture what the other person said"
-                className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-white transition ${recording ? "bg-danger" : "bg-ink"}`}
+                className={`flex h-16 w-16 touch-none select-none shrink-0 items-center justify-center rounded-full text-white transition ${holdToRecord.recording ? "bg-danger" : "bg-ink"}`}
               >
                 <Icon name="mic" size={24} />
               </button>
@@ -394,7 +380,7 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
               </label>
             )}
             <p className="text-[13px] font-medium text-muted">
-              {recording ? "Recording — release to translate" : stage === "coaching" ? "Answer above, or hold to record them again" : "Hold when they speak"}
+              {holdToRecord.recording ? "Recording — release to translate" : stage === "coaching" ? "Answer above, or hold to record them again" : "Hold when they speak"}
             </p>
           </div>
         )}
