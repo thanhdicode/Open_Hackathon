@@ -12,10 +12,19 @@
       "campus_id": "campus_um",
       "university_id": "um",
       "university_name": "Universiti Malaya",
-      "aliases": ["um", "universiti malaya", "university of malaya", "universiti malaya (um)", "malaya"],
+      "aliases": [
+        "um",
+        "universiti malaya",
+        "university of malaya",
+        "universiti malaya (um)",
+        "malaya"
+      ],
       "country_code": "MY",
       "city": "Kuala Lumpur",
-      "center": { "lat": 3.1209, "lng": 101.6538 },
+      "center": {
+        "lat": 3.1209,
+        "lng": 101.6538
+      },
       "center_source": "seed_pack",
       "demo_priority": 1
     },
@@ -23,10 +32,17 @@
       "campus_id": "campus_nus",
       "university_id": "nus",
       "university_name": "National University of Singapore",
-      "aliases": ["nus", "national university of singapore", "nus (national university of singapore)"],
+      "aliases": [
+        "nus",
+        "national university of singapore",
+        "nus (national university of singapore)"
+      ],
       "country_code": "SG",
       "city": "Singapore",
-      "center": { "lat": 1.2966, "lng": 103.7764 },
+      "center": {
+        "lat": 1.2966,
+        "lng": 103.7764
+      },
       "center_source": "seed_pack",
       "demo_priority": 2
     },
@@ -34,57 +50,117 @@
       "campus_id": "campus_ui",
       "university_id": "ui",
       "university_name": "Universitas Indonesia",
-      "aliases": ["ui", "universitas indonesia", "university of indonesia", "universitas indonesia (ui)"],
+      "aliases": [
+        "ui",
+        "universitas indonesia",
+        "university of indonesia",
+        "universitas indonesia (ui)"
+      ],
       "country_code": "ID",
       "city": "Depok",
-      "center": { "lat": -6.362, "lng": 106.8249 },
+      "center": {
+        "lat": -6.362,
+        "lng": 106.8249
+      },
       "center_source": "seed_pack",
+      "demo_priority": 4
+    },
+    {
+      "campus_id": "campus_fpt",
+      "university_id": "fpt",
+      "university_name": "FPT University",
+      "aliases": [
+        "fpt",
+        "fpt university",
+        "fpt university ho chi minh city",
+        "fpt university hcmc",
+        "dai hoc fpt",
+        "đại học fpt",
+        "trường đại học fpt",
+        "truong dai hoc fpt"
+      ],
+      "country_code": "VN",
+      "city": "Ho Chi Minh City",
+      "center": {
+        "lat": 10.8414168,
+        "lng": 106.8100745
+      },
+      "center_source": "nominatim",
+      "center_accuracy_note": "Resolved from OpenStreetMap via Nominatim for 'FPT University Ho Chi Minh City' (Lô E2a-7, Đường D1, Phường Tăng Nhơn Phú). Added in Phase 5.1: the SG->VN golden demo corridor is FPT HCMC, and without this entry the map fell back to a Kuala Lumpur centre so the corridor could not be demonstrated at all.",
       "demo_priority": 3
     },
     {
       "campus_id": "campus_chula",
       "university_id": "chula",
       "university_name": "Chulalongkorn University",
-      "aliases": ["chula", "chulalongkorn university", "chulalongkorn"],
+      "aliases": [
+        "chula",
+        "chulalongkorn university",
+        "chulalongkorn"
+      ],
       "country_code": "TH",
       "city": "Bangkok",
-      "center": { "lat": 13.7430893, "lng": 100.5328725 },
+      "center": {
+        "lat": 13.7430893,
+        "lng": 100.5328725
+      },
       "center_source": "nominatim",
-      "demo_priority": 4
+      "demo_priority": 5
     },
     {
       "campus_id": "campus_ateneo",
       "university_id": "ateneo",
       "university_name": "Ateneo de Manila University",
-      "aliases": ["ateneo", "ateneo de manila university", "ateneo de manila"],
+      "aliases": [
+        "ateneo",
+        "ateneo de manila university",
+        "ateneo de manila"
+      ],
       "country_code": "PH",
       "city": "Quezon City",
-      "center": { "lat": 14.6398984, "lng": 121.0781952 },
+      "center": {
+        "lat": 14.6398984,
+        "lng": 121.0781952
+      },
       "center_source": "nominatim",
-      "demo_priority": 5
+      "demo_priority": 6
     },
     {
       "campus_id": "campus_vnuhcm",
       "university_id": "vnuhcm",
       "university_name": "Vietnam National University",
-      "aliases": ["vnuhcm", "vnu", "vietnam national university", "vietnam national university ho chi minh city"],
+      "aliases": [
+        "vnuhcm",
+        "vnu",
+        "vietnam national university",
+        "vietnam national university ho chi minh city"
+      ],
       "country_code": "VN",
       "city": "Ho Chi Minh City",
-      "center": { "lat": 10.8797358, "lng": 106.8061911 },
+      "center": {
+        "lat": 10.8797358,
+        "lng": 106.8061911
+      },
       "center_source": "nominatim",
       "center_accuracy_note": "Resolves inside the VNU-HCM urban area (Linh Trung / Di An). The centroid is approximate but the 2.5 km query radius still covers the student district.",
-      "demo_priority": 6
+      "demo_priority": 7
     },
     {
       "campus_id": "campus_ftu",
       "university_id": "ftu",
       "university_name": "Foreign Trade University",
-      "aliases": ["ftu", "foreign trade university"],
+      "aliases": [
+        "ftu",
+        "foreign trade university"
+      ],
       "country_code": "VN",
       "city": "Ha Noi",
-      "center": { "lat": 21.0225029, "lng": 105.805148 },
+      "center": {
+        "lat": 21.0225029,
+        "lng": 105.805148
+      },
       "center_source": "nominatim",
-      "demo_priority": 7
+      "demo_priority": 8
     }
   ]
 }

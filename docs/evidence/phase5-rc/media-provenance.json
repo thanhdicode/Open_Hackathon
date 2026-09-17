@@ -1,0 +1,559 @@
+{
+  "generated_at": "2026-09-16T19:38:57.192Z",
+  "provider": "wikimedia_commons",
+  "policy": "public domain and permissive CC licences only; CC BY-NC excluded; every field read from the Commons API",
+  "manifest_assets": 27,
+  "verified_this_run": 0,
+  "skipped_this_run": 0,
+  "assets_missing_provenance": [],
+  "assets": [
+    {
+      "id": "media_nus_library",
+      "file_name": "nus_library.jpg",
+      "country": "SG",
+      "kind": "campus_study",
+      "title": "NUS Central Library interior",
+      "source_page": "https://commons.wikimedia.org/wiki/File:NUS_Central_Library_Interior_20240312_174526.jpg",
+      "creator": "ZKang123",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_url_source": "derived_from_license_id",
+      "attribution": "Photo by ZKang123 / CC BY-SA 4.0",
+      "retrieved_at": "2026-09-16T00:00:00.000Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "sg_nus_library",
+        "post_04",
+        "post_05"
+      ]
+    },
+    {
+      "id": "media_um_campus",
+      "file_name": "universiti_malaya.jpg",
+      "country": "MY",
+      "kind": "campus",
+      "title": "Universiti Malaya",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Universiti_Malaya.jpg",
+      "creator": "Grayswoodsurrey",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_url_source": "derived_from_license_id",
+      "attribution": "Photo by Grayswoodsurrey / CC BY-SA 4.0",
+      "retrieved_at": "2026-09-16T00:00:00.000Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "campus_um",
+        "post_01",
+        "post_02"
+      ]
+    },
+    {
+      "id": "media_kl_foodcourt",
+      "file_name": "kl_foodcourt.jpg",
+      "country": "MY",
+      "kind": "food",
+      "title": "Kuala Lumpur food court",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Anjung_Selera_Jalan_Jujur_food_court,_Bandar_Tun_Razak,_Kuala_Lumpur.jpg",
+      "creator": "Azreey",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_url_source": "derived_from_license_id",
+      "attribution": "Photo by Azreey / CC BY-SA 4.0",
+      "retrieved_at": "2026-09-16T00:00:00.000Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "my_um_food",
+        "post_03"
+      ]
+    },
+    {
+      "id": "media_mamak",
+      "file_name": "malaysia_mamak.jpg",
+      "country": "MY",
+      "kind": "food_social",
+      "title": "Malaysian Mamak restaurant",
+      "source_page": "https://commons.wikimedia.org/wiki/File:MamakModern.jpg",
+      "creator": "L joo",
+      "license": "Public domain",
+      "license_url": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags#Public_domain",
+      "license_url_source": "derived_from_license_id",
+      "attribution": "Public domain image by L joo",
+      "retrieved_at": "2026-09-16T00:00:00.000Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "my_um_food"
+      ]
+    },
+    {
+      "id": "media_ui_library",
+      "file_name": "ui_library.jpg",
+      "country": "ID",
+      "kind": "campus_study",
+      "title": "Universitas Indonesia central library",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Perpustakaan_Universitas_Indonesia.JPG",
+      "creator": "D.W. Fisher-Freberg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "license_url_source": "derived_from_license_id",
+      "attribution": "Photo by D.W. Fisher-Freberg / CC BY-SA 3.0",
+      "retrieved_at": "2026-09-16T00:00:00.000Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "id_ui_library",
+        "post_07"
+      ]
+    },
+    {
+      "id": "media_ui_campus",
+      "file_name": "ui_campus.jpg",
+      "country": "ID",
+      "kind": "campus",
+      "title": "Universitas Indonesia lakeside campus",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Universitas_Indonesia.jpg",
+      "creator": "Diarahmaa",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_url_source": "derived_from_license_id",
+      "attribution": "Photo by Diarahmaa / CC BY-SA 4.0",
+      "retrieved_at": "2026-09-16T00:00:00.000Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "campus_ui",
+        "post_08",
+        "post_09"
+      ]
+    },
+    {
+      "id": "media_sg_hawker",
+      "file_name": "sg_hawker.jpg",
+      "country": "SG",
+      "kind": "food",
+      "title": "Singapore hawker centre",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Image_of_a_Singapore_hawker_center.jpg",
+      "creator": "Qvssjp",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_url_source": "derived_from_license_id",
+      "attribution": "Photo by Qvssjp / CC BY-SA 4.0",
+      "retrieved_at": "2026-09-16T00:00:00.000Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "sg_nus_food",
+        "post_06"
+      ]
+    },
+    {
+      "id": "demo_sg_hawker_centre_glutinous_rice",
+      "file_name": "sg_hawker_centre_glutinous_rice.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Hawker centre glutinous rice",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hawker_centre_glutinous_rice.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Hawker_centre_glutinous_rice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Chensiyuan",
+      "license": "CC BY-SA 3.0",
+      "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Chensiyuan / CC BY-SA 3.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_17",
+        "sg_nus_hawker"
+      ]
+    },
+    {
+      "id": "demo_sg_food_court",
+      "file_name": "sg_food_court.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Food court",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Food_court.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Food_court.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Benoit Mortgat.",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Benoit Mortgat. / CC BY-SA 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_12",
+        "sg_nus_food"
+      ]
+    },
+    {
+      "id": "demo_sg_chinese_economic_rice",
+      "file_name": "sg_chinese_economic_rice.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Chinese economic rice",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Chinese_economic_rice.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Chinese_economic_rice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "ProjectManhattan",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by ProjectManhattan / CC BY-SA 3.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_22",
+        "sg_nus_food2"
+      ]
+    },
+    {
+      "id": "demo_sg_hawker_market_in_the_tekka_centre_september_2015",
+      "file_name": "sg_hawker_market_in_the_tekka_centre_september_2015.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Hawker market in the Tekka Centre September 2015",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hawker_market_in_the_Tekka_Centre_September_2015.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Hawker_market_in_the_Tekka_Centre_September_2015.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Nick-D",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Nick-D / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_12"
+      ]
+    },
+    {
+      "id": "demo_sg_entrance_e_of_the_national_university_of_singapo",
+      "file_name": "sg_entrance_e_of_the_national_university_of_singapo.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Entrance E of the National University of Singapore 20210426 165118",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Entrance_E_of_the_National_University_of_Singapore_20210426_165118.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Entrance_E_of_the_National_University_of_Singapore_20210426_165118.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "ZKang123",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by ZKang123 / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_14",
+        "post_25"
+      ]
+    },
+    {
+      "id": "demo_sg_char_siew_and_roasted_pork_rice",
+      "file_name": "sg_char_siew_and_roasted_pork_rice.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Char Siew and Roasted Pork Rice",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Char_Siew_and_Roasted_Pork_Rice.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Char_Siew_and_Roasted_Pork_Rice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Juay Ding Hong",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Juay Ding Hong / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_22"
+      ]
+    },
+    {
+      "id": "demo_sg_hawker_scene",
+      "file_name": "sg_hawker_scene.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Hawker Scene",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hawker_Scene.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Hawker_Scene.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Joleen Cheong",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Joleen Cheong / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_17"
+      ]
+    },
+    {
+      "id": "demo_sg_customers_at_a_centre_for_food_sellers_or_hawker",
+      "file_name": "sg_customers_at_a_centre_for_food_sellers_or_hawker.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Customers at a centre for food-sellers, or hawkers",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Customers_at_a_centre_for_food-sellers,_or_hawkers.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Customers_at_a_centre_for_food-sellers%2C_or_hawkers.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Rogbeer",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Rogbeer / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_12"
+      ]
+    },
+    {
+      "id": "demo_sg_kent_ridge_heritage_trail_nus",
+      "file_name": "sg_kent_ridge_heritage_trail_nus.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "Kent Ridge Heritage Trail, NUS",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Kent_Ridge_Heritage_Trail,_NUS.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Kent_Ridge_Heritage_Trail%2C_NUS.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Ralff Nestor Nacor",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Ralff Nestor Nacor / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_23",
+        "sg_nus_culture"
+      ]
+    },
+    {
+      "id": "demo_sg_nus_centenary_landmark_singapore",
+      "file_name": "sg_nus_centenary_landmark_singapore.jpg",
+      "country": "SG",
+      "university": "NUS",
+      "kind": "campus_life",
+      "title": "NUS Centenary Landmark, Singapore",
+      "source_page": "https://commons.wikimedia.org/wiki/File:NUS_Centenary_Landmark,_Singapore.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/NUS_Centenary_Landmark%2C_Singapore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Ralff Nestor Nacor",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Ralff Nestor Nacor / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_18",
+        "sg_nus_museum"
+      ]
+    },
+    {
+      "id": "demo_vn_b_nh_tr_ng_n_ng_tp_h_ch_minh_street_food_in_ho_c",
+      "file_name": "vn_b_nh_tr_ng_n_ng_tp_h_ch_minh_street_food_in_ho_c.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "Bánh tráng nướng TP. Hồ Chí Minh - street food in Ho Chi Minh City, Vietnam",
+      "source_page": "https://commons.wikimedia.org/wiki/File:B%C3%A1nh_tr%C3%A1ng_n%C6%B0%E1%BB%9Bng_TP._H%E1%BB%93_Ch%C3%AD_Minh_-_street_food_in_Ho_Chi_Minh_City,_Vietnam.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/B%C3%A1nh_tr%C3%A1ng_n%C6%B0%E1%BB%9Bng_TP._H%E1%BB%93_Ch%C3%AD_Minh_-_street_food_in_Ho_Chi_Minh_City%2C_Vietnam.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Light Write",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Light Write / CC BY-SA 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_33",
+        "vn_fpt_food2"
+      ]
+    },
+    {
+      "id": "demo_vn_countryside_in_the_heart_of_the_city_freed_after",
+      "file_name": "vn_countryside_in_the_heart_of_the_city_freed_after.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "Countryside in the heart of the city, freed after 35 years of Saigon - panoramio",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Countryside_in_the_heart_of_the_city,_freed_after_35_years_of_Saigon_-_panoramio.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Countryside_in_the_heart_of_the_city%2C_freed_after_35_years_of_Saigon_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "redsea99",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by redsea99 / CC BY 3.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_31"
+      ]
+    },
+    {
+      "id": "demo_vn_food_stand_in_hu",
+      "file_name": "vn_food_stand_in_hu.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "Food stand in Huế",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Food_stand_in_Hu%E1%BA%BF.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Food_stand_in_Hu%E1%BA%BF.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Christophe95",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Christophe95 / CC BY-SA 4.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_28",
+        "vn_fpt_food"
+      ]
+    },
+    {
+      "id": "demo_vn_banh_xeo_restaurant_on_dinh_cong_trang_street_49",
+      "file_name": "vn_banh_xeo_restaurant_on_dinh_cong_trang_street_49.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "Banh xeo restaurant on Dinh Cong Trang Street (49355818807)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Banh_xeo_restaurant_on_Dinh_Cong_Trang_Street_(49355818807).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Banh_xeo_restaurant_on_Dinh_Cong_Trang_Street_%2849355818807%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Martin Lewison from Forest Hills, NY, U.S.A.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Martin Lewison from Forest Hills, NY, U.S.A. / CC BY 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_42",
+        "vn_fpt_food4"
+      ]
+    },
+    {
+      "id": "demo_vn_also_pompous_gates_have_to_be_maintained_also_on",
+      "file_name": "vn_also_pompous_gates_have_to_be_maintained_also_on.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "Also pompous gates have to be maintained. Also on a Silvester in Ho Chi Minh City. (24559845037)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Also_pompous_gates_have_to_be_maintained._Also_on_a_Silvester_in_Ho_Chi_Minh_City._(24559845037).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Also_pompous_gates_have_to_be_maintained._Also_on_a_Silvester_in_Ho_Chi_Minh_City._%2824559845037%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world / CC BY 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_36"
+      ]
+    },
+    {
+      "id": "demo_vn_a_very_colorful_troop_in_tan_phu_a_noble_quarter",
+      "file_name": "vn_a_very_colorful_troop_in_tan_phu_a_noble_quarter.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "A very colorful troop in Tan Phu, a noble quarter of Ho Chi Minh City (39073065832)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_very_colorful_troop_in_Tan_Phu,_a_noble_quarter_of_Ho_Chi_Minh_City_(39073065832).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/A_very_colorful_troop_in_Tan_Phu%2C_a_noble_quarter_of_Ho_Chi_Minh_City_%2839073065832%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world / CC BY 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_40"
+      ]
+    },
+    {
+      "id": "demo_vn_after_the_rain_in_ho_chi_minh_city_25184032758",
+      "file_name": "vn_after_the_rain_in_ho_chi_minh_city_25184032758.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "After the rain - in Ho Chi Minh City (25184032758)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:After_the_rain_-_in_Ho_Chi_Minh_City_(25184032758).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/After_the_rain_-_in_Ho_Chi_Minh_City_%2825184032758%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world / CC BY 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_43"
+      ]
+    },
+    {
+      "id": "demo_vn_a_sunday_afternoon_in_a_building_complex_in_ho_c",
+      "file_name": "vn_a_sunday_afternoon_in_a_building_complex_in_ho_c.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "A Sunday afternoon in a building complex in Ho Chi Minh City (38655235281)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_Sunday_afternoon_in_a_building_complex_in_Ho_Chi_Minh_City_(38655235281).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/A_Sunday_afternoon_in_a_building_complex_in_Ho_Chi_Minh_City_%2838655235281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world / CC BY 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_39",
+        "vn_fpt_market"
+      ]
+    },
+    {
+      "id": "demo_vn_a_working_caf_in_ho_chi_minh_city_l_26820367449",
+      "file_name": "vn_a_working_caf_in_ho_chi_minh_city_l_26820367449.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "A working Café in Ho Chi Minh City l (26820367449)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_working_Caf%C3%A9_in_Ho_Chi_Minh_City_l_(26820367449).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/A_working_Caf%C3%A9_in_Ho_Chi_Minh_City_l_%2826820367449%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by Peter Addor from underway; mailnly Switzerland, Italy and Sri Lanka, world / CC BY 2.0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_30",
+        "vn_fpt_coffee2"
+      ]
+    },
+    {
+      "id": "demo_vn_banhcanhcua",
+      "file_name": "vn_banhcanhcua.jpg",
+      "country": "VN",
+      "university": "FPT",
+      "kind": "campus_life",
+      "title": "Banhcanhcua",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Banhcanhcua.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Banhcanhcua.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "creator": "bánh canh cu",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_url_source": "wikimedia_extmetadata",
+      "attribution": "Photo by bánh canh cu / CC0 (via Wikimedia Commons)",
+      "retrieved_at": "2026-09-16T18:50:56.816Z",
+      "is_demo_seed": true,
+      "mapped_to_posts": [
+        "post_38",
+        "vn_fpt_food3"
+      ]
+    }
+  ],
+  "rejected_this_run": []
+}

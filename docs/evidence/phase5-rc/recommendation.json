@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-09-16T20:32:54.671Z",
+  "corridors": [
+    "VN → SG / NUS",
+    "SG → VN / FPT HCMC"
+  ],
+  "cards_per_corridor": [
+    10,
+    10
+  ],
+  "distinct_reasons_per_corridor": [
+    8,
+    7
+  ],
+  "reasons_displayed_for_both": true,
+  "corridor_expectation_matched": [
+    true,
+    true
+  ],
+  "feed_overlap_ratio": 0.053,
+  "feeds_materially_different": true,
+  "recommendation_engine": "deterministic scoring (src/lib/phase5/feed-ranking.ts) — no trained model, no per-scroll model call",
+  "weights": "host country, university, exchange stage, interest/concern overlap, followed author, saved place, campus proximity, engagement, recency decay, author/topic diversity"
+}

@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-09-16T20:32:44.964Z",
+  "corridor": "VN → SG / NUS",
+  "account": {
+    "user_id": "6aaafce4003a51b48ba4",
+    "home": "VN",
+    "host": "SG",
+    "university": "NUS",
+    "interests": [
+      "Food",
+      "Coffee",
+      "Photography"
+    ],
+    "concerns": [
+      "Speaking up in class",
+      "Understanding local English"
+    ]
+  },
+  "cards_returned": 10,
+  "cards_with_reasons": 10,
+  "distinct_reasons": [
+    "Useful for your departure prep",
+    "Matches your food interest",
+    "Because you're moving to Singapore",
+    "Students at NUS",
+    "Matches your coffee interest",
+    "Near your campus",
+    "Matches your photography interest",
+    "About something you flagged: understanding local english"
+  ],
+  "matched_corridor_expectation": true,
+  "sample": [
+    {
+      "demo": true,
+      "has_place": false,
+      "reasons": [
+        "Useful for your departure prep",
+        "Matches your food interest"
+      ],
+      "excerpt": "HYHui YingDemo6h🇸🇬 → 🇻🇳· FPTGuideFirst week here, in order: get a local SIM, take one motorbike ride, find your food place, then start saying yes to things.Useful for your depa"
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Singapore",
+        "Students at NUS",
+        "Matches your coffee interest"
+      ],
+      "excerpt": "TUTuanDemo23 thg 8🇻🇳 → 🇸🇬· NUSMomentFound a place near campus that does not feel like a campus bar. Good for talking to people who are not in your course.Because you're moving "
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Singapore",
+        "Students at NUS",
+        "Near your campus"
+      ],
+      "excerpt": "VYVyDemo21 thg 8🇻🇳 → 🇸🇬· NUSStudyLibrary at eight on a Tuesday is the sweet spot. Busy enough to feel focused, quiet enough to actually work.Because you're moving to SingaporeS"
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Singapore",
+        "Students at NUS",
+        "Matches your photography interest"
+      ],
+      "excerpt": "BIBinhDemo17 thg 8🇻🇳 → 🇸🇬· NUSPlaceThe green trail behind campus is a good reset when the term gets loud. Go early, before the heat.Photo by Ralff Nestor Nacor / CC BY-SA 4.0 ("
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Singapore",
+        "Students at NUS",
+        "Matches your food interest"
+      ],
+      "excerpt": "HAHafizDemo15 thg 8🇸🇬 → 🇸🇬· NUSTipLearn the dish names before you order. It is a small thing, but people light up when you try.Photo by ProjectManhattan / CC BY-SA 3.0 (via Wik"
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Singapore",
+        "Students at NUS",
+        "Matches your photography interest"
+      ],
+      "excerpt": "NGNgaDemo9 thg 8🇻🇳 → 🇸🇬· NUSCultureSpent a whole afternoon in the campus museum and understood this place differently afterwards.Photo by Ralff Nestor Nacor / CC BY-SA 4.0 (via"
+    }
+  ]
+}

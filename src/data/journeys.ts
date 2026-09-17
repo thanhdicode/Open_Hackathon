@@ -13,7 +13,7 @@ export interface TodayTask {
 export interface Journey {
   id: string;
   name: string;
-  age: number;
+  age?: number;
   avatarColor: string;
   initials: string;
   home: CountryCode;
@@ -21,6 +21,12 @@ export interface Journey {
   city: string;
   university: string;
   major: string;
+  /**
+   * Display strings for the same two dates. The shape is `1 Aug 2026` —
+   * day-first, no comma — which is exactly what `journeyDateLabel()` produces
+   * for a custom journey. Seed stories and user-created journeys therefore read
+   * identically; a divergence here is a rendering bug, not a style choice.
+   */
   arrival: string;
   departure: string;
   /**
@@ -38,6 +44,7 @@ export interface Journey {
   interests: string[];
   concerns: string[];
   myDna: DnaScores;
+  myDnaAssessed?: boolean;
   readiness: number;
   weekProgress: number;
   primaryTask: TodayTask;

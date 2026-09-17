@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-09-16T20:30:14.317Z",
+  "measured_from": "live Appwrite tables read through the admin API (independent of the seed report)",
+  "targets": {
+    "student_social_profiles": 24,
+    "community_posts": 40,
+    "post_comments": 80,
+    "post_reactions": 120,
+    "saved_posts": 40,
+    "place_saves": 60,
+    "follows": 20,
+    "place_contributions": 20,
+    "post_media": 20
+  },
+  "counts": {
+    "student_social_profiles": 34,
+    "community_posts": 44,
+    "post_comments": 133,
+    "post_reactions": 833,
+    "saved_posts": 283,
+    "place_saves": 368,
+    "follows": 108,
+    "place_contributions": 34,
+    "post_media": 30
+  },
+  "shortfalls": [],
+  "density_met": true,
+  "corridors": {
+    "sg_posts": 20,
+    "vn_posts": 17,
+    "balance_ratio": 0.85,
+    "balanced": true,
+    "by_country": {
+      "MY": 3,
+      "SG": 20,
+      "ID": 4,
+      "VN": 17
+    },
+    "by_university": {
+      "UM": 3,
+      "NUS": 20,
+      "UI": 4,
+      "FPT": 17
+    },
+    "by_type": {
+      "undefined": 44
+    }
+  },
+  "honesty": {
+    "synthetic_posts": 44,
+    "posts_claiming_verified_or_real": [],
+    "demo_posts_missing_the_demo_marker": [],
+    "profiles_sharing_live_location": [],
+    "distinct_profiles": 34
+  },
+  "media": {
+    "assets": 27,
+    "media_rows": 30,
+    "assets_missing_provenance": [],
+    "assets_not_marked_demo": [],
+    "providers": [
+      "wikimedia_commons"
+    ],
+    "licenses": [
+      "CC BY-SA 4.0",
+      "Public domain",
+      "CC BY-SA 3.0",
+      "CC BY-SA 2.0",
+      "CC BY 3.0",
+      "CC BY 2.0",
+      "CC0"
+    ]
+  },
+  "seed_report": {
+    "places": 39,
+    "profiles": 34,
+    "follows": 108,
+    "posts": 44,
+    "comments": 132,
+    "reactions": 830,
+    "post_saves": 283,
+    "media": 30,
+    "contributions": 34,
+    "place_saves": 368
+  }
+}

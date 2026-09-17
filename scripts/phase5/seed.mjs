@@ -58,6 +58,7 @@ const COMMENTS = "post_comments";
 const SAVED_POSTS = "saved_posts";
 const CONTRIBUTIONS = "place_contributions";
 const PLACE_SAVES = "place_saves";
+const FOLLOWS = "follows";
 const PLACES = "places";
 const UNIVERSITIES = "universities";
 
@@ -89,10 +90,28 @@ function hashUnit(seed) {
 
 const normalise = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, "");
 const DAY_MS = 86400000;
-const SEED_EPOCH = Date.parse("2026-08-18T09:00:00.000Z");
 
-function seededDate(index, spreadDays = 26) {
-  return new Date(SEED_EPOCH + index * (spreadDays / 12) * DAY_MS).toISOString();
+/*
+ * Timestamps are relative to the run, not to a frozen epoch.
+ *
+ * The Phase 5 version anchored every row to a fixed 2026-08-18 and advanced one
+ * step per row. That was fine for ten posts; at forty-four the last ones land
+ * three months *after* the seed runs, so the feed shows posts dated in the
+ * future and the ranker's recency decay behaves backwards. Spreading the corpus
+ * across the ~nine weeks ending a few hours ago keeps "newest first" true
+ * whenever the seed is run, and keeps an older post competitive without letting
+ * it look current.
+ */
+const SEED_WINDOW = {
+  oldest: Date.now() - 63 * DAY_MS,
+  newest: Date.now() - 6 * 3600000,
+};
+
+/** Position `index` of `total` along the corpus timeline. */
+function seededDate(index, total = 12) {
+  const span = SEED_WINDOW.newest - SEED_WINDOW.oldest;
+  const progress = total <= 1 ? 1 : index / (total - 1);
+  return new Date(SEED_WINDOW.oldest + progress * span).toISOString();
 }
 
 /* ------------------------------------------------------------------ *
@@ -205,15 +224,40 @@ function metresBetween(a, b) {
   return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-async function nominatim(query) {
+/**
+ * A geocode lookup that cannot abort the seed.
+ *
+ * The first live run of this script died on an unhandled `ECONNRESET` from
+ * Nominatim, halfway through anchor resolution, leaving the database partly
+ * seeded and no report written. A network failure here is expected rather than
+ * exceptional — Nominatim resets connections under load — and the contract
+ * already covers it: an anchor that cannot be geocoded is dropped and reported.
+ * Retrying briefly and then returning null turns a fatal crash into a recorded
+ * degradation.
+ *
+ * The anchors that still reach this path are the ones with no OpenStreetMap
+ * match at all; every demo-corridor anchor resolves from the cached OSM data
+ * without touching the network.
+ */
+async function nominatim(query, attempt = 1) {
   const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`;
-  const response = await fetch(url, {
-    headers: { "user-agent": "YapYep-Hackathon-Demo/1.0 (contact: demo@yapyep.app)" },
-  });
-  if (!response.ok) return null;
-  const results = await response.json();
-  if (!results[0]) return null;
-  return { lat: Number(results[0].lat), lng: Number(results[0].lon), display: results[0].display_name };
+  try {
+    const response = await fetch(url, {
+      headers: { "user-agent": "YapYep-Hackathon-Demo/1.0 (contact: demo@yapyep.app)" },
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!response.ok) return null;
+    const results = await response.json();
+    if (!results[0]) return null;
+    return { lat: Number(results[0].lat), lng: Number(results[0].lon), display: results[0].display_name };
+  } catch (error) {
+    if (attempt < 3) {
+      await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+      return nominatim(query, attempt + 1);
+    }
+    console.warn(`  nominatim "${query}" gave up after ${attempt} attempts: ${error.message}`);
+    return null;
+  }
 }
 
 /**
@@ -357,36 +401,42 @@ async function upsert(tableId, rowId, data, permissions) {
 }
 
 /**
- * Write a personal-state row so the result is unambiguous.
+ * Write a personal-state row (a reaction, a save, a follow).
  *
- * These tables carry a unique index on (user_id, target_id). Appwrite's PUT upsert
- * does not report a conflict against that index: when the pair already exists under
- * a *different* row id it returns success and leaves the old row untouched. A seed
- * that trusts that return value reports writes that never happened, which is
- * exactly what happened when the row-id scheme changed and the old rows lingered.
+ * Two hard-won facts about this table family, both of which cost a debugging
+ * session:
  *
- * Deleting first makes the intended end state explicit and lets a re-run converge.
- */
-/**
- * Write a personal-state row.
+ * 1. These tables carry a unique index on (user_id, target_id), and Appwrite's
+ *    PUT upsert does not report a conflict against it. When the pair already
+ *    exists under a *different* row id, the upsert returns success and leaves the
+ *    old row untouched — so a seed that trusts that return value reports writes
+ *    that never happened. That is why this uses create-with-conflict-retry rather
+ *    than `upsert`.
  *
- * The row id is generated rather than derived from the pair. The client derives
- * one (`pairRowId`) because a tap must be idempotent, but a seed has no such need:
- * it clears its own rows first and the table's unique index on (user_id,
- * target_id) is the real guarantee. Using a derived id here turned out to be
- * actively harmful — re-running the seed produced `row_already_exists` for ids
- * that were demonstrably absent from the table (verified with both `getRow` and a
- * full `listRows`), which is a consistency window in the API that a bootstrap
- * script should not be built on.
+ * 2. The row id is generated, not derived from the pair. The client derives one
+ *    (`pairRowId`) because a tap must be idempotent, but a seed does not need
+ *    that: it clears its own rows first. A derived id was actively harmful here —
+ *    re-running produced `row_already_exists` for ids that were demonstrably
+ *    absent (checked with both `getRow` and a full `listRows`), a consistency
+ *    window a bootstrap script should not be built on.
  *
- * A 409 is still retried briefly, because a delete immediately before a create can
- * leave the index briefly stale.
+ * A 409 is retried with a delete first, because a delete immediately before a
+ * create can leave the index briefly stale.
  */
 async function putState(tableId, rowId, data, permissions) {
   if (dryRun) return { $id: rowId };
 
-  await tables.deleteRow({ databaseId, tableId, rowId }).catch(() => {});
-
+  /*
+   * Create first, clear only on conflict.
+   *
+   * This used to delete unconditionally before every create. That was written for
+   * an earlier id scheme where a row id was derived from the (user_id, target_id)
+   * pair, so a re-run really could collide. Ids are now unique per write and the
+   * owning rows are all cleared up front, which makes the delete a second network
+   * round trip for a row that provably does not exist — 1,600 of them per seed
+   * run. Keeping it on the 409 path preserves the convergent behaviour for the
+   * case that actually needs it.
+   */
   let lastError;
   for (let attempt = 1; attempt <= 4; attempt += 1) {
     try {
@@ -394,6 +444,10 @@ async function putState(tableId, rowId, data, permissions) {
     } catch (error) {
       lastError = error;
       if (error?.code !== 409) throw error;
+      // Either this row id exists, or the unique index on (user_id, target_id)
+      // matched a row written under a different id. Clearing the id and retrying
+      // converges for the first case; the up-front clear handles the second.
+      await tables.deleteRow({ databaseId, tableId, rowId }).catch(() => {});
       await new Promise((resolve) => setTimeout(resolve, 300 * attempt));
     }
   }
@@ -414,14 +468,14 @@ async function putState(tableId, rowId, data, permissions) {
  * behind them, and a create issued before a delete has applied is rejected with a
  * spurious conflict.
  */
-async function clearSeedOwnedRows(tableId) {
+async function clearSeedOwnedRows(tableId, ownerColumn = "user_id") {
   if (dryRun) return 0;
   const removed = new Set();
   for (let pass = 0; pass < 5; pass += 1) {
     const page = await tables.listRows({
       databaseId,
       tableId,
-      queries: [Query.startsWith("user_id", "seed_"), Query.limit(500)],
+      queries: [Query.startsWith(ownerColumn, "seed_"), Query.limit(500)],
     });
     if (!page.rows.length) break;
     for (const row of page.rows) {
@@ -566,7 +620,7 @@ for (const [index, profile] of seedPack.community_profiles.entries()) {
     is_demo_seed: 1,
     seed_origin: "demo",
     verification: "demo_seed",
-    joined_at: seededDate(index),
+    joined_at: seededDate(index, seedPack.community_profiles.length),
     // Stored, not just promised: the client asserts this is 0 everywhere.
     live_location_shared: 0,
     updated_at: new Date().toISOString(),
@@ -583,17 +637,150 @@ for (const [index, profile] of seedPack.community_profiles.entries()) {
 }
 report.counts.profiles = seedPack.community_profiles.length;
 
-// --- posts, media, comments, reactions ---
-
 /*
- * Clear this script's own interaction rows first so a re-run converges instead of
- * accumulating orphans from an earlier id scheme.
+ * Clear this script's own interaction rows before rewriting them, so a re-run
+ * converges instead of accumulating orphans from an earlier id scheme.
+ *
+ * THIS MUST RUN BEFORE THE FOLLOW GRAPH IS WRITTEN. It previously sat further
+ * down, after the follow loop, and silently deleted every follow row the same run
+ * had just created: the report claimed 108 follows while the table stayed empty,
+ * and the only visible symptom was that "You follow this student" could never
+ * appear in a feed. The ordering is the entire fix, and the reported count is
+ * now read back from the table rather than from the array it was built from.
  */
 const cleared = {};
-for (const tableId of ["post_reactions", "saved_posts", "place_saves"]) {
-  cleared[tableId] = await clearSeedOwnedRows(tableId);
+for (const [tableId, ownerColumn] of [
+  ["post_reactions", "user_id"],
+  ["saved_posts", "user_id"],
+  ["place_saves", "user_id"],
+  // The follow graph is owned by the follower, not by a generic `user_id`, so it
+  // needs its own column name or its rows accumulate on every re-run.
+  ["follows", "follower_id"],
+]) {
+  cleared[tableId] = await clearSeedOwnedRows(tableId, ownerColumn);
 }
 console.log(`  cleared stale seed interaction rows: ${JSON.stringify(cleared)}`);
+
+/*
+ * --- follow graph ---
+ *
+ * `follows` was declared in the schema in Phase 5 and never populated, which made
+ * two things unreachable: the "You follow this student" ranking reason, and the
+ * People surface's claim to show a network rather than a directory. Every demo
+ * profile follows a deterministic handful of others, weighted towards its own
+ * host country — a VN→SG student following other students in Singapore is the
+ * network the product actually promises, whereas following someone in an
+ * unrelated country is filler.
+ *
+ * Read permission is the follower's alone. A follow is personal state: exposing
+ * who follows whom to every signed-in student would leak the graph.
+ */
+const followPairs = [];
+for (const profile of seedPack.community_profiles) {
+  const sameHost = seedPack.community_profiles.filter(
+    (other) => other.id !== profile.id && other.host_country === profile.host_country,
+  );
+  const chosen = sameHost.filter((other) => hashUnit(`${profile.id}:${other.id}:f`) > 0.55).slice(0, 4);
+  for (const target of chosen) followPairs.push([profile.id, target.id]);
+}
+for (const [followerId, followingId] of followPairs) {
+  const followId = `fl_${ID.unique()}`;
+  await putState(
+    FOLLOWS,
+    followId,
+    {
+      follow_id: followId,
+      follower_id: followerId,
+      following_id: followingId,
+      created_at: seededDate(0, 1),
+    },
+    [Permission.read(Role.user(followerId))],
+  );
+}
+/*
+ * Read the count back from the table rather than reporting the array length.
+ * The previous version reported what it intended to write, which is exactly how a
+ * run that deleted its own follows still printed "follows: 108" and looked
+ * healthy. A count that cannot disagree with reality is not evidence.
+ */
+report.counts.follows = await tables
+  .listRows({ databaseId, tableId: FOLLOWS, queries: [Query.startsWith("follower_id", "seed_"), Query.limit(1)] })
+  .then((page) => page.total)
+  .catch(() => 0);
+
+// --- posts, media, comments, reactions ---
+
+/**
+ * Reply pools, keyed by post type.
+ *
+ * Every sentence is written to be a plausible peer response to the post above it
+ * and to claim nothing about the world: a reply can react, ask, or relate, but it
+ * must never assert a rule, a price or a deadline. Those belong to the Greenbook
+ * with a source and a freshness date, and a synthetic reply is not a source.
+ */
+const COMMENT_POOL = {
+  food: [
+    "Adding this to my list, I walk past here every day and never went in.",
+    "How busy does it get around lunch? I only have half an hour between classes.",
+    "This is the kind of thing I wish I had known in my first week.",
+    "Tried it after reading this and it is now in my regular rotation.",
+  ],
+  study: [
+    "Which floor do you usually end up on? I keep getting lost in there.",
+    "Good to know it stays quiet, that is the hard part to find.",
+    "Saving this for the week before exams, thank you.",
+    "I have been looking for somewhere like this since I arrived.",
+  ],
+  place: [
+    "Pinned it. This is exactly the kind of spot I would never have found alone.",
+    "Went here today because of this post, it was worth it.",
+    "Do you go in the morning or later? Trying to pick a quiet time.",
+    "Adding this to my saved places right now.",
+  ],
+  tip: [
+    "This is genuinely useful, saving it before I arrive.",
+    "Did this work out for you long term, or just the first week?",
+    "Adding this to my first-week list, thank you.",
+    "Nobody told me this before I came, so thank you for writing it down.",
+  ],
+  warning: [
+    "Wish I had read this a month ago, learned it the hard way.",
+    "Good to know it is manageable, I was worried about this.",
+    "Thanks for being honest about it instead of just saying it is fine.",
+    "This matches my experience almost exactly.",
+  ],
+  question: [
+    "Following this, I have the same question.",
+    "I found one near the east side that works for me, happy to share.",
+    "Did you get an answer? Curious about this too.",
+    "Same problem here, let me know if you find somewhere.",
+  ],
+  moment: [
+    "This is such a good feeling, glad it worked out.",
+    "The first month really is like this, enjoy it.",
+    "Made me smile, I had a similar week.",
+    "Great to see someone settling in properly.",
+  ],
+  culture: [
+    "This is a really good way of putting it.",
+    "I noticed the same thing and could not explain it until now.",
+    "Reading this made me understand something I had been missing.",
+    "Thanks for writing it down, it helps to hear it from another student.",
+  ],
+  guide: [
+    "This is the most useful thing I have read before arriving.",
+    "Saving this and re-reading it on the plane.",
+    "The order you put these in is exactly right.",
+    "Sending this to a friend who is coming next term.",
+  ],
+  _default: [
+    "This is genuinely useful, saving it before I arrive.",
+    "Thanks for sharing this, it helps more than you think.",
+    "Adding this to my notes for next week.",
+    "Good to hear from someone who has actually done it.",
+  ],
+};
+
 const postAggregates = [];
 const commentAggregates = [];
 /** The post row is built once and reused for the aggregate flush below. */
@@ -601,7 +788,7 @@ const postRowById = new Map();
 
 for (const [index, post] of seedPack.community_posts.entries()) {
   const media = mediaByTarget.get(post.id) ?? [];
-  const createdAt = seededDate(index);
+  const createdAt = seededDate(index, seedPack.community_posts.length);
 
   const row = {
     post_id: post.id,
@@ -612,6 +799,17 @@ for (const [index, post] of seedPack.community_posts.entries()) {
     body: post.body,
     place_id: linkPlace(post),
     tags: JSON.stringify(buildTags(post)),
+    /*
+     * Enrichment is authored in the pack rather than requested from the AI
+     * gateway. A seed run has to be offline, deterministic and repeatable, and a
+     * demo corpus that only ranks correctly when a model call succeeds is a demo
+     * that degrades on a bad network. Posts that predate the column fall back to
+     * their own tags, which is the same fallback the client applies — so an
+     * unenriched post still participates in topic matching instead of being
+     * silently invisible to it.
+     */
+    topics: JSON.stringify(post.topics ?? buildTags(post)),
+    journey_stage: post.stage ?? "",
     visibility: "public",
     is_demo_seed: 1,
     seed_origin: "demo",
@@ -658,13 +856,20 @@ for (const [index, post] of seedPack.community_posts.entries()) {
     .filter((profile) => profile.id !== post.author_id && hashUnit(`${post.id}:${profile.id}`) > 0.62)
     .slice(0, 3);
 
-  const commentBodies = [
-    "This is genuinely useful, saving it before I arrive.",
-    "Did this work out for you long term, or just the first week?",
-    "Adding this to my first-week list, thank you.",
-  ];
+  /*
+   * Replies are drawn from a pool keyed by what the post is about.
+   *
+   * The Phase 5 seed wrote the same three sentences under every post. Across ten
+   * posts that is invisible; across forty-four it is the fastest way to make a
+   * seeded feed read as seeded — the second time a student sees "This is
+   * genuinely useful" under an unrelated post, the thread stops looking like a
+   * conversation. The pool is chosen per post, and the reply within it is chosen
+   * per commenter, so a re-run still reproduces the same threads exactly.
+   */
+  const pool = COMMENT_POOL[post.type] ?? COMMENT_POOL._default;
   for (const [commentIndex, commenter] of commenters.entries()) {
     const commentId = `${post.id}_c${commentIndex}`;
+    const pick = Math.min(pool.length - 1, Math.floor(hashUnit(`${post.id}:${commenter.id}:c`) * pool.length));
     await upsert(
       COMMENTS,
       commentId,
@@ -672,7 +877,7 @@ for (const [index, post] of seedPack.community_posts.entries()) {
         comment_id: commentId,
         post_id: post.id,
         author_id: commenter.id,
-        body: commentBodies[commentIndex % commentBodies.length],
+        body: pool[pick],
         is_demo_seed: 1,
         created_at: new Date(Date.parse(createdAt) + (commentIndex + 1) * 3600000).toISOString(),
       },
@@ -694,8 +899,17 @@ for (const [index, post] of seedPack.community_posts.entries()) {
         kind: "like",
         created_at: createdAt,
       },
-      // Personal state: readable only by its own (nonexistent) demo owner and admin.
-      [Permission.read(Role.user(reactor.id))],
+      /*
+       * Readable by signed-in students, because the reaction count shown on a post
+       * is derived from these rows.
+       *
+       * The Phase 5 version scoped read to the reactor alone, which made every
+       * count private to the person who cast it: two students looking at the same
+       * post saw two different numbers, and a real account reacting to a seeded
+       * post could never appear in anyone else's total. A reaction on a public
+       * post is a public act; delete stays with the owner.
+       */
+      [Permission.read(Role.users()), Permission.delete(Role.user(reactor.id))],
     );
   }
 
@@ -785,11 +999,53 @@ for (const [placeId, savers] of placeSavers) {
 }
 report.counts.place_saves = placeSaveRows;
 
+/*
+ * Verify the counts against the tables instead of trusting the arrays.
+ *
+ * The follow bug settled this: the script reported 108 follows while the table
+ * held none, and the report still looked healthy. Every personal-state count is
+ * now read back from storage, and a mismatch is recorded as an error rather than
+ * smoothed over — a count that cannot disagree with reality is not evidence.
+ */
+if (!dryRun) {
+  report.verified_counts = {};
+  for (const [tableId, query, intended] of [
+    [REACTIONS, Query.startsWith("user_id", "seed_"), report.counts.reactions],
+    [SAVED_POSTS, Query.startsWith("user_id", "seed_"), report.counts.post_saves],
+    [PLACE_SAVES, Query.startsWith("user_id", "seed_"), report.counts.place_saves],
+    [FOLLOWS, Query.startsWith("follower_id", "seed_"), report.counts.follows],
+    // Seeded comments carry the demo marker and a real student's does not, so this
+    // counts exactly what this script wrote without depending on an id shape.
+    [COMMENTS, Query.equal("is_demo_seed", 1), report.counts.comments],
+  ]) {
+    const actual = await tables
+      .listRows({ databaseId, tableId, queries: [query, Query.limit(1)] })
+      .then((page) => page.total)
+      .catch(() => -1);
+    report.verified_counts[tableId] = { intended, actual };
+    if (actual !== intended) report.errors.push(`${tableId}: intended ${intended}, table holds ${actual}`);
+  }
+}
+
 mkdirSync(dirname(OUT_PATH), { recursive: true });
 if (!dryRun) writeFileSync(OUT_PATH, JSON.stringify(report, null, 2));
 
 console.log("\n== seeded");
 for (const [key, value] of Object.entries(report.counts)) console.log(`  ${key}: ${value}`);
+
+if (report.verified_counts) {
+  console.log("\n== verified against storage");
+  for (const [tableId, entry] of Object.entries(report.verified_counts)) {
+    const mark = entry.actual === entry.intended ? "ok" : "MISMATCH";
+    console.log(`  ${tableId}: intended ${entry.intended}, table holds ${entry.actual} — ${mark}`);
+  }
+}
+if (report.errors.length) {
+  console.log("\n== ERRORS");
+  for (const error of report.errors) console.log(`  ${error}`);
+  process.exitCode = 1;
+}
+
 console.log(`\nreport: ${OUT_PATH}`);
 
 /** Hashtags are derived from the post's own type and place, never invented freely. */

@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-09-16T20:31:43.024Z",
+  "base_url": "http://127.0.0.1:5173",
+  "account": {
+    "user_id": "6aaafc88002f61c82a14",
+    "home": "VN",
+    "host": "SG",
+    "university": "NUS",
+    "stage": "before_departure"
+  },
+  "fixtures": {
+    "image": {
+      "path": "public/demo-media/vn_b_nh_tr_ng_n_ng_tp_h_ch_minh_street_food_in_ho_c.jpg",
+      "bytes": 291196
+    },
+    "video": {
+      "path": "scripts/phase5/fixtures/upload-test.mp4",
+      "bytes": 683998,
+      "note": "real H.264/AAC MP4 generated with ffmpeg for this test"
+    }
+  },
+  "posts": {
+    "text": {
+      "body": "Phase 5.1 real post 1789590664396 — first night building in the city",
+      "appeared_ms": 360,
+      "persisted_after_reload": true
+    },
+    "image": {
+      "body": "Phase 5.1 photo post 1789590664396 — dinner near campus",
+      "appeared_ms": 1146,
+      "persisted_after_reload": true,
+      "served_from_storage": true
+    },
+    "video": {
+      "body": "Phase 5.1 video post 1789590664396 — walking to class",
+      "appeared_ms": 1087,
+      "progress_shown": true,
+      "persisted_after_reload": true,
+      "metadata_ready": true,
+      "played": true,
+      "duration_s": 6
+    }
+  },
+  "checks": [
+    {
+      "name": "the seeded feed is dense enough to scroll",
+      "ok": true,
+      "detail": "20 cards on first paint"
+    },
+    {
+      "name": "a real text post appears in the feed after publishing",
+      "ok": true,
+      "detail": "360 ms after the click"
+    },
+    {
+      "name": "the text post survives a reload",
+      "ok": true,
+      "detail": "found 3 ms after load"
+    },
+    {
+      "name": "a real image uploads and publishes",
+      "ok": true,
+      "detail": "1146 ms"
+    },
+    {
+      "name": "the uploaded image is served back from storage",
+      "ok": true,
+      "detail": "natural size resolved from https://sgp.cloud.appwrite.io/v1/storage/buckets/community_m…"
+    },
+    {
+      "name": "the image post survives a reload",
+      "ok": true,
+      "detail": "2 ms"
+    },
+    {
+      "name": "a real short video uploads and publishes",
+      "ok": true,
+      "detail": "1087 ms for 668 KB"
+    },
+    {
+      "name": "the composer showed upload progress for the video",
+      "ok": true,
+      "detail": "progress card rendered during upload"
+    },
+    {
+      "name": "the video element resolves its metadata from storage",
+      "ok": true,
+      "detail": "duration 6.0s"
+    },
+    {
+      "name": "the video actually plays",
+      "ok": true,
+      "detail": "currentTime advanced past 0"
+    },
+    {
+      "name": "the video post survives a reload",
+      "ok": true,
+      "detail": "2 ms"
+    },
+    {
+      "name": "a post's place tag opens that place on the real map",
+      "ok": true,
+      "detail": "Explore opened with the place sheet"
+    },
+    {
+      "name": "the place sheet shows other students' stories there",
+      "ok": true,
+      "detail": "community posts rendered inside the sheet"
+    },
+    {
+      "name": "tapping a community story opens that exact post",
+      "ok": true,
+      "detail": "post rendered from the place sheet"
+    },
+    {
+      "name": "a post opens into its detail view with a comment box",
+      "ok": true,
+      "detail": "detail screen rendered"
+    },
+    {
+      "name": "a real comment can be written",
+      "ok": true,
+      "detail": "comment rendered"
+    },
+    {
+      "name": "a student can delete their own comment",
+      "ok": true,
+      "detail": "comment removed"
+    },
+    {
+      "name": "the signed-in student can open their own profile",
+      "ok": true,
+      "detail": " YYapYep🇻🇳→🇸🇬SingaporeTodayPassportLensExploreConnectMProfile🇻🇳→🇸🇬Singap"
+    },
+    {
+      "name": "the desktop layout does not overflow horizontally",
+      "ok": true,
+      "detail": "0px of horizontal overflow"
+    },
+    {
+      "name": "the real MapLibre map still renders",
+      "ok": true,
+      "detail": "canvas present"
+    },
+    {
+      "name": "no fatal render error occurred during the flow",
+      "ok": true,
+      "detail": "no uncaught exceptions"
+    }
+  ],
+  "screenshots": [
+    "390-feed.png",
+    "390-composer.png",
+    "390-video.png",
+    "390-place.png",
+    "390-comments.png",
+    "390-profile.png",
+    "1440-community.png",
+    "1440-explore.png"
+  ],
+  "passed": true,
+  "scope": "text + image posts, comments, place bridge, profile"
+}

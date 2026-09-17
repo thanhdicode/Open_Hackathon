@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-09-16T20:34:30.953Z",
+  "base_url": "http://127.0.0.1:5173",
+  "propagation_budget_ms": 15000,
+  "accounts": [
+    {
+      "label": "A",
+      "user_id": "6aaafd3200037a7f5456",
+      "corridor": "VN->SG",
+      "university": "NUS"
+    },
+    {
+      "label": "B",
+      "user_id": "6aaafd33000cbb89383a",
+      "corridor": "SG->VN",
+      "university": "FPT"
+    }
+  ],
+  "post_id": "6aaafd4200049c28596b",
+  "steps": [
+    {
+      "step": "two real authenticated accounts created",
+      "ok": true,
+      "detail": "A:6aaafd32… B:6aaafd33…"
+    },
+    {
+      "step": "both clients reached the community feed",
+      "ok": true,
+      "detail": "A and B on http://127.0.0.1:5173"
+    },
+    {
+      "step": "both clients switched to the chronological feed",
+      "ok": true,
+      "detail": "Latest — propagation is measured independently of ranking"
+    },
+    {
+      "step": "A sees their own post immediately after publishing",
+      "ok": true,
+      "detail": "350 ms"
+    },
+    {
+      "step": "B receives A's post over Realtime without reloading",
+      "ok": true,
+      "detail": "1275 ms from A's publish"
+    },
+    {
+      "step": "the post is really persisted on the server",
+      "ok": true,
+      "detail": "post_id 6aaafd420004…"
+    },
+    {
+      "step": "B's reaction really reached the server",
+      "ok": true,
+      "detail": "reaction row for 6aaafd4200…"
+    },
+    {
+      "step": "A's reaction count updates from B's reaction",
+      "ok": false,
+      "detail": "stayed at 0"
+    },
+    {
+      "step": "B's comment really reached the server",
+      "ok": true,
+      "detail": "comment row for 6aaafd4200…"
+    },
+    {
+      "step": "A's comment count updates from B's comment",
+      "ok": true,
+      "detail": "0 -> 1 in 321 ms"
+    },
+    {
+      "step": "A deletes their own post and it disappears for B",
+      "ok": false,
+      "detail": "still rendered after 6 s"
+    },
+    {
+      "step": "no uncaught page errors in either client",
+      "ok": true,
+      "detail": "clean"
+    }
+  ],
+  "passed": false
+}

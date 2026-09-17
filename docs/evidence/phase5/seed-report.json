@@ -1,39 +1,40 @@
 {
-  "generated_at": "2026-09-16T17:05:35.118Z",
+  "generated_at": "2026-09-16T19:49:07.778Z",
   "seed_pack": "seed/phase5/yapyep_phase5_seed_pack.json",
   "demo_marker": {
     "is_demo_seed": 1,
     "seed_origin": "demo"
   },
   "counts": {
-    "places": 11,
-    "profiles": 12,
-    "posts": 10,
-    "comments": 28,
-    "reactions": 68,
-    "post_saves": 24,
-    "media": 9,
-    "contributions": 6,
-    "place_saves": 41
+    "places": 39,
+    "profiles": 34,
+    "follows": 108,
+    "posts": 44,
+    "comments": 132,
+    "reactions": 830,
+    "post_saves": 283,
+    "media": 30,
+    "contributions": 34,
+    "place_saves": 368
   },
   "poi_resolution": [
     {
       "id": "my_um_library",
-      "name": "Universiti Malaya Central Library",
+      "name": "Perpustakaan Utama",
       "campus_id": "campus_um",
-      "coordinate_source": "nominatim",
-      "lat": 3.1257602,
-      "lng": 101.6558796,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": 3.120357,
+      "lng": 101.654062,
+      "matched_osm_name": "Perpustakaan Utama"
     },
     {
       "id": "my_um_study24",
-      "name": "24 Hours Study Area, UM Library",
+      "name": "Perpustakaan Peringatan Za'ba",
       "campus_id": "campus_um",
-      "coordinate_source": "nominatim",
-      "lat": 3.1216356,
-      "lng": 101.6588422,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": 3.118652,
+      "lng": 101.653569,
+      "matched_osm_name": "Perpustakaan Peringatan Za'ba"
     },
     {
       "id": "my_um_clinic",
@@ -46,12 +47,12 @@
     },
     {
       "id": "my_um_bank",
-      "name": "Bank Islam Universiti Malaya",
+      "name": "RHB Bank",
       "campus_id": "campus_um",
       "coordinate_source": "osm_match",
-      "lat": 3.121022,
-      "lng": 101.655185,
-      "matched_osm_name": "Bank Islam"
+      "lat": 3.121018,
+      "lng": 101.655197,
+      "matched_osm_name": "RHB Bank"
     },
     {
       "id": "my_um_food",
@@ -73,7 +74,7 @@
     },
     {
       "id": "sg_nus_library",
-      "name": "NUS Central Library",
+      "name": "Central Library",
       "campus_id": "campus_nus",
       "coordinate_source": "osm_match",
       "lat": 1.296621,
@@ -82,7 +83,7 @@
     },
     {
       "id": "sg_nus_health",
-      "name": "NUS University Health Centre",
+      "name": "University Health Centre",
       "campus_id": "campus_nus",
       "coordinate_source": "osm_match",
       "lat": 1.29907,
@@ -91,124 +92,502 @@
     },
     {
       "id": "sg_nus_coffee",
-      "name": "TOMORO COFFEE (NUS)",
+      "name": "Nami Café",
       "campus_id": "campus_nus",
-      "coordinate_source": "unresolved",
-      "lat": null,
-      "lng": null,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": 1.294339,
+      "lng": 103.775718,
+      "matched_osm_name": "Nami Café"
     },
     {
       "id": "sg_nus_food",
-      "name": "Makan Malah @ NUS",
+      "name": "The Deck",
       "campus_id": "campus_nus",
-      "coordinate_source": "unresolved",
-      "lat": null,
-      "lng": null,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": 1.294671,
+      "lng": 103.772492,
+      "matched_osm_name": "The Deck"
     },
     {
       "id": "id_ui_library",
-      "name": "University of Indonesia Library",
+      "name": "Perpustakaan Pusat UI",
       "campus_id": "campus_ui",
-      "coordinate_source": "nominatim",
-      "lat": -6.3652177,
-      "lng": 106.8297627,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": -6.36524,
+      "lng": 106.829769,
+      "matched_osm_name": "Perpustakaan Pusat UI"
     },
     {
       "id": "id_ui_clinic",
-      "name": "Makara UI Satellite Clinic",
+      "name": "Klinik Satelit UI",
       "campus_id": "campus_ui",
-      "coordinate_source": "nominatim",
-      "lat": -6.353996,
-      "lng": 106.8251154,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": -6.361123,
+      "lng": 106.822605,
+      "matched_osm_name": "Klinik Satelit UI"
     },
     {
       "id": "id_ui_coffee",
-      "name": "Suar Ruang Coffee Ground",
+      "name": "Bikun Coffee",
       "campus_id": "campus_ui",
-      "coordinate_source": "unresolved",
-      "lat": null,
-      "lng": null,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": -6.364999,
+      "lng": 106.831092,
+      "matched_osm_name": "Bikun Coffee"
     },
     {
       "id": "id_ui_food",
-      "name": "JChicken UI",
+      "name": "Kantin FT UI",
       "campus_id": "campus_ui",
-      "coordinate_source": "unresolved",
-      "lat": null,
-      "lng": null,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": -6.363195,
+      "lng": 106.824575,
+      "matched_osm_name": "Kantin FT UI"
     },
     {
       "id": "id_ui_transport",
-      "name": "Go-ride instan Stasiun UI",
+      "name": "Shelter Stasiun UI",
       "campus_id": "campus_ui",
-      "coordinate_source": "nominatim",
-      "lat": -6.3612022,
-      "lng": 106.8320103,
-      "matched_osm_name": null
+      "coordinate_source": "osm_match",
+      "lat": -6.361042,
+      "lng": 106.831127,
+      "matched_osm_name": "Shelter Stasiun UI"
+    },
+    {
+      "id": "sg_nus_study2",
+      "name": "Medicine+Science Library",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.296958,
+      "lng": 103.781734,
+      "matched_osm_name": "Medicine+Science Library"
+    },
+    {
+      "id": "sg_nus_lib2",
+      "name": "Hon Sui Sen Memorial Library",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.293022,
+      "lng": 103.774435,
+      "matched_osm_name": "Hon Sui Sen Memorial Library"
+    },
+    {
+      "id": "sg_nus_food2",
+      "name": "Techno Edge Canteen",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.297946,
+      "lng": 103.771515,
+      "matched_osm_name": "Techno Edge Canteen"
+    },
+    {
+      "id": "sg_nus_hawker",
+      "name": "Fong Seng Nasi Lemak",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.294677,
+      "lng": 103.772517,
+      "matched_osm_name": "Fong Seng Nasi Lemak"
+    },
+    {
+      "id": "sg_nus_museum",
+      "name": "NUS Museum",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.301445,
+      "lng": 103.772563,
+      "matched_osm_name": "NUS Museum"
+    },
+    {
+      "id": "sg_nus_culture",
+      "name": "Lee Kong Chian Natural History Museum",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.30143,
+      "lng": 103.773624,
+      "matched_osm_name": "Lee Kong Chian Natural History Museum"
+    },
+    {
+      "id": "sg_nus_transport",
+      "name": "Prince George's Park Terminal",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.291825,
+      "lng": 103.780421,
+      "matched_osm_name": "Prince George's Park Terminal"
+    },
+    {
+      "id": "sg_nus_sports",
+      "name": "Training Pool",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.2995,
+      "lng": 103.77597,
+      "matched_osm_name": "Training Pool"
+    },
+    {
+      "id": "sg_nus_hangout",
+      "name": "Bar Bar Black Sheep",
+      "campus_id": "campus_nus",
+      "coordinate_source": "osm_match",
+      "lat": 1.301815,
+      "lng": 103.772555,
+      "matched_osm_name": "Bar Bar Black Sheep"
+    },
+    {
+      "id": "vn_fpt_campus",
+      "name": "Trường Đại Học FPT Thành phố Hồ Chí Minh",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.841436,
+      "lng": 106.809857,
+      "matched_osm_name": "Trường Đại Học FPT Thành phố Hồ Chí Minh"
+    },
+    {
+      "id": "vn_fpt_coffee",
+      "name": "Cà Phê iCoffee",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.849291,
+      "lng": 106.799967,
+      "matched_osm_name": "Cà Phê iCoffee"
+    },
+    {
+      "id": "vn_fpt_coffee2",
+      "name": "Góc chill cafe",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.854216,
+      "lng": 106.797856,
+      "matched_osm_name": "Góc chill cafe"
+    },
+    {
+      "id": "vn_fpt_cafe3",
+      "name": "Highlands Coffee",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.838438,
+      "lng": 106.831556,
+      "matched_osm_name": "Highlands Coffee"
+    },
+    {
+      "id": "vn_fpt_mixue",
+      "name": "Mixue - 320 Nguyễn Văn Tăng",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.841207,
+      "lng": 106.823528,
+      "matched_osm_name": "Mixue - 320 Nguyễn Văn Tăng"
+    },
+    {
+      "id": "vn_fpt_food",
+      "name": "Phở Gánh 2",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.842527,
+      "lng": 106.820374,
+      "matched_osm_name": "Phở Gánh 2"
+    },
+    {
+      "id": "vn_fpt_food2",
+      "name": "Bún Bò Phú Lộc",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.840766,
+      "lng": 106.829194,
+      "matched_osm_name": "Bún Bò Phú Lộc"
+    },
+    {
+      "id": "vn_fpt_food3",
+      "name": "Cơm tấm Út Thương 3",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.839325,
+      "lng": 106.829584,
+      "matched_osm_name": "Cơm tấm Út Thương 3"
+    },
+    {
+      "id": "vn_fpt_food4",
+      "name": "Hủ tiếu Mỹ Tho",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.838456,
+      "lng": 106.831612,
+      "matched_osm_name": "Hủ tiếu Mỹ Tho"
+    },
+    {
+      "id": "vn_fpt_market",
+      "name": "Chợ Tăng Nhơn Phú",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.844392,
+      "lng": 106.787967,
+      "matched_osm_name": "Chợ Tăng Nhơn Phú"
+    },
+    {
+      "id": "vn_fpt_pharmacy",
+      "name": "Nhà thuốc Long Châu",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.842649,
+      "lng": 106.828644,
+      "matched_osm_name": "Nhà thuốc Long Châu"
+    },
+    {
+      "id": "vn_fpt_hospital",
+      "name": "Bệnh viện Lê Văn Việt",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.8449,
+      "lng": 106.790232,
+      "matched_osm_name": "Bệnh viện Lê Văn Việt"
+    },
+    {
+      "id": "vn_fpt_bank",
+      "name": "Sacombank",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.850147,
+      "lng": 106.812741,
+      "matched_osm_name": "Sacombank"
+    },
+    {
+      "id": "vn_fpt_transport",
+      "name": "Saigon Petro",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.849943,
+      "lng": 106.811647,
+      "matched_osm_name": "Saigon Petro"
+    },
+    {
+      "id": "vn_fpt_hangout",
+      "name": "Quán Nhậu Hải Thành",
+      "campus_id": "campus_fpt",
+      "coordinate_source": "osm_match",
+      "lat": 10.839112,
+      "lng": 106.788769,
+      "matched_osm_name": "Quán Nhậu Hải Thành"
     }
   ],
   "aggregates": [
     {
       "place_id": "my_um_library",
-      "student_saves": 5,
+      "student_saves": 13,
       "student_stories": 1
     },
     {
       "place_id": "my_um_study24",
-      "student_saves": 3,
+      "student_saves": 5,
       "student_stories": 1
     },
     {
       "place_id": "my_um_clinic",
-      "student_saves": 1,
+      "student_saves": 4,
       "student_stories": 0
     },
     {
       "place_id": "my_um_bank",
-      "student_saves": 4,
+      "student_saves": 10,
       "student_stories": 0
     },
     {
       "place_id": "my_um_food",
-      "student_saves": 5,
+      "student_saves": 12,
       "student_stories": 0
     },
     {
       "place_id": "my_um_coffee",
-      "student_saves": 5,
+      "student_saves": 13,
       "student_stories": 0
     },
     {
       "place_id": "sg_nus_library",
-      "student_saves": 1,
-      "student_stories": 2
+      "student_saves": 9,
+      "student_stories": 3
     },
     {
       "place_id": "sg_nus_health",
-      "student_saves": 2,
-      "student_stories": 0
+      "student_saves": 7,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_coffee",
+      "student_saves": 13,
+      "student_stories": 2
+    },
+    {
+      "place_id": "sg_nus_food",
+      "student_saves": 13,
+      "student_stories": 1
     },
     {
       "place_id": "id_ui_library",
-      "student_saves": 5,
+      "student_saves": 10,
       "student_stories": 1
     },
     {
       "place_id": "id_ui_clinic",
+      "student_saves": 12,
+      "student_stories": 1
+    },
+    {
+      "place_id": "id_ui_coffee",
       "student_saves": 6,
       "student_stories": 1
     },
     {
+      "place_id": "id_ui_food",
+      "student_saves": 9,
+      "student_stories": 1
+    },
+    {
       "place_id": "id_ui_transport",
+      "student_saves": 8,
+      "student_stories": 0
+    },
+    {
+      "place_id": "sg_nus_study2",
+      "student_saves": 5,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_lib2",
+      "student_saves": 11,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_food2",
+      "student_saves": 9,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_hawker",
+      "student_saves": 10,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_museum",
+      "student_saves": 13,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_culture",
+      "student_saves": 12,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_transport",
+      "student_saves": 11,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_sports",
+      "student_saves": 14,
+      "student_stories": 1
+    },
+    {
+      "place_id": "sg_nus_hangout",
+      "student_saves": 13,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_campus",
+      "student_saves": 7,
+      "student_stories": 2
+    },
+    {
+      "place_id": "vn_fpt_coffee",
+      "student_saves": 8,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_coffee2",
+      "student_saves": 13,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_cafe3",
+      "student_saves": 6,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_mixue",
+      "student_saves": 7,
+      "student_stories": 0
+    },
+    {
+      "place_id": "vn_fpt_food",
+      "student_saves": 8,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_food2",
+      "student_saves": 11,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_food3",
+      "student_saves": 10,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_food4",
+      "student_saves": 13,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_market",
+      "student_saves": 8,
+      "student_stories": 2
+    },
+    {
+      "place_id": "vn_fpt_pharmacy",
+      "student_saves": 10,
+      "student_stories": 1
+    },
+    {
+      "place_id": "vn_fpt_hospital",
+      "student_saves": 6,
+      "student_stories": 0
+    },
+    {
+      "place_id": "vn_fpt_bank",
+      "student_saves": 8,
+      "student_stories": 0
+    },
+    {
+      "place_id": "vn_fpt_transport",
       "student_saves": 4,
+      "student_stories": 0
+    },
+    {
+      "place_id": "vn_fpt_hangout",
+      "student_saves": 7,
       "student_stories": 0
     }
   ],
-  "errors": []
+  "errors": [],
+  "verified_counts": {
+    "post_reactions": {
+      "intended": 830,
+      "actual": 830
+    },
+    "saved_posts": {
+      "intended": 283,
+      "actual": 283
+    },
+    "place_saves": {
+      "intended": 368,
+      "actual": 368
+    },
+    "follows": {
+      "intended": 108,
+      "actual": 108
+    },
+    "post_comments": {
+      "intended": 132,
+      "actual": 132
+    }
+  }
 }

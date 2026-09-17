@@ -224,6 +224,8 @@ async function verifyPermissions() {
   let postId = null;
   let placeId = null;
   let probeSaveId = null;
+  let probeBlockId = null;
+  let probeReportId = null;
 
   try {
     // --- create two real users and log each one in ------------------------
@@ -381,6 +383,72 @@ async function verifyPermissions() {
       .catch((error) => `denied:${error.code}`);
     check("an anonymous caller CANNOT read a community post", anonRead !== "ALLOWED", anonRead === "ALLOWED" ? "SECURITY FAILURE" : anonRead);
 
+    /* --- blocking ---------------------------------------------------------
+     *
+     * A block is only real if the block *set* the feed reads contains the other
+     * student. The feed filters with `posts.filter(p => !blocked.has(p.authorId))`,
+     * so an unreadable block row is a block that silently does nothing — the
+     * student taps "Block", the toast confirms, and the content stays. That is the
+     * failure this check exists to catch, which is why it asserts on the id being
+     * *in the set*, not merely on a row existing.
+     */
+    probeBlockId = ID.unique();
+    await clientB.tables.createRow({
+      databaseId: DATABASE,
+      tableId: "user_blocks",
+      rowId: probeBlockId,
+      data: { user_id: b.userId, blocked_user_id: a.userId, display_name: "Probe A", created_at: now },
+      permissions: [Permission.read(Role.user(b.userId)), Permission.update(Role.user(b.userId)), Permission.delete(Role.user(b.userId))],
+    });
+
+    const bBlockSet = await clientB.tables
+      .listRows({ databaseId: DATABASE, tableId: "user_blocks", queries: [Query.equal("user_id", b.userId), Query.limit(50)] })
+      .then((page) => page.rows.map((row) => row.blocked_user_id))
+      .catch(() => []);
+    check("B's block list contains A, so A's posts are filtered from B's feed", bBlockSet.includes(a.userId), `blocked ids: ${bBlockSet.length}`);
+
+    const aReadBlock = await clientA.tables
+      .getRow({ databaseId: DATABASE, tableId: "user_blocks", rowId: probeBlockId })
+      .then(() => "ALLOWED")
+      .catch((error) => `denied:${error.code}`);
+    check("user A CANNOT read B's block list", aReadBlock !== "ALLOWED", aReadBlock === "ALLOWED" ? "SECURITY FAILURE" : aReadBlock);
+
+    /* --- reporting --------------------------------------------------------
+     *
+     * The report must persist and be readable by the student who filed it, and by
+     * nobody else. A report that cannot be read back is a safety control that
+     * looks present in the UI and does not exist in the product.
+     */
+    probeReportId = ID.unique();
+    await clientA.tables.createRow({
+      databaseId: DATABASE,
+      tableId: "reports",
+      rowId: probeReportId,
+      data: {
+        report_id: probeReportId,
+        reporter_id: a.userId,
+        target_type: "post",
+        target_id: bPostId,
+        reason: "spam",
+        detail: "Phase 5 permission probe",
+        status: "open",
+        created_at: now,
+      },
+      permissions: [`read("user:${a.userId}")`],
+    });
+
+    const aReadReport = await clientA.tables
+      .getRow({ databaseId: DATABASE, tableId: "reports", rowId: probeReportId })
+      .then((row) => ({ ok: true, status: row.status }))
+      .catch((error) => ({ ok: false, code: error.code }));
+    check("a report persists and is readable by the student who filed it", aReadReport.ok === true, aReadReport.ok ? `status ${aReadReport.status}` : `denied:${aReadReport.code}`);
+
+    const bReadReport = await clientB.tables
+      .getRow({ databaseId: DATABASE, tableId: "reports", rowId: probeReportId })
+      .then(() => "ALLOWED")
+      .catch((error) => `denied:${error.code}`);
+    check("another student CANNOT read A's report", bReadReport !== "ALLOWED", bReadReport === "ALLOWED" ? "SECURITY FAILURE" : bReadReport);
+
     // cleanup the B probe post
     await admin.deleteRow({ databaseId: DATABASE, tableId: "community_posts", rowId: bPostId }).catch(() => {});
   } finally {
@@ -388,6 +456,12 @@ async function verifyPermissions() {
     if (postId) await admin.deleteRow({ databaseId: DATABASE, tableId: "community_posts", rowId: postId }).catch(() => {});
     if (probeSaveId) {
       await admin.deleteRow({ databaseId: DATABASE, tableId: "place_saves", rowId: probeSaveId }).catch(() => {});
+    }
+    if (probeBlockId) {
+      await admin.deleteRow({ databaseId: DATABASE, tableId: "user_blocks", rowId: probeBlockId }).catch(() => {});
+    }
+    if (probeReportId) {
+      await admin.deleteRow({ databaseId: DATABASE, tableId: "reports", rowId: probeReportId }).catch(() => {});
     }
     for (const user of created) {
       await adminUsers.delete({ userId: user.userId }).catch(() => {});
@@ -444,7 +518,12 @@ section("SUMMARY");
 console.log(`checks: ${results.length}   passed: ${results.length - failures}   failed: ${failures}`);
 if (summary.seed) console.log(`data: ${JSON.stringify(summary.seed)}`);
 
-const outDir = "docs/evidence/phase5";
+/*
+ * Defaults to the Phase 5 artifact. Phase 5.1 re-runs this unchanged against the
+ * same tables and points the output at its own evidence directory, so the two
+ * releases keep separate reports instead of overwriting one another.
+ */
+const outDir = process.env.PHASE5_EVIDENCE_DIR ?? "docs/evidence/phase5";
 const { mkdirSync, writeFileSync } = await import("node:fs");
 mkdirSync(outDir, { recursive: true });
 writeFileSync(`${outDir}/verify.json`, JSON.stringify({ generatedAt: new Date().toISOString(), failures, results, summary }, null, 2));

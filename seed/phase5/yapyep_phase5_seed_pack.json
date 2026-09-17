@@ -6,7 +6,10 @@
       "POIs are researched real-world seeds; resolve/cache coordinates from OSM/Overpass before rendering.",
       "Community profiles/posts are synthetic demo data and must never be marked as verified real students.",
       "Synthetic opinions must never override official Greenbook facts.",
-      "Do not expose precise live user location publicly by default."
+      "Do not expose precise live user location publicly by default.",
+      "Phase 5.1 densifies the demo corpus for two corridors: VN→SG/NUS and SG→VN/FPT HCMC.",
+      "Synthetic captions describe student experience only. Administrative facts belong to the Greenbook and are never asserted here.",
+      "Every anchor name is the exact OpenStreetMap name of a real nearby place; a name that does not resolve is reported, never guessed."
     ]
   },
   "campus_centers": [
@@ -39,6 +42,16 @@
         "lat": -6.362,
         "lng": 106.8249
       }
+    },
+    {
+      "id": "campus_fpt",
+      "country": "VN",
+      "city": "Ho Chi Minh City",
+      "university": "FPT University",
+      "approx_center": {
+        "lat": 10.841436,
+        "lng": 106.809857
+      }
     }
   ],
   "poi_seeds": [
@@ -46,9 +59,9 @@
       "id": "my_um_library",
       "country": "MY",
       "campus_id": "campus_um",
-      "name": "Universiti Malaya Central Library",
+      "name": "Perpustakaan Utama",
       "category": "study",
-      "address": "Universiti Malaya, 50603 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -56,9 +69,9 @@
       "id": "my_um_study24",
       "country": "MY",
       "campus_id": "campus_um",
-      "name": "24 Hours Study Area, UM Library",
+      "name": "Perpustakaan Peringatan Za'ba",
       "category": "study",
-      "address": "Lingkungan Budi, 50603 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -76,9 +89,9 @@
       "id": "my_um_bank",
       "country": "MY",
       "campus_id": "campus_um",
-      "name": "Bank Islam Universiti Malaya",
+      "name": "RHB Bank",
       "category": "banking",
-      "address": "Ground Floor, Bangunan High Impact Research Universiti Malaya, Jalan Pantai Baharu, 50603 Kuala Lumpur, Malaysia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -106,9 +119,9 @@
       "id": "sg_nus_library",
       "country": "SG",
       "campus_id": "campus_nus",
-      "name": "NUS Central Library",
+      "name": "Central Library",
       "category": "study",
-      "address": "12 Kent Ridge Cres, Singapore 119275",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -116,9 +129,9 @@
       "id": "sg_nus_health",
       "country": "SG",
       "campus_id": "campus_nus",
-      "name": "NUS University Health Centre",
+      "name": "University Health Centre",
       "category": "health",
-      "address": "20 Lower Kent Ridge Rd, Singapore 119080",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -126,9 +139,9 @@
       "id": "sg_nus_coffee",
       "country": "SG",
       "campus_id": "campus_nus",
-      "name": "TOMORO COFFEE (NUS)",
+      "name": "Nami Café",
       "category": "hangout",
-      "address": "1 Hon Sui Sen Dr Level 2, Singapore 117588",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -136,9 +149,9 @@
       "id": "sg_nus_food",
       "country": "SG",
       "campus_id": "campus_nus",
-      "name": "Makan Malah @ NUS",
+      "name": "The Deck",
       "category": "food",
-      "address": "1 Create Way, #01-02, Singapore 138602",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -146,9 +159,9 @@
       "id": "id_ui_library",
       "country": "ID",
       "campus_id": "campus_ui",
-      "name": "University of Indonesia Library",
+      "name": "Perpustakaan Pusat UI",
       "category": "study",
-      "address": "Gedung Crystal of Knowledge, Jl. Letjen DR. Sjarif Thajeb, Pondok Cina, Beji, Depok City, West Java 16424, Indonesia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -156,9 +169,9 @@
       "id": "id_ui_clinic",
       "country": "ID",
       "campus_id": "campus_ui",
-      "name": "Makara UI Satellite Clinic",
+      "name": "Klinik Satelit UI",
       "category": "health",
-      "address": "Jalan Lingkar Utara, Kukusan, Beji, Depok City, West Java 16425, Indonesia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -166,9 +179,9 @@
       "id": "id_ui_coffee",
       "country": "ID",
       "campus_id": "campus_ui",
-      "name": "Suar Ruang Coffee Ground",
+      "name": "Bikun Coffee",
       "category": "hangout",
-      "address": "Jl. H. Amat No.2, Kukusan, Beji, Depok City, West Java 16425, Indonesia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -176,9 +189,9 @@
       "id": "id_ui_food",
       "country": "ID",
       "campus_id": "campus_ui",
-      "name": "JChicken UI",
+      "name": "Kantin FT UI",
       "category": "food",
-      "address": "Universitas Indonesia, Gedung Takoru FISIP, Pondok Cina, Beji, Depok City, West Java 16424, Indonesia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
     },
@@ -186,11 +199,227 @@
       "id": "id_ui_transport",
       "country": "ID",
       "campus_id": "campus_ui",
-      "name": "Go-ride instan Stasiun UI",
+      "name": "Shelter Stasiun UI",
       "category": "transport",
-      "address": "Stasiun UI, Pondok Cina, Beji, Depok City, West Java 16424, Indonesia",
+      "address": "",
       "verification": "researched_real_poi",
       "geocode_on_seed": true
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_study2",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Medicine+Science Library",
+      "category": "study"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_lib2",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Hon Sui Sen Memorial Library",
+      "category": "study"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_food2",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Techno Edge Canteen",
+      "category": "food"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_hawker",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Fong Seng Nasi Lemak",
+      "category": "food"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_museum",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "NUS Museum",
+      "category": "culture"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_culture",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Lee Kong Chian Natural History Museum",
+      "category": "culture"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_transport",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Prince George's Park Terminal",
+      "category": "transport"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_sports",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Training Pool",
+      "category": "studentlife"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "sg_nus_hangout",
+      "country": "SG",
+      "campus_id": "campus_nus",
+      "name": "Bar Bar Black Sheep",
+      "category": "hangout"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_campus",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Trường Đại Học FPT Thành phố Hồ Chí Minh",
+      "category": "campus"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_coffee",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Cà Phê iCoffee",
+      "category": "coffee"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_coffee2",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Góc chill cafe",
+      "category": "coffee"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_cafe3",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Highlands Coffee",
+      "category": "coffee"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_mixue",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Mixue - 320 Nguyễn Văn Tăng",
+      "category": "coffee"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_food",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Phở Gánh 2",
+      "category": "food"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_food2",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Bún Bò Phú Lộc",
+      "category": "food"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_food3",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Cơm tấm Út Thương 3",
+      "category": "food"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_food4",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Hủ tiếu Mỹ Tho",
+      "category": "food"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_market",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Chợ Tăng Nhơn Phú",
+      "category": "food"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_pharmacy",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Nhà thuốc Long Châu",
+      "category": "pharmacy"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_hospital",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Bệnh viện Lê Văn Việt",
+      "category": "health"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_bank",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Sacombank",
+      "category": "banking"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_transport",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Saigon Petro",
+      "category": "transport"
+    },
+    {
+      "verification": "researched_real_poi",
+      "geocode_on_seed": true,
+      "id": "vn_fpt_hangout",
+      "country": "VN",
+      "campus_id": "campus_fpt",
+      "name": "Quán Nhậu Hải Thành",
+      "category": "hangout"
     }
   ],
   "community_profiles": [
@@ -451,6 +680,473 @@
       "verification": "demo_seed",
       "is_demo_seed": true,
       "live_location_shared": false
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_linh",
+      "display_name": "Linh",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Business Analytics",
+      "interests": [
+        "Food",
+        "Coffee",
+        "Travel"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_duc",
+      "display_name": "Duc",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Computer Science",
+      "interests": [
+        "AI",
+        "Coffee",
+        "Gaming"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_nga",
+      "display_name": "Nga",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Architecture",
+      "interests": [
+        "Photography",
+        "Film",
+        "Coffee"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_thao",
+      "display_name": "Thao",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Life Sciences",
+      "interests": [
+        "Food",
+        "Photography",
+        "Travel"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_hieu",
+      "display_name": "Hieu",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Data Science",
+      "interests": [
+        "AI",
+        "Football",
+        "Food"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_vy",
+      "display_name": "Vy",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Communications",
+      "interests": [
+        "Film",
+        "Music",
+        "Coffee"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_tuan",
+      "display_name": "Tuan",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Electrical Engineering",
+      "interests": [
+        "Startups",
+        "Music",
+        "Gaming"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_binh",
+      "display_name": "Binh",
+      "home_country": "VN",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Civil Engineering",
+      "interests": [
+        "Travel",
+        "Photography",
+        "Coffee"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_weiming",
+      "display_name": "Wei Ming",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Software Engineering",
+      "interests": [
+        "Food",
+        "Photography",
+        "Travel"
+      ],
+      "languages": [
+        "en",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_huiying",
+      "display_name": "Hui Ying",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Business",
+      "interests": [
+        "Food",
+        "Travel",
+        "Fashion"
+      ],
+      "languages": [
+        "en",
+        "zh",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_junhao",
+      "display_name": "Jun Hao",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Artificial Intelligence",
+      "interests": [
+        "AI",
+        "Coffee",
+        "Gaming"
+      ],
+      "languages": [
+        "en",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_shafiq",
+      "display_name": "Shafiq",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Information Systems",
+      "interests": [
+        "Football",
+        "Food",
+        "Music"
+      ],
+      "languages": [
+        "en",
+        "ms",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_priya",
+      "display_name": "Priya",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Design",
+      "interests": [
+        "Fashion",
+        "Coffee",
+        "Photography"
+      ],
+      "languages": [
+        "en",
+        "ta",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_rachel",
+      "display_name": "Rachel",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Finance",
+      "interests": [
+        "Food",
+        "Travel",
+        "Film"
+      ],
+      "languages": [
+        "en",
+        "zh",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_kelvin",
+      "display_name": "Kelvin",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Cybersecurity",
+      "interests": [
+        "Startups",
+        "Football",
+        "Food"
+      ],
+      "languages": [
+        "en",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_amelia",
+      "display_name": "Amelia",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Psychology",
+      "interests": [
+        "Music",
+        "Coffee",
+        "Film"
+      ],
+      "languages": [
+        "en",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_daniel",
+      "display_name": "Daniel",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Mechatronics",
+      "interests": [
+        "Startups",
+        "Gaming",
+        "Coffee"
+      ],
+      "languages": [
+        "en",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_nadia",
+      "display_name": "Nadia",
+      "home_country": "SG",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Marketing",
+      "interests": [
+        "Film",
+        "Food",
+        "Fashion"
+      ],
+      "languages": [
+        "en",
+        "ms",
+        "vi"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_hafiz",
+      "display_name": "Hafiz",
+      "home_country": "SG",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Computer Engineering",
+      "interests": [
+        "Food",
+        "Photography",
+        "AI"
+      ],
+      "languages": [
+        "en",
+        "ms"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_jingyi",
+      "display_name": "Jing Yi",
+      "home_country": "SG",
+      "host_country": "SG",
+      "university": "NUS",
+      "major": "Pharmacy",
+      "interests": [
+        "Food",
+        "Music",
+        "Travel"
+      ],
+      "languages": [
+        "en",
+        "zh"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_hoang",
+      "display_name": "Hoang",
+      "home_country": "VN",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Software Engineering",
+      "interests": [
+        "Gaming",
+        "Coffee",
+        "Football"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
+    },
+    {
+      "discoverable": true,
+      "verification": "demo_seed",
+      "is_demo_seed": true,
+      "live_location_shared": false,
+      "id": "seed_linhchi",
+      "display_name": "Linh Chi",
+      "home_country": "VN",
+      "host_country": "VN",
+      "university": "FPT",
+      "major": "Business Administration",
+      "interests": [
+        "Food",
+        "Fashion",
+        "Music"
+      ],
+      "languages": [
+        "vi",
+        "en"
+      ]
     }
   ],
   "community_posts": [
@@ -573,6 +1269,618 @@
       "visibility": "public_demo",
       "is_demo_seed": true,
       "verification": "synthetic_demo"
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_11",
+      "author_id": "seed_quang",
+      "country": "SG",
+      "university": "NUS",
+      "type": "study",
+      "place_id": "sg_nus_library",
+      "stage": "studying",
+      "topics": [
+        "study",
+        "library",
+        "quiet"
+      ],
+      "body": "Booked a group room in the library two days ahead and it changed my whole week. The quiet floors fill up fast after lunch."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_12",
+      "author_id": "seed_aina",
+      "country": "SG",
+      "university": "NUS",
+      "type": "food",
+      "place_id": "sg_nus_food",
+      "stage": "first_week",
+      "topics": [
+        "food",
+        "campus",
+        "routine"
+      ],
+      "body": "The canteen queue looks terrifying at half past twelve, but it moves. I go at quarter to twelve now and I am done in ten minutes."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_13",
+      "author_id": "seed_rafa",
+      "country": "SG",
+      "university": "NUS",
+      "type": "tip",
+      "place_id": "sg_nus_transport",
+      "stage": "before_departure",
+      "topics": [
+        "travel",
+        "arrival",
+        "advice"
+      ],
+      "body": "Work out the route to campus before your first 8am. I practised it once on a Sunday and it removed a lot of first-day stress."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_14",
+      "author_id": "seed_mia",
+      "country": "SG",
+      "university": "NUS",
+      "type": "moment",
+      "place_id": null,
+      "stage": "first_week",
+      "topics": [
+        "music",
+        "social",
+        "campus"
+      ],
+      "body": "First club fair where I actually signed up instead of walking past every table. Easily the best decision of my month."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_15",
+      "author_id": "seed_duc",
+      "country": "SG",
+      "university": "NUS",
+      "type": "place",
+      "place_id": "sg_nus_study2",
+      "stage": "studying",
+      "topics": [
+        "study",
+        "library",
+        "quiet"
+      ],
+      "body": "This library has power outlets along the whole east wall and almost nobody seems to know. Quiet until about four."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_16",
+      "author_id": "seed_nga",
+      "country": "SG",
+      "university": "NUS",
+      "type": "warning",
+      "place_id": "sg_nus_health",
+      "stage": "settling_in",
+      "topics": [
+        "health",
+        "wellbeing",
+        "advice"
+      ],
+      "body": "I put off visiting the campus health centre for two weeks because I assumed it would be a hassle. It took twenty minutes and I should have gone sooner."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_17",
+      "author_id": "seed_hafiz",
+      "country": "SG",
+      "university": "NUS",
+      "type": "food",
+      "place_id": "sg_nus_hawker",
+      "stage": "studying",
+      "topics": [
+        "food",
+        "budget",
+        "local"
+      ],
+      "body": "The hawker food near campus is the real reason I still come back here after class. Ask for less chilli the first time."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_18",
+      "author_id": "seed_nga",
+      "country": "SG",
+      "university": "NUS",
+      "type": "culture",
+      "place_id": "sg_nus_museum",
+      "stage": "settling_in",
+      "topics": [
+        "culture",
+        "campus",
+        "photography"
+      ],
+      "body": "Spent a whole afternoon in the campus museum and understood this place differently afterwards."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_19",
+      "author_id": "seed_quang",
+      "country": "SG",
+      "university": "NUS",
+      "type": "tip",
+      "place_id": "sg_nus_coffee",
+      "stage": "studying",
+      "topics": [
+        "coffee",
+        "social",
+        "study"
+      ],
+      "body": "Coffee near campus is a genuine social tool here. I have met more classmates over a drink than in any lecture."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_20",
+      "author_id": "seed_thao",
+      "country": "SG",
+      "university": "NUS",
+      "type": "question",
+      "place_id": null,
+      "stage": "studying",
+      "topics": [
+        "study",
+        "quiet",
+        "advice"
+      ],
+      "body": "Has anyone found a study spot that stays open late on weekends? The one I use closes earlier than I expected."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_21",
+      "author_id": "seed_jingyi",
+      "country": "SG",
+      "university": "NUS",
+      "type": "study",
+      "place_id": null,
+      "stage": "studying",
+      "topics": [
+        "food",
+        "wellbeing",
+        "social"
+      ],
+      "body": "Cooking between lab sessions keeps me sane. If you are new, the shared kitchen in hall is friendlier than it looks."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_22",
+      "author_id": "seed_hafiz",
+      "country": "SG",
+      "university": "NUS",
+      "type": "tip",
+      "place_id": "sg_nus_food2",
+      "stage": "settling_in",
+      "topics": [
+        "food",
+        "language",
+        "local"
+      ],
+      "body": "Learn the dish names before you order. It is a small thing, but people light up when you try."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_23",
+      "author_id": "seed_binh",
+      "country": "SG",
+      "university": "NUS",
+      "type": "place",
+      "place_id": "sg_nus_culture",
+      "stage": "studying",
+      "topics": [
+        "photography",
+        "travel",
+        "wellbeing"
+      ],
+      "body": "The green trail behind campus is a good reset when the term gets loud. Go early, before the heat."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_24",
+      "author_id": "seed_mia",
+      "country": "SG",
+      "university": "NUS",
+      "type": "moment",
+      "place_id": "sg_nus_sports",
+      "stage": "settling_in",
+      "topics": [
+        "wellbeing",
+        "social",
+        "campus"
+      ],
+      "body": "The pool at seven in the morning is empty and the light is incredible. I started swimming again just for this."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_25",
+      "author_id": "seed_quang",
+      "country": "SG",
+      "university": "NUS",
+      "type": "guide",
+      "place_id": null,
+      "stage": "before_departure",
+      "topics": [
+        "arrival",
+        "advice",
+        "study"
+      ],
+      "body": "What I would tell myself before arriving: pick one food place, one study place and one person. Everything else follows from those."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_26",
+      "author_id": "seed_vy",
+      "country": "SG",
+      "university": "NUS",
+      "type": "study",
+      "place_id": "sg_nus_lib2",
+      "stage": "studying",
+      "topics": [
+        "study",
+        "library",
+        "routine"
+      ],
+      "body": "Library at eight on a Tuesday is the sweet spot. Busy enough to feel focused, quiet enough to actually work."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_27",
+      "author_id": "seed_tuan",
+      "country": "SG",
+      "university": "NUS",
+      "type": "moment",
+      "place_id": "sg_nus_hangout",
+      "stage": "settling_in",
+      "topics": [
+        "music",
+        "social",
+        "coffee"
+      ],
+      "body": "Found a place near campus that does not feel like a campus bar. Good for talking to people who are not in your course."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_28",
+      "author_id": "seed_weiming",
+      "country": "VN",
+      "university": "FPT",
+      "type": "food",
+      "place_id": "vn_fpt_food",
+      "stage": "first_week",
+      "topics": [
+        "food",
+        "budget",
+        "local"
+      ],
+      "body": "First bowl of phở near campus and I understood why people here are particular about it. Cheap, hot, and better than anything I had at home."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_29",
+      "author_id": "seed_huiying",
+      "country": "VN",
+      "university": "FPT",
+      "type": "tip",
+      "place_id": "vn_fpt_market",
+      "stage": "before_departure",
+      "topics": [
+        "language",
+        "food",
+        "budget"
+      ],
+      "body": "Learn the numbers in Vietnamese before you arrive. It changed how I shop at the market completely."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_30",
+      "author_id": "seed_junhao",
+      "country": "VN",
+      "university": "FPT",
+      "type": "place",
+      "place_id": "vn_fpt_coffee2",
+      "stage": "studying",
+      "topics": [
+        "coffee",
+        "study",
+        "quiet"
+      ],
+      "body": "Found a cafe ten minutes from campus where nobody rushes you. I do most of my coursework here now."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_31",
+      "author_id": "seed_shafiq",
+      "country": "VN",
+      "university": "FPT",
+      "type": "moment",
+      "place_id": null,
+      "stage": "settling_in",
+      "topics": [
+        "travel",
+        "culture",
+        "social"
+      ],
+      "body": "Rode a motorbike through the city for the first time. Terrifying for ten minutes, then genuinely fun."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_32",
+      "author_id": "seed_priya",
+      "country": "VN",
+      "university": "FPT",
+      "type": "place",
+      "place_id": "vn_fpt_coffee",
+      "stage": "studying",
+      "topics": [
+        "coffee",
+        "study",
+        "quiet"
+      ],
+      "body": "This cafe has a second floor that is basically a quiet studio. Cheap, air-conditioned, and the staff leave you alone."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_33",
+      "author_id": "seed_rachel",
+      "country": "VN",
+      "university": "FPT",
+      "type": "food",
+      "place_id": "vn_fpt_food2",
+      "stage": "studying",
+      "topics": [
+        "food",
+        "budget",
+        "local"
+      ],
+      "body": "Street food near campus is a full meal for the price of a coffee back home. I eat here three times a week now."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_34",
+      "author_id": "seed_daniel",
+      "country": "VN",
+      "university": "FPT",
+      "type": "study",
+      "place_id": "vn_fpt_campus",
+      "stage": "studying",
+      "topics": [
+        "study",
+        "culture",
+        "social"
+      ],
+      "body": "Group project culture is different here — people meet in person a lot. Once I stopped suggesting video calls it got much easier."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_35",
+      "author_id": "seed_nadia",
+      "country": "VN",
+      "university": "FPT",
+      "type": "culture",
+      "place_id": "vn_fpt_cafe3",
+      "stage": "settling_in",
+      "topics": [
+        "coffee",
+        "culture",
+        "social"
+      ],
+      "body": "Coffee here is a social thing, not a caffeine thing. Sitting for two hours over one drink is completely normal."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_36",
+      "author_id": "seed_kelvin",
+      "country": "VN",
+      "university": "FPT",
+      "type": "warning",
+      "place_id": null,
+      "stage": "first_week",
+      "topics": [
+        "travel",
+        "arrival",
+        "culture"
+      ],
+      "body": "Crossing the road takes practice. Walk at a steady pace, do not stop halfway, and you will be fine."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_37",
+      "author_id": "seed_amelia",
+      "country": "VN",
+      "university": "FPT",
+      "type": "tip",
+      "place_id": "vn_fpt_pharmacy",
+      "stage": "settling_in",
+      "topics": [
+        "health",
+        "language",
+        "advice"
+      ],
+      "body": "The pharmacy near campus was much easier to use than I expected. I pointed at what I needed and it worked out."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_38",
+      "author_id": "seed_hoang",
+      "country": "VN",
+      "university": "FPT",
+      "type": "food",
+      "place_id": "vn_fpt_food3",
+      "stage": "studying",
+      "topics": [
+        "food",
+        "local",
+        "budget"
+      ],
+      "body": "Cơm tấm near campus is what I eat when I miss home food, and I am already home. Best breakfast in the area."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_39",
+      "author_id": "seed_linhchi",
+      "country": "VN",
+      "university": "FPT",
+      "type": "tip",
+      "place_id": "vn_fpt_market",
+      "stage": "studying",
+      "topics": [
+        "food",
+        "local",
+        "advice"
+      ],
+      "body": "If you are new, order whatever the person in front of you ordered. It is the fastest way to find the good stalls."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_40",
+      "author_id": "seed_hoang",
+      "country": "VN",
+      "university": "FPT",
+      "type": "moment",
+      "place_id": "vn_fpt_campus",
+      "stage": "studying",
+      "topics": [
+        "campus",
+        "photography",
+        "local"
+      ],
+      "body": "Campus at six in the evening, when the motorbikes leave, is my favourite ten minutes of the day."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_41",
+      "author_id": "seed_priya",
+      "country": "VN",
+      "university": "FPT",
+      "type": "culture",
+      "place_id": null,
+      "stage": "studying",
+      "topics": [
+        "study",
+        "culture",
+        "fashion"
+      ],
+      "body": "Design students here share work constantly. It felt invasive at first; now it is the most useful part of the course."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_42",
+      "author_id": "seed_weiming",
+      "country": "VN",
+      "university": "FPT",
+      "type": "place",
+      "place_id": "vn_fpt_food4",
+      "stage": "settling_in",
+      "topics": [
+        "food",
+        "local",
+        "travel"
+      ],
+      "body": "This noodle place has been here forever and the owner remembers regulars. Go before eleven or after two."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_43",
+      "author_id": "seed_junhao",
+      "country": "VN",
+      "university": "FPT",
+      "type": "moment",
+      "place_id": null,
+      "stage": "settling_in",
+      "topics": [
+        "travel",
+        "culture",
+        "arrival"
+      ],
+      "body": "Rainy season caught me completely unprepared. Bought a poncho for next to nothing and now I feel like a local."
+    },
+    {
+      "visibility": "public_demo",
+      "is_demo_seed": true,
+      "verification": "synthetic_demo",
+      "id": "post_44",
+      "author_id": "seed_huiying",
+      "country": "VN",
+      "university": "FPT",
+      "type": "guide",
+      "place_id": null,
+      "stage": "before_departure",
+      "topics": [
+        "arrival",
+        "advice",
+        "food"
+      ],
+      "body": "First week here, in order: get a local SIM, take one motorbike ride, find your food place, then start saying yes to things."
     }
   ],
   "feed_filters": [

@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-09-16T20:32:54.606Z",
+  "corridor": "SG → VN / FPT HCMC",
+  "account": {
+    "user_id": "6aaafcec003d115c490f",
+    "home": "SG",
+    "host": "VN",
+    "university": "FPT",
+    "interests": [
+      "Food",
+      "Travel",
+      "Music"
+    ],
+    "concerns": [
+      "Vietnamese pronouns",
+      "Slang and fast speech"
+    ]
+  },
+  "cards_returned": 10,
+  "cards_with_reasons": 10,
+  "distinct_reasons": [
+    "Because you're moving to Viet Nam",
+    "Students at FPT",
+    "Useful for your departure prep",
+    "Matches your food and travel interest",
+    "Near your campus",
+    "Matches your travel interest",
+    "Matches your food interest"
+  ],
+  "matched_corridor_expectation": true,
+  "sample": [
+    {
+      "demo": true,
+      "has_place": false,
+      "reasons": [
+        "Because you're moving to Viet Nam",
+        "Students at FPT",
+        "Useful for your departure prep"
+      ],
+      "excerpt": "HYHui YingDemo6h🇸🇬 → 🇻🇳· FPTGuideFirst week here, in order: get a local SIM, take one motorbike ride, find your food place, then start saying yes to things.Because you're movin"
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Viet Nam",
+        "Students at FPT",
+        "Matches your food and travel interest"
+      ],
+      "excerpt": "WMWei MingDemo3d🇸🇬 → 🇻🇳· FPTPlaceThis noodle place has been here forever and the owner remembers regulars. Go before eleven or after two.Photo by Martin Lewison from Forest Hil"
+    },
+    {
+      "demo": true,
+      "has_place": false,
+      "reasons": [
+        "Because you're moving to Viet Nam",
+        "Students at FPT"
+      ],
+      "excerpt": "PRPriyaDemo4d🇸🇬 → 🇻🇳· FPTCultureDesign students here share work constantly. It felt invasive at first; now it is the most useful part of the course.Because you're moving to Vie"
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Viet Nam",
+        "Students at FPT",
+        "Near your campus"
+      ],
+      "excerpt": "HOHoangDemo6d🇻🇳 → 🇻🇳· FPTMomentCampus at six in the evening, when the motorbikes leave, is my favourite ten minutes of the day.Photo by Peter Addor from underway; mailnly Switz"
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Viet Nam",
+        "Students at FPT",
+        "Near your campus"
+      ],
+      "excerpt": "AMAmeliaDemo6 thg 9🇸🇬 → 🇻🇳· FPTTipThe pharmacy near campus was much easier to use than I expected. I pointed at what I needed and it worked out.Because you're moving to Viet Na"
+    },
+    {
+      "demo": true,
+      "has_place": true,
+      "reasons": [
+        "Because you're moving to Viet Nam",
+        "Students at FPT",
+        "Near your campus"
+      ],
+      "excerpt": "NANadiaDemo3 thg 9🇸🇬 → 🇻🇳· FPTCultureCoffee here is a social thing, not a caffeine thing. Sitting for two hours over one drink is completely normal.Because you're moving to Vie"
+    }
+  ]
+}

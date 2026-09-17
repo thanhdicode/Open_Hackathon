@@ -1243,3 +1243,598 @@ sources:
       Curated public URLs only, embedded through the official player. Bulk
       scraping is not permitted. The Research API is not treated as available
       unless the account is actually approved.
+
+  # Phase 6 additive, audited primary-source KB coverage. Provenance: seed/phase6/README.md
+  - id: p6-bn-dfat
+    country: BN
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/brunei-darussalam
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy: &a1
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-kh-dfat
+    country: KH
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/cambodia
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-la-dfat
+    country: LA
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/laos
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-mm-dfat
+    country: MM
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/myanmar
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-tl-dfat
+    country: TL
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/timor-leste
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-vn-dfat
+    country: VN
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/vietnam
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-sg-dfat
+    country: SG
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/singapore
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-th-dfat
+    country: TH
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/thailand
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-id-dfat
+    country: ID
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/indonesia
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-my-dfat
+    country: MY
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/malaysia
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-ph-dfat
+    country: PH
+    categories:
+      - culture
+      - transport
+      - payments
+    url: https://www.smartraveller.gov.au/destinations/asia/philippines
+    status: verified_official
+    authority: A
+    agency: Australian Department of Foreign Affairs and Trade — Smartraveller
+    domain: www.smartraveller.gov.au
+    source_type: government
+    access_strategy:
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Country-specific official DFAT destination advice, fetched
+      over HTTP 200 on 2026-09-17; exact quote independently required on each run.
+      Visitor advice, not destination-country student visa eligibility.
+    attribution: Department of Foreign Affairs and Trade's Smartraveller website -
+      www.smartraveller.gov.au
+    licence_url: https://www.smartraveller.gov.au/copyright
+  - id: p6-bn-tourism
+    country: BN
+    categories:
+      - culture
+    url: https://www.bruneitourism.com/useful-tips/
+    status: verified_official
+    authority: A
+    agency: Brunei Tourism — Tourism Development Department
+    domain: www.bruneitourism.com
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Brunei Tourism — Tourism Development Department
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-bn-ubd
+    country: BN
+    categories:
+      - culture
+    url: https://ubd.edu.bn/admission/undergraduate/undergraduate-why-ubd/support-wellbeing/health-and-welfare/
+    status: verified_official
+    authority: A
+    agency: Universiti Brunei Darussalam — Health and Welfare
+    domain: ubd.edu.bn
+    source_type: university
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Universiti Brunei Darussalam — Health and Welfare
+    licence_url: null
+    city: Bandar Seri Begawan
+    university: null
+  - id: p6-kh-culture
+    country: KH
+    categories:
+      - culture
+    url: https://www.trade.gov/country-commercial-guides/cambodia-business-travel
+    status: verified_official
+    authority: A
+    agency: U.S. International Trade Administration — Cambodia Business Travel
+    domain: www.trade.gov
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: U.S. International Trade Administration — Cambodia Business Travel
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-mm-tourism
+    country: MM
+    categories:
+      - culture
+    url: https://myanmar.gov.mm/en/travel-myanmar
+    status: verified_official
+    authority: A
+    agency: Myanmar National Portal — Travel Myanmar (Ministry of Foreign Affairs
+      reference)
+    domain: myanmar.gov.mm
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Myanmar National Portal — Travel Myanmar (Ministry of Foreign
+      Affairs reference)
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-mm-festivals
+    country: MM
+    categories:
+      - culture
+    url: https://myanmar.gov.mm/en/festivals
+    status: verified_official
+    authority: A
+    agency: Myanmar National Portal — Festivals
+    domain: myanmar.gov.mm
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Myanmar National Portal — Festivals
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-tl-tourism
+    country: TL
+    categories:
+      - culture
+    url: https://timorleste.tl/plan-your-trip
+    status: verified_official
+    authority: A
+    agency: Timor-Leste Ministry of Tourism and Environment — Plan Your Trip
+    domain: timorleste.tl
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Timor-Leste Ministry of Tourism and Environment — Plan Your Trip
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-tl-culture
+    country: TL
+    categories:
+      - culture
+    url: https://timorleste.tl/about
+    status: verified_official
+    authority: A
+    agency: Timor-Leste Ministry of Tourism and Environment — About Timor-Leste
+    domain: timorleste.tl
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Timor-Leste Ministry of Tourism and Environment — About Timor-Leste
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-la-culture
+    country: LA
+    categories:
+      - culture
+    url: https://www.trade.gov/country-commercial-guides/laos-business-travel
+    status: verified_official
+    authority: A
+    agency: U.S. International Trade Administration — Laos Business Travel
+    domain: www.trade.gov
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: U.S. International Trade Administration — Laos Business Travel
+    licence_url: null
+    city: null
+    university: null
+
+  # Phase 6 additive, audited primary-source KB coverage. Provenance: seed/phase6/README.md
+  - id: p6-vn-deep-culture
+    country: VN
+    categories:
+      - culture
+    url: https://beta-v2.vietnam.travel/things-to-do/vietnamese-etiquette-travellers
+    status: verified_official
+    authority: A
+    agency: Vietnam National Authority of Tourism — Vietnamese Etiquette for Travellers
+    domain: beta-v2.vietnam.travel
+    source_type: government
+    access_strategy: &a1
+      - structured_html
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Vietnam National Authority of Tourism — Vietnamese Etiquette for Travellers
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-sg-deep-culture
+    country: SG
+    categories:
+      - culture
+    url: https://sps.nus.edu.sg/sp2273/docs/01_course-overview.html
+    status: verified_official
+    authority: A
+    agency: National University of Singapore — SP2273 Course Overview
+    domain: sps.nus.edu.sg
+    source_type: university
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: National University of Singapore — SP2273 Course Overview
+    licence_url: null
+    city: Singapore
+    university: null
+  - id: p6-th-deep-culture
+    country: TH
+    categories:
+      - culture
+    url: https://www.trade.gov/country-commercial-guides/thailand-business-travel
+    status: verified_official
+    authority: A
+    agency: U.S. International Trade Administration — Thailand Business Travel
+    domain: www.trade.gov
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: U.S. International Trade Administration — Thailand Business Travel
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-my-deep-culture
+    country: MY
+    categories:
+      - culture
+    url: https://study.um.edu.my/faqs-amp-info
+    status: verified_official
+    authority: A
+    agency: Universiti Malaya — Study FAQs and Information
+    domain: study.um.edu.my
+    source_type: university
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: Universiti Malaya — Study FAQs and Information
+    licence_url: null
+    city: Kuala Lumpur
+    university: null
+  - id: p6-id-deep-culture
+    country: ID
+    categories:
+      - culture
+    url: https://www.trade.gov/country-commercial-guides/indonesia-business-travel
+    status: verified_official
+    authority: A
+    agency: U.S. International Trade Administration — Indonesia Business Travel
+    domain: www.trade.gov
+    source_type: government
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: U.S. International Trade Administration — Indonesia Business Travel
+    licence_url: null
+    city: null
+    university: null
+  - id: p6-ph-deep-culture
+    country: PH
+    categories:
+      - culture
+    url: https://www.ac.upd.edu.ph/index.php/about-us/it-policy-university-rules
+    status: verified_official
+    authority: A
+    agency: University of the Philippines Diliman — Asian Center IT Policy and
+      University Rules
+    domain: www.ac.upd.edu.ph
+    source_type: university
+    access_strategy: *a1
+    crawl_allowed: true
+    language: en
+    refresh_frequency: monthly
+    parser: region+boilerplate
+    verification_basis: Named government/official university publisher; ordinary
+      HTTP 200 page inspected. Short exact evidence citations only;
+      source-specific setting retained, no nationality-wide stereotype or invented
+      phrase translation.
+    attribution: University of the Philippines Diliman — Asian Center IT Policy and
+      University Rules
+    licence_url: null
+    city: Quezon City
+    university: null
