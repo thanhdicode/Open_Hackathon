@@ -144,3 +144,7 @@
 *.stl                filter=lfs diff=lfs merge=lfs -text
 *.nc                 filter=lfs diff=lfs merge=lfs -text
 *.mat                filter=lfs diff=lfs merge=lfs -text
+
+# Appwrite Sites builds directly from GitHub without fetching Git LFS objects.
+# Public runtime assets must therefore be stored as regular Git blobs.
+public/**             -filter -diff -merge
