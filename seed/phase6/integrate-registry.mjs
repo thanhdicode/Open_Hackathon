@@ -1,0 +1,21 @@
+/** Append-only integration; verify pre-existing parsed entries and original bytes remain unchanged. */
+import assert from "node:assert/strict";
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { stringify } from "yaml";
+import { loadRegistry, validateRegistry } from "../../scripts/greenbook/registry.mjs";
+const path = "config/source-registry.yaml";
+const beforeBytes = readFileSync(path);
+const before = loadRegistry(path);
+const supplemental = loadRegistry("seed/phase6/source-registry.yaml");
+const missing = supplemental.sources.filter((s) => !before.sources.some((b) => b.id === s.id));
+assert.deepEqual(validateRegistry({ ...before, sources: [...before.sources, ...missing] }), []);
+if (missing.length) appendFileSync(path, "\n  # Phase 6 additive, audited primary-source KB coverage. Provenance: seed/phase6/README.md\n" + stringify(missing).split("\n").map((line) => line ? `  ${line}` : "").join("\n"));
+const after = loadRegistry(path);
+assert.deepEqual(after.sources.slice(0, before.sources.length), before.sources);
+assert.deepEqual(validateRegistry(after), []);
+assert.ok(readFileSync(path).subarray(0, beforeBytes.length).equals(beforeBytes));
+const previous = existsSync("seed/phase6/registry-integration.json") ? JSON.parse(readFileSync("seed/phase6/registry-integration.json", "utf8")) : null;
+const run = { checkedAt: new Date().toISOString(), added: missing.map((s) => s.id), existingEntriesPreserved: true, existingBytesPreserved: true, problems: validateRegistry(after) };
+const runs = previous ? [...(previous.runs ?? [{ checkedAt: previous.checkedAt, added: previous.added, existingEntriesPreserved: previous.existingEntriesPreserved, existingBytesPreserved: previous.existingBytesPreserved }]), run] : [run];
+writeFileSync("seed/phase6/registry-integration.json", JSON.stringify({ ...run, addedAll: [...new Set(runs.flatMap((r) => r.added))], runs }, null, 2));
+console.log(`${missing.length} sources appended; existing entries and bytes preserved.`);

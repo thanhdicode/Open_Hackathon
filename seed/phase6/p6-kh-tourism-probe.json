@@ -1,0 +1,28 @@
+{
+  "sourceId": "p6-kh-tourism",
+  "country": "KH",
+  "url": "https://mail.tourismcambodia.org/public/mot/advice-for-travelers",
+  "authority": "A",
+  "categories": [
+    "culture"
+  ],
+  "checkedAt": "2026-09-16T20:44:25.890Z",
+  "ok": false,
+  "status": null,
+  "contentType": null,
+  "bytes": 0,
+  "contentHash": null,
+  "snapshotKey": null,
+  "text": null,
+  "textLength": 0,
+  "latencyMs": 93,
+  "error": "TypeError: fetch failed",
+  "fetch_strategy": "http",
+  "parser_strategy": "region+boilerplate",
+  "raw_bytes": 0,
+  "parsed_chars": 0,
+  "content_ratio": 0,
+  "language": null,
+  "rendered": false,
+  "failure_reason": "fetch_error"
+}

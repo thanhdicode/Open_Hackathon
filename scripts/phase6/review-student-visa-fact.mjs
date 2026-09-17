@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { mkdirSync,writeFileSync,existsSync,readFileSync } from 'node:fs';
+import { Client,TablesDB,Query } from 'node-appwrite';
+const client=new Client().setEndpoint(process.env.VITE_APPWRITE_ENDPOINT).setProject(process.env.VITE_APPWRITE_PROJECT_ID).setKey(process.env.APPWRITE_API_KEY);
+const tables=new TablesDB(client),databaseId=process.env.VITE_APPWRITE_DATABASE_ID,tableId='knowledge_facts';
+const result=await tables.listRows({databaseId,tableId,queries:[Query.equal('fact_id','2a139d642f809253336059a1699e34ee')]});
+assert.equal(result.rows.length,1,'Expected exactly one reviewed fact');
+const before=result.rows[0];
+assert.equal(before.source_id,'vn-imm-evisa');
+assert.equal(before.evidence_quote,'The Vietnam Immigration portal provides the following services: E-visa issuance');
+const reason='Phase6 source-scope review: quoted evidence establishes availability of an e-visa issuance service, not student/exchange study-purpose eligibility. The primary portal addresses eligible foreigners and requires activity consistent with entry purpose; do not use this generic service fact as student visa authorization. Retained for human review; publication revoked.';
+await tables.updateRow({databaseId,tableId,rowId:before.$id,data:{verification_status:'needs_review',validation_notes:reason},permissions:[]});
+const after=await tables.getRow({databaseId,tableId,rowId:before.$id});
+assert.equal(after.verification_status,'needs_review');assert.deepEqual(after.$permissions,[]);assert.equal(after.claim,before.claim);assert.equal(after.evidence_quote,before.evidence_quote);
+const report={at:new Date().toISOString(),reason,primarySources:[{url:'https://thithucdientu.gov.vn/',finding:'Portal addresses foreigners outside Vietnam, not blanket student eligibility.'},{url:'https://evisa.gov.vn/?option=MO',finding:'Entry activities must follow entry purpose. Generic e-visa service availability alone does not establish student/exchange authorization.'}],before,after,rowPreserved:true,publicReadRevoked:true};
+mkdirSync('docs/evidence/phase6',{recursive:true});const path='docs/evidence/phase6/fact-review.json';const previous=existsSync(path)?JSON.parse(readFileSync(path,'utf8')):null;const reviews=previous?.reviews??(previous?[previous]:[]);const index=reviews.findIndex(r=>r.before?.fact_id===before.fact_id);if(index>=0)reviews[index]=report;else reviews.push(report);writeFileSync(path,JSON.stringify({at:new Date().toISOString(),reviews,reviewedFacts:reviews.length},null,2));console.log('1 existing fact retained and demoted to needs_review; public-read permission revoked and read-back verified.');

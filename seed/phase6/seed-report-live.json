@@ -1,0 +1,312 @@
+{
+  "generatedAt": "2026-09-16T20:54:37.139Z",
+  "live": true,
+  "attribution": "Department of Foreign Affairs and Trade's Smartraveller website - www.smartraveller.gov.au",
+  "countries": {
+    "VN": {
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "SG": {
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "study_here": 4
+      }
+    },
+    "TH": {
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "culture_and_people": 3,
+        "speak_and_understand": 1
+      }
+    },
+    "MY": {
+      "candidates": 3,
+      "grounded": 3,
+      "verified": 3,
+      "chapters": {
+        "study_here": 3
+      }
+    },
+    "ID": {
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "PH": {
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "study_here": 5
+      }
+    }
+  },
+  "sources": {
+    "p6-vn-deep-culture": {
+      "sourceId": "p6-vn-deep-culture",
+      "fetched": true,
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      },
+      "persistence": {
+        "written": [
+          {
+            "factId": "5ce4a6863472dedfcc58168bbef3fa35",
+            "status": "official_verified",
+            "claim": "Vietnam's official tourism guide advises taking shoes off outside the door when entering a family home.",
+            "action": "created"
+          },
+          {
+            "factId": "7fbd2f4941b94a873924c6b943979153",
+            "status": "official_verified",
+            "claim": "For family visits, Vietnam Tourism recommends greeting older family members first and using the right hand for handshake",
+            "action": "created"
+          },
+          {
+            "factId": "3d6da88ec5d9f302b4ccc04d5f7e5c21",
+            "status": "official_verified",
+            "claim": "Vietnam Tourism describes shared dishes with individual rice bowls and chopsticks as a common meal format.",
+            "action": "created"
+          },
+          {
+            "factId": "c67cd630e71d30a8f15f5616f6153eba",
+            "status": "official_verified",
+            "claim": "Vietnam Tourism advises passing dishes with both hands or the right hand at shared meals.",
+            "action": "created"
+          },
+          {
+            "factId": "5156ee3c657021ef97bc8b2ef42aee12",
+            "status": "official_verified",
+            "claim": "When offered more food, Vietnam Tourism suggests politely repeating that you are full if you want to stop eating.",
+            "action": "created"
+          }
+        ],
+        "skipped": [],
+        "unchanged": []
+      }
+    },
+    "p6-sg-deep-culture": {
+      "sourceId": "p6-sg-deep-culture",
+      "fetched": true,
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "study_here": 4
+      },
+      "persistence": {
+        "written": [
+          {
+            "factId": "6e45c77211b51fc3a04984c4a74a3c31",
+            "status": "university_verified",
+            "claim": "In NUS SP2273, the course guide encourages asking questions and seeking clarification during lectures or tutorials.",
+            "action": "created"
+          },
+          {
+            "factId": "cdf0a5cbfeeecca094d20406995de209",
+            "status": "university_verified",
+            "claim": "NUS SP2273 encourages predicting what changed code will do before running it.",
+            "action": "created"
+          },
+          {
+            "factId": "5020847f18efd8b545362a881e9aaae6",
+            "status": "university_verified",
+            "claim": "NUS SP2273 describes a hands-on format mixing individual and group work.",
+            "action": "created"
+          },
+          {
+            "factId": "e6859922201dab91658dae6aedc80abd",
+            "status": "university_verified",
+            "claim": "NUS SP2273 says students wanting support while learning independently can reach out to an instructor.",
+            "action": "created"
+          }
+        ],
+        "skipped": [],
+        "unchanged": []
+      }
+    },
+    "p6-th-deep-culture": {
+      "sourceId": "p6-th-deep-culture",
+      "fetched": true,
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "culture_and_people": 3,
+        "speak_and_understand": 1
+      },
+      "persistence": {
+        "written": [
+          {
+            "factId": "6c780e43c8d935c9630d1cea0166c273",
+            "status": "official_verified",
+            "claim": "The U.S. Thai business guide describes wai as palms together at chest level with a slight bow, expressing greeting and r",
+            "action": "created"
+          },
+          {
+            "factId": "07a814791ecaa8d70889d9c6c613e70e",
+            "status": "official_verified",
+            "claim": "The U.S. Thai business guide describes Khun followed by a first name or nickname as a form of address.",
+            "action": "created"
+          },
+          {
+            "factId": "f75b3d6dbb07b0900c7350d336d6741f",
+            "status": "official_verified",
+            "claim": "In Thai business introductions, the U.S. trade guide advises addressing the most senior person first.",
+            "action": "created"
+          },
+          {
+            "factId": "87838c6bef58c44287636e0da6e450b8",
+            "status": "official_verified",
+            "claim": "The U.S. Thai business guide advises avoiding writing on someone's business card in their presence.",
+            "action": "created"
+          }
+        ],
+        "skipped": [],
+        "unchanged": []
+      }
+    },
+    "p6-my-deep-culture": {
+      "sourceId": "p6-my-deep-culture",
+      "fetched": true,
+      "candidates": 3,
+      "grounded": 3,
+      "verified": 3,
+      "chapters": {
+        "study_here": 3
+      },
+      "persistence": {
+        "written": [
+          {
+            "factId": "6036fb9cd5dc0e985059715072cc69b4",
+            "status": "university_verified",
+            "claim": "Universiti Malaya's study FAQ says candidates must attend teaching, learning and research activities related to their st",
+            "action": "created"
+          },
+          {
+            "factId": "e06f7a8a926fa35de69abab170d7c722",
+            "status": "university_verified",
+            "claim": "UM's study FAQ says candidates unable to attend learning activities should immediately inform the lecturer with a valid ",
+            "action": "created"
+          },
+          {
+            "factId": "8334955390c85ab9469cb1dd16a890f4",
+            "status": "university_verified",
+            "claim": "UM's study FAQ says lecturers explain absence consequences and record attendance and notification.",
+            "action": "created"
+          }
+        ],
+        "skipped": [],
+        "unchanged": []
+      }
+    },
+    "p6-id-deep-culture": {
+      "sourceId": "p6-id-deep-culture",
+      "fetched": true,
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      },
+      "persistence": {
+        "written": [
+          {
+            "factId": "ff9e8e5f64131085800364a0e57b4947",
+            "status": "official_verified",
+            "claim": "The U.S. Indonesia business guide advises waiting for the host's invitation before drinking at a business meeting.",
+            "action": "created"
+          },
+          {
+            "factId": "ed1c23ab8841fe6afe0c29a5e4be3c41",
+            "status": "official_verified",
+            "claim": "The U.S. Indonesia business guide advises giving and receiving items with the right hand.",
+            "action": "created"
+          },
+          {
+            "factId": "9926330c7d87c19caa47dbc12e6b293b",
+            "status": "official_verified",
+            "claim": "The U.S. Indonesia business guide advises avoiding pointing shoe soles toward others while seated.",
+            "action": "created"
+          },
+          {
+            "factId": "9969a210db5507e5ce108555a3003750",
+            "status": "official_verified",
+            "claim": "The U.S. Indonesia business guide advises attentive listening, noticing nonverbal cues and written clarification.",
+            "action": "created"
+          },
+          {
+            "factId": "79e16977d0fbc7446d20570d0d294e52",
+            "status": "official_verified",
+            "claim": "The U.S. Indonesia business guide describes long-sleeved batik as formal and short sleeves as more casual in government ",
+            "action": "created"
+          }
+        ],
+        "skipped": [],
+        "unchanged": []
+      }
+    },
+    "p6-ph-deep-culture": {
+      "sourceId": "p6-ph-deep-culture",
+      "fetched": true,
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "study_here": 5
+      },
+      "persistence": {
+        "written": [
+          {
+            "factId": "52ec795e20e8dd0d8f0f1a16cd95a961",
+            "status": "university_verified",
+            "claim": "UP Diliman's Asian Center privacy guidance says classmates' email access is for class-related communication.",
+            "action": "created"
+          },
+          {
+            "factId": "bfe437f5078e4acbc9fc4ea8d9d8f226",
+            "status": "university_verified",
+            "claim": "UP Diliman's Asian Center asks students not to reshare or reupload classmates' or professors' Google Drive files without",
+            "action": "created"
+          },
+          {
+            "factId": "0d29c6eab1415f9a3515b1685998bfd9",
+            "status": "university_verified",
+            "claim": "UP Diliman's Asian Center asks students not to post class or classmate screenshots on social media without consent.",
+            "action": "created"
+          },
+          {
+            "factId": "377fa9cac9a6bb4726c54709e2ad15b3",
+            "status": "university_verified",
+            "claim": "UP Diliman's posted online-meeting guidelines advise muting microphones when not speaking.",
+            "action": "created"
+          },
+          {
+            "factId": "f6c5ee7d509fa7492210b37c47c0d3f5",
+            "status": "university_verified",
+            "claim": "UP Diliman's posted Zoom guidelines advise raising a hand and speaking when recognised by the facilitator rather than cr",
+            "action": "created"
+          }
+        ],
+        "skipped": [],
+        "unchanged": []
+      }
+    }
+  },
+  "skipped": []
+}

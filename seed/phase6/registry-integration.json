@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-09-16T20:54:31.895Z",
+  "added": [
+    "p6-vn-deep-culture",
+    "p6-sg-deep-culture",
+    "p6-th-deep-culture",
+    "p6-my-deep-culture",
+    "p6-id-deep-culture",
+    "p6-ph-deep-culture"
+  ],
+  "existingEntriesPreserved": true,
+  "existingBytesPreserved": true,
+  "problems": [],
+  "addedAll": [
+    "p6-bn-dfat",
+    "p6-kh-dfat",
+    "p6-la-dfat",
+    "p6-mm-dfat",
+    "p6-tl-dfat",
+    "p6-vn-dfat",
+    "p6-sg-dfat",
+    "p6-th-dfat",
+    "p6-id-dfat",
+    "p6-my-dfat",
+    "p6-ph-dfat",
+    "p6-bn-tourism",
+    "p6-bn-ubd",
+    "p6-kh-culture",
+    "p6-mm-tourism",
+    "p6-mm-festivals",
+    "p6-tl-tourism",
+    "p6-tl-culture",
+    "p6-la-culture",
+    "p6-vn-deep-culture",
+    "p6-sg-deep-culture",
+    "p6-th-deep-culture",
+    "p6-my-deep-culture",
+    "p6-id-deep-culture",
+    "p6-ph-deep-culture"
+  ],
+  "runs": [
+    {
+      "checkedAt": "2026-09-16T20:49:14.216Z",
+      "added": [
+        "p6-bn-dfat",
+        "p6-kh-dfat",
+        "p6-la-dfat",
+        "p6-mm-dfat",
+        "p6-tl-dfat",
+        "p6-vn-dfat",
+        "p6-sg-dfat",
+        "p6-th-dfat",
+        "p6-id-dfat",
+        "p6-my-dfat",
+        "p6-ph-dfat",
+        "p6-bn-tourism",
+        "p6-bn-ubd",
+        "p6-kh-culture",
+        "p6-mm-tourism",
+        "p6-mm-festivals",
+        "p6-tl-tourism",
+        "p6-tl-culture",
+        "p6-la-culture"
+      ],
+      "existingEntriesPreserved": true,
+      "existingBytesPreserved": true
+    },
+    {
+      "checkedAt": "2026-09-16T20:54:31.895Z",
+      "added": [
+        "p6-vn-deep-culture",
+        "p6-sg-deep-culture",
+        "p6-th-deep-culture",
+        "p6-my-deep-culture",
+        "p6-id-deep-culture",
+        "p6-ph-deep-culture"
+      ],
+      "existingEntriesPreserved": true,
+      "existingBytesPreserved": true,
+      "problems": []
+    }
+  ]
+}

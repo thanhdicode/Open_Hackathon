@@ -1,0 +1,431 @@
+{
+  "generatedAt": "2026-09-16T20:34:43.781Z",
+  "registryVersion": "2.0",
+  "livenessGeneratedAt": "2026-09-16T13:32:41.159Z",
+  "appwriteError": null,
+  "tiers": {
+    "0": [
+      "MY",
+      "SG",
+      "ID"
+    ],
+    "1": [
+      "TH",
+      "PH",
+      "VN"
+    ],
+    "2": [
+      "BN",
+      "KH",
+      "LA",
+      "MM",
+      "TL"
+    ]
+  },
+  "matrix": {
+    "BN": {
+      "sources_total": 1,
+      "sources_reachable": 1,
+      "sources_productive": 0,
+      "sources_blocked": [],
+      "facts_total": 0,
+      "facts_verified": 0,
+      "facts_review": 0,
+      "facts_rejected": 0,
+      "facts_by_status": {},
+      "facts_by_chapter": {},
+      "empty_core_chapters": [
+        "get_ready",
+        "land_and_settle",
+        "study_here",
+        "speak_and_understand",
+        "money_and_pay",
+        "live_here",
+        "move_around",
+        "stay_safe_and_healthy",
+        "culture_and_people",
+        "student_reality"
+      ],
+      "tasks": 0,
+      "phrases": 0,
+      "media": 0,
+      "universities": 0,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "KH": {
+      "sources_total": 3,
+      "sources_reachable": 3,
+      "sources_productive": 1,
+      "sources_blocked": [],
+      "facts_total": 18,
+      "facts_verified": 0,
+      "facts_review": 18,
+      "facts_rejected": 0,
+      "facts_by_status": {
+        "needs_review": 18
+      },
+      "facts_by_chapter": {
+        "get_ready": 15,
+        "money_and_pay": 1,
+        "land_and_settle": 2
+      },
+      "empty_core_chapters": [
+        "study_here",
+        "speak_and_understand",
+        "live_here",
+        "move_around",
+        "stay_safe_and_healthy",
+        "culture_and_people",
+        "student_reality"
+      ],
+      "tasks": 18,
+      "phrases": 0,
+      "media": 1,
+      "universities": 0,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "ID": {
+      "sources_total": 14,
+      "sources_reachable": 3,
+      "sources_productive": 10,
+      "sources_blocked": [
+        {
+          "id": "id-dikti",
+          "reason": 403
+        }
+      ],
+      "facts_total": 98,
+      "facts_verified": 93,
+      "facts_review": 0,
+      "facts_rejected": 5,
+      "facts_by_status": {
+        "official_verified": 40,
+        "unverified": 5,
+        "university_verified": 53
+      },
+      "facts_by_chapter": {
+        "move_around": 16,
+        "get_ready": 33,
+        "student_reality": 1,
+        "money_and_pay": 18,
+        "study_here": 4,
+        "live_here": 10,
+        "land_and_settle": 10,
+        "stay_safe_and_healthy": 3,
+        "culture_and_people": 2,
+        "speak_and_understand": 1
+      },
+      "empty_core_chapters": [],
+      "tasks": 31,
+      "phrases": 12,
+      "media": 1,
+      "universities": 1,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "LA": {
+      "sources_total": 2,
+      "sources_reachable": 2,
+      "sources_productive": 1,
+      "sources_blocked": [],
+      "facts_total": 6,
+      "facts_verified": 0,
+      "facts_review": 6,
+      "facts_rejected": 0,
+      "facts_by_status": {
+        "needs_review": 6
+      },
+      "facts_by_chapter": {
+        "get_ready": 4,
+        "move_around": 2
+      },
+      "empty_core_chapters": [
+        "land_and_settle",
+        "study_here",
+        "speak_and_understand",
+        "money_and_pay",
+        "live_here",
+        "stay_safe_and_healthy",
+        "culture_and_people",
+        "student_reality"
+      ],
+      "tasks": 6,
+      "phrases": 0,
+      "media": 4,
+      "universities": 0,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "MM": {
+      "sources_total": 2,
+      "sources_reachable": 2,
+      "sources_productive": 2,
+      "sources_blocked": [],
+      "facts_total": 20,
+      "facts_verified": 0,
+      "facts_review": 19,
+      "facts_rejected": 1,
+      "facts_by_status": {
+        "needs_review": 19,
+        "unverified": 1
+      },
+      "facts_by_chapter": {
+        "money_and_pay": 3,
+        "speak_and_understand": 1,
+        "study_here": 2,
+        "get_ready": 5,
+        "student_reality": 9
+      },
+      "empty_core_chapters": [
+        "land_and_settle",
+        "live_here",
+        "move_around",
+        "stay_safe_and_healthy",
+        "culture_and_people"
+      ],
+      "tasks": 20,
+      "phrases": 0,
+      "media": 1,
+      "universities": 0,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "MY": {
+      "sources_total": 11,
+      "sources_reachable": 6,
+      "sources_productive": 9,
+      "sources_blocked": [],
+      "facts_total": 75,
+      "facts_verified": 66,
+      "facts_review": 5,
+      "facts_rejected": 4,
+      "facts_by_status": {
+        "official_verified": 66,
+        "needs_review": 5,
+        "unverified": 4
+      },
+      "facts_by_chapter": {
+        "get_ready": 10,
+        "land_and_settle": 18,
+        "live_here": 4,
+        "money_and_pay": 20,
+        "stay_safe_and_healthy": 2,
+        "student_reality": 5,
+        "study_here": 5,
+        "culture_and_people": 3,
+        "move_around": 6,
+        "speak_and_understand": 2
+      },
+      "empty_core_chapters": [],
+      "tasks": 32,
+      "phrases": 12,
+      "media": 15,
+      "universities": 1,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "PH": {
+      "sources_total": 5,
+      "sources_reachable": 2,
+      "sources_productive": 2,
+      "sources_blocked": [
+        {
+          "id": "ph-ched-candidate",
+          "reason": 403
+        }
+      ],
+      "facts_total": 15,
+      "facts_verified": 15,
+      "facts_review": 0,
+      "facts_rejected": 0,
+      "facts_by_status": {
+        "official_verified": 15
+      },
+      "facts_by_chapter": {
+        "get_ready": 14,
+        "money_and_pay": 1
+      },
+      "empty_core_chapters": [
+        "land_and_settle",
+        "study_here",
+        "speak_and_understand",
+        "live_here",
+        "move_around",
+        "stay_safe_and_healthy",
+        "culture_and_people",
+        "student_reality"
+      ],
+      "tasks": 15,
+      "phrases": 0,
+      "media": 0,
+      "universities": 1,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "SG": {
+      "sources_total": 6,
+      "sources_reachable": 6,
+      "sources_productive": 4,
+      "sources_blocked": [],
+      "facts_total": 33,
+      "facts_verified": 32,
+      "facts_review": 0,
+      "facts_rejected": 1,
+      "facts_by_status": {
+        "official_verified": 32,
+        "unverified": 1
+      },
+      "facts_by_chapter": {
+        "get_ready": 19,
+        "land_and_settle": 1,
+        "money_and_pay": 3,
+        "stay_safe_and_healthy": 3,
+        "move_around": 2,
+        "study_here": 5
+      },
+      "empty_core_chapters": [
+        "speak_and_understand",
+        "live_here",
+        "culture_and_people",
+        "student_reality"
+      ],
+      "tasks": 25,
+      "phrases": 0,
+      "media": 1,
+      "universities": 1,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "TH": {
+      "sources_total": 7,
+      "sources_reachable": 1,
+      "sources_productive": 1,
+      "sources_blocked": [
+        {
+          "id": "th-mhesi-candidate",
+          "reason": 403
+        },
+        {
+          "id": "th-immigration-candidate",
+          "reason": 403
+        }
+      ],
+      "facts_total": 13,
+      "facts_verified": 13,
+      "facts_review": 0,
+      "facts_rejected": 0,
+      "facts_by_status": {
+        "university_verified": 13
+      },
+      "facts_by_chapter": {
+        "stay_safe_and_healthy": 13
+      },
+      "empty_core_chapters": [
+        "get_ready",
+        "land_and_settle",
+        "study_here",
+        "speak_and_understand",
+        "money_and_pay",
+        "live_here",
+        "move_around",
+        "culture_and_people",
+        "student_reality"
+      ],
+      "tasks": 13,
+      "phrases": 10,
+      "media": 0,
+      "universities": 1,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "TL": {
+      "sources_total": 2,
+      "sources_reachable": 2,
+      "sources_productive": 0,
+      "sources_blocked": [],
+      "facts_total": 0,
+      "facts_verified": 0,
+      "facts_review": 0,
+      "facts_rejected": 0,
+      "facts_by_status": {},
+      "facts_by_chapter": {},
+      "empty_core_chapters": [
+        "get_ready",
+        "land_and_settle",
+        "study_here",
+        "speak_and_understand",
+        "money_and_pay",
+        "live_here",
+        "move_around",
+        "stay_safe_and_healthy",
+        "culture_and_people",
+        "student_reality"
+      ],
+      "tasks": 0,
+      "phrases": 0,
+      "media": 0,
+      "universities": 0,
+      "entries": 0,
+      "chapters_with_content": 0
+    },
+    "VN": {
+      "sources_total": 8,
+      "sources_reachable": 1,
+      "sources_productive": 6,
+      "sources_blocked": [
+        {
+          "id": "vn-evisa-candidate",
+          "reason": "TypeError"
+        },
+        {
+          "id": "vn-sbv",
+          "reason": 403
+        }
+      ],
+      "facts_total": 35,
+      "facts_verified": 24,
+      "facts_review": 8,
+      "facts_rejected": 3,
+      "facts_by_status": {
+        "needs_review": 8,
+        "unverified": 3,
+        "official_verified": 5,
+        "university_verified": 19
+      },
+      "facts_by_chapter": {
+        "culture_and_people": 4,
+        "study_here": 15,
+        "student_reality": 2,
+        "stay_safe_and_healthy": 3,
+        "live_here": 2,
+        "get_ready": 4,
+        "land_and_settle": 3,
+        "move_around": 1,
+        "speak_and_understand": 1
+      },
+      "empty_core_chapters": [
+        "money_and_pay"
+      ],
+      "tasks": 6,
+      "phrases": 0,
+      "media": 0,
+      "universities": 3,
+      "entries": 0,
+      "chapters_with_content": 0
+    }
+  },
+  "totals": {
+    "sources_total": 61,
+    "sources_reachable": 29,
+    "sources_productive": 36,
+    "facts_total": 313,
+    "facts_verified": 243,
+    "tasks": 166,
+    "phrases": 34,
+    "media": 23,
+    "universities": 8,
+    "entries": 0
+  }
+}

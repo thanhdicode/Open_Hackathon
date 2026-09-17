@@ -1,0 +1,793 @@
+{
+  "at": "2026-09-16T21:05:41.404Z",
+  "sources": [
+    {
+      "sourceId": "id-ui-international",
+      "url": "https://international.ui.ac.id/",
+      "universityId": "ui",
+      "universityName": "Universitas Indonesia",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "id-ui-student-visa",
+      "url": "https://international.ui.ac.id/student-visa-index-e30b",
+      "universityId": "ui",
+      "universityName": "Universitas Indonesia",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "id-ui-pre-arrival",
+      "url": "https://international.ui.ac.id/pre-arrival-preparation/",
+      "universityId": "ui",
+      "universityName": "Universitas Indonesia",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "id-ui-post-arrival",
+      "url": "https://international.ui.ac.id/post-arrival/",
+      "universityId": "ui",
+      "universityName": "Universitas Indonesia",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "id-ui-immigration",
+      "url": "https://international.ui.ac.id/immigration/",
+      "universityId": "ui",
+      "universityName": "Universitas Indonesia",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "id-ui-living",
+      "url": "https://international.ui.ac.id/living-in-indonesia/",
+      "universityId": "ui",
+      "universityName": "Universitas Indonesia",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "th-chula-international",
+      "url": "https://www.chula.ac.th/en/international-students",
+      "universityId": "chula",
+      "universityName": "Chulalongkorn University",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "th-chula-wellbeing",
+      "url": "https://www.chula.ac.th/en/life-at-cu/student-well-being",
+      "universityId": "chula",
+      "universityName": "Chulalongkorn University",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "th-chula-intl-office",
+      "url": "https://www.chula.ac.th/en/departments/office-of-international-affairs-and-global-network",
+      "universityId": "chula",
+      "universityName": "Chulalongkorn University",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "vn-fpt-hcm-exchange",
+      "url": "https://daihoc.fpt.edu.vn/en/hm/exchange-program/",
+      "universityId": "fpt",
+      "universityName": "FPT University",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "vn-fpt-hcm-campus",
+      "url": "https://daihoc.fpt.edu.vn/en/hm/",
+      "universityId": "fpt",
+      "universityName": "FPT University",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "vn-fpt-student-life",
+      "url": "https://daihoc.fpt.edu.vn/en/student-life/",
+      "universityId": "fpt",
+      "universityName": "FPT University",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "vn-fpt-training",
+      "url": "https://daihoc.fpt.edu.vn/en/training-program/",
+      "universityId": "fpt",
+      "universityName": "FPT University",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "p6-sg-deep-culture",
+      "url": "https://sps.nus.edu.sg/sp2273/docs/01_course-overview.html",
+      "universityId": "nus",
+      "universityName": "National University of Singapore",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "sourceId": "p6-my-deep-culture",
+      "url": "https://study.um.edu.my/faqs-amp-info",
+      "universityId": "um",
+      "universityName": "Universiti Malaya",
+      "before": null,
+      "readBackVerified": true
+    }
+  ],
+  "facts": [
+    {
+      "factId": "6ec0c14c725ef23d5cd4d0968604efea",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "898fe1b4286a8963be4d7250909d2328",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "95644566ebd1cef4417ec1193d4bccdd",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "7b4e7daaa01eb06e71201fc6138ba263",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "1e2b9c38d4b8ae1927dd3728d3c61327",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "432322a8fb1cbd9d65d1585bd85e57b4",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "1e869ee21ec9350ad8f9891cc3aef72c",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "08fb1e374cb0483509e35341f6a24fe4",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "01030e3713f717f838a1531bfbdd951c",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "c3cb4c2e99c240a47ff244cbeb6f9ebc",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "33074298f39aefc546541222d732d814",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "754419535b8ae827126aa42a36aa24b4",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "bcf7a8a0148e7ffb606b6e962ac6cdc1",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "0c6645883d7df12ed205205b9dae03e0",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "50758cb81dbd77caa3f6c0fc2c298da4",
+      "sourceId": "id-ui-student-visa",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "52078d65fb14f54549733b978408bfdc",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "53c9b13db7d96ecaa185160e9ac80838",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "192878743174a4053420e0d25322ba5d",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "d5acbb4aab039f5e863c2000e15034f4",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "3f8c592e21c7d9a3aa437a946ee450e1",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "be5bb78b2b2387a2465005f4553bdced",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "76ddb05d512f63ec623afdf7cd999b1d",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "d48303e532ab4dfc42ee5697a38d3b8d",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "4e0d8ce95917452396434b59196f6f72",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "3c0435d7262a626fac59029f9b8d762d",
+      "sourceId": "id-ui-pre-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "1ce7e64e0d1739dfdc62bf3613fa04f9",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "f133de3222d90c0eb69ef3eed0c0a9e5",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "5487894b8eb0e232207bda6ac632bea5",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "07542a2cbdd08196137966dd058aded1",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "0ddc088e6a5df7ee5e440bf4d4b223a3",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "a975be76dfeda0c99dc689b6bb21874d",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "a7eeb192a12f1fcac3960c054253d1e9",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "52a7f8413890d47161028a37798701d2",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "f51fb7a13e48a13e0e9ed61914ce50b8",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "7c47d6167b7e0eac05bbacfcca9cce37",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "0559469b3733c3afdf71cb7773596f2b",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "80cb91b7dd9c16b866bf4b338fdb33c7",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "9e76596aeffbb6ad327a5fb35f5372a3",
+      "sourceId": "id-ui-post-arrival",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "71bb97902e512541150e696d07609e08",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "6e184b91ce3f186049a3e3beccf3ee79",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "15f84d6dc6eb7f047dcc369a22fc58d1",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "31e3184b45784ddea2b86789bccf0d57",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "19f777272ffc989c6d37106d0450a324",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "43f1596777cdfbde05730cc1f7550ab8",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "0e89610f8c3b0cf1a4471e04bd900e83",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "1535a7abfbdb708ecae1a4c6209c8628",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "bc04811302f714bfce647d7a88e4f832",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "9bb3a3cb21be2003b5816306916c6c4c",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "107a70e616f352e5494b2f23e8e229d6",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "50b451cffb14c6754a76f10cfe169f42",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "412fb30a6c8571cbb8cdecef8614db12",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "3add8690637a177362060feb9f0ddb4e",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "1c7e4bd6ca5dfacd661e1d4d717d6d13",
+      "sourceId": "id-ui-living",
+      "universityId": "ui",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "6ebc1659af1132b68cde37f84ce2f119",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "c377bb940b8ea41b6c15f420e4ed64a3",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "d6eda6c76254f455cd91a3fcbab76f2a",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "15f5d4f10dff36b14a64cda848718c4b",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "6b410caf315c4f33be1155099286030e",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "11d76f3c073bbb5b61339514c1722b14",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "db577567959c25589933cf64f0e6e49b",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "cb5ab0474b05f8ee58f9eb4445930aaa",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "7ab2e47bc3cef7e56b55b50dcaad13b2",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "ee89040814e5fb9f024ce7f09d628811",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "be6d8e0baa4a2059132d8f98e0c9201d",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "f1c6e4230f7499b9e822f343e4fef7ad",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "e9f630f59fb9f16468674373a21d17ce",
+      "sourceId": "th-chula-wellbeing",
+      "universityId": "chula",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "604ab315df76c5a628ca8ddd84121df1",
+      "sourceId": "vn-fpt-hcm-exchange",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "5aba43c49a534e39239cf579947d9e68",
+      "sourceId": "vn-fpt-hcm-campus",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "b404c9ef17fc9c4b56b710b9f170e242",
+      "sourceId": "vn-fpt-hcm-campus",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "1141a47a9c54486dac0c115dd7be76b7",
+      "sourceId": "vn-fpt-hcm-campus",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "a4c1daffa5ce6bc6dce6ab73ead5e569",
+      "sourceId": "vn-fpt-hcm-campus",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "5490bb1d139388f84b43f6aff008ce57",
+      "sourceId": "vn-fpt-hcm-campus",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "e596426c0f37e852d40e2e5137b51e4b",
+      "sourceId": "vn-fpt-hcm-campus",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "8be5af07210a760ce902c3f1ae8f92eb",
+      "sourceId": "vn-fpt-hcm-campus",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "f102c2018b9c58bad9a991f2b368ffa6",
+      "sourceId": "vn-fpt-student-life",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "b60604a649675f88d0a218d2f50ff193",
+      "sourceId": "vn-fpt-student-life",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "5dd450b9d16e4ad907ff6f9c38ce2862",
+      "sourceId": "vn-fpt-student-life",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "b86516e93bd9970c74056a7f52b075fe",
+      "sourceId": "vn-fpt-student-life",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "c3b867748e110d3ab31680c8e1b23ddf",
+      "sourceId": "vn-fpt-student-life",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "83937b49b3c9cb19739bac293acbf56f",
+      "sourceId": "vn-fpt-student-life",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "61777d38e359660007ed7b29adec81ec",
+      "sourceId": "vn-fpt-student-life",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "6b69f0848412c09bbacc8ff0bca47dd7",
+      "sourceId": "vn-fpt-training",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "0682b2676224206448423cc1e638d141",
+      "sourceId": "vn-fpt-training",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "606a929ffa62e817983bc9daca4f7255",
+      "sourceId": "vn-fpt-training",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "cdb1eae79b9920df79c75ef8726edbd7",
+      "sourceId": "vn-fpt-training",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "5c18cb2311979a5c92fb4309d31c4f34",
+      "sourceId": "vn-fpt-training",
+      "universityId": "fpt",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "6e45c77211b51fc3a04984c4a74a3c31",
+      "sourceId": "p6-sg-deep-culture",
+      "universityId": "nus",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "cdf0a5cbfeeecca094d20406995de209",
+      "sourceId": "p6-sg-deep-culture",
+      "universityId": "nus",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "5020847f18efd8b545362a881e9aaae6",
+      "sourceId": "p6-sg-deep-culture",
+      "universityId": "nus",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "e6859922201dab91658dae6aedc80abd",
+      "sourceId": "p6-sg-deep-culture",
+      "universityId": "nus",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "6036fb9cd5dc0e985059715072cc69b4",
+      "sourceId": "p6-my-deep-culture",
+      "universityId": "um",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "e06f7a8a926fa35de69abab170d7c722",
+      "sourceId": "p6-my-deep-culture",
+      "universityId": "um",
+      "before": null,
+      "readBackVerified": true
+    },
+    {
+      "factId": "8334955390c85ab9469cb1dd16a890f4",
+      "sourceId": "p6-my-deep-culture",
+      "universityId": "um",
+      "before": null,
+      "readBackVerified": true
+    }
+  ],
+  "unmapped": [
+    {
+      "sourceId": "p6-bn-ubd",
+      "url": "https://ubd.edu.bn/admission/undergraduate/undergraduate-why-ubd/support-wellbeing/health-and-welfare/",
+      "agency": "Universiti Brunei Darussalam — Health and Welfare",
+      "reason": "No existing canonical campus id; no id invented."
+    },
+    {
+      "sourceId": "p6-ph-deep-culture",
+      "url": "https://www.ac.upd.edu.ph/index.php/about-us/it-policy-university-rules",
+      "agency": "University of the Philippines Diliman — Asian Center IT Policy and University Rules",
+      "reason": "No existing canonical campus id; no id invented."
+    }
+  ],
+  "mismatches": []
+}

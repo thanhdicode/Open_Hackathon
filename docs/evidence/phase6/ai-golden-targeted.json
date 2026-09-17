@@ -1,0 +1,988 @@
+{
+  "at": "2026-09-16T21:06:20.853Z",
+  "transport": "in_process_live_provider",
+  "semanticGrounding": "Manual review required: citation allowlists alone do not prove each claim.",
+  "results": [
+    {
+      "id": "p6gold_ID_0",
+      "home": "MY",
+      "host": "ID",
+      "kind": "administrative",
+      "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+      "expected": "grounded_or_honest_insufficient_evidence",
+      "personaId": null,
+      "context": {
+        "journey": {
+          "home": "MY",
+          "host": "ID",
+          "city": "",
+          "university": ""
+        },
+        "journeyStage": "before_arrival",
+        "dates": {
+          "departureDate": "2026-10-20",
+          "arrivalDate": "2026-10-21",
+          "programStartDate": "2026-10-28",
+          "programEndDate": "2027-03-07",
+          "returnDate": "2027-03-10"
+        },
+        "userLanguage": "en",
+        "coachingLanguage": "en",
+        "level": "intermediate",
+        "timelineSource": "p6qa_id_my"
+      },
+      "evidence": [
+        {
+          "factId": "e1dbe4ba0402ef6a2c4c2fa74a5d62a9",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "student_reality",
+          "claim": "You are prohibited from working in Indonesia in a capacity not covered by your visa.",
+          "action": "Do not take on employment that does not align with your student visa conditions.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "40e7f23996ff26798c9dbbb2ec8289a7",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "The visa validity is 90 days from the date of issuance.",
+          "action": "Check the issuance date of your visa and enter Indonesia within 90 days.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "88e5942e341aa9696c4a703720af8351",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "If the 90-day visa validity period expires, you must apply for a new visa.",
+          "action": "Apply for a new visa if the 90-day validity period expires before you enter Indonesia.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "761c294bb504cc8fc799a557aca1f319",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "The sponsor must have an account at evisa.imigrasi.go.id before submitting the visa application.",
+          "action": "Ensure your sponsor creates an account at evisa.imigrasi.go.id before applying.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "589038e0932482d29fc0a4e5d6ad3aeb",
+          "sourceId": "id-immigration-visa-list",
+          "chapter": "get_ready",
+          "claim": "There is a visa category called E30B specifically for 'Visa Pendidikan Tinggi' (Higher Education Visa).",
+          "action": "Check your eligibility for the E30B visa.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:10:01.546+00:00"
+        },
+        {
+          "factId": "9bc2383cd8686bf78be9c30985238592",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "The visa processing time is five working days after payment is received.",
+          "action": "Wait for 5 working days after paying the visa fee for processing.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "88645847d62f8f63bd9689fa1992be01",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need a sponsor or guarantor to apply for this visa.",
+          "action": "Identify a sponsor or guarantor from the educational institution where you will study.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "2adac36994ff984ac1d064a10eef4b97",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need to provide a curriculum vitae.",
+          "action": "Prepare a detailed curriculum vitae.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "e295aa51a97609b0c42f2bcfe883f44e",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need to provide an itinerary.",
+          "action": "Prepare a detailed travel itinerary.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "9799f2d0f72bfb4701a675bc9f7ce110",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "move_around",
+          "claim": "The E30B visa allows entry and exit from Indonesia while the re-entry permit is valid.",
+          "action": "Verify your re-entry permit validity before traveling.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "d4fd706ea3e640c4d72559d11919f97f",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "Holders may stay in Indonesia for 1, 2, or 4 years counting from the date of arrival.",
+          "action": "Choose the desired duration of stay at the time of visa application.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "a8d32532d6a70aa2de3352e00ebc2d22",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You must provide proof of sufficient funds of at least USD $2000.",
+          "action": "Gather a bank statement from the last 3 months showing at least USD $2000.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "03980a6e14abdd491bf3889eac6985dd",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need to provide a color photo from within the last year.",
+          "action": "Get a recent color photo from the last 12 months.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "f951c5e9889e51cadb1acfbc19175a78",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need an acceptance letter from the educational institution stating the duration of study.",
+          "action": "Obtain an acceptance letter from the educational institution that specifies the duration of your studies.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "f191b9d0718e331058568db7ed448b63",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need a guarantee letter from the sponsor who is either an individual or educational institution.",
+          "action": "Obtain a guarantee letter from your sponsor or educational institution.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        }
+      ],
+      "evidenceQuotes": [
+        {
+          "factId": "e1dbe4ba0402ef6a2c4c2fa74a5d62a9",
+          "quote": "Anda dilarang tinggal di wilayah Indonesia melebihi jangka waktu izin tinggal, melakukan pekerjaan yang tidak sesuai dengan izin tinggal, melakukan penjualan barang atau jasa, terkecuali diperlukan dalam pekerjaannya."
+        },
+        {
+          "factId": "40e7f23996ff26798c9dbbb2ec8289a7",
+          "quote": "Masa berlaku visa adalah 90 hari sejak diterbitkan."
+        },
+        {
+          "factId": "88e5942e341aa9696c4a703720af8351",
+          "quote": "Jika tidak digunakan setelah jangka waktu tersebut, Orang Asing harus mengajukan visa baru untuk dapat masuk ke Indonesia."
+        },
+        {
+          "factId": "761c294bb504cc8fc799a557aca1f319",
+          "quote": "Penjamin (sponsor) harus memiliki akun di evisa.imigrasi.go.id sebelum mengajukan visa bagi Orang Asing yang dia sponsori."
+        },
+        {
+          "factId": "589038e0932482d29fc0a4e5d6ad3aeb",
+          "quote": "E30B\nVisa Pendidikan Tinggi"
+        },
+        {
+          "factId": "9bc2383cd8686bf78be9c30985238592",
+          "quote": "Waktu proses lima hari kerja setelah pembayaran visa diterima."
+        },
+        {
+          "factId": "88645847d62f8f63bd9689fa1992be01",
+          "quote": "Anda membutuhkan penjamin/sponsor untuk mengajukan visa ini."
+        },
+        {
+          "factId": "2adac36994ff984ac1d064a10eef4b97",
+          "quote": "daftar riwayat hidup (CV)."
+        },
+        {
+          "factId": "e295aa51a97609b0c42f2bcfe883f44e",
+          "quote": "rincian perjalanan (itinerary)."
+        },
+        {
+          "factId": "9799f2d0f72bfb4701a675bc9f7ce110",
+          "quote": "Selama Izin Masuk Kembali masih berlaku, Anda diizinkan masuk dan keluar wilayah Indonesia."
+        },
+        {
+          "factId": "d4fd706ea3e640c4d72559d11919f97f",
+          "quote": "Anda dapat memilih untuk tinggal di Indonesia selama 1 tahun 2 tahun, atau 4 tahun dihitung sejak tanggal kedatangan."
+        },
+        {
+          "factId": "a8d32532d6a70aa2de3352e00ebc2d22",
+          "quote": "bukti memiliki biaya hidup selama berada di wilayah Indonesia berupa rekening koran 3 bulan terakhir atas nama Orang Asing atau penjamin dengan jumlah minimal USD $2000 (dua ribu Dolar Amerika Serikat) atau jumlah yang setara."
+        },
+        {
+          "factId": "03980a6e14abdd491bf3889eac6985dd",
+          "quote": "pasfoto berwarna terbaru (setahun terakhir)."
+        },
+        {
+          "factId": "f951c5e9889e51cadb1acfbc19175a78",
+          "quote": "Surat penerimaan dari institusi pendidikan yang mencantumkan lama masa pendidikan yang akan ditempuh orang asing."
+        },
+        {
+          "factId": "f191b9d0718e331058568db7ed448b63",
+          "quote": "bukti penjaminan dari Penjamin yang merupakan perorangan atau institusi pendidikan di mana WNA menempuh pendidikan."
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "id-immigration-student-visa",
+          "title": "Direktorat Jenderal Imigrasi — Visa Pendidikan Tinggi (E30B)",
+          "url": "https://www.imigrasi.go.id/wna/daftar-visa-indonesia/E30B",
+          "authority": "A"
+        },
+        {
+          "sourceId": "id-immigration-visa-list",
+          "title": "Direktorat Jenderal Imigrasi — Daftar Visa",
+          "url": "https://www.imigrasi.go.id/wna/daftar-visa-indonesia",
+          "authority": "A"
+        }
+      ],
+      "retrievalSteps": [
+        "metadata filter: 15 fact(s) for ID",
+        "fulltext: 11 fact(s) matched 8 term(s)",
+        "group expansion: +4 related fact(s)",
+        "evidence packet: 15 fact(s), 2 source(s)"
+      ],
+      "checks": {
+        "evidenceAvailable": true,
+        "contract": true,
+        "citationsAllowlisted": true,
+        "citationOrHonestUncertainty": true,
+        "countryScoped": true,
+        "uncertaintyWhenUnsupported": true,
+        "clarificationWhenAmbiguous": true,
+        "noConfidentEmptyEvidence": true
+      },
+      "answer": {
+        "answer": "You will likely need to prepare several documents for the Indonesian higher‑education (E30B) student visa. The sponsor must first have an account on evisa.imigrasi.go.id, and you will need a sponsor or guarantor from your host institution. Required documents typically include a recent color photo, a detailed curriculum vitae, a travel itinerary, a bank statement from the last three months showing at least USD 2000, an acceptance letter that states the study duration, and a guarantee letter from the sponsor or institution. These items are generally requested before you apply for the visa.",
+        "whatToDo": [
+          "Ensure your sponsor creates an account at evisa.imigrasi.go.id before applying (source 4).",
+          "Identify a sponsor or guarantor from the educational institution (source 7).",
+          "Check your eligibility for the E30B higher‑education visa (source 5).",
+          "Choose the desired duration of stay (1, 2 or 4 years) when applying (source 11).",
+          "Verify the re‑entry permit validity if you plan multiple entries (source 10)."
+        ],
+        "whatToPrepare": [
+          "Recent color photo taken within the last 12 months (source 13).",
+          "Detailed curriculum vitae (source 8).",
+          "Travel itinerary (source 9).",
+          "Bank statement covering the last three months showing at least USD 2000 (source 12).",
+          "Acceptance letter from the educational institution specifying study duration (source 14).",
+          "Guarantee letter from the sponsor or educational institution (source 15)."
+        ],
+        "whatToSay": [],
+        "warnings": [
+          "Requirements may be updated; verify the latest checklist with the Indonesian immigration website."
+        ],
+        "confidence": "high",
+        "citedSourceIds": [
+          "id-immigration-student-visa",
+          "id-immigration-visa-list"
+        ]
+      },
+      "provider": "groq-text",
+      "model": "openai/gpt-oss-120b",
+      "semanticReview": "pending",
+      "elapsedMs": 2405
+    },
+    {
+      "id": "p6gold_ID_1",
+      "home": "MY",
+      "host": "ID",
+      "kind": "practical",
+      "question": "How can a new exchange student use public transport safely?",
+      "expected": "grounded_or_honest_insufficient_evidence",
+      "personaId": null,
+      "context": {
+        "journey": {
+          "home": "MY",
+          "host": "ID",
+          "city": "",
+          "university": ""
+        },
+        "journeyStage": "before_arrival",
+        "dates": {
+          "departureDate": "2026-10-20",
+          "arrivalDate": "2026-10-21",
+          "programStartDate": "2026-10-28",
+          "programEndDate": "2027-03-07",
+          "returnDate": "2027-03-10"
+        },
+        "userLanguage": "en",
+        "coachingLanguage": "en",
+        "level": "intermediate",
+        "timelineSource": "p6qa_id_my"
+      },
+      "evidence": [
+        {
+          "factId": "88e5942e341aa9696c4a703720af8351",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "If the 90-day visa validity period expires, you must apply for a new visa.",
+          "action": "Apply for a new visa if the 90-day validity period expires before you enter Indonesia.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "2605fddaa1f06e08f204258148466d89",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "move_around",
+          "claim": "The new ITK extension period starts 1 day after the previous ITK expires.",
+          "action": "Calculate your new permitted stay date starting from the day after your current permit ends.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.170+00:00"
+        },
+        {
+          "factId": "b56903a127a51b46e62d468c676d2553",
+          "sourceId": "id-bank-indonesia",
+          "chapter": "money_and_pay",
+          "claim": "The JISDOR exchange rate for USD to IDR is Rp 17,712.",
+          "action": "Use this rate as a reference for currency conversion when exchanging funds in Indonesia.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:13:56.753+00:00"
+        },
+        {
+          "factId": "9939b84a354212ae33e4c74cfd75329d",
+          "sourceId": "p6-id-dfat",
+          "chapter": "money_and_pay",
+          "claim": "DFAT visitor guidance for Indonesia: Never let your card out of your sight. Cover your PIN when you use it.",
+          "action": "Never let your card out of your sight. Cover your PIN when you use it.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T20:41:23.427+00:00"
+        },
+        {
+          "factId": "20b5a9f394a2dbfbf0909fb78e43e41b",
+          "sourceId": "p6-id-dfat",
+          "chapter": "move_around",
+          "claim": "DFAT visitor guidance for Indonesia: Always use official, licensed taxis with a meter running, or rideshare apps that track your ride and have real contact details. Check your driver is using a map or GPS while driving.",
+          "action": "Always use official, licensed taxis with a meter running, or rideshare apps that track your ride and have real contact details. Check your driver is using a map or GPS while driving.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T20:41:23.427+00:00"
+        },
+        {
+          "factId": "1f4f5478855a325fd59e2d6f373f185c",
+          "sourceId": "p6-id-dfat",
+          "chapter": "money_and_pay",
+          "claim": "DFAT visitor guidance for Indonesia: The local currency is the Indonesian Rupiah (IDR). Only exchange money at authorised money changers. Unauthorised money changers have been known to scam foreign tourists in Bali and elsewhere.",
+          "action": null,
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T20:41:23.427+00:00"
+        },
+        {
+          "factId": "2b17490c562a11f0e120f9e6d751a664",
+          "sourceId": "p6-id-dfat",
+          "chapter": "money_and_pay",
+          "claim": "DFAT visitor guidance for Indonesia: Some vendors, including at ATMs, install hidden cameras and use card skimmers. Use authorised ATMs in safe places, like at a bank branch, shops or shopping centres.",
+          "action": null,
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T20:41:23.427+00:00"
+        },
+        {
+          "factId": "e1dbe4ba0402ef6a2c4c2fa74a5d62a9",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "student_reality",
+          "claim": "You are prohibited from working in Indonesia in a capacity not covered by your visa.",
+          "action": "Do not take on employment that does not align with your student visa conditions.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "b960dd976b8afa3e0b42017653ac2fb4",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "get_ready",
+          "claim": "If a guarantor was used for the visa, a guarantee letter from the same guarantor is required for the ITK extension.",
+          "action": "Request a guarantee letter from the original guarantor before applying.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "ed1c23ab8841fe6afe0c29a5e4be3c41",
+          "sourceId": "p6-id-deep-culture",
+          "chapter": "culture_and_people",
+          "claim": "The U.S. Indonesia business guide advises giving and receiving items with the right hand.",
+          "action": null,
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T20:54:45.757+00:00"
+        },
+        {
+          "factId": "982264163d53ff0c0a0c878cb08a0a66",
+          "sourceId": "id-immigration-faq-visa",
+          "chapter": "get_ready",
+          "claim": "The applicant's passport must be valid for at least six months from the date of arrival in Indonesia.",
+          "action": "Check your passport expiration date before booking your trip.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:13:42.236+00:00"
+        },
+        {
+          "factId": "9de287f1a25df84cde05f297a67b1153",
+          "sourceId": "id-immigration-faq-visa",
+          "chapter": "get_ready",
+          "claim": "You must upload a photo in passport size with a maximum file size of 200 kb in JPG/JPEG/PNG format.",
+          "action": "Prepare a digital passport-sized photo under 200 kb before applying for a Visa Online.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:13:42.236+00:00"
+        },
+        {
+          "factId": "e0c9279737104ca3a2e4c94be8f71757",
+          "sourceId": "id-immigration-faq-visa",
+          "chapter": "money_and_pay",
+          "claim": "A valid Mastercard, Visa, or JCB credit card is required to pay for the Visa Online application.",
+          "action": "Ensure you have a valid international credit card from an accepted provider.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:13:42.236+00:00"
+        },
+        {
+          "factId": "3efb7060264823206cd2133525f8247b",
+          "sourceId": "id-immigration-faq-visa",
+          "chapter": "get_ready",
+          "claim": "For Visa on Arrival, the applicant must have a return ticket or a through ticket to continue the journey to another country.",
+          "action": "Book a return or through-flight ticket to satisfy the Visa on Arrival requirement.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:13:42.236+00:00"
+        },
+        {
+          "factId": "4ea90000b9fccf18b20fd5792013ca8e",
+          "sourceId": "id-immigration-faq-visa",
+          "chapter": "money_and_pay",
+          "claim": "If an E-VOA payment fails, verify that your bank account has sufficient balance and that the payment method is supported.",
+          "action": "Check your bank balance and payment method compatibility if your E-VOA payment is rejected.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:13:42.236+00:00"
+        },
+        {
+          "factId": "40e7f23996ff26798c9dbbb2ec8289a7",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "The visa validity is 90 days from the date of issuance.",
+          "action": "Check the issuance date of your visa and enter Indonesia within 90 days.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "a8d32532d6a70aa2de3352e00ebc2d22",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You must provide proof of sufficient funds of at least USD $2000.",
+          "action": "Gather a bank statement from the last 3 months showing at least USD $2000.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "03980a6e14abdd491bf3889eac6985dd",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need to provide a color photo from within the last year.",
+          "action": "Get a recent color photo from the last 12 months.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "2adac36994ff984ac1d064a10eef4b97",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need to provide a curriculum vitae.",
+          "action": "Prepare a detailed curriculum vitae.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "e295aa51a97609b0c42f2bcfe883f44e",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need to provide an itinerary.",
+          "action": "Prepare a detailed travel itinerary.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "88645847d62f8f63bd9689fa1992be01",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need a sponsor or guarantor to apply for this visa.",
+          "action": "Identify a sponsor or guarantor from the educational institution where you will study.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "761c294bb504cc8fc799a557aca1f319",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "The sponsor must have an account at evisa.imigrasi.go.id before submitting the visa application.",
+          "action": "Ensure your sponsor creates an account at evisa.imigrasi.go.id before applying.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "f951c5e9889e51cadb1acfbc19175a78",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need an acceptance letter from the educational institution stating the duration of study.",
+          "action": "Obtain an acceptance letter from the educational institution that specifies the duration of your studies.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "f191b9d0718e331058568db7ed448b63",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "You need a guarantee letter from the sponsor who is either an individual or educational institution.",
+          "action": "Obtain a guarantee letter from your sponsor or educational institution.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:16.863+00:00"
+        },
+        {
+          "factId": "589038e0932482d29fc0a4e5d6ad3aeb",
+          "sourceId": "id-immigration-visa-list",
+          "chapter": "get_ready",
+          "claim": "There is a visa category called E30B specifically for 'Visa Pendidikan Tinggi' (Higher Education Visa).",
+          "action": "Check your eligibility for the E30B visa.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:10:01.546+00:00"
+        },
+        {
+          "factId": "d4fd706ea3e640c4d72559d11919f97f",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "Holders may stay in Indonesia for 1, 2, or 4 years counting from the date of arrival.",
+          "action": "Choose the desired duration of stay at the time of visa application.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "9bc2383cd8686bf78be9c30985238592",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "The visa processing time is five working days after payment is received.",
+          "action": "Wait for 5 working days after paying the visa fee for processing.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "2c906f62cd22466cfb443c1818761a30",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "get_ready",
+          "claim": "Visa on Arrival (VoA) holders with a B index can extend their stay for 30 days once, totaling a maximum 60-day stay.",
+          "action": "Apply for one 30-day extension to reach the 60-day limit if holding a B index VoA.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "ed373404b7473f37c96066c520d4e032",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "get_ready",
+          "claim": "Visa on Arrival (VoA) holders with an F index cannot extend their stay.",
+          "action": "Plan to depart within the 7-day F index VoA period as no extension is possible.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "d72430c60b74e285581753bb97ffb80c",
+          "sourceId": "id-immigration-faq-visa",
+          "chapter": "get_ready",
+          "claim": "If an E-VOA account is not activated, contact the support via live chat or email with your applicant name, passport number, transaction number, and payment proof.",
+          "action": "Send an email to humas@imigrasi.go.id including your personal and transaction details if your E-VOA account remains inactive.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:13:42.236+00:00"
+        },
+        {
+          "factId": "bcca4068ef6447d4a16dc8338da85f3c",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "money_and_pay",
+          "claim": "A 30-day Visit Stay Permit (ITK) costs Rp500.000 per application.",
+          "action": "Budget 500,000 IDR for a 30-day ITK extension.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "f7e00d69c35794007d2754a089deb095",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "money_and_pay",
+          "claim": "A 60-day Visit Stay Permit (ITK) costs Rp2.000.000 per application.",
+          "action": "Budget 2,000,000 IDR for a 60-day ITK extension.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "ddcd09f952fe73d9c85ee0e105c277a3",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "money_and_pay",
+          "claim": "A 180-day Visit Stay Permit (ITK) costs Rp6.000.000 per application.",
+          "action": "Budget 6,000,000 IDR for a 180-day ITK extension.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "630b7357578e20185fc9ec2021af4d77",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "get_ready",
+          "claim": "Applicants must submit a statement explaining the purpose of their stay in Indonesia for an ITK extension.",
+          "action": "Write and sign a statement detailing why you are staying in Indonesia.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "1321d0ec15647f5e4101e7e851e6f1f8",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "get_ready",
+          "claim": "The ITK extension must be submitted at least 14 days before the current permit expires.",
+          "action": "File your extension application no later than 14 days before your current ITK end date.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "4fc9408e3065ced139912fb81b13914f",
+          "sourceId": "id-immigration-stay-permit",
+          "chapter": "move_around",
+          "claim": "An applicant is not considered to be in overstay if the ITK extension payment is made before the current ITK expires.",
+          "action": "Pay the extension fee before your current permit date ends to avoid overstay status.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:11:50.169+00:00"
+        },
+        {
+          "factId": "9799f2d0f72bfb4701a675bc9f7ce110",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "move_around",
+          "claim": "The E30B visa allows entry and exit from Indonesia while the re-entry permit is valid.",
+          "action": "Verify your re-entry permit validity before traveling.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "8a7fb779be7744dc6aa09451df3c489d",
+          "sourceId": "id-immigration-student-visa",
+          "chapter": "get_ready",
+          "claim": "The visa can be extended or converted to another type of residence permit.",
+          "action": "Consider extension options before your current stay expires.",
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T15:09:46.946+00:00"
+        },
+        {
+          "factId": "ff9e8e5f64131085800364a0e57b4947",
+          "sourceId": "p6-id-deep-culture",
+          "chapter": "culture_and_people",
+          "claim": "The U.S. Indonesia business guide advises waiting for the host's invitation before drinking at a business meeting.",
+          "action": null,
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T20:54:45.757+00:00"
+        },
+        {
+          "factId": "9926330c7d87c19caa47dbc12e6b293b",
+          "sourceId": "p6-id-deep-culture",
+          "chapter": "culture_and_people",
+          "claim": "The U.S. Indonesia business guide advises avoiding pointing shoe soles toward others while seated.",
+          "action": null,
+          "authority": "A",
+          "status": "official_verified",
+          "checkedAt": "2026-09-16T20:54:45.757+00:00"
+        }
+      ],
+      "evidenceQuotes": [
+        {
+          "factId": "88e5942e341aa9696c4a703720af8351",
+          "quote": "Jika tidak digunakan setelah jangka waktu tersebut, Orang Asing harus mengajukan visa baru untuk dapat masuk ke Indonesia."
+        },
+        {
+          "factId": "2605fddaa1f06e08f204258148466d89",
+          "quote": "Masa ITK perpanjangan terhitung 1 hari setelah ITK sebelumnya berakhir."
+        },
+        {
+          "factId": "b56903a127a51b46e62d468c676d2553",
+          "quote": "JISDOR (USD-IDR) Rp 17.712 16-Sep-2026"
+        },
+        {
+          "factId": "9939b84a354212ae33e4c74cfd75329d",
+          "quote": "Never let your card out of your sight. Cover your PIN when you use it."
+        },
+        {
+          "factId": "20b5a9f394a2dbfbf0909fb78e43e41b",
+          "quote": "Always use official, licensed taxis with a meter running, or rideshare apps that track your ride and have real contact details. Check your driver is using a map or GPS while driving."
+        },
+        {
+          "factId": "1f4f5478855a325fd59e2d6f373f185c",
+          "quote": "The local currency is the Indonesian Rupiah (IDR). Only exchange money at authorised money changers. Unauthorised money changers have been known to scam foreign tourists in Bali and elsewhere."
+        },
+        {
+          "factId": "2b17490c562a11f0e120f9e6d751a664",
+          "quote": "Some vendors, including at ATMs, install hidden cameras and use card skimmers. Use authorised ATMs in safe places, like at a bank branch, shops or shopping centres."
+        },
+        {
+          "factId": "e1dbe4ba0402ef6a2c4c2fa74a5d62a9",
+          "quote": "Anda dilarang tinggal di wilayah Indonesia melebihi jangka waktu izin tinggal, melakukan pekerjaan yang tidak sesuai dengan izin tinggal, melakukan penjualan barang atau jasa, terkecuali diperlukan dalam pekerjaannya."
+        },
+        {
+          "factId": "b960dd976b8afa3e0b42017653ac2fb4",
+          "quote": "surat bukti penjaminan dari Penjamin yang sama saat mengajukan visa (jika menggunakan Penjamin);"
+        },
+        {
+          "factId": "ed1c23ab8841fe6afe0c29a5e4be3c41",
+          "quote": "Always use your right hand for giving and receiving items, as the left hand is considered impolite for such gestures."
+        },
+        {
+          "factId": "982264163d53ff0c0a0c878cb08a0a66",
+          "quote": "Halaman biodata lengkap paspor dengan masa berlaku minimal 6 bulan sejak tanggal kedatangan Anda ke Indonesia (format JPG/JPEG/PNG dengan ukuran maksimal 200 kb);"
+        },
+        {
+          "factId": "9de287f1a25df84cde05f297a67b1153",
+          "quote": "Foto ukuran paspor (format JPG/JPEG/PNG dengan ukuran maksimal 200 kb);"
+        },
+        {
+          "factId": "e0c9279737104ca3a2e4c94be8f71757",
+          "quote": "Kartu kredit Mastercard, Visa, atau JCB yang valid."
+        },
+        {
+          "factId": "3efb7060264823206cd2133525f8247b",
+          "quote": "Tiket kembali atau tiket terusan untuk melanjutkan perjalanan ke negara lain."
+        },
+        {
+          "factId": "4ea90000b9fccf18b20fd5792013ca8e",
+          "quote": "Pastikan saldo mecukupi (tidak limit) dan jenis pembayaran yang anda pilih mendukung sistem pembayaran."
+        },
+        {
+          "factId": "40e7f23996ff26798c9dbbb2ec8289a7",
+          "quote": "Masa berlaku visa adalah 90 hari sejak diterbitkan."
+        },
+        {
+          "factId": "a8d32532d6a70aa2de3352e00ebc2d22",
+          "quote": "bukti memiliki biaya hidup selama berada di wilayah Indonesia berupa rekening koran 3 bulan terakhir atas nama Orang Asing atau penjamin dengan jumlah minimal USD $2000 (dua ribu Dolar Amerika Serikat) atau jumlah yang setara."
+        },
+        {
+          "factId": "03980a6e14abdd491bf3889eac6985dd",
+          "quote": "pasfoto berwarna terbaru (setahun terakhir)."
+        },
+        {
+          "factId": "2adac36994ff984ac1d064a10eef4b97",
+          "quote": "daftar riwayat hidup (CV)."
+        },
+        {
+          "factId": "e295aa51a97609b0c42f2bcfe883f44e",
+          "quote": "rincian perjalanan (itinerary)."
+        },
+        {
+          "factId": "88645847d62f8f63bd9689fa1992be01",
+          "quote": "Anda membutuhkan penjamin/sponsor untuk mengajukan visa ini."
+        },
+        {
+          "factId": "761c294bb504cc8fc799a557aca1f319",
+          "quote": "Penjamin (sponsor) harus memiliki akun di evisa.imigrasi.go.id sebelum mengajukan visa bagi Orang Asing yang dia sponsori."
+        },
+        {
+          "factId": "f951c5e9889e51cadb1acfbc19175a78",
+          "quote": "Surat penerimaan dari institusi pendidikan yang mencantumkan lama masa pendidikan yang akan ditempuh orang asing."
+        },
+        {
+          "factId": "f191b9d0718e331058568db7ed448b63",
+          "quote": "bukti penjaminan dari Penjamin yang merupakan perorangan atau institusi pendidikan di mana WNA menempuh pendidikan."
+        },
+        {
+          "factId": "589038e0932482d29fc0a4e5d6ad3aeb",
+          "quote": "E30B\nVisa Pendidikan Tinggi"
+        },
+        {
+          "factId": "d4fd706ea3e640c4d72559d11919f97f",
+          "quote": "Anda dapat memilih untuk tinggal di Indonesia selama 1 tahun 2 tahun, atau 4 tahun dihitung sejak tanggal kedatangan."
+        },
+        {
+          "factId": "9bc2383cd8686bf78be9c30985238592",
+          "quote": "Waktu proses lima hari kerja setelah pembayaran visa diterima."
+        },
+        {
+          "factId": "2c906f62cd22466cfb443c1818761a30",
+          "quote": "Dapat diperpanjang satu kali untuk 30 hari hingga masa tinggal keseluruhan paling lama 60 hari (2 bulan)."
+        },
+        {
+          "factId": "ed373404b7473f37c96066c520d4e032",
+          "quote": "Tidak dapat diperpanjang."
+        },
+        {
+          "factId": "d72430c60b74e285581753bb97ffb80c",
+          "quote": "Silakan mengakses fitur live chat atau bersurat ke humas@imigrasi.go.id dengan melampirkan data : Nama Pemohon, Nomor Passport, Transaction number, dan melampirkan bukti pembayaran."
+        },
+        {
+          "factId": "bcca4068ef6447d4a16dc8338da85f3c",
+          "quote": "ITK 30 Hari: Rp500.000 per permohonan"
+        },
+        {
+          "factId": "f7e00d69c35794007d2754a089deb095",
+          "quote": "ITK 60 Hari: Rp2.000.000 per permohonan"
+        },
+        {
+          "factId": "ddcd09f952fe73d9c85ee0e105c277a3",
+          "quote": "ITK 180 Hari: Rp6.000.000 per permohonan"
+        },
+        {
+          "factId": "630b7357578e20185fc9ec2021af4d77",
+          "quote": "surat pernyataan yang menerangkan maksud dan tujuan berada di Indonesia."
+        },
+        {
+          "factId": "1321d0ec15647f5e4101e7e851e6f1f8",
+          "quote": "Perpanjangan ITK diajukan paling cepat 14 hari dan paling lambat sebelum ITK-nya berakhir."
+        },
+        {
+          "factId": "4fc9408e3065ced139912fb81b13914f",
+          "quote": "Orang Asing tidak terhitung overstay apabila pembayaran biaya perpanjangan ITK dilakukan sebelum ITK-nya berakhir."
+        },
+        {
+          "factId": "9799f2d0f72bfb4701a675bc9f7ce110",
+          "quote": "Selama Izin Masuk Kembali masih berlaku, Anda diizinkan masuk dan keluar wilayah Indonesia."
+        },
+        {
+          "factId": "8a7fb779be7744dc6aa09451df3c489d",
+          "quote": "Izin Tinggal ini dapat diperpanjang dan dapat dialihkan menjadi izin tinggal lainnya."
+        },
+        {
+          "factId": "ff9e8e5f64131085800364a0e57b4947",
+          "quote": "It is customary not to drink until the host invites you to do so, often at the end of the meeting."
+        },
+        {
+          "factId": "9926330c7d87c19caa47dbc12e6b293b",
+          "quote": "When sitting, avoid pointing the soles of your shoes toward others."
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "id-immigration-student-visa",
+          "title": "Direktorat Jenderal Imigrasi — Visa Pendidikan Tinggi (E30B)",
+          "url": "https://www.imigrasi.go.id/wna/daftar-visa-indonesia/E30B",
+          "authority": "A"
+        },
+        {
+          "sourceId": "id-immigration-stay-permit",
+          "title": "Direktorat Jenderal Imigrasi — Izin Tinggal",
+          "url": "https://www.imigrasi.go.id/wna/izin-tinggal-keimigrasian",
+          "authority": "A"
+        },
+        {
+          "sourceId": "id-bank-indonesia",
+          "title": "Bank Indonesia",
+          "url": "https://www.bi.go.id/",
+          "authority": "A"
+        },
+        {
+          "sourceId": "p6-id-dfat",
+          "title": "Australian Department of Foreign Affairs and Trade — Smartraveller",
+          "url": "https://www.smartraveller.gov.au/destinations/asia/indonesia",
+          "authority": "A"
+        },
+        {
+          "sourceId": "p6-id-deep-culture",
+          "title": "U.S. International Trade Administration — Indonesia Business Travel",
+          "url": "https://www.trade.gov/country-commercial-guides/indonesia-business-travel",
+          "authority": "A"
+        },
+        {
+          "sourceId": "id-immigration-faq-visa",
+          "title": "Direktorat Jenderal Imigrasi — FAQ Visa",
+          "url": "https://www.imigrasi.go.id/faq/visa",
+          "authority": "A"
+        },
+        {
+          "sourceId": "id-immigration-visa-list",
+          "title": "Direktorat Jenderal Imigrasi — Daftar Visa",
+          "url": "https://www.imigrasi.go.id/wna/daftar-visa-indonesia",
+          "authority": "A"
+        }
+      ],
+      "retrievalSteps": [
+        "metadata filter: 53 fact(s) for ID",
+        "fulltext: 10 fact(s) matched 7 term(s)",
+        "group expansion: +36 related fact(s)",
+        "evidence packet: 46 fact(s), 7 source(s)"
+      ],
+      "checks": {
+        "evidenceAvailable": true,
+        "contract": true,
+        "citationsAllowlisted": true,
+        "citationOrHonestUncertainty": true,
+        "countryScoped": true,
+        "uncertaintyWhenUnsupported": true,
+        "clarificationWhenAmbiguous": true,
+        "noConfidentEmptyEvidence": true
+      },
+      "answer": {
+        "answer": "For transport in Indonesia, use official, licensed taxis with the meter running, or rideshare apps that track the journey and provide real contact details. Check that the driver is using a map or GPS while driving. Specific safety guidance for buses, trains, or transport in your destination city could not be verified from the available current authoritative sources.",
+        "whatToDo": [
+          "Use an official, licensed taxi and confirm that the meter is running.",
+          "Alternatively, use a rideshare app that tracks the ride and provides real contact details.",
+          "Check that the driver is using a map or GPS while driving."
+        ],
+        "whatToPrepare": [],
+        "whatToSay": [],
+        "warnings": [
+          "Your destination city is unknown, so city-specific routes and transport procedures could not be verified.",
+          "The evidence does not provide general safety guidance for buses, trains, or other public-transport systems."
+        ],
+        "confidence": "medium",
+        "citedSourceIds": [
+          "p6-id-dfat"
+        ]
+      },
+      "provider": "explabs-luna",
+      "model": "gpt-5.6-luna",
+      "semanticReview": "pending",
+      "elapsedMs": 4677
+    }
+  ],
+  "passedAutomated": 2,
+  "failedAutomated": 0
+}

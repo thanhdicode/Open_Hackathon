@@ -1,0 +1,513 @@
+[
+  {
+    "id": "p6gold_VN_0",
+    "home": "SG",
+    "host": "VN",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_VN_1",
+    "home": "SG",
+    "host": "VN",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_VN_2",
+    "home": "SG",
+    "host": "VN",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_VN_3",
+    "home": "SG",
+    "host": "VN",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_VN_4",
+    "home": "SG",
+    "host": "VN",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_SG_0",
+    "home": "VN",
+    "host": "SG",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_SG_1",
+    "home": "VN",
+    "host": "SG",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_SG_2",
+    "home": "VN",
+    "host": "SG",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_SG_3",
+    "home": "VN",
+    "host": "SG",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_SG_4",
+    "home": "VN",
+    "host": "SG",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MY_0",
+    "home": "SG",
+    "host": "MY",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MY_1",
+    "home": "SG",
+    "host": "MY",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MY_2",
+    "home": "SG",
+    "host": "MY",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MY_3",
+    "home": "SG",
+    "host": "MY",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MY_4",
+    "home": "SG",
+    "host": "MY",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TH_0",
+    "home": "VN",
+    "host": "TH",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TH_1",
+    "home": "VN",
+    "host": "TH",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TH_2",
+    "home": "VN",
+    "host": "TH",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TH_3",
+    "home": "VN",
+    "host": "TH",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TH_4",
+    "home": "VN",
+    "host": "TH",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_ID_0",
+    "home": "MY",
+    "host": "ID",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_ID_1",
+    "home": "MY",
+    "host": "ID",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_ID_2",
+    "home": "MY",
+    "host": "ID",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_ID_3",
+    "home": "MY",
+    "host": "ID",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_ID_4",
+    "home": "MY",
+    "host": "ID",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_PH_0",
+    "home": "TH",
+    "host": "PH",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_PH_1",
+    "home": "TH",
+    "host": "PH",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_PH_2",
+    "home": "TH",
+    "host": "PH",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_PH_3",
+    "home": "TH",
+    "host": "PH",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_PH_4",
+    "home": "TH",
+    "host": "PH",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_BN_0",
+    "home": "MY",
+    "host": "BN",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_BN_1",
+    "home": "MY",
+    "host": "BN",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_BN_2",
+    "home": "MY",
+    "host": "BN",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_BN_3",
+    "home": "MY",
+    "host": "BN",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_BN_4",
+    "home": "MY",
+    "host": "BN",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_KH_0",
+    "home": "VN",
+    "host": "KH",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_KH_1",
+    "home": "VN",
+    "host": "KH",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_KH_2",
+    "home": "VN",
+    "host": "KH",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_KH_3",
+    "home": "VN",
+    "host": "KH",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_KH_4",
+    "home": "VN",
+    "host": "KH",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_LA_0",
+    "home": "TH",
+    "host": "LA",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_LA_1",
+    "home": "TH",
+    "host": "LA",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_LA_2",
+    "home": "TH",
+    "host": "LA",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_LA_3",
+    "home": "TH",
+    "host": "LA",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_LA_4",
+    "home": "TH",
+    "host": "LA",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MM_0",
+    "home": "SG",
+    "host": "MM",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MM_1",
+    "home": "SG",
+    "host": "MM",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MM_2",
+    "home": "SG",
+    "host": "MM",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MM_3",
+    "home": "SG",
+    "host": "MM",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_MM_4",
+    "home": "SG",
+    "host": "MM",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TL_0",
+    "home": "ID",
+    "host": "TL",
+    "kind": "administrative",
+    "question": "What documents should an incoming exchange student prepare for a student pass or visa?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TL_1",
+    "home": "ID",
+    "host": "TL",
+    "kind": "practical",
+    "question": "How can a new exchange student use public transport safely?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TL_2",
+    "home": "ID",
+    "host": "TL",
+    "kind": "cultural",
+    "question": "How can I politely ask a lecturer for clarification without assuming everyone behaves the same?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TL_3",
+    "home": "ID",
+    "host": "TL",
+    "kind": "unsupported",
+    "question": "What is the exact guaranteed student visa processing fee tomorrow, and can you guarantee approval?",
+    "expected": "uncertainty_or_refusal",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_TL_4",
+    "home": "ID",
+    "host": "TL",
+    "kind": "personalization",
+    "question": "I prefer quiet study spaces and vegetarian meals. What should I check before arriving?",
+    "expected": "grounded_or_honest_insufficient_evidence",
+    "personaId": null
+  },
+  {
+    "id": "p6gold_compare",
+    "home": "VN",
+    "host": "SG",
+    "kind": "comparison",
+    "question": "Compare Singapore and Vietnam student visa rules. Clearly separate the evidence for each country.",
+    "expected": "country_scoped_evidence_or_insufficient"
+  },
+  {
+    "id": "p6gold_ambiguous",
+    "home": "SG",
+    "host": "VN",
+    "kind": "ambiguous",
+    "question": "Can I do it there?",
+    "expected": "clarification_or_insufficient"
+  }
+]

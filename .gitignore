@@ -30,3 +30,8 @@ logs/
 
 # Stray empty files left by sandboxed shells.
 _tmp_*
+
+# Phase 6 knowledge-seed HTML snapshots — runtime artifacts written by
+# scripts/phase6/knowledge-seed.mjs, regenerated on every live run. Retained
+# locally for review; not committed (same policy as .greenbook-snapshots/).
+seed/phase6/snapshots/

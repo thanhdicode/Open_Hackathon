@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { readFileSync,writeFileSync } from 'node:fs';
+import { Client,TablesDB,Query } from 'node-appwrite';
+const client=new Client().setEndpoint(process.env.VITE_APPWRITE_ENDPOINT).setProject(process.env.VITE_APPWRITE_PROJECT_ID).setKey(process.env.APPWRITE_API_KEY);
+const tables=new TablesDB(client),databaseId=process.env.VITE_APPWRITE_DATABASE_ID,tableId='knowledge_facts';
+const result=await tables.listRows({databaseId,tableId,queries:[Query.equal('fact_id','1bb00b7bb5c9978664c5988bb0f32655')]});assert.equal(result.rows.length,1);
+const before=result.rows[0];assert.equal(before.source_id,'id-immigration-student-visa');assert.ok(before.claim.includes('beyond its expiration date'));assert.ok(before.evidence_quote.includes('sebelum masa berlakunya habis'));
+const reason='Phase6 translation review: Indonesian evidence says six months before validity ends (sebelum masa berlakunya habis), while extracted English claim/action say beyond the passport expiration date, an impossible and reversed requirement. Preserve claim/quote for human review; do not publish or repeat this mistranslation as a verified instruction.';
+await tables.updateRow({databaseId,tableId,rowId:before.$id,data:{verification_status:'needs_review',validation_notes:reason},permissions:[]});const after=await tables.getRow({databaseId,tableId,rowId:before.$id});assert.equal(after.verification_status,'needs_review');assert.deepEqual(after.$permissions,[]);assert.equal(after.claim,before.claim);assert.equal(after.evidence_quote,before.evidence_quote);
+const path='docs/evidence/phase6/fact-review.json',previous=JSON.parse(readFileSync(path,'utf8')),reviews=previous.reviews??[previous];const review={at:new Date().toISOString(),reason,before,after,rowPreserved:true,publicReadRevoked:true};const index=reviews.findIndex(r=>r.before?.fact_id===before.fact_id);if(index>=0)reviews[index]=review;else reviews.push(review);writeFileSync(path,JSON.stringify({at:new Date().toISOString(),reviews,reviewedFacts:reviews.length},null,2));console.log('Wrong passport-expiry translation retained/demoted; publication revoked; read-back verified.');

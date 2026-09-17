@@ -1,0 +1,11 @@
+# Synthetic QA accounts and live golden evaluation
+
+`node scripts/phase6/personas.mjs` writes 11 explicitly synthetic personas and 57 golden questions. Dates are relative to the run: before departure, first week, studying, and returning home. Unknown university stays empty rather than inventing membership. Interests are fixture choices, never nationality-derived preferences.
+
+`node --env-file=.env.local scripts/phase6/seed-users.mjs` idempotently creates isolated `p6qa_*` auth accounts and owner-only profile, unassessed-neutral MyDNA, and journey rows. Read-back verification covers all data and owner permissions. It never writes public social/community rows or artificial achievement history. Passwords are random, never printed or persisted; use the normal account recovery flow if interactive login is needed. Auth preferences label every account `syntheticQA: true`.
+
+`node --env-file=.env.local scripts/phase6/ai-golden.mjs --baseline` calls the deployed Appwrite gateway with the real stored corpus. `--local` instead invokes the local gateway entrypoint, including its safety gates, with live provider credentials; it does not prove deployed behavior. `--limit N` is a bounded diagnostic sample. The default is all 57 questions across all 11 countries. A later run without `--baseline` saves a separate final report. Reports are checkpointed per question under `docs/evidence/phase6/`.
+
+The baseline packet builder came from the existing `scripts/verify/greenbook-rag.mjs` harness. Subsequent runs execute the current frontend `retrieveEvidence` function, transpiled with already-installed TypeScript, against published real DB rows injected in place of browser transport. This exercises frontend scoring and topic guards, not browser interaction. Automated checks measure contract validity, country-scoped evidence, citation allowlists, and honest uncertainty. Source linkage does **not** prove semantic grounding of every sentence. Every answer therefore stays `semanticReview: pending` until reviewed against its recorded evidence. A refusal can pass uncertainty checks while evidence availability fails; missing coverage is never converted to a success.
+
+Live calls incur real provider costs. No function deployment, publish, delete, reset, or community mutation is performed by these scripts.

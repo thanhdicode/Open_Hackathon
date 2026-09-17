@@ -1,0 +1,327 @@
+[
+  {
+    "id": "p6qa_vn_sg",
+    "name": "Synthetic QA VN to SG",
+    "email": "p6qa.vn.sg@yapyep.example",
+    "home": "VN",
+    "host": "SG",
+    "university": "",
+    "city": "Singapore",
+    "interests": [
+      "Food",
+      "Study",
+      "Culture"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-10-20",
+      "arrivalDate": "2026-10-21",
+      "programStartDate": "2026-10-28",
+      "programEndDate": "2027-03-07",
+      "returnDate": "2027-03-10"
+    },
+    "stage": "before_departure",
+    "role": "incoming",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_sg_vn",
+    "name": "Synthetic QA SG to VN",
+    "email": "p6qa.sg.vn@yapyep.example",
+    "home": "SG",
+    "host": "VN",
+    "university": "",
+    "city": "Ho Chi Minh City",
+    "interests": [
+      "Language",
+      "Transport",
+      "Study"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-09-13",
+      "arrivalDate": "2026-09-14",
+      "programStartDate": "2026-09-21",
+      "programEndDate": "2027-01-29",
+      "returnDate": "2027-02-01"
+    },
+    "stage": "first_week",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_my_sg",
+    "name": "Synthetic QA MY to SG",
+    "email": "p6qa.my.sg@yapyep.example",
+    "home": "MY",
+    "host": "SG",
+    "university": "",
+    "city": "Singapore",
+    "interests": [
+      "Culture",
+      "Food"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-07-27",
+      "arrivalDate": "2026-07-28",
+      "programStartDate": "2026-08-04",
+      "programEndDate": "2026-12-12",
+      "returnDate": "2026-12-15"
+    },
+    "stage": "studying",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_th_vn",
+    "name": "Synthetic QA TH to VN",
+    "email": "p6qa.th.vn@yapyep.example",
+    "home": "TH",
+    "host": "VN",
+    "university": "",
+    "city": "Ho Chi Minh City",
+    "interests": [
+      "Study",
+      "Language"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-05-06",
+      "arrivalDate": "2026-05-07",
+      "programStartDate": "2026-05-14",
+      "programEndDate": "2026-09-21",
+      "returnDate": "2026-09-24"
+    },
+    "stage": "returning_home",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_id_my",
+    "name": "Synthetic QA ID to MY",
+    "email": "p6qa.id.my@yapyep.example",
+    "home": "ID",
+    "host": "MY",
+    "university": "",
+    "city": "Kuala Lumpur",
+    "interests": [
+      "Food",
+      "Study",
+      "Culture"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-10-20",
+      "arrivalDate": "2026-10-21",
+      "programStartDate": "2026-10-28",
+      "programEndDate": "2027-03-07",
+      "returnDate": "2027-03-10"
+    },
+    "stage": "before_departure",
+    "role": "incoming",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_ph_th",
+    "name": "Synthetic QA PH to TH",
+    "email": "p6qa.ph.th@yapyep.example",
+    "home": "PH",
+    "host": "TH",
+    "university": "",
+    "city": "Bangkok",
+    "interests": [
+      "Language",
+      "Transport",
+      "Study"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-09-13",
+      "arrivalDate": "2026-09-14",
+      "programStartDate": "2026-09-21",
+      "programEndDate": "2027-01-29",
+      "returnDate": "2027-02-01"
+    },
+    "stage": "first_week",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_bn_my",
+    "name": "Synthetic QA BN to MY",
+    "email": "p6qa.bn.my@yapyep.example",
+    "home": "BN",
+    "host": "MY",
+    "university": "",
+    "city": "Kuala Lumpur",
+    "interests": [
+      "Culture",
+      "Food"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-07-27",
+      "arrivalDate": "2026-07-28",
+      "programStartDate": "2026-08-04",
+      "programEndDate": "2026-12-12",
+      "returnDate": "2026-12-15"
+    },
+    "stage": "studying",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_kh_vn",
+    "name": "Synthetic QA KH to VN",
+    "email": "p6qa.kh.vn@yapyep.example",
+    "home": "KH",
+    "host": "VN",
+    "university": "",
+    "city": "Ho Chi Minh City",
+    "interests": [
+      "Study",
+      "Language"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-05-06",
+      "arrivalDate": "2026-05-07",
+      "programStartDate": "2026-05-14",
+      "programEndDate": "2026-09-21",
+      "returnDate": "2026-09-24"
+    },
+    "stage": "returning_home",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_la_th",
+    "name": "Synthetic QA LA to TH",
+    "email": "p6qa.la.th@yapyep.example",
+    "home": "LA",
+    "host": "TH",
+    "university": "",
+    "city": "Bangkok",
+    "interests": [
+      "Food",
+      "Study",
+      "Culture"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-10-20",
+      "arrivalDate": "2026-10-21",
+      "programStartDate": "2026-10-28",
+      "programEndDate": "2027-03-07",
+      "returnDate": "2027-03-10"
+    },
+    "stage": "before_departure",
+    "role": "incoming",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_mm_sg",
+    "name": "Synthetic QA MM to SG",
+    "email": "p6qa.mm.sg@yapyep.example",
+    "home": "MM",
+    "host": "SG",
+    "university": "",
+    "city": "Singapore",
+    "interests": [
+      "Language",
+      "Transport",
+      "Study"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-09-13",
+      "arrivalDate": "2026-09-14",
+      "programStartDate": "2026-09-21",
+      "programEndDate": "2027-01-29",
+      "returnDate": "2027-02-01"
+    },
+    "stage": "first_week",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  },
+  {
+    "id": "p6qa_tl_id",
+    "name": "Synthetic QA TL to ID",
+    "email": "p6qa.tl.id@yapyep.example",
+    "home": "TL",
+    "host": "ID",
+    "university": "",
+    "city": "Jakarta",
+    "interests": [
+      "Culture",
+      "Food"
+    ],
+    "languages": [
+      "English"
+    ],
+    "concerns": [
+      "Finding trustworthy administrative information"
+    ],
+    "dates": {
+      "departureDate": "2026-07-27",
+      "arrivalDate": "2026-07-28",
+      "programStartDate": "2026-08-04",
+      "programEndDate": "2026-12-12",
+      "returnDate": "2026-12-15"
+    },
+    "stage": "studying",
+    "role": "current_exchange",
+    "assessmentVersion": "synthetic_qa_unassessed_v1"
+  }
+]

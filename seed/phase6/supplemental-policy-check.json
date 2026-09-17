@@ -1,0 +1,56 @@
+[
+  {
+    "origin": "https://www.bruneitourism.com",
+    "status": 200,
+    "text": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://www.bruneitourism.com/sitemap_index.xml\n",
+    "checkedAt": "2026-09-16T20:54:33.194Z"
+  },
+  {
+    "origin": "https://ubd.edu.bn",
+    "status": 200,
+    "text": "User-agent: *\r\nDisallow: /wp-admin/\r\nAllow: /wp-admin/admin-ajax.php\r\n\r\nSitemap: https://ubd.edu.bn/sitemap.xml\r\nSitemap: https://ubd.edu.bn/sitemap.rss\n",
+    "checkedAt": "2026-09-16T20:54:33.901Z"
+  },
+  {
+    "origin": "https://www.trade.gov",
+    "status": 200,
+    "text": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Allow SiteImprove crawler\nUser-agent: SiteimproveBot-Crawler\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n",
+    "checkedAt": "2026-09-16T20:54:34.882Z"
+  },
+  {
+    "origin": "https://myanmar.gov.mm",
+    "status": 200,
+    "text": "User-Agent: *\nDisallow:\n",
+    "checkedAt": "2026-09-16T20:54:35.213Z"
+  },
+  {
+    "origin": "https://timorleste.tl",
+    "status": 200,
+    "text": "User-Agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: GPTBot\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: ChatGPT-User\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: ClaudeBot\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: anthropic-ai\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: PerplexityBot\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: Google-Extended\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: Applebot-Extended\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: Amazonbot\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: FacebookBot\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /search/\nDisallow: /*?\n\nUser-Agent: Bytespider\nDisallow: /\n\nUser-Agent: CCBot\nDisallow: /\n\nSitemap: https://timorleste.tl/sitemap.xml\n",
+    "checkedAt": "2026-09-16T20:54:35.699Z"
+  },
+  {
+    "origin": "https://beta-v2.vietnam.travel",
+    "status": 200,
+    "text": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register/\nDisallow: /user/password/\nDisallow: /user/login/\nDisallow: /user/logout/\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password/\nDisallow: /index.php/user/register/\nDisallow: /index.php/user/login/\nDisallow: /index.php/user/logout/\n",
+    "checkedAt": "2026-09-16T20:54:35.825Z"
+  },
+  {
+    "origin": "https://sps.nus.edu.sg",
+    "status": 200,
+    "text": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\n# START WPFORMS BLOCK\n# ---------------------------\nUser-agent: *\nDisallow: /wp-content/uploads/wpforms/\n# ---------------------------\n# END WPFORMS BLOCK\n\nSitemap: https://sps.nus.edu.sg/wp-sitemap.xml\n",
+    "checkedAt": "2026-09-16T20:54:36.337Z"
+  },
+  {
+    "origin": "https://study.um.edu.my",
+    "status": 404,
+    "text": "",
+    "checkedAt": "2026-09-16T20:54:36.682Z"
+  },
+  {
+    "origin": "https://www.ac.upd.edu.ph",
+    "status": 200,
+    "text": "# If the Joomla site is installed within a folder \n# eg www.example.com/joomla/ then the robots.txt file \n# MUST be moved to the site root \n# eg www.example.com/robots.txt\n# AND the joomla folder name MUST be prefixed to all of the\n# paths. \n# eg the Disallow rule for the /administrator/ folder MUST \n# be changed to read \n# Disallow: /joomla/administrator/\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/orig.html\n#\n# For syntax checking, see:\n# http://tool.motoricerca.info/robots-checker.phtml\n\nUser-agent: *\nDisallow: /administrator/\nDisallow: /bin/\nDisallow: /cache/\nDisallow: /cli/\nDisallow: /components/\nDisallow: /includes/\nDisallow: /installation/\nDisallow: /language/\nDisallow: /layouts/\nDisallow: /libraries/\nDisallow: /logs/\nDisallow: /modules/\nDisallow: /plugins/\nDisallow: /tmp/\n\n",
+    "checkedAt": "2026-09-16T20:54:37.137Z"
+  }
+]

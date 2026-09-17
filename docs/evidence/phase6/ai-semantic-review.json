@@ -1,0 +1,887 @@
+{
+  "at": "2026-09-16T20:58:28.534Z",
+  "scope": "Manual reading of all generated answer blocks against recorded packet claims and actions; primary-source rechecking performed for identified VN/ID scope defects only.",
+  "gate": "BLOCKED",
+  "reason": "Three semantic failures and two student-purpose scope concerns require latest-pipeline targeted rerun; coverage gaps remain explicit.",
+  "results": [
+    {
+      "id": "p6gold_VN_0",
+      "kind": "administrative",
+      "country": "VN",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "needs_scope_review",
+      "violations": [
+        "Uses generic eVisa-status lookup as an action for a student-document question. Student documents remain explicitly unverified."
+      ]
+    },
+    {
+      "id": "p6gold_VN_1",
+      "kind": "practical",
+      "country": "VN",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_VN_2",
+      "kind": "cultural",
+      "country": "VN",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_VN_3",
+      "kind": "unsupported",
+      "country": "VN",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "needs_scope_review",
+      "violations": [
+        "Generic eVisa-status lookup is not a verified student visa application procedure; fee and approval are correctly not guaranteed."
+      ]
+    },
+    {
+      "id": "p6gold_VN_4",
+      "kind": "personalization",
+      "country": "VN",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_SG_0",
+      "kind": "administrative",
+      "country": "SG",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_SG_1",
+      "kind": "practical",
+      "country": "SG",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_SG_2",
+      "kind": "cultural",
+      "country": "SG",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_SG_3",
+      "kind": "unsupported",
+      "country": "SG",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "No future fee or approval guarantee asserted. Quoted available fee, where present, is separated from tomorrow-specific/total processing cost and eligibility."
+    },
+    {
+      "id": "p6gold_SG_4",
+      "kind": "personalization",
+      "country": "SG",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_MY_0",
+      "kind": "administrative",
+      "country": "MY",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_MY_1",
+      "kind": "practical",
+      "country": "MY",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_MY_2",
+      "kind": "cultural",
+      "country": "MY",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_MY_3",
+      "kind": "unsupported",
+      "country": "MY",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "No future fee or approval guarantee asserted. Quoted available fee, where present, is separated from tomorrow-specific/total processing cost and eligibility."
+    },
+    {
+      "id": "p6gold_MY_4",
+      "kind": "personalization",
+      "country": "MY",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_TH_0",
+      "kind": "administrative",
+      "country": "TH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_TH_1",
+      "kind": "practical",
+      "country": "TH",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_TH_2",
+      "kind": "cultural",
+      "country": "TH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_TH_3",
+      "kind": "unsupported",
+      "country": "TH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "No future fee or approval guarantee asserted. Quoted available fee, where present, is separated from tomorrow-specific/total processing cost and eligibility."
+    },
+    {
+      "id": "p6gold_TH_4",
+      "kind": "personalization",
+      "country": "TH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_ID_0",
+      "kind": "administrative",
+      "country": "ID",
+      "confidence": "high",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "fail",
+      "violations": [
+        "Conflates initial E30B student visa with ITK visitor-permit extension.",
+        "Calls ITK a limited stay permit and assigns upload to a university portal absent from evidence.",
+        "High confidence despite missing initial-visa documents."
+      ],
+      "factIds": [
+        "f77466cd6668938ab8dc43dcc7bd368d",
+        "589038e0932482d29fc0a4e5d6ad3aeb"
+      ]
+    },
+    {
+      "id": "p6gold_ID_1",
+      "kind": "practical",
+      "country": "ID",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "fail",
+      "violations": [
+        "Applies Universitas Indonesia campus yellow-bus and pickup arrangements to an unspecified student campus."
+      ],
+      "sourceIds": [
+        "id-ui-post-arrival",
+        "id-ui-living"
+      ]
+    },
+    {
+      "id": "p6gold_ID_2",
+      "kind": "cultural",
+      "country": "ID",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_ID_3",
+      "kind": "unsupported",
+      "country": "ID",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "No future fee or approval guarantee asserted. Quoted available fee, where present, is separated from tomorrow-specific/total processing cost and eligibility."
+    },
+    {
+      "id": "p6gold_ID_4",
+      "kind": "personalization",
+      "country": "ID",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_PH_0",
+      "kind": "administrative",
+      "country": "PH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_PH_1",
+      "kind": "practical",
+      "country": "PH",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_PH_2",
+      "kind": "cultural",
+      "country": "PH",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_PH_3",
+      "kind": "unsupported",
+      "country": "PH",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "No future fee or approval guarantee asserted. Quoted available fee, where present, is separated from tomorrow-specific/total processing cost and eligibility."
+    },
+    {
+      "id": "p6gold_PH_4",
+      "kind": "personalization",
+      "country": "PH",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_BN_0",
+      "kind": "administrative",
+      "country": "BN",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_BN_1",
+      "kind": "practical",
+      "country": "BN",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_BN_2",
+      "kind": "cultural",
+      "country": "BN",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_BN_3",
+      "kind": "unsupported",
+      "country": "BN",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_BN_4",
+      "kind": "personalization",
+      "country": "BN",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_KH_0",
+      "kind": "administrative",
+      "country": "KH",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_KH_1",
+      "kind": "practical",
+      "country": "KH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_KH_2",
+      "kind": "cultural",
+      "country": "KH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_KH_3",
+      "kind": "unsupported",
+      "country": "KH",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_KH_4",
+      "kind": "personalization",
+      "country": "KH",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_LA_0",
+      "kind": "administrative",
+      "country": "LA",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_LA_1",
+      "kind": "practical",
+      "country": "LA",
+      "confidence": "high",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_LA_2",
+      "kind": "cultural",
+      "country": "LA",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_LA_3",
+      "kind": "unsupported",
+      "country": "LA",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_LA_4",
+      "kind": "personalization",
+      "country": "LA",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_MM_0",
+      "kind": "administrative",
+      "country": "MM",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_MM_1",
+      "kind": "practical",
+      "country": "MM",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_MM_2",
+      "kind": "cultural",
+      "country": "MM",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_MM_3",
+      "kind": "unsupported",
+      "country": "MM",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_MM_4",
+      "kind": "personalization",
+      "country": "MM",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Preference availability explicitly unverified where missing; source-supported preparation and direct confirmation suggested. Saved-profile context is not proven by this explicitly typed preference question."
+    },
+    {
+      "id": "p6gold_TL_0",
+      "kind": "administrative",
+      "country": "TL",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_TL_1",
+      "kind": "practical",
+      "country": "TL",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Answer, actions, preparations and warnings inspected against recorded packet claims/actions. Source scope and uncertainty are retained; this review is not a guarantee that every upstream extraction is correct."
+    },
+    {
+      "id": "p6gold_TL_2",
+      "kind": "cultural",
+      "country": "TL",
+      "confidence": "low",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_refusal",
+      "notes": "All answer/action/preparation/warning blocks inspected: no lecturer-specific communication norm was inferred from unrelated country or visitor evidence."
+    },
+    {
+      "id": "p6gold_TL_3",
+      "kind": "unsupported",
+      "country": "TL",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "honest_no_evidence",
+      "notes": "No topic evidence; no model call; deterministic refusal recorded. This remains a coverage failure."
+    },
+    {
+      "id": "p6gold_TL_4",
+      "kind": "personalization",
+      "country": "TL",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "fail",
+      "violations": [
+        "Does not answer quiet-study/vegetarian preferences or explicitly mark those details unverified.",
+        "Changes before-2000 notes not accepted into post-2000 notes required, excluding year 2000 without evidence."
+      ],
+      "factIds": [
+        "b105225f7fc02dd7c8cfa368482ffa67"
+      ]
+    },
+    {
+      "id": "p6gold_compare",
+      "kind": "comparison",
+      "country": "SG",
+      "confidence": "medium",
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "bounded_answer",
+      "notes": "Singapore evidence and unavailable Vietnam student-visa rules are separated. Partial comparison only."
+    },
+    {
+      "id": "p6gold_ambiguous",
+      "kind": "ambiguous",
+      "country": "VN",
+      "confidence": null,
+      "reviewedBlocks": [
+        "answer",
+        "whatToDo",
+        "whatToPrepare",
+        "whatToSay",
+        "warnings"
+      ],
+      "status": "harness_classification_issue",
+      "notes": "Old harness classified before frontend clarification; targeted latest-pipeline rerun required."
+    }
+  ]
+}

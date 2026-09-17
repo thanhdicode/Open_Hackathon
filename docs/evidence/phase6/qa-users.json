@@ -1,0 +1,138 @@
+{
+  "at": "2026-09-16T20:49:05.056Z",
+  "synthetic": true,
+  "users": [
+    {
+      "id": "p6qa_vn_sg",
+      "route": "VN->SG",
+      "stage": "before_departure",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_sg_vn",
+      "route": "SG->VN",
+      "stage": "first_week",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_my_sg",
+      "route": "MY->SG",
+      "stage": "studying",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_th_vn",
+      "route": "TH->VN",
+      "stage": "returning_home",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_id_my",
+      "route": "ID->MY",
+      "stage": "before_departure",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_ph_th",
+      "route": "PH->TH",
+      "stage": "first_week",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_bn_my",
+      "route": "BN->MY",
+      "stage": "studying",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_kh_vn",
+      "route": "KH->VN",
+      "stage": "returning_home",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_la_th",
+      "route": "LA->TH",
+      "stage": "before_departure",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_mm_sg",
+      "route": "MM->SG",
+      "stage": "first_week",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    },
+    {
+      "id": "p6qa_tl_id",
+      "route": "TL->ID",
+      "stage": "studying",
+      "privateTables": [
+        "student_profiles",
+        "my_dna_profiles",
+        "journeys"
+      ],
+      "readBackVerified": true,
+      "ownerPermissionsVerified": true
+    }
+  ]
+}

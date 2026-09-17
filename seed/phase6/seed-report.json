@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-09-16T20:54:00.392Z",
+  "live": false,
+  "attribution": "Department of Foreign Affairs and Trade's Smartraveller website - www.smartraveller.gov.au",
+  "countries": {
+    "VN": {
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "SG": {
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "study_here": 4
+      }
+    },
+    "TH": {
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "culture_and_people": 3,
+        "speak_and_understand": 1
+      }
+    },
+    "MY": {
+      "candidates": 3,
+      "grounded": 3,
+      "verified": 3,
+      "chapters": {
+        "study_here": 3
+      }
+    },
+    "ID": {
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "PH": {
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "study_here": 5
+      }
+    }
+  },
+  "sources": {
+    "p6-vn-deep-culture": {
+      "sourceId": "p6-vn-deep-culture",
+      "fetched": true,
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "p6-sg-deep-culture": {
+      "sourceId": "p6-sg-deep-culture",
+      "fetched": true,
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "study_here": 4
+      }
+    },
+    "p6-th-deep-culture": {
+      "sourceId": "p6-th-deep-culture",
+      "fetched": true,
+      "candidates": 4,
+      "grounded": 4,
+      "verified": 4,
+      "chapters": {
+        "culture_and_people": 3,
+        "speak_and_understand": 1
+      }
+    },
+    "p6-my-deep-culture": {
+      "sourceId": "p6-my-deep-culture",
+      "fetched": true,
+      "candidates": 3,
+      "grounded": 3,
+      "verified": 3,
+      "chapters": {
+        "study_here": 3
+      }
+    },
+    "p6-id-deep-culture": {
+      "sourceId": "p6-id-deep-culture",
+      "fetched": true,
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "p6-ph-deep-culture": {
+      "sourceId": "p6-ph-deep-culture",
+      "fetched": true,
+      "candidates": 5,
+      "grounded": 5,
+      "verified": 5,
+      "chapters": {
+        "study_here": 5
+      }
+    }
+  },
+  "skipped": []
+}

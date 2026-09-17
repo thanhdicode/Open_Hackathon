@@ -1,0 +1,395 @@
+{
+  "checkedAt": "2026-09-16T20:55:06.363Z",
+  "countries": {
+    "BN": {
+      "total": 20,
+      "verified": 20,
+      "publicReadable": 20,
+      "sourceActions": 3,
+      "chapters": {
+        "money_and_pay": 2,
+        "move_around": 4,
+        "culture_and_people": 10,
+        "study_here": 3,
+        "student_reality": 1
+      }
+    },
+    "KH": {
+      "total": 17,
+      "verified": 17,
+      "publicReadable": 17,
+      "sourceActions": 2,
+      "chapters": {
+        "culture_and_people": 6,
+        "move_around": 5,
+        "stay_safe_and_healthy": 2,
+        "money_and_pay": 3,
+        "speak_and_understand": 1
+      }
+    },
+    "LA": {
+      "total": 15,
+      "verified": 15,
+      "publicReadable": 15,
+      "sourceActions": 6,
+      "chapters": {
+        "money_and_pay": 5,
+        "move_around": 5,
+        "speak_and_understand": 3,
+        "culture_and_people": 2
+      }
+    },
+    "MM": {
+      "total": 15,
+      "verified": 15,
+      "publicReadable": 15,
+      "sourceActions": 3,
+      "chapters": {
+        "culture_and_people": 8,
+        "money_and_pay": 4,
+        "move_around": 2,
+        "speak_and_understand": 1
+      }
+    },
+    "TL": {
+      "total": 18,
+      "verified": 18,
+      "publicReadable": 18,
+      "sourceActions": 2,
+      "chapters": {
+        "move_around": 6,
+        "stay_safe_and_healthy": 1,
+        "culture_and_people": 5,
+        "money_and_pay": 2,
+        "speak_and_understand": 4
+      }
+    },
+    "VN": {
+      "total": 17,
+      "verified": 17,
+      "publicReadable": 17,
+      "sourceActions": 6,
+      "chapters": {
+        "money_and_pay": 6,
+        "move_around": 5,
+        "stay_safe_and_healthy": 1,
+        "culture_and_people": 5
+      }
+    },
+    "SG": {
+      "total": 14,
+      "verified": 14,
+      "publicReadable": 14,
+      "sourceActions": 1,
+      "chapters": {
+        "move_around": 4,
+        "money_and_pay": 3,
+        "stay_safe_and_healthy": 3,
+        "study_here": 4
+      }
+    },
+    "TH": {
+      "total": 14,
+      "verified": 14,
+      "publicReadable": 14,
+      "sourceActions": 3,
+      "chapters": {
+        "money_and_pay": 4,
+        "culture_and_people": 4,
+        "move_around": 5,
+        "speak_and_understand": 1
+      }
+    },
+    "ID": {
+      "total": 15,
+      "verified": 15,
+      "publicReadable": 15,
+      "sourceActions": 7,
+      "chapters": {
+        "culture_and_people": 8,
+        "money_and_pay": 3,
+        "move_around": 2,
+        "stay_safe_and_healthy": 2
+      }
+    },
+    "MY": {
+      "total": 13,
+      "verified": 13,
+      "publicReadable": 13,
+      "sourceActions": 8,
+      "chapters": {
+        "money_and_pay": 2,
+        "move_around": 6,
+        "stay_safe_and_healthy": 1,
+        "culture_and_people": 1,
+        "study_here": 3
+      }
+    },
+    "PH": {
+      "total": 15,
+      "verified": 15,
+      "publicReadable": 15,
+      "sourceActions": 7,
+      "chapters": {
+        "money_and_pay": 3,
+        "move_around": 7,
+        "study_here": 5
+      }
+    }
+  },
+  "sources": {
+    "p6-bn-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 3,
+      "chapters": {
+        "money_and_pay": 2,
+        "move_around": 4,
+        "culture_and_people": 4
+      }
+    },
+    "p6-kh-dfat": {
+      "total": 11,
+      "verified": 11,
+      "publicReadable": 11,
+      "sourceActions": 2,
+      "chapters": {
+        "culture_and_people": 1,
+        "move_around": 5,
+        "stay_safe_and_healthy": 2,
+        "money_and_pay": 3
+      }
+    },
+    "p6-la-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 6,
+      "chapters": {
+        "money_and_pay": 5,
+        "move_around": 5
+      }
+    },
+    "p6-mm-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 3,
+      "chapters": {
+        "culture_and_people": 4,
+        "money_and_pay": 4,
+        "move_around": 2
+      }
+    },
+    "p6-tl-dfat": {
+      "total": 11,
+      "verified": 11,
+      "publicReadable": 11,
+      "sourceActions": 2,
+      "chapters": {
+        "move_around": 6,
+        "stay_safe_and_healthy": 1,
+        "culture_and_people": 2,
+        "money_and_pay": 2
+      }
+    },
+    "p6-vn-dfat": {
+      "total": 12,
+      "verified": 12,
+      "publicReadable": 12,
+      "sourceActions": 6,
+      "chapters": {
+        "money_and_pay": 6,
+        "move_around": 5,
+        "stay_safe_and_healthy": 1
+      }
+    },
+    "p6-sg-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 1,
+      "chapters": {
+        "move_around": 4,
+        "money_and_pay": 3,
+        "stay_safe_and_healthy": 3
+      }
+    },
+    "p6-th-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 3,
+      "chapters": {
+        "money_and_pay": 4,
+        "culture_and_people": 1,
+        "move_around": 5
+      }
+    },
+    "p6-id-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 7,
+      "chapters": {
+        "culture_and_people": 3,
+        "money_and_pay": 3,
+        "move_around": 2,
+        "stay_safe_and_healthy": 2
+      }
+    },
+    "p6-my-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 8,
+      "chapters": {
+        "money_and_pay": 2,
+        "move_around": 6,
+        "stay_safe_and_healthy": 1,
+        "culture_and_people": 1
+      }
+    },
+    "p6-ph-dfat": {
+      "total": 10,
+      "verified": 10,
+      "publicReadable": 10,
+      "sourceActions": 7,
+      "chapters": {
+        "money_and_pay": 3,
+        "move_around": 7
+      }
+    },
+    "p6-bn-tourism": {
+      "total": 6,
+      "verified": 6,
+      "publicReadable": 6,
+      "sourceActions": 0,
+      "chapters": {
+        "culture_and_people": 6
+      }
+    },
+    "p6-bn-ubd": {
+      "total": 4,
+      "verified": 4,
+      "publicReadable": 4,
+      "sourceActions": 0,
+      "chapters": {
+        "study_here": 3,
+        "student_reality": 1
+      }
+    },
+    "p6-kh-culture": {
+      "total": 6,
+      "verified": 6,
+      "publicReadable": 6,
+      "sourceActions": 0,
+      "chapters": {
+        "culture_and_people": 5,
+        "speak_and_understand": 1
+      }
+    },
+    "p6-mm-tourism": {
+      "total": 1,
+      "verified": 1,
+      "publicReadable": 1,
+      "sourceActions": 0,
+      "chapters": {
+        "speak_and_understand": 1
+      }
+    },
+    "p6-mm-festivals": {
+      "total": 4,
+      "verified": 4,
+      "publicReadable": 4,
+      "sourceActions": 0,
+      "chapters": {
+        "culture_and_people": 4
+      }
+    },
+    "p6-tl-tourism": {
+      "total": 4,
+      "verified": 4,
+      "publicReadable": 4,
+      "sourceActions": 0,
+      "chapters": {
+        "speak_and_understand": 4
+      }
+    },
+    "p6-tl-culture": {
+      "total": 3,
+      "verified": 3,
+      "publicReadable": 3,
+      "sourceActions": 0,
+      "chapters": {
+        "culture_and_people": 3
+      }
+    },
+    "p6-la-culture": {
+      "total": 5,
+      "verified": 5,
+      "publicReadable": 5,
+      "sourceActions": 0,
+      "chapters": {
+        "speak_and_understand": 3,
+        "culture_and_people": 2
+      }
+    },
+    "p6-vn-deep-culture": {
+      "total": 5,
+      "verified": 5,
+      "publicReadable": 5,
+      "sourceActions": 0,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "p6-sg-deep-culture": {
+      "total": 4,
+      "verified": 4,
+      "publicReadable": 4,
+      "sourceActions": 0,
+      "chapters": {
+        "study_here": 4
+      }
+    },
+    "p6-th-deep-culture": {
+      "total": 4,
+      "verified": 4,
+      "publicReadable": 4,
+      "sourceActions": 0,
+      "chapters": {
+        "culture_and_people": 3,
+        "speak_and_understand": 1
+      }
+    },
+    "p6-my-deep-culture": {
+      "total": 3,
+      "verified": 3,
+      "publicReadable": 3,
+      "sourceActions": 0,
+      "chapters": {
+        "study_here": 3
+      }
+    },
+    "p6-id-deep-culture": {
+      "total": 5,
+      "verified": 5,
+      "publicReadable": 5,
+      "sourceActions": 0,
+      "chapters": {
+        "culture_and_people": 5
+      }
+    },
+    "p6-ph-deep-culture": {
+      "total": 5,
+      "verified": 5,
+      "publicReadable": 5,
+      "sourceActions": 0,
+      "chapters": {
+        "study_here": 5
+      }
+    }
+  }
+}
