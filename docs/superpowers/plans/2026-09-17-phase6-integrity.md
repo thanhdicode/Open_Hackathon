@@ -6,6 +6,16 @@
 
 **Baseline evidence:** Current-run captures under `docs/evidence/phase6/baseline`; live Appwrite coverage snapshot `coverage.json`. Prior QA screenshots are not baseline evidence for this run.
 
+**Delivery state:** This work is committed and pushed. `main` is at `1f303f3`, a
+fast-forward from `4afe214`. `git ls-remote origin refs/heads/main` reads the
+remote directly and is the only reliable check in this environment, because
+`.git/refs/remotes/origin/` cannot be written here and `git status` therefore
+reports `[gone]` when the branch is in fact healthy. 116 LFS objects (26 MB) were
+uploaded before the ref, so a failed binary upload could never have produced a
+ref pointing at missing files. Verification after the push: `npm test` 243/243
+across 9 suites, `npx tsc --noEmit` exit 0, `npx vite build` exit 0 with
+`ExploreMap` split out at 1,024 kB and `Explore` down to 18.11 kB.
+
 ## Prioritized findings
 
 - P0: verified KB coverage is zero for BN, KH, LA, MM, TL; model responses alone do not meet the grounding gate. Current published entry/chapter coverage is also zero despite facts existing.
