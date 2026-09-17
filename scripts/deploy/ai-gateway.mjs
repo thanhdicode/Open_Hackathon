@@ -217,3 +217,19 @@ for (let attempt = 0; attempt < 60; attempt += 1) {
  */
 await functions.updateFunctionDeployment({ functionId: FUNCTION_ID, deploymentId: deployment.$id });
 console.log(`activated deployment ${deployment.$id}`);
+
+// Appwrite Cloud can restore the function snapshot's old runtime settings when
+// a deployment is activated. Apply the complete runtime contract afterwards in
+// one update so setting timeout cannot clear execute permissions (or vice versa).
+await functions.update({
+  functionId: FUNCTION_ID,
+  name: existing.name,
+  execute: DESIRED_EXECUTE,
+  timeout: DESIRED_TIMEOUT,
+  commands: DESIRED_COMMAND,
+});
+const active = await functions.get({ functionId: FUNCTION_ID });
+if (active.timeout !== DESIRED_TIMEOUT || !DESIRED_EXECUTE.every((role) => active.execute?.includes(role))) {
+  throw new Error(`active function configuration drifted: timeout=${active.timeout}, execute=${JSON.stringify(active.execute ?? [])}`);
+}
+console.log(`verified active configuration: timeout=${active.timeout}s execute=${JSON.stringify(active.execute)}`);
