@@ -5,7 +5,7 @@ import { Button, Card, Notice } from "../components/ui";
 import { Icon } from "../components/icons";
 import Mascot from "../components/mascot";
 import { EMPTY_JOURNEY_DATES, type JourneyDates, deriveStage, stageLabel, timelineProblems } from "../lib/journey/dates";
-import { completeEmailUpgrade, friendlyAuthError, requestEmailUpgradeCode, startGoogleUpgrade } from "../lib/appwrite/auth";
+import { completeEmailUpgrade, friendlyAuthError, requestEmailUpgradeCode, signInWithPassword, startGoogleUpgrade } from "../lib/appwrite/auth";
 import { account } from "../lib/appwrite/client";
 
 type Step = "welcome" | "signin" | "home" | "host" | "dates";
@@ -20,6 +20,7 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
   const [otpUserId, setOtpUserId] = useState<string | null>(null);
   const [cooldown, setCooldown] = useState(0);
@@ -46,6 +47,11 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
     if (!otpUserId || otp.length !== 6) return;
     setBusy(true); setError("");
     try { await completeEmailUpgrade(otpUserId, otp); window.location.reload(); }
+    catch (cause) { setError(friendlyAuthError(cause)); setBusy(false); }
+  }
+  async function signInPassword() {
+    setBusy(true); setError("");
+    try { await signInWithPassword(email, password); window.location.reload(); }
     catch (cause) { setError(friendlyAuthError(cause)); setBusy(false); }
   }
   async function finish() {
@@ -79,6 +85,8 @@ export default function Onboarding({ onComplete, onStart }: { onComplete: (data:
     {alert}
     <Button variant="outline" size="lg" full disabled={busy} onClick={async () => { setBusy(true); setError(""); try { await startGoogleUpgrade(); } catch (cause) { setError(friendlyAuthError(cause)); setBusy(false); } }}>Continue with Google</Button>
     <label className="mt-4 block text-[13px] font-medium text-ink">Email<input type="email" inputMode="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@university.edu" className="mt-1 min-h-[48px] w-full rounded-[12px] border border-line bg-surface px-3 text-[16px]" /></label>
+    <label className="mt-3 block text-[13px] font-medium text-ink">Password<input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Your password" className="mt-1 min-h-[48px] w-full rounded-[12px] border border-line bg-surface px-3 text-[16px]" /></label>
+    <div className="mt-4"><Button size="lg" full disabled={busy || !email.trim() || !password} onClick={signInPassword}>{busy ? "Signing in…" : "Sign in with password"}</Button></div>
     {otpUserId ? <><label className="mt-3 block text-[13px] font-medium">Verification code<input inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, "").slice(0, 6))} className="mt-1 min-h-[48px] w-full rounded-[12px] border border-line bg-surface px-3 text-[18px] tracking-widest" /></label><div className="mt-4"><Button full size="lg" disabled={busy || otp.length !== 6} onClick={verify}>{busy ? "Signing in…" : "Verify & sign in"}</Button></div><button disabled={busy || cooldown > 0} onClick={sendCode} className="mt-2 min-h-[44px] text-[13px] text-primary">{cooldown ? `Resend in ${cooldown}s` : "Resend code"}</button></> : <div className="mt-4"><Button size="lg" full disabled={busy || !email.trim()} onClick={sendCode}>{busy ? "Sending…" : "Continue with email"}</Button></div>}
   </Frame>;
 

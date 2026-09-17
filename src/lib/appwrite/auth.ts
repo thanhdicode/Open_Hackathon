@@ -94,6 +94,16 @@ export async function completeEmailUpgrade(userId: string, code: string): Promis
   return snapshot;
 }
 
+/** Direct email/password sign-in for seeded demo accounts and normal accounts. */
+export async function signInWithPassword(email: string, password: string): Promise<AccountSnapshot> {
+  if (!email.trim() || !password) throw new Error("Enter your email and password.");
+  await account.deleteSession({ sessionId: "current" }).catch(() => undefined);
+  await account.createEmailPasswordSession({ email: email.trim().toLowerCase(), password });
+  const snapshot = await loadAccount();
+  if (!snapshot) throw new Error("We could not load this account. Please try again.");
+  return snapshot;
+}
+
 export async function signOutCurrentSession(): Promise<void> {
   await account.deleteSession({ sessionId: "current" });
 }
