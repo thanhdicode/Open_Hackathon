@@ -6,7 +6,7 @@ import { assertMediaWithinBudget, redact } from "./privacy.js";
 import { toPlayableAudio } from "./audio.js";
 import { normalizeLanguageCode } from "./languages.js";
 import { executeStructured, executeTranscribe, executeSpeech, healthReport, PROVIDER_JSON_SCHEMA } from "./registry.js";
-import { validateGroundedAnswer } from "./grounding.js";
+import { normalizeGreenbookCitations, validateGroundedAnswer } from "./grounding.js";
 
 /**
  * Route table.
@@ -587,7 +587,7 @@ export const routes = {
       structured({
         capability: "text",
         schemaName: "greenbookAnswer",
-        resultSchema: C.greenbookAnswer.superRefine((answer, context) => {
+        resultSchema: C.greenbookAnswer.transform((answer) => normalizeGreenbookCitations(input, answer)).superRefine((answer, context) => {
           const validation = validateGroundedAnswer(input, answer);
           if (!validation.ok) context.addIssue({ code: "custom", message: `${validation.code}: ${validation.message}` });
         }),

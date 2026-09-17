@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { preflightGreenbook, validateGroundingPacket, validateGroundedAnswer } from '../../functions/ai-gateway/src/grounding.js';
+import { normalizeGreenbookCitations, preflightGreenbook, validateGroundingPacket, validateGroundedAnswer } from '../../functions/ai-gateway/src/grounding.js';
 import { frontendRetriever } from '../phase6/frontend-retrieval.mjs';
 import { honestEmptyRefusal } from '../phase6/grading.mjs';
 import { buildNoLlmAnswer } from '../../src/lib/greenbook/no-llm.ts';
@@ -38,6 +38,11 @@ test('output gates preserve uncertainty and reject generic visa eligibility and 
  assert.equal(validateGroundedAnswer(supported,{...answer,answer:'Approval is not guaranteed.'}).ok,true);
  assert.equal(validateGroundedAnswer(input,{...answer,answer:'Your current location in Singapore satisfies this condition.'}).code,'UNSUPPORTED_CURRENT_LOCATION');
  assert.equal(validateGroundedAnswer(input,{...answer,answer:'If you are currently in Singapore, that is outside Malaysia.'}).ok,true);
+});
+test('numeric evidence-line citations normalize to packet source ids',()=>{
+ const numbered={...input,evidence:[fact,{...fact,factId:'f2',sourceId:'s2'}],sources:[source,{...source,sourceId:'s2'}]};
+ assert.deepEqual(normalizeGreenbookCitations(numbered,{citedSourceIds:['1','2','s']}),{citedSourceIds:['s','s2']});
+ assert.deepEqual(normalizeGreenbookCitations(numbered,{citedSourceIds:['99']}),{citedSourceIds:['99']});
 });
 test('current frontend resolves display-name aliases and excludes unknown-campus guidance',async()=>{
  const fact={factId:'f',sourceId:'s',countryCode:'SG',universityId:'nus',verificationStatus:'official_verified',authorityLevel:'A',claim:'Library study questions',action:null,evidenceQuote:null,chapter:'study',checkedAt:'2026-09-17'};

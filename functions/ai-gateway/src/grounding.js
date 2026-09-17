@@ -38,6 +38,16 @@ export function validateGroundingPacket(input, { trustedFacts, trustedSources } 
  return {ok:true};
 }
 
+export function normalizeGreenbookCitations(input, answer) {
+ const normalized=[];
+ for(const raw of answer.citedSourceIds??[]) {
+  const index=/^[1-9]\d*$/.test(raw)?Number(raw)-1:-1;
+  const sourceId=index>=0&&index<input.evidence.length?input.evidence[index].sourceId:raw;
+  if(!normalized.includes(sourceId))normalized.push(sourceId);
+ }
+ return {...answer,citedSourceIds:normalized};
+}
+
 export function validateGroundedAnswer(input, answer) {
  const sources=new Set(input.sources.map(s=>s.sourceId)),facts=new Set(input.evidence.map(f=>f.factId));
  if(answer.citedSourceIds.some(id=>!sources.has(id)))return failure('UNKNOWN_CITATION','Answer references a source outside the evidence packet.');
