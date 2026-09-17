@@ -1,0 +1,2 @@
+export function requiresClarification(question: string): boolean;
+export function validateGroundedAnswer(input: { question: string; evidence: { factId: string; claim: string; authority: string; status: string }[]; sources: { sourceId: string }[] }, answer: { answer: string; citedSourceIds: string[]; whatToDo: string[]; whatToPrepare: string[]; citedFactIds?: string[] }): { ok: boolean; code?: string; message?: string };

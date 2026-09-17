@@ -2,6 +2,8 @@ import { routes, LEGACY_ACTIONS } from "./routes.js";
 import { ProviderError } from "./providers.js";
 import { logEvent, stripForbiddenKeys } from "./privacy.js";
 import { isLiveTranslateSupported, voiceFallbackFor } from "./live-languages.js";
+import { Client, TablesDB, Query } from "node-appwrite";
+import { preflightGreenbook, validateGroundingPacket, validateGroundedAnswer } from "./grounding.js";
 
 /**
  * ai-gateway entrypoint.
@@ -67,6 +69,22 @@ export default async ({ req, res, error }) => {
       return send(res, { ok: false, code: "BAD_REQUEST", message: "The request did not match the route contract.", issues, retryable: false }, 400);
     }
     const input = request.data;
+    if (routePath === "/greenbook/ask") {
+      const preflight = preflightGreenbook(input);
+      if (preflight) return send(res, { ok: true, data: { answer: preflight.answer, whatToDo: [], whatToPrepare: [], whatToSay: [], warnings: [], confidence: "low", citedSourceIds: [] } }, 200);
+      if (!input.sources.length) return send(res, { ok: false, code: "BAD_REQUEST", message: "Verified sources are required.", retryable: false }, 400);
+      const endpoint = process.env.VITE_APPWRITE_ENDPOINT || process.env.APPWRITE_FUNCTION_API_ENDPOINT;
+      const project = process.env.VITE_APPWRITE_PROJECT_ID || process.env.APPWRITE_FUNCTION_PROJECT_ID;
+      const key = process.env.APPWRITE_API_KEY || req.headers?.["x-appwrite-key"];
+      const databaseId = process.env.VITE_APPWRITE_DATABASE_ID;
+      if (!endpoint || !project || !key || !databaseId) return send(res, { ok: false, code: "NOT_CONFIGURED", message: "Verified guidance is temporarily unavailable.", retryable: true }, 503);
+      const tables = new TablesDB(new Client().setEndpoint(endpoint).setProject(project).setKey(key));
+      const [facts, sources] = await Promise.all([
+        tables.listRows({ databaseId, tableId: "knowledge_facts", queries: [Query.equal("fact_id", input.evidence.map((fact) => fact.factId)), Query.limit(40)] }),
+        tables.listRows({ databaseId, tableId: "knowledge_sources", queries: [Query.equal("source_id", input.sources.map((source) => source.sourceId)), Query.limit(40)] }),
+      ]);
+      if (!validateGroundingPacket(input, { trustedFacts: facts.rows, trustedSources: sources.rows }).ok) return send(res, { ok: false, code: "BAD_REQUEST", message: "The verified guidance could not be checked. Please refresh and try again.", retryable: true }, 400);
+    }
 
     // Refuse a live voice session we cannot honour rather than degrading silently.
     if (routePath === "/live/token" && input.mode === "translate") {
@@ -92,6 +110,7 @@ export default async ({ req, res, error }) => {
       logEvent(error, routePath, "RESULT_CONTRACT_MISMATCH");
       return send(res, { ok: false, code: "SCHEMA_INVALID", message: "The AI result did not match its contract.", retryable: true }, 502);
     }
+    if (routePath === "/greenbook/ask" && !validateGroundedAnswer(input, result.data).ok) return send(res, { ok: false, code: "SCHEMA_INVALID", message: "This answer could not be verified.", retryable: false }, 502);
 
     return send(
       res,

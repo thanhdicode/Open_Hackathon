@@ -91,6 +91,56 @@ if (dryRun) {
 
 const existing = await functions.get({ functionId: FUNCTION_ID });
 console.log(`\ncurrent: timeout=${existing.timeout}s install="${existing.commands}"`);
+console.log(`current execute permissions: ${JSON.stringify(existing.execute ?? [])}`);
+
+/*
+ * The function must be executable by the people who actually use it.
+ *
+ * A freshly created function carries NO execute permission (`execute: []`), and
+ * Appwrite then rejects every client call with
+ *   401 user_unauthorized — "No permissions provided for action 'execute'"
+ * even though the deployment is ready and an API key works fine. The failure is
+ * invisible from the dashboard-side deploy and only shows up as the browser
+ * silently degrading to the no-LLM answer, so it is asserted here.
+ *
+ * The value comes from a fixed list and must be the BARE role string (`any`,
+ * `guests`, `users`) — not `execute("users")`, which is the `permission("role")`
+ * form used for storage/database resources and is rejected here. There is no
+ * `Permission.execute` helper either, so it is written as a literal.
+ *
+ * It must be `any`. This Appwrite version will not accept the principal a
+ * first-time visitor actually is:
+ *
+ *   execute: ["guests"] → "Missing execute permission for role guests. Only
+ *                          [any, users, user:<id>, …] scopes are allowed"
+ *   execute: ["users"]  → "Missing execute permission for role users. Only
+ *                          [any, guests] scopes are allowed"
+ *
+ * because `ensureAnonymousSession()` creates a *user* (an anonymous session has
+ * a real `$id`), while `guests` means "no session at all", and a session created
+ * moments ago is not yet recognised as the `users` scope either. Only `any`
+ * covers the anonymous first-time visitor across all of that — and that visitor
+ * is the demo persona, so anything narrower means "Ask this Greenbook" silently
+ * degrades to the no-LLM answer for exactly the person the demo is built around.
+ *
+ * Narrowing this is safe to revisit only if the check is re-run against a
+ * freshly created anonymous session, not just an existing one.
+ */
+const DESIRED_EXECUTE = ["any"];
+const currentExecute = existing.execute ?? [];
+const executeMatches =
+  currentExecute.length === DESIRED_EXECUTE.length && DESIRED_EXECUTE.every((role) => currentExecute.includes(role));
+
+if (!executeMatches) {
+  await functions.update({
+    functionId: FUNCTION_ID,
+    name: existing.name,
+    execute: DESIRED_EXECUTE,
+  });
+  console.log(`updated execute permissions → ${JSON.stringify(DESIRED_EXECUTE)}`);
+} else {
+  console.log("execute permissions already correct");
+}
 
 // The text chain's own deadline is 60s, so a 30s platform timeout would kill a
 // slow-but-successful call before failover could happen.

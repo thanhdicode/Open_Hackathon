@@ -30,6 +30,8 @@ import { GreenbookAnswerSchema } from "../ai-contracts/greenbook";
 import type { EvidencePacket, GreenbookAnswer, GreenbookFact, GreenbookQuery, GreenbookSource } from "./contract";
 import { UNVERIFIED_ANSWER, buildNoLlmAnswer, latestCheck, trustStateOf } from "./no-llm";
 import { listFacts, listPhrases, listSources, sourcesByIds } from "./store";
+import { requiresClarification, validateGroundedAnswer } from "../../../functions/ai-gateway/src/grounding.js";
+import { campusFor } from "../../data/campuses";
 
 /**
  * Re-exported from ./no-llm so existing importers (AskGreenbook.tsx) do not
@@ -115,7 +117,21 @@ export async function retrieveEvidence(query: GreenbookQuery): Promise<EvidenceP
   }
 
   // 1. metadata filter
-  let facts = await listFacts({ countryCode, chapter: query.chapter ?? null, journeyStage: query.journeyStage ?? null, limit: 200 });
+  let facts = await listFacts({ countryCode, chapter: query.chapter ?? null, limit: 200 });
+  const studyPermit = /student|exchange|study/i.test(query.question ?? "") && /visa|permit|immigration|student.?s? pass/i.test(query.question ?? "");
+  const studentAuthorization = /student.?s?\s*pass|student\s*visa|study\s*visa|student\s*permit|E30B|\b9F\b/i;
+  const studySources = new Set<string>();
+  if (studyPermit) {
+    const sources = await listSources(countryCode);
+    for (const source of sources) if (studentAuthorization.test(source.title) && ["A", "B"].includes(source.authorityLevel)) studySources.add(source.sourceId);
+    for (const fact of facts) if (studentAuthorization.test(fact.claim) && ["A", "B"].includes(fact.authorityLevel)) studySources.add(fact.sourceId);
+    facts = facts.filter((fact) => studySources.has(fact.sourceId));
+    if (!/extend|extension|renew|ITK|ITAS|KITAS/i.test(query.question ?? "")) facts = facts.filter((fact) => !/extension|extend|renewal|renew|ITK/i.test(`${fact.claim} ${fact.action ?? ""}`));
+  }
+  const scopeSources = await listSources(countryCode);
+  const scoped = new Map(scopeSources.filter((source) => source.universityId).map((source) => [source.sourceId, source.universityId!]));
+  const matchesCampus = (campus: string) => Boolean(query.university && (campusFor(query.university)?.universityId === campus || query.university.toLowerCase() === campus.toLowerCase()) || campus.length > 4 && (query.question ?? "").toLowerCase().includes(campus.toLowerCase()));
+  facts = facts.filter((fact) => !(fact.universityId || scoped.get(fact.sourceId)) || matchesCampus(fact.universityId || scoped.get(fact.sourceId)!));
   steps.push(`metadata filter: ${facts.length} fact(s) for ${countryCode}${query.chapter ? `/${query.chapter}` : ""}`);
 
   // 2. fulltext
@@ -136,7 +152,8 @@ export async function retrieveEvidence(query: GreenbookQuery): Promise<EvidenceP
       facts = matched;
       steps.push(`fulltext: ${facts.length} fact(s) matched ${terms.length} term(s)`);
     } else {
-      steps.push("fulltext: no term matched — keeping the chapter set as context");
+      facts = [];
+      steps.push("No relevant verified point covers this question");
     }
   } else {
     steps.push("fulltext: skipped (no question, browsing context)");
@@ -147,7 +164,7 @@ export async function retrieveEvidence(query: GreenbookQuery): Promise<EvidenceP
   if (facts.length) {
     const chapters = new Set(facts.map((fact) => fact.chapter));
     const siblings = await listFacts({ countryCode, limit: 200 });
-    const expansion = siblings.filter((fact) => chapters.has(fact.chapter) && !facts.some((kept) => kept.factId === fact.factId));
+    const expansion = siblings.filter((fact) => chapters.has(fact.chapter) && !facts.some((kept) => kept.factId === fact.factId) && (!studyPermit || studySources.has(fact.sourceId) && (/extend|extension|renew|ITK|ITAS|KITAS/i.test(query.question ?? "") || !/extension|extend|renewal|renew|ITK/i.test(`${fact.claim} ${fact.action ?? ""}`))) && (!(fact.universityId || scoped.get(fact.sourceId)) || matchesCampus(fact.universityId || scoped.get(fact.sourceId)!)));
     if (expansion.length) {
       for (const fact of expansion) if (!scores.has(fact.factId)) scores.set(fact.factId, 0);
       facts = [...facts, ...expansion];
@@ -243,8 +260,9 @@ function warningsFor(facts: GreenbookFact[]): string[] {
  * Never throws. A provider outage, a missing function deployment, a schema
  * mismatch and an empty corpus all resolve to a well-formed answer.
  */
-export async function askGreenbook(query: GreenbookQuery): Promise<GreenbookAnswer> {
-  const packet = await retrieveEvidence(query);
+export async function askGreenbook(query: GreenbookQuery, retrieved?: EvidencePacket): Promise<GreenbookAnswer> {
+  if (requiresClarification(query.question ?? "")) return { answer: "Could you specify which activity or rule you mean, and where you plan to do it?", whatToDo: [], whatToPrepare: [], whatToSay: [], warnings: [], confidence: "low", sources: [], lastChecked: null, mode: "no_llm" };
+  const packet = retrieved ?? await retrieveEvidence(query);
 
   // Phrases are cheap, public and cached; fetch them so even the no-LLM answer
   // can offer something to say.
@@ -265,11 +283,14 @@ export async function askGreenbook(query: GreenbookQuery): Promise<GreenbookAnsw
 
   const body = {
     question: query.question ?? "",
+    journey: { home: query.homeCountry, host: query.hostCountry, city: query.city || "", university: query.university || "" },
     hostCountry: query.hostCountry,
     homeCountry: query.homeCountry,
     chapter: query.chapter ?? null,
     journeyStage: query.journeyStage ?? null,
     language: query.language ?? "en",
+    userLanguage: query.language ?? "en",
+    coachingLanguage: query.language ?? "en",
     languageLevel: query.languageLevel ?? null,
     // Only the retrieved evidence is ever sent, so the model cannot reason over
     // anything outside the allowlist in the first place.
@@ -288,6 +309,7 @@ export async function askGreenbook(query: GreenbookQuery): Promise<GreenbookAnsw
 
   try {
     const { data } = await callAi("greenbook/ask", body, answerSchema);
+    if (!validateGroundedAnswer(body, data).ok) return buildNoLlmAnswer(packet, phrases);
     const { sources, dropped } = allowlistedSources(data.citedSourceIds, packet);
     return {
       answer: data.answer,

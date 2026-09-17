@@ -302,7 +302,7 @@ export function simFeedback({ scenario, transcript, level, coachingLanguage, isR
  * model has a stable identifier to cite and cannot be tempted to invent a URL —
  * no URL is ever sent to it in the first place.
  */
-export function greenbookAsk({ question, hostCountry, homeCountry, chapter, journeyStage, coachingLanguage, userLanguage, languageLevel, evidence, sources }) {
+export function greenbookAsk({ question, hostCountry, homeCountry, chapter, journeyStage, journey, coachingLanguage, userLanguage, languageLevel, evidence, sources }) {
   const facts = evidence
     .map((fact, index) => `[${index + 1}] (factId=${fact.factId}, sourceId=${fact.sourceId}, chapter=${fact.chapter}, authority=${fact.authority}, status=${fact.status}) ${fact.claim}${fact.action ? ` ACTION: ${fact.action}` : ""}`)
     .join("\n");
@@ -316,7 +316,13 @@ export function greenbookAsk({ question, hostCountry, homeCountry, chapter, jour
       "Answer ONLY from the EVIDENCE below. You have no other knowledge for this task.",
       "If the evidence does not answer the question, say plainly that it could not be verified from a current authoritative source. Do not fill the gap with general knowledge.",
       "Every factual sentence must be traceable to an evidence line. Put the sourceId values you relied on in citedSourceIds.",
+      "Never guess what 'it', 'there', or a vague question refers to; ask a short clarification instead. A source link is not permission to invent facts.",
+      "General e-visa or tourist entry information does not establish student/study visa eligibility. Sources may address a particular nationality or audience; never apply their eligibility to this student unless the evidence explicitly covers that case.",
+      "Never conflate initial visa applications with visitor/stay-permit extensions. Preserve exact date/number boundaries from evidence, including whether a boundary is inclusive.",
+      "Do not assume the student's campus, dietary needs or accommodation. Institution/course/business-specific guidance must retain that scope and cannot become a country-wide student rule. If the question has an unsupported condition, state the gap even when another part can be answered.",
+      "Lead with at most three short useful points. Do not add a country comparison unless both directions are supported; use the journey stage only for framing, never invent origin-country habits.",
       "Cite ONLY sourceId values that appear in the EVIDENCE or SOURCES lists. Never invent a sourceId, a URL, an agency name or a document.",
+      "Do not write numeric source/fact labels in the answer prose. The app displays linked sources separately; sourceId values belong only in citedSourceIds.",
       "Never state a fee, deadline, or legal requirement that is not literally in the evidence.",
       "whatToDo: concrete actions the student can take, drawn from the evidence's ACTION fields where present.",
       "whatToPrepare: documents or items to get ready, only where the evidence supports it.",
@@ -327,6 +333,7 @@ export function greenbookAsk({ question, hostCountry, homeCountry, chapter, jour
     user: [
       `Question: ${question}`,
       `Student is going from ${homeCountry} to ${hostCountry}${chapter ? `, chapter ${chapter}` : ""}${journeyStage ? `, stage ${journeyStage}` : ""}.`,
+      `University context: ${journey?.university || "unknown — do not assume a campus"}. City: ${journey?.city || "unknown"}.`,
       "",
       "EVIDENCE:",
       facts || "(no evidence retrieved)",
