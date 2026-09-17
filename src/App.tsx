@@ -1,30 +1,38 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { JourneyProvider, useJourney, makeCustomJourney } from "./context/JourneyContext";
 import { AccountProvider } from "./context/AccountContext";
 import { NavProvider, useNav } from "./context/NavContext";
 import { AppShell, TopHeader, BottomNavigation, type TabKey } from "./components/shell";
 import { Notice } from "./components/ui";
 import Onboarding from "./features/Onboarding";
+import MyDnaAssessment from "./features/MyDnaAssessment";
 import Today from "./features/Today";
 import { PassportHome, PassportSection, PassportCardDetail } from "./features/Passport";
 import BankFlow from "./features/BankFlow";
-import Lens from "./features/Lens";
-import YapSim from "./features/YapSim";
 import Study from "./features/Study";
-import { Explore } from "./features/Explore";
 import { AddExperience } from "./features/explore/AddExperience";
-import { ConnectHome } from "./features/Connect";
 import { Greenbook, ChapterBrowse, EntryDetail, AskGreenbookScreen, Phrases, StudentReality } from "./features/greenbook";
 import type { GreenbookPracticeContext } from "./features/YapSim";
 import { Profile, Compass } from "./features/Profile";
 import { Settings, EditProfile, AccountSettings, PreferencesScreen, PrivacyData, BlockedUsers, LegalDoc, About } from "./features/Settings";
 import { ensureAnonymousSession } from "./lib/appwrite/session";
-import { loadJourney } from "./lib/appwrite/journeyPersistence";
+import { loadJourney, saveJourney } from "./lib/appwrite/journeyPersistence";
+import PwaControls from "./components/pwa-controls";
 import { fetchTaskProgress } from "./lib/appwrite/taskProgress";
 import { journeyById } from "./data/journeys";
 import type { PassportCard } from "./data/passports";
 import type { ExploreCategory, Place } from "./lib/phase5/contract";
 import { useCurrentUserId } from "./lib/phase5/use-user";
+
+const Lens = lazy(() => import("./features/Lens"));
+const YapSim = lazy(() => import("./features/YapSim"));
+const Explore = lazy(() => import("./features/Explore").then((module) => ({ default: module.Explore })));
+const ConnectHome = lazy(() => import("./features/Connect").then((module) => ({ default: module.ConnectHome })));
+const CommunityPostScreen = lazy(() => import("./features/community/CommunityPostScreen").then((module) => ({ default: module.CommunityPostScreen })));
+
+function ViewLoading({ onBack }: { onBack?: () => void }) {
+  return <div role="status" className="flex h-full flex-col gap-3 p-5"><p className="text-[14px] font-semibold text-muted">Opening your workspace…</p>{onBack && <button onClick={onBack} className="min-h-[44px] self-start text-[13px] font-semibold text-primary">Back</button>}<div className="yy-skeleton h-24 rounded-[12px]" /></div>;
+}
 
 export default function App() {
   return (
@@ -44,7 +52,7 @@ function Root() {
   const [onboarded, setOnboarded] = useState(false);
   const [authNotice, setAuthNotice] = useState<{ tone: "primary" | "warning"; title: string; body: string } | null>(null);
   const restored = useRef(false);
-  const { setCustom, setJourneyId, hydrate } = useJourney();
+  const { setJourneyId, hydrate } = useJourney();
   const nav = useNav();
 
   useEffect(() => {
@@ -75,21 +83,22 @@ function Root() {
     })();
   }, [hydrate]);
 
-  if (!onboarded)
-    return (
+  return <div className="flex h-full min-h-0 flex-col"><div className="min-h-0 flex-1">{!onboarded ? (
       <Onboarding
         onStart={async () => {
           const result = await ensureAnonymousSession();
           return result.ok ? { ok: true } : { ok: false, message: result.message };
         }}
-        onComplete={({ home, host, city, university, dates, myDna }) => {
-          setCustom({ ...makeCustomJourney(home, host, myDna, dates), city, university, myDna, home, host });
+        onComplete={async ({ home, host, city, university, dates, myDna }) => {
+          const session = await ensureAnonymousSession();
+          if (!session.ok) throw new Error("Could not save journey");
+          const next = { ...journeyById("minh"), ...makeCustomJourney(home, host, myDna, dates), city, university };
+          if (!await saveJourney(session.user.$id, next)) throw new Error("Could not save journey");
+          hydrate(session.user.$id, next, {});
           setOnboarded(true);
         }}
       />
-    );
-
-  return <Main onReonboard={() => { setJourneyId("minh"); nav.reset(); setOnboarded(false); }} authNotice={authNotice} onDismissAuthNotice={() => setAuthNotice(null)} />;
+    ) : <Main onReonboard={() => { setJourneyId("minh"); nav.reset(); setOnboarded(false); }} authNotice={authNotice} onDismissAuthNotice={() => setAuthNotice(null)} />}</div><PwaControls eligible={onboarded} /></div>;
 }
 
 function Main({ onReonboard, authNotice, onDismissAuthNotice }: { onReonboard: () => void; authNotice: { tone: "primary" | "warning"; title: string; body: string } | null; onDismissAuthNotice: () => void }) {
@@ -108,7 +117,7 @@ function Main({ onReonboard, authNotice, onDismissAuthNotice }: { onReonboard: (
           </div>
         )}
         <div className="flex min-h-0 flex-1 flex-col">
-          <TabView tab={nav.tab} />
+          <Suspense fallback={<ViewLoading />}><TabView tab={nav.tab} /></Suspense>
         </div>
       </div>
 
@@ -117,7 +126,7 @@ function Main({ onReonboard, authNotice, onDismissAuthNotice }: { onReonboard: (
       {/* Overlay stack — scoped to the workspace column so rail stays usable */}
       {top && (
         <div className="absolute inset-0 z-40 bg-canvas">
-          <Overlay frame={top} onReonboard={onReonboard} />
+          <Suspense fallback={<ViewLoading onBack={() => nav.pop()} />}><Overlay frame={top} onReonboard={onReonboard} /></Suspense>
         </div>
       )}
     </div>
@@ -182,8 +191,13 @@ function Overlay({ frame, onReonboard }: { frame: { screen: string; params?: Rec
           <Explore initialCategory={p.category as ExploreCategory} />
         </div>
       );
+    /* ------------------------- Community (Phase 5.1) ------------------------- */
+    case "communityPost":
+      return <CommunityPostScreen postId={p.postId as string} onBack={back} />;
     case "profile":
       return <Profile onBack={back} />;
+    case "dnaAssessment":
+      return <MyDnaAssessment onBack={back} />;
     case "settings":
       return <Settings onBack={back} />;
     case "editProfile":

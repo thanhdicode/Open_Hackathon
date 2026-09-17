@@ -65,29 +65,10 @@ const PROGRESS = "greenbook_progress";
  * match `CHAPTERS` in scripts/greenbook/extract.mjs, because that enum is what
  * the extraction contract restricts the model to.
  */
-export const CHAPTER_META: Record<string, { title: string; purpose: string; orderIndex: number; icon: string }> = {
-  get_ready: { title: "Before you go", purpose: "Documents, money and decisions to settle before you fly.", orderIndex: 1, icon: "passport" },
-  land_and_settle: { title: "Landing and settling in", purpose: "What happens at the border and in your first days.", orderIndex: 2, icon: "globe" },
-  study_here: { title: "Studying here", purpose: "How your university works, enrols and examines you.", orderIndex: 3, icon: "text" },
-  speak_and_understand: { title: "Speaking and understanding", purpose: "The phrases and habits that get you through a day.", orderIndex: 4, icon: "chat" },
-  money_and_pay: { title: "Money and paying", purpose: "Bank accounts, cards, transfers and what things cost.", orderIndex: 5, icon: "star" },
-  live_here: { title: "Living here", purpose: "SIM cards, housing, utilities and everyday admin.", orderIndex: 6, icon: "settings" },
-  move_around: { title: "Getting around", purpose: "Transport, tickets, apps and staying on time.", orderIndex: 7, icon: "pin" },
-  stay_safe_and_healthy: { title: "Staying safe and healthy", purpose: "Clinics, insurance, emergencies and who to call.", orderIndex: 8, icon: "alert" },
-  culture_and_people: { title: "Culture and people", purpose: "Local norms, courtesy and reading the room.", orderIndex: 9, icon: "connect" },
-  student_reality: { title: "Student reality", purpose: "What students actually say about living here.", orderIndex: 10, icon: "camera" },
-};
-
-export const CHAPTER_ORDER = Object.entries(CHAPTER_META)
-  .sort((a, b) => a[1].orderIndex - b[1].orderIndex)
-  .map(([id]) => id);
-
-function chapterTitle(id: string): string {
-  if (CHAPTER_META[id]) return CHAPTER_META[id].title;
-  // An unknown chapter id is a real gap, not something to hide — render it
-  // readably rather than dropping the facts that live in it.
-  return id.replace(/_/g, " ").replace(/^./, (char) => char.toUpperCase());
-}
+export { CHAPTER_META, CHAPTER_ORDER, chapterTitle } from "./chapters";
+// `export … from` re-exports without binding locally, and this module uses all
+// three below, so it imports them as well.
+import { CHAPTER_META, CHAPTER_ORDER, chapterTitle } from "./chapters";
 
 // ---------------------------------------------------------------------------
 // Public-data cache
@@ -141,6 +122,8 @@ function rowToFact(row: Row): GreenbookFact {
 
 function rowToSource(row: Row): GreenbookSource {
   return {
+    universityId: str(row.university_id),
+    city: str(row.city),
     sourceId: String(row.source_id ?? row.$id),
     countryCode: String(row.country_code ?? ""),
     title: String(row.title ?? ""),

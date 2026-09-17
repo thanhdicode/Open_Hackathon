@@ -67,6 +67,14 @@ export function Chip({
   return (
     <button
       onClick={onClick}
+      /*
+       * `aria-pressed` is not decoration. These chips are a single-choice group
+       * whose selected state is currently signalled by colour alone, which a
+       * screen reader cannot read and a colour-blind student cannot see. It is
+       * also the only machine-readable way for a test to confirm that switching
+       * the feed actually happened instead of assuming the tap landed.
+       */
+      aria-pressed={active ?? false}
       className={`shrink-0 rounded-full border px-3.5 py-2 text-[13px] font-medium transition active:scale-95 min-h-[44px] ${tones[tone]}`}
     >
       {children}

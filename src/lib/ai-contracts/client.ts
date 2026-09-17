@@ -74,17 +74,17 @@ export class AiError extends Error {
 
 const MESSAGES: Record<AiErrorCode, string> = {
   RATE_LIMITED: "The AI service is busy right now. Your input is kept — try again in a moment.",
-  SCHEMA_INVALID: "The AI returned a result that did not match the expected format. Nothing was shown rather than showing something wrong.",
+  SCHEMA_INVALID: "YapYep couldn’t prepare an answer. Your input is kept — try again.",
   AI_UNAVAILABLE: "The AI service is temporarily unavailable. Your input is kept — try again.",
   AI_EMPTY: "The AI returned an empty result. Try again or rephrase your input.",
-  NOT_CONFIGURED: "AI is not configured for this environment yet.",
+  NOT_CONFIGURED: "YapYep can’t answer right now. Please try again later.",
   LANGUAGE_UNSUPPORTED: "Live voice is not available for this language yet.",
   INVALID_FILE: "That file could not be used. Try a different image or audio file.",
   FILE_TOO_LARGE: "That file is too large to process. Try a smaller one.",
   UNSUPPORTED_MEDIA: "That file type is not supported.",
   EMPTY_TRANSCRIPT: "No speech was detected in that recording.",
   BAD_REQUEST: "Something in the request was not valid. Adjust your input and try again.",
-  NOT_FOUND: "That AI route does not exist.",
+  NOT_FOUND: "This feature isn’t available right now. Please try again later.",
   OFFLINE: "You appear to be offline. Your input is kept — reconnect and try again.",
 };
 

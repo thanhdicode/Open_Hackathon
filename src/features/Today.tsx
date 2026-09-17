@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useJourney } from "../context/JourneyContext";
 import { useNav } from "../context/NavContext";
+import YepGuide from "../components/yep-guide";
 import { Scroll } from "../components/shell";
 import { Card, ProgressRing, Button, Badge, SectionHeader, OfflineBanner, Skeleton, ErrorState, EmptyState, Notice } from "../components/ui";
 import { Icon, type IconName } from "../components/icons";
@@ -83,11 +84,12 @@ export default function Today() {
   const totalDays = exchangeLengthDays(journey.dates);
 
   return (
-    <Scroll className="px-5 pb-6 pt-1">
+    <Scroll tourScreen="today" className="px-5 pb-6 pt-1">
       {forced === "offline" && <div className="mb-4"><OfflineBanner /></div>}
       {forced === "stale" && <div className="mb-4"><Notice tone="warning" icon="info" title="Working from saved data" body="Some cards may be out of date until we can refresh from official sources." /></div>}
 
       {/* Greeting */}
+      <YepGuide screen="today" autoStart title="One step at a time">I’m Yep, your student-life buddy. Let’s find today’s useful task, then practise a conversation before you go.</YepGuide>
       <div className="mb-4">
         <p className="text-[14px] text-muted">Good morning,</p>
         <h1 className="text-[26px] font-extrabold tracking-tight text-ink">{journey.name}</h1>
@@ -124,7 +126,7 @@ export default function Today() {
       <div className="mb-5 grid grid-cols-4 gap-2">
         {([
           { icon: "lens", label: "Scan", onClick: () => nav.setTab("lens") },
-          { icon: "chat", label: "Ask", onClick: () => nav.push("study") },
+          { icon: "chat", label: "Ask", onClick: () => nav.push("greenbookAsk", { countryCode: journey.host, chapter: null }) },
           { icon: "connect", label: "Message", onClick: () => nav.setTab("connect") },
           { icon: "practice", label: "Practice", onClick: () => nav.push("sim") },
         ] as { icon: IconName; label: string; onClick: () => void }[]).map((a) => (
@@ -140,6 +142,7 @@ export default function Today() {
       </div>
 
       {/* Living Greenbook */}
+      <button className="mb-3 min-h-[44px] text-[13px] font-semibold text-primary" onClick={() => nav.push("study")}>Study support examples</button>
       <GreenbookCard />
 
       {/* Primary task */}
@@ -152,12 +155,12 @@ export default function Today() {
               <Badge tone="primary">{journey.primaryTask.phase}</Badge>
               {bankDone && <Badge tone="success">Done ✓</Badge>}
             </div>
-            <h3 className="mt-1.5 text-[16px] font-bold text-ink">{journey.primaryTask.title}</h3>
+            <h3 data-yep="focus" className="mt-1.5 text-[16px] font-bold text-ink">{journey.primaryTask.title}</h3>
             <p className="mt-0.5 text-[13px] text-muted">{journey.primaryTask.meta}</p>
           </div>
         </div>
         <div className="flex gap-2 border-t border-line px-4 py-3">
-          <Button size="sm" variant="soft" onClick={() => nav.push("passportSection", { sectionId: "money" })}>Open guide</Button>
+          <Button size="sm" variant="soft" onClick={() => nav.push(journey.id === "custom" ? "greenbook" : "passportSection", { sectionId: "money" })}>Open guide</Button>
           <Button size="sm" variant={bankDone ? "outline" : "primary"} onClick={() => toggleTask(journey.primaryTask.id)}>
             {bankDone ? "Mark undone" : "Mark done"}
           </Button>
@@ -170,7 +173,7 @@ export default function Today() {
         <div className="flex items-center gap-2 text-[12px] font-semibold text-white/70">
           <Icon name="practice" size={15} /> AI roleplay · 3 min
         </div>
-        <h3 className="mt-1.5 text-[16px] font-bold leading-snug">{journey.practiceMission.title}</h3>
+        <h3 data-yep="practice" className="mt-1.5 text-[16px] font-bold leading-snug">{journey.practiceMission.title}</h3>
         <p className="mt-1 text-[12px] leading-relaxed text-white/70">{journey.practiceMission.reason}</p>
         <div className="mt-3"><span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1.5 text-[13px] font-semibold">Start practice →</span></div>
       </Card>
@@ -178,11 +181,10 @@ export default function Today() {
       {/* Adaptation snapshot */}
       <SectionHeader title="Your adaptation map" action="Details" onAction={() => nav.push("profile")} />
       <Card className="mb-4 flex items-center gap-4 p-4" onClick={() => nav.push("profile")}>
-        <ProgressRing value={pair.readiness} size={58} />
+        {journey.myDnaAssessed !== false && <ProgressRing value={pair.readiness} size={58} />}
         <div className="flex-1">
-          <p className="text-[13px] font-bold text-ink">{pair.readiness}% ready</p>
-          <p className="mt-0.5 text-[12px] text-muted">Biggest gap: <span className="font-semibold text-ink">{pair.biggestGaps[0].label}</span></p>
-          <p className="text-[12px] text-muted">Strongest transfer: <span className="font-semibold text-success">{pair.strongestTransfer.label}</span></p>
+          <p className="text-[13px] font-bold text-ink">{journey.myDnaAssessed === false ? "Personalize your practice" : `${pair.readiness}% prepared`}</p>
+          <p className="mt-0.5 text-[12px] text-muted">{journey.myDnaAssessed === false ? "Add your communication preferences in Profile whenever you’re ready." : `Worth practising: ${pair.biggestGaps[0].label}`}</p>
         </div>
       </Card>
 

@@ -11,6 +11,9 @@ import { JOURNEYS } from "../data/journeys";
 import { aseanPassportFor } from "../data/achievements";
 import { loadSocialProfile, STUDENT_ROLES, type SocialProfile } from "../lib/appwrite/profiles";
 import { avatarPreviewUrl } from "../lib/appwrite/avatar";
+import { fetchSkillProfile } from "../lib/appwrite/practice";
+import { SIM_SCORE_DIMENSIONS } from "../lib/ai-contracts/sim";
+import type { SimFeedback } from "../lib/ai-contracts/sim";
 
 type Tab = "mydna" | "skills" | "passport" | "saved";
 
@@ -20,12 +23,14 @@ export function Profile({ onBack }: { onBack: () => void }) {
   const nav = useNav();
   const [tab, setTab] = useState<Tab>("mydna");
   const [social, setSocial] = useState<SocialProfile | null>(null);
+  const [skills, setSkills] = useState<SimFeedback["scores"] | null>(null);
   const asean = aseanPassportFor(journey.home, journey.host);
 
   useEffect(() => {
     void (async () => {
       if (!account) return;
       setSocial(await loadSocialProfile(account.userId));
+      setSkills(await fetchSkillProfile());
     })();
   }, [account]);
 
@@ -44,7 +49,7 @@ export function Profile({ onBack }: { onBack: () => void }) {
             <Avatar initials={journey.initials} color={journey.avatarColor} size={60} />
           )}
           <div className="min-w-0 flex-1">
-            <h2 className="text-[19px] font-bold text-ink">{displayName}, {journey.age}</h2>
+            <h2 className="text-[19px] font-bold text-ink">{displayName}{journey.age ? `, ${journey.age}` : ""}</h2>
             <p className="text-[13px] text-muted">{COUNTRIES[journey.home].flag} {COUNTRIES[journey.home].name} → {COUNTRIES[journey.host].flag} {COUNTRIES[journey.host].name}</p>
             <p className="text-[12px] text-muted">{journey.university}</p>
           </div>
@@ -63,9 +68,11 @@ export function Profile({ onBack }: { onBack: () => void }) {
 
         <div className="my-4"><Segmented value={tab} onChange={setTab} options={[{ value: "mydna" as const, label: "MyDNA" }, { value: "skills" as const, label: "Skills" }, { value: "passport" as const, label: "ASEAN" }, { value: "saved" as const, label: "Saved" }]} /></div>
 
-        {tab === "mydna" && (
+        {tab === "mydna" && journey.myDnaAssessed === false && <Card className="p-4"><p className="text-[14px] font-bold">Your MyDNA is not set yet</p><p className="mt-2 text-[13px] text-muted">Add your communication preferences when you’re ready. We do not infer them from your nationality.</p><div className="mt-3"><Button variant="soft" full onClick={() => nav.push("dnaAssessment")}>Set my communication preferences</Button></div></Card>}
+        {tab === "mydna" && journey.myDnaAssessed !== false && (
           <div className="space-y-3.5">
             <p className="text-[12px] italic text-muted">Derived from your assessment answers — never your nationality.</p>
+            <button className="min-h-[44px] text-[13px] font-semibold text-primary" onClick={() => nav.push("dnaAssessment")}>Update my communication preferences</button>
             {DNA_DIMENSIONS.map((d) => <DnaBar key={d.key} label={d.label} value={journey.myDna[d.key]} />)}
             <Card className="mt-2 p-4">
               <p className="text-[13px] font-bold text-ink">Your host gap</p>
@@ -77,11 +84,11 @@ export function Profile({ onBack }: { onBack: () => void }) {
         {tab === "skills" && (
           <Card className="space-y-3 p-4">
             <p className="text-[13px] font-bold text-ink">Skill growth across your exchange</p>
-            {asean.skills.map((s) => <ScoreBarRow key={s.key} label={s.label} value={s.value} />)}
+            {journey.id !== "custom" ? asean.skills.map((s) => <ScoreBarRow key={s.key} label={s.label} value={s.value} />) : skills ? SIM_SCORE_DIMENSIONS.map((s) => <ScoreBarRow key={s.key} label={s.label} value={skills[s.key]} />) : <div><p className="mt-2 text-[13px] text-muted">No practice feedback yet. Try a conversation to find what to work on next.</p><div className="mt-3"><Button variant="soft" full onClick={() => nav.push("sim")}>Start practice</Button></div></div>}
           </Card>
         )}
 
-        {tab === "passport" && <AseanPassportView asean={asean} />}
+        {tab === "passport" && (journey.id !== "custom" ? <AseanPassportView asean={asean} /> : <Card className="p-4"><p className="text-[14px] font-bold">Your ASEAN journey</p><p className="mt-2 text-[13px] text-muted">{COUNTRIES[journey.home].name} → {COUNTRIES[journey.host].name}</p><p className="mt-1 text-[13px] text-muted">Completed steps and practice feedback will build your progress. No travel stamps are assumed.</p></Card>)}
 
         {tab === "saved" && (
           saved.length === 0 ? (
@@ -199,7 +206,7 @@ export function Compass({ onBack, onReonboard }: { onBack: () => void; onReonboa
           </div>
           <div className="mt-3 flex items-center justify-between rounded-[12px] bg-canvas px-3 py-2">
             <span className="text-[12px] font-semibold text-muted">Readiness for this route</span>
-            <span className="text-[15px] font-extrabold text-primary">{pair.readiness}%</span>
+            <span className="text-[15px] font-extrabold text-primary">{journey.myDnaAssessed === false ? "Set MyDNA first" : `${pair.readiness}%`}</span>
           </div>
         </Card>
 

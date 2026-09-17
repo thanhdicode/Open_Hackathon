@@ -198,6 +198,36 @@ export async function loadPlace(placeId: string): Promise<Result<Place>> {
   }
 }
 
+/**
+ * Contribution tags arrive in two shapes, and the reader must accept both.
+ *
+ * The column is `json`, the seed writes plain strings (`"food"`, `"cheap"`), and
+ * the contract declares `{ key, value }`. The previous reader cast the parsed
+ * value to the contract without looking at it, which crashed the place sheet with
+ * `Cannot read properties of undefined (reading 'replace')` the first time a real
+ * contribution carried a tag — and because the throw happened during render, it
+ * took the whole map down rather than degrading one card.
+ *
+ * Normalising at the boundary means every consumer sees one shape and neither
+ * writer has to change. An entry that is neither a string nor an object with a
+ * key is dropped: a tag nobody can render is not worth a crash.
+ */
+function contributionTags(value: unknown): { key: string; value: string }[] {
+  const parsed = typeof value === "string" ? parseJson<unknown[]>(value, []) : Array.isArray(value) ? value : [];
+  const tags: { key: string; value: string }[] = [];
+  for (const entry of parsed) {
+    if (typeof entry === "string" && entry) {
+      tags.push({ key: entry, value: entry });
+      continue;
+    }
+    if (entry && typeof entry === "object") {
+      const key = str((entry as Row).key);
+      if (key) tags.push({ key, value: str((entry as Row).value) || key });
+    }
+  }
+  return tags;
+}
+
 /** The community layer for one place: what students actually said. */
 export async function loadContributions(placeId: string): Promise<Result<PlaceContribution[]>> {
   try {
@@ -244,7 +274,7 @@ export async function loadContributions(placeId: string): Promise<Result<PlaceCo
           author: authors.get(authorId) ?? { id: authorId, displayName: "Student", initials: "ST", color: colorFor(authorId), isDemoSeed: false },
           note: str(row.note),
           mediaUrl: str(row.media_url) || undefined,
-          tags: parseJson<{ key: string; value: string }[]>(row.tags, []),
+          tags: contributionTags(row.tags),
           visitContext: str(row.visit_context) || undefined,
           isDemoSeed: bool(row.is_demo_seed),
           createdAt: str(row.created_at),

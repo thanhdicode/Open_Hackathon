@@ -21,6 +21,7 @@
  * re-exports it so no existing import changes.
  */
 import type { EvidencePacket, GreenbookAnswer, GreenbookFact, TrustState } from "./contract";
+import { chapterTitle } from "./chapters.ts";
 
 /** The exact sentence the brief specifies for an unverifiable question. */
 export const UNVERIFIED_ANSWER = "I couldn't verify this from a current authoritative source yet.";
@@ -133,7 +134,7 @@ export function buildNoLlmAnswer(packet: EvidencePacket, phrases: string[]): Gre
   }
   const summary = [...byChapter.entries()]
     .slice(0, 4)
-    .map(([chapter, list]) => `${chapter.replace(/_/g, " ")}: ${list[0].claim}`)
+    .map(([chapter, list]) => `${chapterTitle(chapter)}: ${list[0].claim}`)
     .join(" ");
 
   const prepare = facts

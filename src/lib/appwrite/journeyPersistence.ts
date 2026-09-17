@@ -4,13 +4,14 @@ import type { Journey } from "../../data/journeys";
 import { EMPTY_JOURNEY_DATES, deriveRole, deriveStage, type JourneyDates } from "../journey/dates";
 import { APPWRITE_DATABASE_ID, tablesDB } from "./client";
 import { appError } from "./errors";
+import { personalizeJourney } from "../journey/personalize";
 
 const PROFILE_TABLE = "student_profiles";
 const DNA_TABLE = "my_dna_profiles";
 const JOURNEY_TABLE = "journeys";
 
 type StoredProfile = Models.Row & { display_name?: string; home_country_code: Journey["home"]; host_country_code: Journey["host"]; host_city?: string; university_id?: string; languages?: string; interests?: string; goals?: string; concerns?: string; journey_dates?: string; journey_role?: string; exchange_stage?: string };
-type StoredDna = Models.Row & { explicitness: number; formality: number; hierarchy_sensitivity: number; conflict_openness: number; relationship_orientation: number; time_structure: number; participation_confidence: number; uncertainty_tolerance: number };
+type StoredDna = Models.Row & { assessment_version?: string; explicitness: number; formality: number; hierarchy_sensitivity: number; conflict_openness: number; relationship_orientation: number; time_structure: number; participation_confidence: number; uncertainty_tolerance: number };
 
 function ready() {
   return Boolean(APPWRITE_DATABASE_ID);
@@ -135,7 +136,7 @@ export async function saveJourney(userId: string, journey: Journey): Promise<boo
     time_structure: journey.myDna.time,
     participation_confidence: journey.myDna.participation,
     uncertainty_tolerance: journey.myDna.uncertainty,
-    assessment_version: "v1",
+    assessment_version: journey.myDnaAssessed === false ? "unassessed" : "v1",
     updated_at: now,
   };
   const current = {
@@ -181,20 +182,22 @@ export async function loadJourney(userId: string, fallback: Journey): Promise<Jo
      * departure" in October, and Today would phase the journey wrongly.
      */
     const storedDates = readDates(profile.journey_dates);
-    const dates = storedDates ?? fallback.dates ?? EMPTY_JOURNEY_DATES;
+    const dates = storedDates ?? EMPTY_JOURNEY_DATES;
     return {
       ...fallback,
+      ...personalizeJourney(profile.home_country_code, profile.host_country_code, myDna, dates),
       id: "custom",
       name: profile.display_name || fallback.name,
       home: profile.home_country_code,
       host: profile.host_country_code,
-      city: profile.host_city || fallback.city,
-      university: profile.university_id || fallback.university,
+      city: profile.host_city ?? "",
+      university: profile.university_id ?? "",
       languages: JSON.parse(profile.languages || "[]"),
       interests: JSON.parse(profile.interests || "[]"),
       concerns: JSON.parse(profile.concerns || "[]"),
       dates,
       myDna,
+      myDnaAssessed: !(String(dna.assessment_version ?? "v1").includes("unassessed")),
     };
   } catch (error) {
     /*

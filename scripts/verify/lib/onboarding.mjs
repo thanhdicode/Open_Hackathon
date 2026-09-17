@@ -154,7 +154,11 @@ export async function completeOnboarding(page, { maxSteps = 40, firstScreenTimeo
        * it had reached the shell while the country picker was still coming up.
        */
       await page.waitForTimeout(1500);
-      if (await confirmedShell(page)) return true;
+      if (await confirmedShell(page)) {
+        const closeGuide = page.getByRole("button", { name: "Close guide", exact: true });
+        if (await closeGuide.isVisible().catch(() => false)) await closeGuide.click();
+        return true;
+      }
     }
     if (attempt < attempts - 1) {
       await page.reload({ waitUntil: "domcontentloaded" }).catch(() => {});
@@ -168,12 +172,12 @@ async function walkOnboarding(page, { maxSteps, firstScreenTimeoutMs }) {
   // A cold Vite start compiles modules on first request, so the welcome screen
   // can take far longer than a warm reload. Wait for it explicitly.
   await page
-    .getByRole("button", { name: /Try YapYep/ })
+    .getByRole("button", { name: /Try YapYep|Start my journey/ })
     .first()
     .waitFor({ state: "visible", timeout: firstScreenTimeoutMs })
     .catch(() => {});
 
-  await clickInWorkspace(page, [/Try YapYep/], 10000);
+  await clickInWorkspace(page, [/Try YapYep|Start my journey/], 10000);
 
   /*
    * A screen can be momentarily un-clickable for a legitimate reason: the welcome
@@ -195,6 +199,7 @@ async function walkOnboarding(page, { maxSteps, firstScreenTimeoutMs }) {
    */
   const OPTION_PATTERNS = [/Speak with confidence/, /^Coffee$/, /^Library$/];
   const ADVANCE_PATTERNS = [
+    /Create my Passport/,
     /Continue as guest/,
     /Continue with email/i,
     /See your adaptation map/,
@@ -240,6 +245,11 @@ async function walkOnboarding(page, { maxSteps, firstScreenTimeoutMs }) {
     // A free-text step gates its Continue button behind input, so fill first.
     // Scoped, so a rail search box is never mistaken for an onboarding field.
     await fillEmptyInputs((await workspace(page).count()) > 0 ? workspace(page) : page);
+    const arrival = page.getByRole("textbox", { name: "Arrival date", exact: true });
+    if (await arrival.isVisible().catch(() => false) && !await arrival.inputValue()) {
+      const day = new Date(); day.setDate(day.getDate() + 10);
+      await arrival.fill(day.toISOString().slice(0, 10));
+    }
 
     const country = await clickOnce([/Viet Nam/, /Singapore/, /Thailand/, /Malaysia/, /Indonesia/, /Philippines/]);
     if (country) {

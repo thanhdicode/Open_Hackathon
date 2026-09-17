@@ -4,6 +4,8 @@ import { JOURNEYS, journeyById, type Journey } from "../data/journeys";
 import { computePairDNA, type PairDNA } from "../data/pairDNA";
 import type { DnaScores } from "../data/dna";
 import type { JourneyDates } from "../lib/journey/dates";
+import { EMPTY_JOURNEY_DATES } from "../lib/journey/dates";
+import { personalizeJourney } from "../lib/journey/personalize";
 import { fetchTaskProgress, setTaskProgress } from "../lib/appwrite/taskProgress";
 import { loadJourney, saveJourney } from "../lib/appwrite/journeyPersistence";
 import { currentUser } from "../lib/appwrite/user";
@@ -85,6 +87,7 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
     setRoute: (home, host) =>
       editJourney((j) => {
         const p = computePairDNA(home, host, j.myDna as DnaScores);
+        if (j.id === "custom") return { ...j, ...personalizeJourney(home, host, j.myDna, j.dates), name: j.name, initials: j.initials, avatarColor: j.avatarColor, languages: j.languages, interests: j.interests, concerns: j.concerns, myDnaAssessed: j.myDnaAssessed, city: host === j.host ? j.city : "", university: host === j.host ? j.university : "" };
         return { ...j, home, host, readiness: p.readiness };
       }),
     forced,
@@ -119,20 +122,5 @@ export function useJourney() {
 }
 
 export function makeCustomJourney(home: CountryCode, host: CountryCode, myDna: DnaScores, dates?: JourneyDates): Partial<Journey> {
-  const base = JOURNEYS[0];
-  const pair = computePairDNA(home, host, myDna);
-  return {
-    home,
-    host,
-    myDna,
-    readiness: pair.readiness,
-    id: "custom",
-    name: "You",
-    initials: "Y",
-    avatarColor: "#3157D5",
-    // The canonical timeline travels with the profile. Without it the stage
-    // cannot be derived and Today falls back to the seed journey's dates, which
-    // is how a brand-new student used to be shown another student's schedule.
-    ...(dates ? { dates } : {}),
-  };
+  return personalizeJourney(home, host, myDna, dates ?? EMPTY_JOURNEY_DATES);
 }

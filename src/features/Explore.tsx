@@ -1,3 +1,6 @@
+import Mascot from "../components/mascot";
+import { lazy, Suspense } from "react";
+import YepGuide from "../components/yep-guide";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useJourney } from "../context/JourneyContext";
 import { useNav } from "../context/NavContext";
@@ -10,8 +13,15 @@ import { formatDistance, loadPlaces, loadSavedPlaceIds, searchPlaces, togglePlac
 import { useCurrentUserId } from "../lib/phase5/use-user";
 import { permissionLabel, useLocationPermission, useReducedMotion } from "../lib/phase5/location";
 import { EXPLORE_CATEGORIES, EXPLORE_SCOPES, type ExploreCategory, type ExploreScope, type Place } from "../lib/phase5/contract";
-import { ExploreMap } from "./explore/ExploreMap";
 import { PlaceSheet } from "./explore/PlaceSheet";
+
+/**
+ * The map is the single heaviest dependency in the product (maplibre-gl + its
+ * worker, >1 MB minified). Importing it eagerly put all of that in the critical
+ * path of a screen whose first paint is a category row and a list — so it is
+ * loaded on demand and the reserved box below holds the layout while it arrives.
+ */
+const ExploreMap = lazy(() => import("./explore/ExploreMap").then((module) => ({ default: module.ExploreMap })));
 
 /**
  * Explore — the real map.
@@ -76,6 +86,27 @@ export function Explore({ initialCategory }: { initialCategory?: ExploreCategory
     const timer = window.setTimeout(() => setToast(null), 2200);
     return () => window.clearTimeout(timer);
   }, [toast]);
+
+  /*
+   * The Connect → Explore half of the post ↔ place bridge.
+   *
+   * A post's place tag sets `pendingPlaceId` and switches tabs. The id is
+   * consumed once the places for this country have loaded, which is the first
+   * moment the target actually exists — selecting earlier would find nothing and
+   * the map would never fly. `ExploreMap` already eases to the selected place, so
+   * the hand-off only has to select it.
+   */
+  useEffect(() => {
+    if (!nav.pendingPlaceId || !places) return;
+    const target = places.find((place) => place.id === nav.pendingPlaceId);
+    if (target) {
+      setScope("for_you");
+      setCategory("all");
+      setSearch("");
+      setSelected(target);
+    }
+    nav.clearPendingPlace();
+  }, [nav, places]);
 
   /* ------------------------------- filtering ------------------------------- */
   const visible = useMemo(() => {
@@ -222,29 +253,38 @@ export function Explore({ initialCategory }: { initialCategory?: ExploreCategory
       )}
 
       {/* -------------------------------- map -------------------------------- */}
-      <div className="mx-5 mb-3 h-[38vh] min-h-[220px] overflow-hidden rounded-[12px] border border-line">
+      <div className="mx-5 mb-3 h-[32dvh] min-h-[140px] max-h-[320px] shrink-0 overflow-hidden rounded-[12px] border border-line">
         {showError ? (
           <div className="flex h-full items-center justify-center px-8">
             <EmptyState icon="alert" title="Places did not load" body="Check your connection and try again." action="Retry" onAction={() => void load()} />
           </div>
         ) : (
-          <ExploreMap
-            places={visible}
-            savedIds={savedIds}
-            selectedId={selected?.id ?? null}
-            center={mapCenter}
-            onSelect={setSelected}
-            onClearSelection={() => setSelected(null)}
-            userLocation={location.position}
-            reducedMotion={reducedMotion}
-          />
+          <Suspense
+            fallback={
+              <div className="h-full w-full bg-canvas">
+                <Skeleton className="h-full w-full rounded-none" />
+              </div>
+            }
+          >
+            <ExploreMap
+              places={visible}
+              savedIds={savedIds}
+              selectedId={selected?.id ?? null}
+              center={mapCenter}
+              onSelect={setSelected}
+              onClearSelection={() => setSelected(null)}
+              userLocation={location.position}
+              reducedMotion={reducedMotion}
+            />
+          </Suspense>
         )}
       </div>
 
       {/* -------------------------------- list ------------------------------- */}
-      <Scroll className="px-5 pb-6">
+      <Scroll tourScreen="explore" className="px-5 pb-6">
+        <YepGuide screen="explore" title="Find your next useful place" compact>Choose a category, select a pin or list entry, then check the place details. Location is optional.</YepGuide>
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-[15px] font-bold text-ink">
+          <h2 data-yep="list" className="text-[15px] font-bold text-ink">
             {scope === "saved" ? "Your saved places" : `Places around ${campus?.universityId.toUpperCase() ?? journey.city}`}
           </h2>
           {places !== null && <span className="text-[12px] text-muted">{visible.length} shown</span>}
@@ -259,7 +299,7 @@ export function Explore({ initialCategory }: { initialCategory?: ExploreCategory
         )}
 
         {showEmpty && !showLoading && !showError && (
-          <EmptyState
+          <><Mascot pose="explore" size={72} className="mx-auto block" /><EmptyState
             icon="explore"
             title={scope === "saved" ? "Nothing saved yet" : "No places match"}
             body={
@@ -269,7 +309,7 @@ export function Explore({ initialCategory }: { initialCategory?: ExploreCategory
             }
             action={scope === "saved" ? undefined : "Show all"}
             onAction={scope === "saved" ? undefined : () => { setCategory("all"); setScope("for_you"); setSearch(""); }}
-          />
+          /></>
         )}
 
         {!showLoading && !showError && !showEmpty && (
@@ -304,6 +344,10 @@ export function Explore({ initialCategory }: { initialCategory?: ExploreCategory
             onOpenOnGreenbook={() => {
               setSelected(null);
               nav.push("greenbook", {});
+            }}
+            onOpenPost={(postId) => {
+              setSelected(null);
+              nav.push("communityPost", { postId });
             }}
             viewerDistanceM={viewerDistance(selected)}
           />

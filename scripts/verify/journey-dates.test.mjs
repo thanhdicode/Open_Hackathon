@@ -160,11 +160,10 @@ test("a complete, coherent timeline has no problems", () => {
   assert.deepEqual(timelineProblems(MINH), []);
 });
 
-test("arrival and return are both required", () => {
+test("arrival is required, return may be unknown", () => {
   const problems = timelineProblems(EMPTY_JOURNEY_DATES);
-  assert.equal(problems.length, 2);
+  assert.equal(problems.length, 1);
   assert.ok(problems.some((problem) => /arrival date is required/.test(problem)));
-  assert.ok(problems.some((problem) => /return date is required/.test(problem)));
 });
 
 test("an impossible ordering is reported in plain language", () => {

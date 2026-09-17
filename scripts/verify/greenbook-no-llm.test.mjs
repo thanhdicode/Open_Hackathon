@@ -78,7 +78,11 @@ test("official facts produce a briefing, the actions and the official sources", 
   const answer = buildNoLlmAnswer(packet([fact()]), ["Xin chào — hello"]);
   assert.equal(answer.mode, "no_llm");
   assert.match(answer.answer, /Student's Pass/);
-  assert.match(answer.answer, /land and settle/);
+  // The briefing leads each group with the chapter's human title. A raw id here
+  // ("land_and_settle" or "land and settle") is implementation leakage into
+  // student-facing copy, so this asserts the copy, not the slug.
+  assert.match(answer.answer, /Landing and settling in/);
+  assert.doesNotMatch(answer.answer, /land[_\s]and[_\s]settle/i);
   assert.deepEqual(answer.whatToDo, ["Apply through the Student's Pass Online Application and Registration system."]);
   assert.equal(answer.sources.length, 1);
   assert.equal(answer.sources[0].sourceId, "sg-ica-student");

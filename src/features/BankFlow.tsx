@@ -65,7 +65,7 @@ export default function BankFlow({ onBack }: { onBack: () => void }) {
         {pct === 100 && <div className="mt-4"><Notice tone="primary" icon="check" title="You're ready!" body="You have every document. Book an appointment or open in-app, then mark this task complete." /></div>}
 
         <div className="mt-6">
-          <Button size="lg" full disabled={pct !== 100} onClick={() => { toggleTask(journey.primaryTask.id); onBack(); }}>
+          <Button size="lg" full disabled={pct !== 100} onClick={() => { toggleTask(journey.id === "custom" ? `${journey.home}-${journey.host}-bank-documents` : journey.primaryTask.id); onBack(); }}>
             Mark task complete
           </Button>
         </div>

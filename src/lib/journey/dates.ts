@@ -212,7 +212,9 @@ export function timelineProblems(dates: JourneyDates): string[] {
   const returnDay = parseDay(dates.returnDate);
 
   if (arrival === null) problems.push("An arrival date is required — Today, the Greenbook and every AI answer depend on it.");
-  if (returnDay === null) problems.push("A return date is required so we know how long you are staying.");
+  for (const [key, label] of [["returnDate", "Return"], ["departureDate", "Departure"], ["programStartDate", "Programme start"], ["programEndDate", "Programme end"]] as const) {
+    if (dates[key] && parseDay(dates[key]) === null) problems.push(`${label} date is not valid.`);
+  }
   if (arrival !== null && returnDay !== null && returnDay <= arrival) problems.push("The return date must be after the arrival date.");
   if (departure !== null && arrival !== null && departure > arrival) problems.push("You cannot depart after you arrive.");
   if (programStart !== null && arrival !== null && programStart < arrival) problems.push("The programme cannot start before you arrive.");

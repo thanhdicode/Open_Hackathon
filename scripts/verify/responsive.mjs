@@ -34,58 +34,50 @@ function log(...args) {
 
 /** Walk the anonymous onboarding flow until the app shell is reachable. */
 async function ensureAppShell(page) {
-  // Scope to the workspace column: the desktop rail also exposes a country chip
-  // and the same tab labels, which would otherwise steal onboarding clicks.
-  const ws = page.locator('div[class*="max-w-[800px]"]').first();
-  const welcome = ws.getByRole("button", { name: "Try YapYep" });
-  if (!(await welcome.isVisible().catch(() => false))) return "already-onboarded";
+  // Scope every onboarding lookup to the onboarding surface. `App.tsx` renders
+  // the shell behind the overlay, and the shell's route chip is a button that
+  // matches country names — a page-wide lookup clicks the chip and the walker
+  // never leaves the welcome step.
+  const onboarding = page.getByTestId("onboarding");
+  const start = onboarding.getByRole("button", { name: "Start my journey" });
+  if (!(await start.isVisible().catch(() => false))) return "already-onboarded";
 
-  await welcome.click();
-  await page.waitForTimeout(1500);
-  const errorAlert = ws.getByRole("alert");
-  if (await errorAlert.isVisible().catch(() => false)) {
-    return `session-error: ${(await errorAlert.innerText()).trim()}`;
+  await start.click();
+  // Creating the guest session is a real network round trip and can be slow.
+  await onboarding.getByRole("heading", { name: "Where are you from?" }).waitFor({ timeout: 45000 });
+
+  // Step 1 — origin. Reject the shell's route chip, which renders "→".
+  await onboarding.getByRole("button", { name: /Viet Nam/ }).first().click();
+  await onboarding.getByRole("button", { name: "Continue", exact: true }).click();
+
+  // Step 2 — destination (the same country is disabled here by design).
+  await onboarding.getByRole("heading", { name: "Where are you going?" }).waitFor();
+  await onboarding.getByRole("button", { name: /Singapore/ }).first().click();
+  await onboarding.getByRole("button", { name: "Continue", exact: true }).click();
+
+  // Step 3 — dates. An explicit arrival is required; the return date is optional.
+  await onboarding.getByRole("heading", { name: "When are you arriving?" }).waitFor();
+  await onboarding.getByLabel("Arrival date", { exact: true }).fill("2026-10-01");
+  await onboarding.getByRole("button", { name: "Create my Passport", exact: true }).click();
+  await page.waitForTimeout(1200);
+
+  /*
+   * Dismiss the first-run product tour before measuring anything.
+   *
+   * `YepGuide` auto-starts a Driver.js tour on the first usable home (§5), and
+   * its overlay is a full-viewport SVG that intercepts pointer events — so every
+   * subsequent click on the bottom nav times out with "driver-overlay …
+   * intercepts pointer events". That is the tour working, not a layout fault, and
+   * the overlay must be cleared before the shell can be driven.
+   */
+  const tour = page.locator(".yep-tour");
+  if (await tour.count()) {
+    for (let i = 0; i < 8 && (await tour.count()); i += 1) {
+      await page.locator(".driver-popover-next-btn").click({ timeout: 5000 }).catch(() => {});
+    }
+    await tour.waitFor({ state: "detached", timeout: 15000 }).catch(() => {});
   }
-
-  const next = async () => {
-    const btn = ws.getByRole("button", { name: /^(Continue|See your adaptation map|Generate my Passport|Enter YapYep|Continue as guest)$/ }).first();
-    await btn.waitFor({ state: "visible", timeout: 15000 });
-    await btn.click();
-    await page.waitForTimeout(250);
-  };
-
-  // home country -> host country
-  await ws.getByRole("button", { name: /Viet Nam/ }).first().click();
-  await next();
-  await ws.getByRole("button", { name: /Singapore/ }).first().click();
-  await next();
-  // city / university
-  await ws.getByPlaceholder("e.g. Singapore").fill("Singapore");
-  await ws.getByPlaceholder("e.g. National University of Singapore").fill("National University of Singapore");
-  await next();
-  // dates -> languages
-  await next();
-  await next();
-  // goals
-  await ws.getByRole("button", { name: "Speak with confidence" }).click();
-  await next();
-  // interests
-  await ws.getByRole("button", { name: "Coffee" }).click();
-  await next();
-
-  // MyDNA assessment: answer every question with the first option
-  for (let i = 0; i < 40; i += 1) {
-    const done = ws.getByRole("heading", { name: "Your MyDNA" });
-    if (await done.isVisible().catch(() => false)) break;
-    const option = ws.locator('div[class*="space-y-2"] > button').first();
-    if (!(await option.isVisible().catch(() => false))) break;
-    await option.click();
-    await page.waitForTimeout(220);
-  }
-  await next(); // MyDNA -> adaptation map
-  await next(); // adaptation map -> generate
-  await next(); // generate -> app shell
-  await page.waitForTimeout(600);
+  await page.waitForTimeout(300);
   return "onboarded";
 }
 

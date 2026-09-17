@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { Avatar, Badge, Button, Card, EmptyState, Notice, Skeleton } from "../../components/ui";
 import { Icon } from "../../components/icons";
 import { loadContributions, formatDistance } from "../../lib/appwrite/explore";
-import { EXPLORE_CATEGORIES, type Place, type PlaceContribution } from "../../lib/phase5/contract";
+import { loadPostsForPlace } from "../../lib/appwrite/community";
+import { useCurrentUserId } from "../../lib/phase5/use-user";
+import { EXPLORE_CATEGORIES, POST_TYPE_META, type CommunityPost, type Place, type PlaceContribution } from "../../lib/phase5/contract";
 import { campusFor } from "../../data/campuses";
+import { relativeTime } from "../community/PostCard";
 
 /**
  * The place bottom sheet — where Explore and Connect actually meet.
@@ -16,6 +19,10 @@ import { campusFor } from "../../data/campuses";
  * A community note never appears above the objective facts and never overrides
  * them, and the source line says which is which. That separation is the same rule
  * the Greenbook gate enforces server-side; this is its UI half.
+ *
+ * The bridge runs both ways. A story here opens the exact community post, and a
+ * post's place tag opens the exact map location — both resolve through the same
+ * `place_id`, so there is no second copy of a place to drift out of sync.
  */
 
 export interface PlaceSheetProps {
@@ -29,6 +36,8 @@ export interface PlaceSheetProps {
   onOpenOnGreenbook: (() => void) | null;
   /** Only set when the student granted location this session. */
   viewerDistanceM: number | null;
+  /** Opens a community post written about this place. */
+  onOpenPost: (postId: string) => void;
 }
 
 export function PlaceSheet({
@@ -41,26 +50,28 @@ export function PlaceSheet({
   onAskYapYep,
   onOpenOnGreenbook,
   viewerDistanceM,
+  onOpenPost,
 }: PlaceSheetProps) {
+  const { userId } = useCurrentUserId();
   const [contributions, setContributions] = useState<PlaceContribution[] | null>(null);
+  const [posts, setPosts] = useState<CommunityPost[] | null>(null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     setContributions(null);
+    setPosts(null);
     setFailed(false);
-    loadContributions(place.id).then((result) => {
+    void Promise.all([loadContributions(place.id), loadPostsForPlace(place.id, userId)]).then(([contributionResult, postResult]) => {
       if (cancelled) return;
-      if (result.ok) setContributions(result.value);
-      else {
-        setFailed(true);
-        setContributions([]);
-      }
+      setContributions(contributionResult.ok ? contributionResult.value : []);
+      setPosts(postResult.ok ? postResult.value : []);
+      if (!contributionResult.ok && !postResult.ok) setFailed(true);
     });
     return () => {
       cancelled = true;
     };
-  }, [place.id]);
+  }, [place.id, userId]);
 
   const categoryLabel = EXPLORE_CATEGORIES.find((entry) => entry.key === place.category)?.label ?? place.category;
   const campus = campusFor(place.universityId);
@@ -192,6 +203,42 @@ export function PlaceSheet({
             <Icon name="chevron" size={16} />
           </button>
         )}
+
+        {/* ---- the other half of the bridge: posts tagged with this place ---- */}
+        {posts !== null && posts.length > 0 && (
+          <div className="mt-5">
+            <div className="mb-2 flex items-center justify-between">
+              <p className="text-[12px] font-bold uppercase tracking-wide text-muted">Community posts here</p>
+              <span className="text-[11px] text-muted">{posts.length}</span>
+            </div>
+            <div className="space-y-2" data-testid="place-posts">
+              {posts.slice(0, 5).map((post) => (
+                <button
+                  key={post.id}
+                  onClick={() => onOpenPost(post.id)}
+                  className="flex w-full items-start gap-2.5 rounded-[12px] border border-line bg-surface p-3 text-left active:scale-[.99]"
+                >
+                  <Avatar initials={post.author.initials} color={post.author.color} size={30} />
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-[12px] font-semibold text-ink">{post.author.displayName}</span>
+                      {post.isDemoSeed && <Badge tone="muted">Demo</Badge>}
+                      <span className="text-[11px] text-muted">{POST_TYPE_META[post.postType]?.label ?? post.postType}</span>
+                      <span className="ml-auto text-[11px] text-muted">{relativeTime(post.createdAt)}</span>
+                    </span>
+                    <span className="mt-1 block line-clamp-2 text-[12px] leading-relaxed text-ink">{post.body}</span>
+                    {post.media.length > 0 && (
+                      <span className="mt-1 block text-[11px] text-muted">
+                        {post.media.length} {post.media[0].kind === "video" ? "video" : post.media.length > 1 ? "photos" : "photo"}
+                      </span>
+                    )}
+                  </span>
+                  <Icon name="chevron" size={15} />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* ---- actions ---- */}
@@ -200,7 +247,7 @@ export function PlaceSheet({
           <Icon name="bookmark" size={15} filled={saved} /> {saved ? "Saved" : "Save"}
         </Button>
         <Button variant="outline" size="sm" onClick={onAddExperience}>
-          <Icon name="plus" size={15} /> Experience
+          <Icon name="plus" size={15} /> Share your experience here
         </Button>
         <Button variant="primary" size="sm" className="flex-1" onClick={onAskYapYep}>
           Ask YapYep

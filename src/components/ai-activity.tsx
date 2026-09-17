@@ -1,5 +1,6 @@
 import { Icon } from "./icons";
 import { Button, Notice } from "./ui";
+import Mascot from "./mascot";
 import type { ActivityState } from "../lib/ai/activity";
 import type { AiMeta } from "../lib/ai-contracts/client";
 
@@ -21,10 +22,7 @@ export function AiActivity({ state, onCancel }: { state: ActivityState; onCancel
     <div className="rounded-[12px] border border-line bg-surface p-4" role="status" aria-live="polite">
       <div className="flex items-center gap-3">
         {busy ? (
-          <span className="relative flex h-9 w-9 shrink-0 items-center justify-center">
-            <span className="yy-ring absolute inset-0 motion-reduce:hidden" />
-            <span className="h-2.5 w-2.5 rounded-full bg-primary" />
-          </span>
+          <Mascot pose="think" size={44} />
         ) : (
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-danger/10 text-danger">
             <Icon name="alert" size={18} />
@@ -33,7 +31,7 @@ export function AiActivity({ state, onCancel }: { state: ActivityState; onCancel
         <div className="min-w-0 flex-1">
           <p className="text-[14px] font-semibold text-ink">{state.status === "error" ? "That did not work" : state.label || "Working"}</p>
           <p className="mt-0.5 text-[12px] text-muted">
-            {state.status === "error" ? state.error?.message : `${seconds}s — this is a real request to the AI service`}
+            {state.status === "error" ? state.error?.message : `Preparing your answer · ${seconds}s`}
           </p>
         </div>
         {busy && onCancel && (
@@ -72,15 +70,7 @@ export function AiActivityInline({ label }: { label: string }) {
  * implying the product is broken.
  */
 export function AiProvenance({ meta }: { meta?: AiMeta }) {
-  if (!meta) return null;
-  const usedBackup = meta.fallbackDepth > 0;
-  return (
-    <p className="mt-3 text-[11px] text-muted">
-      {usedBackup ? "Backup AI" : "Primary AI"} · {(meta.latencyMs / 1000).toFixed(1)}s
-      {meta.repairs ? ` · corrected once` : ""}
-      {meta.degradedProviders.length > 0 ? ` · ${meta.degradedProviders.length} provider${meta.degradedProviders.length === 1 ? "" : "s"} skipped` : ""}
-    </p>
-  );
+  return null;
 }
 
 export type AiNoticeKind = "working" | "retrying" | "backup" | "rate-limited" | "voice-unavailable" | "text-fallback";
@@ -88,8 +78,8 @@ export type AiNoticeKind = "working" | "retrying" | "backup" | "rate-limited" | 
 const NOTICE_COPY: Record<AiNoticeKind, { title: string; tone: "primary" | "warning" }> = {
   working: { title: "Working", tone: "primary" },
   retrying: { title: "Retrying", tone: "warning" },
-  backup: { title: "Using backup AI", tone: "primary" },
-  "rate-limited": { title: "AI is busy — trying another route", tone: "warning" },
+  backup: { title: "Preparing your answer", tone: "primary" },
+  "rate-limited": { title: "Taking a little longer", tone: "warning" },
   "voice-unavailable": { title: "Voice unavailable", tone: "warning" },
   "text-fallback": { title: "Text only", tone: "warning" },
 };

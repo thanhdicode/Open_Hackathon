@@ -1,3 +1,6 @@
+import YepGuide from "../../components/yep-guide";
+import { deriveStage } from "../../lib/journey/dates";
+import { loadPreferences } from "../../lib/preferences";
 /**
  * Ask this Greenbook.
  *
@@ -47,15 +50,17 @@ export function AskGreenbookScreen({ onBack, countryCode, chapter }: { onBack: (
       setAnswer(null);
       askedRef.current = true;
 
+      const preferences = await loadPreferences();
+      const stage = deriveStage(journey.dates);
       const query = {
         homeCountry: journey.home,
         hostCountry: countryCode,
         chapter,
         city: journey.city || null,
         university: journey.university || null,
-        journeyStage: null,
-        language: "en",
-        languageLevel: null,
+        journeyStage: stage === "before_departure" || stage === "arriving_soon" ? "before_arrival" : stage === "first_24h" ? "arrival" : stage === "first_week" ? "first_week" : stage === "settling_in" ? "settling" : "ongoing",
+        language: preferences.aiLanguage.explanationLanguage,
+        languageLevel: preferences.aiLanguage.level,
         question: trimmed,
       };
 
@@ -72,8 +77,12 @@ export function AskGreenbookScreen({ onBack, countryCode, chapter }: { onBack: (
         ]);
 
         // Real phase 2 — generation, or the no-LLM assembly.
-        const result = await askGreenbook(query);
-        setSteps((current) => [...current, result.mode === "grounded" ? "Answer ready" : "Answer built from verified facts (no model available)"]);
+        const result = await askGreenbook(query, packet);
+        // The student is told what they are looking at, not why: "no model
+        // available" is a fact about our infrastructure, and the fallback is a
+        // supported answer mode rather than a degraded one. The answer card
+        // already labels it "From verified guidance".
+        setSteps((current) => [...current, result.mode === "grounded" ? "Answer ready" : "Guidance compiled from verified facts"]);
         setAnswer(result);
       } catch {
         // askGreenbook is designed not to throw, but a UI must never depend on
@@ -93,13 +102,14 @@ export function AskGreenbookScreen({ onBack, countryCode, chapter }: { onBack: (
         setBusy(false);
       }
     },
-    [busy, chapter, countryCode, journey.city, journey.home, journey.university],
+    [busy, chapter, countryCode, journey.city, journey.home, journey.university, journey.dates],
   );
 
   return (
     <div className="flex h-full flex-col">
       <ScreenHeader title="Ask this Greenbook" onBack={onBack} />
-      <Scroll className="px-4 pb-8 pt-4">
+      <Scroll tourScreen="ask" className="px-4 pb-8 pt-4">
+        {!askedRef.current && <YepGuide screen="ask" title="Let’s check the evidence" pose="think">Ask one practical question. Answers use verified country facts; if no source covers it, the Greenbook says so. Check the linked evidence before acting.</YepGuide>}
         <Card className="mb-4 p-3.5">
           <p className="text-[13px] leading-relaxed text-muted">
             Answers are built only from verified facts for <span className="font-semibold text-ink">{COUNTRIES[host]?.name ?? countryCode}</span>. If nothing
@@ -109,6 +119,7 @@ export function AskGreenbookScreen({ onBack, countryCode, chapter }: { onBack: (
 
         <div className="mb-3 flex items-end gap-2">
           <textarea
+            data-yep="question"
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
             onKeyDown={(event) => {
@@ -121,9 +132,9 @@ export function AskGreenbookScreen({ onBack, countryCode, chapter }: { onBack: (
             placeholder={`Ask about ${COUNTRIES[host]?.name ?? countryCode}…`}
             className="min-h-[52px] flex-1 resize-none rounded-[12px] border border-line bg-surface px-3.5 py-3 text-[14px] text-ink outline-none placeholder:text-muted focus:border-primary"
           />
-          <Button onClick={() => void ask(question)} disabled={busy || !question.trim()}>
+          <div data-yep="ask"><Button onClick={() => void ask(question)} disabled={busy || !question.trim()}>
             {busy ? "…" : "Ask"}
-          </Button>
+          </Button></div>
         </div>
 
         {!askedRef.current && (
@@ -164,11 +175,11 @@ function AnswerCard({ answer }: { answer: GreenbookAnswer }) {
         <div className="mb-2 flex flex-wrap items-center gap-2">
           {answer.mode === "grounded" ? (
             <Badge tone="primary">
-              <Icon name="check" size={11} /> Grounded in retrieved sources
+              <Icon name="check" size={11} /> Based on linked sources
             </Badge>
           ) : (
             <Badge tone="warning">
-              <Icon name="info" size={11} /> Built without a model
+              <Icon name="info" size={11} /> {answer.sources.length ? "From verified guidance" : "More context needed"}
             </Badge>
           )}
           <Badge tone={answer.confidence === "high" ? "success" : answer.confidence === "medium" ? "warning" : "muted"}>
@@ -181,7 +192,7 @@ function AnswerCard({ answer }: { answer: GreenbookAnswer }) {
 
         {answer.mode === "no_llm" && !isRefusal && (
           <p className="mt-2 border-t border-line pt-2 text-[11px] leading-relaxed text-muted">
-            Every AI provider was unavailable, so this answer was assembled directly from verified facts and official sources — no text was generated.
+            Showing the verified guidance directly. Check the sources before acting.
           </p>
         )}
       </Card>
@@ -237,19 +248,19 @@ function AnswerCard({ answer }: { answer: GreenbookAnswer }) {
 
       {answer.sources.length > 0 && (
         <Section title={`Sources (${answer.sources.length})`}>
-          <Card className="px-3.5 py-1">
+          <details className="rounded-[12px] border border-line bg-surface px-3.5 py-1">
+            <summary className="flex min-h-[44px] cursor-pointer items-center text-[13px] font-semibold text-primary">Show linked sources ({answer.sources.length})</summary>
             {answer.sources.map((source) => (
               <SourceRow key={source.sourceId} source={source} />
             ))}
-          </Card>
+          </details>
         </Section>
       )}
 
       {isRefusal && (
         <Card className="p-3.5">
           <p className="text-[12px] leading-relaxed text-muted">
-            The Greenbook only publishes guidance that traces to a registered official source with a last-checked date. Adding a plausible-sounding answer here
-            would defeat the point of the manual.
+            Try a more specific question, or check an official local source for your situation.
           </p>
         </Card>
       )}

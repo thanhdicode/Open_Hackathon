@@ -1,3 +1,5 @@
+import YepGuide from "../../components/yep-guide";
+import { dayOfExchange } from "../../lib/journey/dates";
 /**
  * Greenbook cover and "Today / Now".
  *
@@ -80,7 +82,8 @@ export function Greenbook({ onBack }: { onBack: () => void }) {
 
   const host = journey.host as CountryCode;
   const home = journey.home as CountryCode;
-  const stage = journeyStageFor(journey.dayCount);
+  const exchangeDay = dayOfExchange(journey.dates);
+  const stage = journeyStageFor(exchangeDay || (journey.dates.arrivalDate && new Date(journey.dates.arrivalDate) > new Date() ? -1 : 0));
 
   useEffect(() => {
     const on = () => setOffline(false);
@@ -161,7 +164,8 @@ export function Greenbook({ onBack }: { onBack: () => void }) {
         }
       />
 
-      <Scroll className="px-4 pb-8 pt-4">
+      <Scroll tourScreen="greenbook" className="px-4 pb-8 pt-4">
+        <YepGuide key={host} screen="greenbook" title={`Your ${COUNTRIES[host].name} field buddy`} country={host}>Let’s read what is verified for your destination. My heritage-inspired outfit is an illustration; it does not verify the guidance.</YepGuide>
         {offline && (
           <div className="mb-3 flex items-center gap-2 rounded-[12px] bg-ink px-3 py-2.5 text-[12px] font-medium text-white">
             <Icon name="signal" size={15} /> Offline — showing what was already loaded
@@ -189,7 +193,7 @@ export function Greenbook({ onBack }: { onBack: () => void }) {
 
           <div className="mt-3 flex flex-wrap items-center gap-1.5">
             <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white">{STAGE_LABEL[stage]}</span>
-            <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white">Day {Math.max(journey.dayCount, 0)}</span>
+            <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white">Day {exchangeDay}</span>
             <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white">{COUNTRIES[host].languages[0]}</span>
             {loaded && <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white">{totalPoints} verified points</span>}
           </div>
@@ -297,7 +301,7 @@ export function Greenbook({ onBack }: { onBack: () => void }) {
         <Section
           title="Your chapters"
           action={
-            <button onClick={() => nav.push("greenbookBrowse", { countryCode: host })} className="min-h-[44px] text-[12px] font-semibold text-primary">
+            <button data-yep="browse" onClick={() => nav.push("greenbookBrowse", { countryCode: host })} className="min-h-[44px] text-[12px] font-semibold text-primary">
               Browse all
             </button>
           }
@@ -327,8 +331,7 @@ export function Greenbook({ onBack }: { onBack: () => void }) {
             <Card className="p-3.5">
               <p className="text-[13px] font-semibold text-ink">Nothing verified for {COUNTRIES[host].name} yet</p>
               <p className="mt-1 text-[12px] leading-relaxed text-muted">
-                The ingestion pipeline only publishes guidance that traces to a registered official source. No source for this country has produced a verified
-                fact yet — so there is nothing to show, rather than something invented.
+                Verified guidance is not available for this destination yet. Check an official local source for your situation.
               </p>
             </Card>
           )}

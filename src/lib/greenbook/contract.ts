@@ -62,6 +62,8 @@ export interface GreenbookFact {
 
 /** One stored row of `knowledge_sources`. */
 export interface GreenbookSource {
+  universityId?: string | null;
+  city?: string | null;
   sourceId: string;
   countryCode: string;
   title: string;
