@@ -131,7 +131,8 @@ async function main() {
 
   // ---- tasks, derived from facts that carry an action ------------------------
   const facts = await readAll(tables, databaseId, FACTS);
-  const actionable = facts.filter((fact) => fact.actionable_advice && String(fact.actionable_advice).trim().length > 10);
+  const published = new Set(["official_verified", "university_verified", "community_verified", "stale"]);
+  const actionable = facts.filter((fact) => published.has(fact.verification_status) && fact.actionable_advice && String(fact.actionable_advice).trim().length > 10);
 
   const byCountry = new Map();
   for (const fact of actionable) {
@@ -191,6 +192,12 @@ async function main() {
   let phrasesWritten = 0;
 
   if (!dryRun) {
+    const validFactIds = new Set(facts.filter((fact) => published.has(fact.verification_status)).map((fact) => fact.fact_id));
+    for (const task of await readAll(tables, databaseId, TASKS_TABLE)) {
+      let linked = [];
+      try { linked = JSON.parse(task.fact_ids || "[]"); } catch { /* Invalid linkage remains private. */ }
+      if (!linked.length || linked.some((id) => !validFactIds.has(id))) await tables.updateRow({ databaseId, tableId: TASKS_TABLE, rowId: task.$id, data: {}, permissions: [] });
+    }
     for (const entry of taskPlan) {
       await tables.upsertRow({ databaseId, tableId: TASKS_TABLE, rowId: entry.rowId, data: entry.data, permissions: [Permission.read(Role.any())] });
       tasksWritten += 1;
