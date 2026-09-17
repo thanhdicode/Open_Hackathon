@@ -1,19 +1,21 @@
 {
-  "generatedAt": "2026-09-16T16:07:59.741Z",
-  "factsScanned": 284,
-  "actionableFacts": 276,
+  "generatedAt": "2026-09-16T20:57:15.416Z",
+  "factsScanned": 486,
+  "actionableFacts": 286,
   "tasks": {
-    "total": 153,
+    "total": 154,
     "byCountry": {
       "MY": 25,
       "SG": 25,
       "ID": 25,
-      "TH": 13,
-      "PH": 15,
-      "KH": 18,
-      "MM": 20,
+      "TH": 16,
+      "PH": 22,
+      "VN": 25,
+      "BN": 3,
+      "KH": 2,
       "LA": 6,
-      "VN": 6
+      "MM": 3,
+      "TL": 2
     }
   },
   "phrases": {

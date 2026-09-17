@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://127.0.0.1:5173",
-  "generatedAt": "2026-09-16T03:41:18.222Z",
+  "generatedAt": "2026-09-16T21:43:27.850Z",
   "aiOutcome": "result-rendered",
   "results": [
     {
@@ -346,42 +346,36 @@
   "consoleErrors": [
     "[360] Failed to load resource: the server responded with a status of 401 ()",
     "[360] Failed to load resource: the server responded with a status of 404 ()",
-    "[360] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0f8da3227b008299' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
     "[360] Failed to load resource: the server responded with a status of 404 ()",
     "[360] Failed to load resource: the server responded with a status of 404 ()",
     "[360] Failed to load resource: the server responded with a status of 404 ()",
     "[360] Failed to load resource: the server responded with a status of 404 ()",
     "[390] Failed to load resource: the server responded with a status of 401 ()",
     "[390] Failed to load resource: the server responded with a status of 404 ()",
-    "[390] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0f96e904c4fe0027' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
     "[390] Failed to load resource: the server responded with a status of 404 ()",
     "[390] Failed to load resource: the server responded with a status of 404 ()",
     "[390] Failed to load resource: the server responded with a status of 404 ()",
     "[390] Failed to load resource: the server responded with a status of 404 ()",
     "[430] Failed to load resource: the server responded with a status of 401 ()",
     "[430] Failed to load resource: the server responded with a status of 404 ()",
-    "[430] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fac73b60f65f60b' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
     "[430] Failed to load resource: the server responded with a status of 404 ()",
     "[430] Failed to load resource: the server responded with a status of 404 ()",
     "[430] Failed to load resource: the server responded with a status of 404 ()",
     "[430] Failed to load resource: the server responded with a status of 404 ()",
     "[768] Failed to load resource: the server responded with a status of 401 ()",
     "[768] Failed to load resource: the server responded with a status of 404 ()",
-    "[768] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fb6257068730b44' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
     "[768] Failed to load resource: the server responded with a status of 404 ()",
     "[768] Failed to load resource: the server responded with a status of 404 ()",
     "[768] Failed to load resource: the server responded with a status of 404 ()",
     "[768] Failed to load resource: the server responded with a status of 404 ()",
     "[1024] Failed to load resource: the server responded with a status of 401 ()",
     "[1024] Failed to load resource: the server responded with a status of 404 ()",
-    "[1024] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fc018bea63cd191' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
     "[1024] Failed to load resource: the server responded with a status of 404 ()",
     "[1024] Failed to load resource: the server responded with a status of 404 ()",
     "[1024] Failed to load resource: the server responded with a status of 404 ()",
     "[1024] Failed to load resource: the server responded with a status of 404 ()",
     "[1440] Failed to load resource: the server responded with a status of 401 ()",
     "[1440] Failed to load resource: the server responded with a status of 404 ()",
-    "[1440] [yapyep] loadJourney failed AppwriteException: Row with the requested ID '6aaa0fc9c1feacae86fd' could not be found.\n    at Client.<anonymous> (http://127.0.0.1:5173/node_modules/.vite/deps/appwrite.js",
     "[1440] Failed to load resource: the server responded with a status of 404 ()",
     "[1440] Failed to load resource: the server responded with a status of 404 ()",
     "[1440] Failed to load resource: the server responded with a status of 404 ()",
@@ -396,27 +390,27 @@
     {
       "viewport": "360",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f8da3227b008299"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d4e076fe004e22f"
     },
     {
       "viewport": "360",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f8da3227b008299"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d4e076fe004e22f"
     },
     {
       "viewport": "360",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f8da3227b008299"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d4e076fe004e22f"
     },
     {
       "viewport": "360",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f8da3227b008299"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d4e076fe004e22f"
     },
     {
       "viewport": "360",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0f8da3227b008299"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aab0d4e076fe004e22f"
     },
     {
       "viewport": "390",
@@ -426,27 +420,27 @@
     {
       "viewport": "390",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f96e904c4fe0027"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d5262dc7ff10727"
     },
     {
       "viewport": "390",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f96e904c4fe0027"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d5262dc7ff10727"
     },
     {
       "viewport": "390",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0f96e904c4fe0027"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d5262dc7ff10727"
     },
     {
       "viewport": "390",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0f96e904c4fe0027"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d5262dc7ff10727"
     },
     {
       "viewport": "390",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0f96e904c4fe0027"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aab0d5262dc7ff10727"
     },
     {
       "viewport": "430",
@@ -456,27 +450,27 @@
     {
       "viewport": "430",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fac73b60f65f60b"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d62f0d90762a431"
     },
     {
       "viewport": "430",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fac73b60f65f60b"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d62f0d90762a431"
     },
     {
       "viewport": "430",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fac73b60f65f60b"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d62f0d90762a431"
     },
     {
       "viewport": "430",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fac73b60f65f60b"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d62f0d90762a431"
     },
     {
       "viewport": "430",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fac73b60f65f60b"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aab0d62f0d90762a431"
     },
     {
       "viewport": "768",
@@ -486,27 +480,27 @@
     {
       "viewport": "768",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fb6257068730b44"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d67acc09038fa63"
     },
     {
       "viewport": "768",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fb6257068730b44"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d67acc09038fa63"
     },
     {
       "viewport": "768",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fb6257068730b44"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d67acc09038fa63"
     },
     {
       "viewport": "768",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fb6257068730b44"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d67acc09038fa63"
     },
     {
       "viewport": "768",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fb6257068730b44"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aab0d67acc09038fa63"
     },
     {
       "viewport": "1024",
@@ -516,27 +510,27 @@
     {
       "viewport": "1024",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc018bea63cd191"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d6bee82c065eb25"
     },
     {
       "viewport": "1024",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc018bea63cd191"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d6bee82c065eb25"
     },
     {
       "viewport": "1024",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc018bea63cd191"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d6bee82c065eb25"
     },
     {
       "viewport": "1024",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc018bea63cd191"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d6bee82c065eb25"
     },
     {
       "viewport": "1024",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fc018bea63cd191"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aab0d6bee82c065eb25"
     },
     {
       "viewport": "1440",
@@ -546,27 +540,27 @@
     {
       "viewport": "1440",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc9c1feacae86fd"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d703faac47ec8cc"
     },
     {
       "viewport": "1440",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc9c1feacae86fd"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d703faac47ec8cc"
     },
     {
       "viewport": "1440",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aaa0fc9c1feacae86fd"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aab0d703faac47ec8cc"
     },
     {
       "viewport": "1440",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/my_dna_profiles/rows/6aaa0fc9c1feacae86fd"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/student_profiles/rows/6aab0d703faac47ec8cc"
     },
     {
       "viewport": "1440",
       "status": 404,
-      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aaa0fc9c1feacae86fd"
+      "url": "/v1/tablesdb/6aa938f40031bab74390/tables/journeys/rows/6aab0d703faac47ec8cc"
     }
   ]
 }
