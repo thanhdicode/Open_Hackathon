@@ -34,7 +34,7 @@ export function createHoldToRecordController({ start, onCapture, onError, onReco
   }
 
   async function begin() {
-    if (pressed || active) return;
+    if (pressed || active || stopping) return;
     pressed = true;
     releaseRequested = false;
     try {
