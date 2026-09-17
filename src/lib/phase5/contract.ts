@@ -7,6 +7,8 @@
  * integer or that `tags` arrives as a JSON string.
  */
 
+import type { ExchangeStage } from "../journey/dates";
+
 /* ------------------------------- Community ------------------------------- */
 
 export const POST_TYPES = ["moment", "tip", "question", "place", "warning", "guide", "culture", "study"] as const;
@@ -24,19 +26,23 @@ export const POST_TYPE_META: Record<PostType, { label: string; icon: string; ton
 };
 
 /**
- * Feed filters. The first three are scopes, the next four are post types, and
- * `saved` is the viewer's own list. Keeping them in one union means the filter
- * bar cannot drift away from what the query builder supports.
+ * Feed filters. The five scopes lead because they are the modes the product
+ * promises; the type filters and Host Country follow because they are useful
+ * narrowing, not destinations. `for_you` is the only one that is *ranked* — every
+ * other mode is a plain reverse-chronological or owner-scoped list, so a student
+ * can always reach the raw stream when they want to.
  */
 export const FEED_FILTERS = [
   { key: "for_you", label: "For You" },
-  { key: "host_country", label: "Host Country" },
+  { key: "latest", label: "Latest" },
   { key: "my_university", label: "My University" },
+  { key: "near_campus", label: "Near Campus" },
+  { key: "saved", label: "Saved" },
+  { key: "host_country", label: "Host Country" },
   { key: "tips", label: "Tips" },
   { key: "places", label: "Places" },
   { key: "questions", label: "Questions" },
   { key: "moments", label: "Moments" },
-  { key: "saved", label: "Saved" },
 ] as const;
 
 export type FeedFilter = (typeof FEED_FILTERS)[number]["key"];
@@ -44,8 +50,10 @@ export type FeedFilter = (typeof FEED_FILTERS)[number]["key"];
 /** Which post types each filter admits. `null` means "no type restriction". */
 export const FILTER_TYPES: Record<FeedFilter, PostType[] | null> = {
   for_you: null,
+  latest: null,
   host_country: null,
   my_university: null,
+  near_campus: null,
   tips: ["tip", "guide"],
   places: ["place"],
   questions: ["question"],
@@ -53,14 +61,61 @@ export const FILTER_TYPES: Record<FeedFilter, PostType[] | null> = {
   saved: null,
 };
 
+/**
+ * Feed modes that are scoped by the viewer's own journey rather than by post
+ * type. `near_campus` is a *place* scope: it keeps posts whose tagged place sits
+ * inside the campus radius, which is what "what is around my campus" means. It
+ * is not live-location proximity — no viewer coordinate is ever involved.
+ */
+export const SCOPED_FILTERS: FeedFilter[] = ["for_you", "host_country", "my_university", "near_campus", "latest", "saved"];
+
+/* ---------------------------------- media --------------------------------- */
+
+export type MediaKind = "image" | "video";
+
+/**
+ * What the composer and the uploader accept.
+ *
+ * These are demo limits, deliberately conservative, and they are the single
+ * source of truth for both the client validation and the bucket allowlist — a
+ * bucket that accepts `svg` or `html` while the UI says "JPG, PNG, WebP or MP4"
+ * is a stored-XSS surface with a friendly label on it.
+ *
+ * Images are resized in the browser before upload, so the image cap is generous
+ * enough that a normal phone photo passes without the student seeing an error.
+ * Video is short-form only: this is a community post, not a Reels product.
+ */
+export const MEDIA_LIMITS = {
+  maxImagesPerPost: 4,
+  maxVideosPerPost: 1,
+  maxImageBytes: 6_000_000,
+  maxVideoBytes: 20_000_000,
+  /** Advisory, surfaced to the student before upload rather than enforced after. */
+  preferredVideoSeconds: 30,
+  imageMime: ["image/jpeg", "image/png", "image/webp"],
+  videoMime: ["video/mp4", "video/webm"],
+  imageExtensions: ["jpg", "jpeg", "png", "webp"],
+  videoExtensions: ["mp4", "webm"],
+} as const;
+
+export const ALLOWED_MEDIA_MIME: readonly string[] = [...MEDIA_LIMITS.imageMime, ...MEDIA_LIMITS.videoMime];
+
+export function mediaKindFor(mime: string): MediaKind | null {
+  if ((MEDIA_LIMITS.imageMime as readonly string[]).includes(mime)) return "image";
+  if ((MEDIA_LIMITS.videoMime as readonly string[]).includes(mime)) return "video";
+  return null;
+}
+
 export interface PostMedia {
   id: string;
-  kind: "image";
+  kind: MediaKind;
   /** Local `/demo-media/...` path for seeded assets, or an Appwrite file URL. */
   url: string;
   alt: string;
   attribution?: string;
   license?: string;
+  /** Only meaningful for `kind === "video"`; read from the file, never invented. */
+  durationS?: number;
 }
 
 export interface AuthorSummary {
@@ -71,6 +126,8 @@ export interface AuthorSummary {
   homeCountry?: string;
   hostCountry?: string;
   universityId?: string;
+  /** ISO codes, so the ranker can compare them without a second lookup. */
+  languages?: string[];
   /** True only for seeded fixtures. Drives the visible "Demo" marker. */
   isDemoSeed: boolean;
 }
@@ -85,6 +142,15 @@ export interface CommunityPost {
   body: string;
   placeId?: string;
   tags: string[];
+  /**
+   * Where in the exchange timeline the author was when they wrote this.
+   * Populated by AI enrichment when it succeeds and by the deterministic
+   * keyword extractor when it does not, so the field is always present and the
+   * ranker never has to branch on "is enrichment available".
+   */
+  journeyStage?: ExchangeStage;
+  /** AI-derived topics. Falls back to deterministic keyword extraction. */
+  topics: string[];
   reactionCount: number;
   commentCount: number;
   saveCount: number;
@@ -95,6 +161,13 @@ export interface CommunityPost {
   /** Viewer-specific state, resolved from the viewer's own rows. */
   viewerReacted: boolean;
   viewerSaved: boolean;
+  /**
+   * Human-readable reasons this post was ranked where it was. Only set by the
+   * For You ranker — every other feed mode leaves it empty, because a
+   * chronological list has nothing to explain. The UI shows these instead of a
+   * score: a student can audit "Students at NUS" but not "0.83 relevance".
+   */
+  reasons?: string[];
 }
 
 export interface PostComment {

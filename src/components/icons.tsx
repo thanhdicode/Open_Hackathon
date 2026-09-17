@@ -34,7 +34,11 @@ export type IconName =
   | "more"
   | "flag"
   | "users"
-  | "layers";
+  | "layers"
+  // Phase 5.1 — community media
+  | "play"
+  | "video"
+  | "trash";
 
 /**
  * Monochrome line icons. Decorative emoji are not used as icons (ADR-003 §4).
@@ -297,6 +301,27 @@ export function Icon({ name, size = 24, filled = false }: { name: IconName; size
         <svg {...common}>
           <path d="m12 3.5 8 4.2-8 4.2-8-4.2z" fill={filled ? "currentColor" : "none"} />
           <path d="m4 13 8 4.2 8-4.2" />
+        </svg>
+      );
+    case "play":
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="9" fill={filled ? "currentColor" : "none"} />
+          <path d="M10.5 8.8v6.4l5.2-3.2z" fill={filled ? "#fff" : "currentColor"} stroke="none" />
+        </svg>
+      );
+    case "video":
+      return (
+        <svg {...common}>
+          <rect x="3" y="6" width="12.5" height="12" rx="2.5" fill={filled ? "currentColor" : "none"} />
+          <path d="m16 12 5-3v6z" fill={filled ? "currentColor" : "none"} />
+        </svg>
+      );
+    case "trash":
+      return (
+        <svg {...common}>
+          <path d="M5 7h14M10 7V5.5h4V7M7 7l.8 12h8.4L17 7" />
+          <path d="M10.5 10.5v5M13.5 10.5v5" strokeWidth={1.6} />
         </svg>
       );
   }

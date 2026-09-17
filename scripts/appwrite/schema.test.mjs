@@ -92,8 +92,12 @@ test("profile media bucket is avatar-safe and privacy-scoped", () => {
 
 /*
  * Phase 5 adds a second user-media bucket. It is held to the same privacy model
- * as avatars (per-file security, images only, authenticated upload) but gets a
- * larger cap because a feed photo is a document, not a thumbnail.
+ * as avatars (per-file security, authenticated upload, media formats only).
+ *
+ * Phase 5.1 widened it from images to images + short video, so the assertion
+ * moved from "images only" to "media only, and never anything a browser will
+ * execute". The negative half is the part that matters: the old test would have
+ * passed a bucket that also accepted `svg`.
  */
 test("community media bucket keeps the user-media privacy model", () => {
   const bucket = MEDIA_BUCKETS.find((candidate) => candidate.id === "community_media");
@@ -101,10 +105,17 @@ test("community media bucket keeps the user-media privacy model", () => {
   assert.equal(bucket.fileSecurity, true, "file-level security must be on");
   assert.deepEqual(bucket.permissions, ['create("users")'], "uploads are authenticated-only");
   for (const extension of bucket.allowedFileExtensions) {
-    assert.match(extension, /^(jpg|jpeg|png|webp)$/, `unexpected extension ${extension}`);
+    assert.match(extension, /^(jpg|jpeg|png|webp|mp4|webm)$/, `unexpected extension ${extension}`);
+  }
+  for (const dangerous of ["svg", "svgz", "html", "htm", "js", "pdf", "exe", "php"]) {
+    assert.equal(
+      bucket.allowedFileExtensions.includes(dangerous),
+      false,
+      `${dangerous} in a user-writable bucket is an execution surface`,
+    );
   }
   assert.ok(bucket.maximumFileSize > 2_000_000, "a feed photo needs more headroom than an avatar");
-  assert.ok(bucket.maximumFileSize <= 8_000_000, "but it must stay bounded so an upload cannot stall the demo");
+  assert.ok(bucket.maximumFileSize <= 25_000_000, "but it must stay bounded so an upload cannot stall the demo");
 });
 
 /*

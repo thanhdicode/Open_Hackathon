@@ -3,6 +3,7 @@ import { Avatar, Badge, Card } from "../../components/ui";
 import { Icon } from "../../components/icons";
 import { COUNTRIES } from "../../data/countries";
 import { POST_TYPE_META, type CommunityPost } from "../../lib/phase5/contract";
+import { MediaView } from "./MediaView";
 
 /**
  * A community post.
@@ -59,7 +60,7 @@ export function PostCard({ post, placeName, onOpen, onToggleReaction, onToggleSa
   }
 
   return (
-    <Card className="overflow-hidden" data-testid="post-card">
+    <Card className="overflow-hidden" data-testid="post-card" data-post-id={post.id}>
       {/* ------------------------------ header ------------------------------ */}
       <button onClick={onOpen} className="flex w-full items-start gap-3 px-4 pt-4 text-left">
         <Avatar initials={post.author.initials} color={post.author.color} size={42} />
@@ -82,32 +83,33 @@ export function PostCard({ post, placeName, onOpen, onToggleReaction, onToggleSa
       </button>
 
       {/* ------------------------------- body ------------------------------- */}
-      <button onClick={onOpen} className="mt-2.5 block w-full px-4 text-left">
+      {/*
+        The caption is its own button, separate from the author block above it and
+        from the action row below it. That matters for automation as much as for
+        touch: a click at the centre of the whole card lands on whatever happens to
+        be in the middle — an image, or the reaction row — and silently does
+        nothing, which reads as "the post will not open". This hook names the
+        target that actually opens the post.
+      */}
+      <button data-testid="open-post" onClick={onOpen} className="mt-2.5 block w-full px-4 text-left">
         <p className="text-[14px] leading-relaxed text-ink">{post.body}</p>
       </button>
 
-      {post.media.length > 0 && (
-        <div className={`mt-3 ${post.media.length > 1 ? "flex gap-1.5 overflow-x-auto scroll-area px-4" : "px-4"}`}>
-          {post.media.map((item) => (
-            <img
-              key={item.id}
-              src={item.url}
-              alt={item.alt}
-              loading="lazy"
-              decoding="async"
-              onError={(event) => {
-                // A broken demo image must not leave a torn card behind.
-                const target = event.currentTarget;
-                target.style.display = "none";
-              }}
-              className={`rounded-[12px] border border-line object-cover ${post.media.length > 1 ? "h-44 w-[78%] shrink-0" : "h-52 w-full"}`}
-            />
+      <MediaView media={post.media} variant="card" />
+
+      {/*
+        Why this post is here. Only the For You ranker sets `reasons`, so a
+        chronological filter shows nothing — which is correct: there is nothing
+        to explain about "this is the newest post".
+      */}
+      {post.reasons && post.reasons.length > 0 && (
+        <div data-testid="post-reasons" className="mt-3 flex flex-wrap gap-1.5 px-4">
+          {post.reasons.map((reason) => (
+            <span key={reason} className="rounded-full border border-line bg-canvas px-2.5 py-1 text-[11px] font-medium text-muted">
+              {reason}
+            </span>
           ))}
         </div>
-      )}
-
-      {post.media.some((item) => item.attribution) && (
-        <p className="mt-1 px-4 text-[10px] text-muted">{post.media.find((item) => item.attribution)?.attribution}</p>
       )}
 
       {/* ------------------------------ context ----------------------------- */}
@@ -153,7 +155,16 @@ export function PostCard({ post, placeName, onOpen, onToggleReaction, onToggleSa
             post.viewerSaved ? "text-ink" : "text-muted"
           }`}
         >
-          <Icon name="bookmark" size={17} filled={post.viewerSaved} /> {post.saveCount}
+          {/*
+            No public number, deliberately. A saved-post row is private to the
+            saver, so a total cannot be derived without exposing who saved what —
+            and the stored column could never be kept honest, because the post row
+            is `update(author)` and a reader's save was rejected with 401. What the
+            button shows is the one thing it can truthfully show: whether *you*
+            saved this.
+          */}
+          <Icon name="bookmark" size={17} filled={post.viewerSaved} />
+          <span className="sr-only">{post.viewerSaved ? "Saved" : "Save"}</span>
         </button>
 
         <div className="ml-auto flex items-center gap-1">

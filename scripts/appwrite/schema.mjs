@@ -108,9 +108,16 @@ export const GREENBOOK_TABLES = [
  *                     users so a report cannot be used to profile a reporter.
  */
 export const PHASE5_TABLES = [
-  owner("community_posts", [string("post_id", true, 64), string("author_id", true, 36), string("country_code", true, 2), string("university_id", false, 64), string("post_type", true, 24), text("body", true), string("place_id", false, 64), json("tags"), string("visibility", true, 24), integer("is_demo_seed"), string("seed_origin", false, 16), string("verification", false, 24), integer("reaction_count"), integer("comment_count"), integer("save_count"), integer("media_count"), datetime("created_at", true), datetime("updated_at"), datetime("deleted_at")], [{ key: "post_unique", type: "unique", attributes: ["post_id"] }, { key: "post_feed", type: "key", attributes: ["country_code", "created_at"] }, { key: "post_university", type: "key", attributes: ["university_id", "created_at"] }, { key: "post_type_lookup", type: "key", attributes: ["post_type", "created_at"] }, { key: "post_place", type: "key", attributes: ["place_id"] }]),
+  // `topics` and `journey_stage` are the enrichment columns. They are additive:
+  // a post written before they existed reads back with empty topics, and
+  // `mapPost` falls back to the author's own tags rather than treating the post
+  // as topic-less. `journey_stage` is derived, never chosen by the author.
+  owner("community_posts", [string("post_id", true, 64), string("author_id", true, 36), string("country_code", true, 2), string("university_id", false, 64), string("post_type", true, 24), text("body", true), string("place_id", false, 64), json("tags"), json("topics"), string("journey_stage", false, 24), string("visibility", true, 24), integer("is_demo_seed"), string("seed_origin", false, 16), string("verification", false, 24), integer("reaction_count"), integer("comment_count"), integer("save_count"), integer("media_count"), datetime("created_at", true), datetime("updated_at"), datetime("deleted_at")], [{ key: "post_unique", type: "unique", attributes: ["post_id"] }, { key: "post_feed", type: "key", attributes: ["country_code", "created_at"] }, { key: "post_university", type: "key", attributes: ["university_id", "created_at"] }, { key: "post_type_lookup", type: "key", attributes: ["post_type", "created_at"] }, { key: "post_place", type: "key", attributes: ["place_id"] }]),
 
-  owner("post_media", [string("media_id", true, 64), string("post_id", true, 64), string("kind", true, 16), string("file_id", false, 64), string("url", false, 2048), integer("width"), integer("height"), string("alt_text"), string("attribution"), string("license", false, 64), integer("order_index", true), datetime("created_at", true)], [{ key: "post_media_unique", type: "unique", attributes: ["media_id"] }, { key: "post_media_post", type: "key", attributes: ["post_id", "order_index"] }]),
+  // `kind` distinguishes image from video. `duration_s` is read from the file in
+  // the browser and stored so the card can show a length without loading the
+  // media; it is 0 for images and for any video the browser could not decode.
+  owner("post_media", [string("media_id", true, 64), string("post_id", true, 64), string("kind", true, 16), string("file_id", false, 64), string("url", false, 2048), integer("width"), integer("height"), string("alt_text"), string("attribution"), string("license", false, 64), integer("duration_s"), integer("order_index", true), datetime("created_at", true)], [{ key: "post_media_unique", type: "unique", attributes: ["media_id"] }, { key: "post_media_post", type: "key", attributes: ["post_id", "order_index"] }]),
 
   owner("post_reactions", [string("reaction_id", true, 64), string("post_id", true, 64), string("user_id", true, 36), string("kind", true, 16), datetime("created_at", true)], [{ key: "reaction_unique", type: "unique", attributes: ["post_id", "user_id"] }, { key: "reaction_post", type: "key", attributes: ["post_id"] }]),
 
@@ -166,10 +173,21 @@ export const MEDIA_BUCKETS = [
   {
     id: "community_media",
     name: "community_media",
-    purpose: "student-uploaded photos attached to community posts and place experiences",
+    purpose: "student-uploaded photos and short videos attached to community posts and place experiences",
     fileSecurity: true,
-    maximumFileSize: 6_000_000,
-    allowedFileExtensions: ["jpg", "jpeg", "png", "webp"],
+    // 20 MB is the video ceiling the composer enforces. The bucket cap and the
+    // client cap are the same number on purpose: a bucket that accepts more than
+    // the UI allows is a hole, and a UI that allows more than the bucket accepts
+    // is a confusing 400.
+    maximumFileSize: 20_000_000,
+    /*
+     * An allowlist, not a denylist. `svg` is deliberately absent — an SVG is a
+     * script host, and serving one from the media origin would be stored XSS
+     * with a "photo" label. `html`, `pdf` and every document format are absent
+     * for the same reason: this bucket is for media a student looks at, not
+     * files a browser might execute or a viewer might open.
+     */
+    allowedFileExtensions: ["jpg", "jpeg", "png", "webp", "mp4", "webm"],
     permissions: ['create("users")'],
     compression: "none",
   },

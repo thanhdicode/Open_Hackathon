@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ScreenHeader, Scroll } from "../../components/shell";
 import { Avatar, Badge, BottomSheet, Button, Card, EmptyState, Notice, Skeleton, Toast } from "../../components/ui";
 import { Icon } from "../../components/icons";
-import { addComment, loadComments } from "../../lib/appwrite/community";
+import { addComment, deleteComment, loadComments } from "../../lib/appwrite/community";
 import { blockUser } from "../../lib/appwrite/blocks";
 import { reportContent } from "../../lib/appwrite/social";
 import { REPORT_REASONS, type CommunityPost, type PostComment } from "../../lib/phase5/contract";
@@ -16,6 +16,11 @@ import { PostCard, relativeTime } from "./PostCard";
  * problem. Blocking removes the author from the feed, People discovery and the
  * map's contributor list, which is what "blocked users must disappear" means in
  * practice.
+ *
+ * Comment creation is optimistic: the row appears the instant the student taps
+ * send and is replaced by the server's copy when the write lands. A failed write
+ * removes the placeholder and says why, rather than leaving a comment on screen
+ * that only the author can see.
  */
 
 export interface PostDetailProps {
@@ -28,7 +33,12 @@ export interface PostDetailProps {
   onTranslate: () => Promise<{ ok: boolean; text?: string; message?: string }>;
   onOpenOnMap?: () => void;
   onBlocked: (blockedUserId: string) => void;
+  /** Only supplied when the viewer is the author. */
+  onDeletePost?: () => Promise<{ ok: boolean; message?: string }>;
 }
+
+/** Marks a comment row that exists only in this browser until the write lands. */
+const PENDING_PREFIX = "pending:";
 
 export function PostDetail({
   post,
@@ -40,6 +50,7 @@ export function PostDetail({
   onTranslate,
   onOpenOnMap,
   onBlocked,
+  onDeletePost,
 }: PostDetailProps) {
   const [comments, setComments] = useState<PostComment[] | null>(null);
   const [draft, setDraft] = useState("");
@@ -49,6 +60,7 @@ export function PostDetail({
   const [reportOpen, setReportOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [blocked, setBlocked] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -68,17 +80,61 @@ export function PostDetail({
   }, [toast]);
 
   async function send() {
-    if (!userId || !draft.trim()) return;
+    if (!userId || !draft.trim() || sending) return;
+    const body = draft.trim();
+    const placeholderId = `${PENDING_PREFIX}${Date.now()}`;
+
     setSending(true);
-    const result = await addComment(post.id, userId, draft, count);
+    setDraft("");
+    setComments((current) => [
+      ...(current ?? []),
+      {
+        id: placeholderId,
+        postId: post.id,
+        authorId: userId,
+        author: { id: userId, displayName: "You", initials: "YO", color: "#111111", isDemoSeed: false },
+        body,
+        isDemoSeed: false,
+        createdAt: new Date().toISOString(),
+      },
+    ]);
+    setCount((current) => current + 1);
+
+    const result = await addComment(post.id, userId, body);
     setSending(false);
+
     if (!result.ok) {
+      // Roll back both the row and the counter. A comment that is visible only
+      // to its author is worse than no comment at all.
+      setComments((current) => (current ?? []).filter((entry) => entry.id !== placeholderId));
+      setCount((current) => Math.max(0, current - 1));
+      setDraft(body);
       setToast(result.message);
       return;
     }
-    setComments((current) => [...(current ?? []), result.value]);
-    setCount((current) => current + 1);
-    setDraft("");
+
+    setComments((current) => (current ?? []).map((entry) => (entry.id === placeholderId ? result.value : entry)));
+  }
+
+  async function removeComment(comment: PostComment) {
+    const snapshot = comments ?? [];
+    setComments(snapshot.filter((entry) => entry.id !== comment.id));
+    setCount((current) => Math.max(0, current - 1));
+    const result = await deleteComment(comment.id);
+    if (!result.ok) {
+      setComments(snapshot);
+      setCount((current) => current + 1);
+      setToast(result.message);
+    }
+  }
+
+  async function doDeletePost() {
+    if (!onDeletePost) return;
+    setDeleting(true);
+    const result = await onDeletePost();
+    setDeleting(false);
+    setMenuOpen(false);
+    if (!result.ok) setToast(result.message ?? "Could not delete this post.");
   }
 
   async function doBlock() {
@@ -153,21 +209,35 @@ export function PostDetail({
 
           {comments !== null && comments.length > 0 && (
             <div className="space-y-2.5">
-              {comments.map((comment) => (
-                <Card key={comment.id} className="p-3.5">
-                  <div className="flex items-start gap-2.5">
-                    <Avatar initials={comment.author.initials} color={comment.author.color} size={32} />
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[13px] font-semibold text-ink">{comment.author.displayName}</span>
-                        {comment.isDemoSeed && <Badge tone="muted">Demo</Badge>}
-                        <span className="ml-auto text-[11px] text-muted">{relativeTime(comment.createdAt)}</span>
+              {comments.map((comment) => {
+                const pending = comment.id.startsWith(PENDING_PREFIX);
+                const mine = Boolean(userId) && comment.authorId === userId;
+                return (
+                  <Card key={comment.id} className={`p-3.5 ${pending ? "opacity-70" : ""}`} data-testid="comment-row">
+                    <div className="flex items-start gap-2.5">
+                      <Avatar initials={comment.author.initials} color={comment.author.color} size={32} />
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[13px] font-semibold text-ink">{comment.author.displayName}</span>
+                          {comment.isDemoSeed && <Badge tone="muted">Demo</Badge>}
+                          {pending && <span className="text-[11px] text-muted">Sending…</span>}
+                          <span className="ml-auto text-[11px] text-muted">{pending ? "" : relativeTime(comment.createdAt)}</span>
+                          {mine && !pending && (
+                            <button
+                              onClick={() => void removeComment(comment)}
+                              aria-label="Delete your comment"
+                              className="flex h-8 w-8 items-center justify-center text-muted"
+                            >
+                              <Icon name="trash" size={15} />
+                            </button>
+                          )}
+                        </div>
+                        <p className="mt-1 text-[13px] leading-relaxed text-ink">{comment.body}</p>
                       </div>
-                      <p className="mt-1 text-[13px] leading-relaxed text-ink">{comment.body}</p>
                     </div>
-                  </div>
-                </Card>
-              ))}
+                  </Card>
+                );
+              })}
             </div>
           )}
         </div>
@@ -222,6 +292,11 @@ export function PostDetail({
           <Button variant="outline" full onClick={() => { setMenuOpen(false); setReportOpen(true); }}>
             <Icon name="flag" size={16} /> Report this post
           </Button>
+          {onDeletePost && (
+            <Button variant="danger" full disabled={deleting} onClick={() => void doDeletePost()}>
+              <Icon name="trash" size={16} /> {deleting ? "Deleting…" : "Delete your post"}
+            </Button>
+          )}
           <Button variant="danger" full onClick={() => void doBlock()}>
             <Icon name="close" size={16} /> Block {post.author.displayName}
           </Button>
