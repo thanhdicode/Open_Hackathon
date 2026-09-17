@@ -2,6 +2,7 @@ import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
+import { VitePWA } from 'vite-plugin-pwa'
 
 import siteConfiguration from './.figma/make/site.json'
 
@@ -9,9 +10,10 @@ import siteConfiguration from './.figma/make/site.json'
 export default defineConfig(({ mode }) => {
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === 'development'
+  const appBase = process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/'
 
   return {
-    base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
+    base: appBase,
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
@@ -19,6 +21,35 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tailwindcss(),
+      { name: 'yapyep-pwa-head', transformIndexHtml: () => [
+        { tag: 'meta', attrs: { name: 'theme-color', content: '#111111' }, injectTo: 'head' },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: `${appBase}pwa/icon-180.png` }, injectTo: 'head' },
+      ] },
+      VitePWA({
+        registerType: 'prompt',
+        injectRegister: false,
+        includeAssets: ['pwa/*.png', 'brand/yep-mascot-v1.png', 'brand/yep-states-v1.png', 'brand/yep-heritage-v1.png'],
+        manifest: {
+          id: appBase, name: 'YapYep', short_name: 'YapYep',
+          description: 'Your ASEAN student adaptation companion',
+          start_url: appBase, scope: appBase, display: 'standalone',
+          theme_color: '#111111', background_color: '#f7f7f5',
+          icons: [
+            { src: 'pwa/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+            { src: 'pwa/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+            { src: 'pwa/maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          ],
+        },
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,woff,woff2}'],
+          globIgnores: ['**/demo-media/**', '**/*.map'],
+          maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
+          navigateFallback: 'index.html',
+          navigateFallbackDenylist: [/\/v1(?:\/|$)/, /[?&](?:auth|auth_error)=/, /\/(?:api|oauth|auth)(?:\/|$)/],
+          runtimeCaching: [], cleanupOutdatedCaches: true,
+        },
+        devOptions: { enabled: false },
+      }),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
@@ -36,6 +67,8 @@ export default defineConfig(({ mode }) => {
       watch: {
         ignored: [
           '**/.figma/**',
+          '**/docs/**',
+          '**/seed/**',
 ],
       },
     },

@@ -1,0 +1,130 @@
+{
+  "phase": "PHASE 6 — FINAL PRODUCT INTEGRITY, UX/AI QA & RELEASE GATE",
+  "at": "2026-09-17T07:10:00+07:00",
+  "branch": "phase5.1-rc",
+  "head": "4afe214",
+  "releaseStatus": "READY_FOR_DEMO",
+  "defectsFoundAndFixed": [
+    {
+      "id": "P6-P0-01",
+      "severity": "P0",
+      "title": "The AI feature was dead for every first-time visitor",
+      "where": "deployed Appwrite function `ai-gateway`",
+      "evidence": "Browser call to /functions/ai-gateway/executions returned 401 `user_unauthorized — No permissions provided for action 'execute'`. The function was created with `execute: []`, so no client could invoke it. The UI degraded silently to the no-LLM answer, so nothing looked broken; the student simply never received a model answer.",
+      "whyTestsMissedIt": "`npm test`, `tsc --noEmit` and `vite build` all pass — none of them call the deployed function from a browser with a guest session. `ai-golden.mjs` and `greenbook-rag.mjs --deployed` call it with an APPWRITE_API_KEY, which is authorized regardless of the `execute` permission.",
+      "fix": "Set execute to `[\"any\"]` and assert it in scripts/deploy/ai-gateway.mjs.",
+      "verification": "Guest browser call now returns status completed / HTTP 200 with a real grounded answer; live-ui.mjs reports zero failed requests."
+    },
+    {
+      "id": "P6-P0-02",
+      "severity": "P0",
+      "title": "Deployed function build was never activated",
+      "where": "ai-gateway deployment 6aaad723521d0f111984",
+      "evidence": "functions.get().deployment reported activate: false — the build existed and was ready but was not live.",
+      "fix": "Activation applied; scripts/deploy/ai-gateway.mjs already used the correct `updateFunctionDeployment` call.",
+      "verification": "function serves /greenbook/ask with a live model (provider explabs-luna, model gpt-5.6-luna)."
+    },
+    {
+      "id": "P6-P1-01",
+      "severity": "P1",
+      "title": "Journey dates rendered in two different formats, flipping day/month order by machine",
+      "where": "src/lib/journey/personalize.ts",
+      "evidence": "`new Intl.DateTimeFormat(\"en\", …)` resolves against the HOST locale. On this vi-VN machine a custom journey rendered `Oct 1, 2026` while src/data/journeys.ts and the product intent use `1 Aug 2026`. `toLocaleDateString(undefined, …)` returned `1 thg 10, 2026`.",
+      "impact": "A student in Ha Noi and a student in Singapore read the same journey with a different day/month order.",
+      "fix": "Pinned to `en-GB` with `timeZone: \"UTC\"` in a single DAY_MONTH_YEAR formatter; rejects unparseable values rather than printing Invalid Date. Documented that browser locale is a display preference, never the source of truth.",
+      "verification": "Passport renders `Arrival 1 Oct 2026 · Return date open`; asserted in live-ui.mjs."
+    },
+    {
+      "id": "P6-P1-02",
+      "severity": "P1",
+      "title": "Raw chapter slugs leaked into student-facing copy",
+      "where": "src/lib/greenbook/no-llm.ts",
+      "evidence": "`chapter.replace(/_/g, \" \")` produced briefings beginning `land and settle: …`.",
+      "fix": "Added dependency-free src/lib/greenbook/chapters.ts exporting CHAPTER_META/CHAPTER_ORDER/chapterTitle; store.ts re-exports them; no-llm.ts imports from chapters.ts so it stays Node-testable without the Appwrite browser client.",
+      "verification": "Now renders `Landing and settling in: …`. greenbook-no-llm.test.mjs had asserted the bug and now asserts the copy."
+    },
+    {
+      "id": "P6-P1-03",
+      "severity": "P1",
+      "title": "Internal infrastructure reason shown to students",
+      "where": "src/features/greenbook/AskGreenbook.tsx",
+      "evidence": "Status line read `Answer built from verified facts (no model available)`.",
+      "fix": "Replaced with `Guidance compiled from verified facts` — the no-LLM path is a supported answer mode, and its cause is our infrastructure, not the student's concern."
+    },
+    {
+      "id": "P6-P1-04",
+      "severity": "P1",
+      "title": "1 MB map library in the Explore critical path",
+      "where": "src/features/Explore.tsx",
+      "evidence": "Explore chunk was 1,042 kB minified (maplibre-gl + worker) and eagerly imported for a screen whose first paint is a category row and a list.",
+      "fix": "Lazy-loaded behind Suspense with a sized skeleton fallback holding layout.",
+      "verification": "Explore chunk 1042 kB -> 18 kB; the 1 MB now loads as ExploreMap on demand."
+    }
+  ],
+  "gates": {
+    "productionBuild": { "status": "PASS", "detail": "vite build exit 0, PWA v1.3.0 generateSW, 27 precache entries" },
+    "typecheck": { "status": "PASS", "detail": "tsc --noEmit exit 0" },
+    "unitAndIntegrationTests": { "status": "PASS", "detail": "243 tests across 9 suites, 0 failures" },
+    "liveEndToEnd": {
+      "status": "PASS",
+      "script": "scripts/phase6/live-ui.mjs",
+      "detail": "26 real captures on the production build against live Appwrite + deployed AI; 0 page errors; 0 failed requests",
+      "path": "landing -> Start my journey -> origin VN -> destination SG -> explicit arrival 2026-10-01 -> Create my Passport -> one-time tour -> personalized home 'Prepare for Singapore' -> Passport 'Arrival 1 Oct 2026' -> Ask -> grounded answer citing ica.gov.sg -> 'Can I do it there?' clarified -> reload preserves journey, no repeated onboarding or tour -> 320/768/1440 x 5 tabs, no horizontal overflow"
+    },
+    "aiGolden": {
+      "status": "PASS",
+      "detail": "57 cases: automatedSafetyPass 57/57, liveModelAnswers 38, honestNoEvidence 18, clarifications 1",
+      "caveat": "failedAutomated:18 is NOT 18 failures — it counts cases with any false check, which is by design for the 18 insufficient-evidence cases where liveAnswer is deliberately false. The only checks ever false are evidenceAvailable and liveAnswer, both excluded from the safety gate."
+    },
+    "deployedRag": {
+      "status": "PASS",
+      "detail": "greenbook-rag.mjs --deployed 12/12 across both corridors; forward and reverse directions retrieve different fact sets; every citation inside the allowlist (3 cited/0 outside, 4 cited/0 outside)"
+    },
+    "pwa": {
+      "status": "PASS",
+      "script": "scripts/verify/pwa-production.mjs",
+      "detail": "manifest valid (name YapYep, id /, display standalone, scope /, icons 192/512/maskable); service worker registers and controls after reload; caches contain only static assets and explicitly exclude /v1/ and /demo-media/; a waiting update does not force a reload; offline shows a real shell with 'You're offline.' while private API calls fail.",
+      "method": "Chrome DevTools Application semantics via Playwright — NOT the deprecated Lighthouse PWA score."
+    },
+    "secrets": { "status": "PASS", "detail": "441 files scanned; no server-side secret in any tracked file or dist/; AI provider keys are Function-only and never VITE_-prefixed" },
+    "coreWebVitals": {
+      "status": "PASS",
+      "detail": "landing LCP 328ms (budget 2500ms), CLS 0.0000; onboarding CLS 0.0000; personalized home CLS 0.0064; AI CLS 0.0002",
+      "caveat": "LCP is a document metric and applies to the landing navigation only; the other surfaces are in-app state changes on the same document, so no further LCP entry is emitted. INP was not measurable without field traffic; the worst observed event duration was 16ms."
+    },
+    "guidanceTours": {
+      "status": "PASS",
+      "detail": "137/137 checks across 8 viewports x 5 screens, 0 browser errors, 0 AI calls triggered by tours"
+    },
+    "responsive": { "status": "PASS", "detail": "360/390/430/768/1024/1440 — no horizontal overflow, correct nav mode (bottom nav <=430px, rail >=768px), min touch target 44px" },
+    "onboarding": { "status": "PASS", "detail": "3 steps: Where are you from? -> Where are you going? -> When are you arriving?; arrival explicit with no prefill; return date optional; same country disabled as a destination" },
+    "knowledgeBase": { "status": "PASS", "detail": "173 verified, publicly-readable facts across all 11 ASEAN states and 7 chapters (BN 20, KH 17, LA 15, MM 15, TL 18, VN 17, SG 14, TH 14, ID 15, MY 13, PH 15)" },
+    "syntheticPersonas": { "status": "PASS", "detail": "11 seeded QA users spanning 11 routes across all 11 countries, with owner-permission read-back verified" }
+  },
+  "harnessDefectsFixed": [
+    "ai-golden grading counters misread as failures (grading.mjs now documents which counter is the gate)",
+    "responsive.mjs and yep-guidance-ui.mjs walked the removed 14-step onboarding and reported false failures",
+    "Driver.js overlay intercepts pointer events after onboarding; harnesses must dismiss the tour first",
+    "Two controls named 'Ask' (Today tile + submit); scope to [data-yep=\"ask\"]",
+    "networkidle never settles against a Vite dev server",
+    "ui-results.json written only at the end, so a renderer crash discarded 2 hours of passing evidence; added a checkpoint",
+    "LCP observer must be installed via addInitScript; a post-navigation buffered observer reported a bogus identical 11.6s on four screens"
+  ],
+  "remainingKnownIssues": [
+    {
+      "severity": "P2",
+      "title": "cosmetic September abbreviation divergence",
+      "detail": "The en-GB formatter renders September as `Sept` while hand-written seed labels use `Sep`. September is not in the seed journey date set, so nothing is inconsistent today; documented in-code so a future seeded September aligns to the formatter rather than forking the format."
+    },
+    {
+      "severity": "P2",
+      "title": "no INP field measurement",
+      "detail": "INP requires real user interaction telemetry. The worst observed interaction event duration was 16ms, which is well inside the 200ms budget but is a lab proxy, not field INP."
+    },
+    {
+      "severity": "P3",
+      "title": "iOS install path exercised by instruction only",
+      "detail": "The iOS fallback (manual Add to Home Screen) is implemented and gated off for Chromium, but could not be executed on a real Safari/iOS device from this Windows environment."
+    }
+  ]
+}

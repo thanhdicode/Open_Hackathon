@@ -123,7 +123,7 @@ Parallel work may occur in isolated branches/sandboxes, but reconcile in this or
 - chat
 - minimal map
 
-### Phase 6 — QA lock
+### Phase 6 — Final Product Integrity, UX/AI QA & Release Gate
 No new features.
 Only:
 - bug fixes
@@ -132,6 +132,8 @@ Only:
 - accessibility
 - failure modes
 - pitch rehearsal
+
+Current execution/evidence: `docs/superpowers/plans/2026-09-17-phase6-integrity.md` and `docs/evidence/phase6/`.
 
 ## 5. Branch/task naming
 
