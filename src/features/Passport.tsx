@@ -7,6 +7,8 @@ import { Icon } from "../components/icons";
 import { COUNTRIES } from "../data/countries";
 import { buildPassport, type PassportCard } from "../data/passports";
 import { COUNTRY_DNA } from "../data/dna";
+import YepGuide from "../components/yep-guide";
+import Mascot from "../components/mascot";
 
 export function PassportHome() {
   const { journey, pair, forced } = useJourney();
@@ -19,21 +21,22 @@ export function PassportHome() {
   if (forced === "error") return <Scroll className="px-5"><ErrorState /></Scroll>;
 
   return (
-    <Scroll className="px-5 pb-6 pt-1">
+    <Scroll tourScreen="passport" className="px-5 pb-6 pt-1">
       {forced === "stale" && (
         <div className="mb-3 mt-2"><Notice tone="warning" icon="info" title="Some guidance may be out of date" body="We haven't been able to re-verify a few sources recently. Check official links before relying on requirements." /></div>
       )}
       <div className="mb-1 flex items-center gap-2 text-[13px] font-semibold text-muted">
         {COUNTRIES[journey.home].flag} <span>→</span> {host.flag} {host.name}
       </div>
-      <h1 className="text-[24px] font-extrabold tracking-tight text-ink">{journey.name}'s {host.name.split(" ")[0]} Passport</h1>
-      <p className="mt-0.5 text-[13px] text-muted">{journey.university} · Exchange · One semester</p>
+      <h1 className="text-[24px] font-extrabold tracking-tight text-ink">{journey.name === "You" ? "Your" : `${journey.name}'s`} {host.name.split(" ")[0]} Passport</h1>
+      <p className="mt-0.5 text-[13px] text-muted">{[journey.university, journey.arrival !== "Not set" ? `Arrival ${journey.arrival}` : "Arrival not set", journey.departure !== "Not set" ? `Return ${journey.departure}` : "Return date open"].filter(Boolean).join(" · ")}</p>
+      <YepGuide key={journey.host} screen="passport" title={`Let’s settle into ${host.name}`} country={journey.host}>My outfit is inspired by one local clothing tradition; styles vary across communities. Your guidance follows your own journey.</YepGuide>
 
       <Card className="my-4 flex items-center gap-4 p-4">
-        <ProgressRing value={pair.readiness} size={64} label={<div><div className="text-[15px] font-bold text-ink">{pair.readiness}%</div></div>} />
+        {journey.myDnaAssessed !== false && <ProgressRing value={pair.readiness} size={64} label={<div><div className="text-[15px] font-bold text-ink">{pair.readiness}%</div></div>} />}
         <div className="flex-1">
-          <p className="text-[13px] font-bold text-ink">Arrival readiness</p>
-          <p className="mt-0.5 text-[12px] leading-relaxed text-muted">Complete your First Week tasks to reach 100%.</p>
+          <p className="text-[13px] font-bold text-ink">{journey.myDnaAssessed === false ? "Make it yours" : "Communication preparation"}</p>
+          <p className="mt-0.5 text-[12px] leading-relaxed text-muted">{journey.myDnaAssessed === false ? "Add your communication preferences in Profile when you’re ready." : "A starting point from your communication preferences, not a checklist completion score."}</p>
         </div>
       </Card>
 
@@ -49,17 +52,17 @@ export function PassportHome() {
         ))}
       </div>
 
-      <SectionHeader title="Sections" />
+      <div data-yep="sections"><SectionHeader title="Sections" /></div>
       <div className="grid grid-cols-2 gap-3">
         {sections.map((s) => (
           <Card key={s.id} className="p-3.5" onClick={() => nav.push("passportSection", { sectionId: s.id })}>
             <div className="flex items-center justify-between">
               <span className="text-[22px]">{s.icon}</span>
-              <span className="text-[11px] font-bold text-muted">{s.progress}%</span>
+              {journey.id !== "custom" && <span className="text-[11px] font-bold text-muted">{s.progress}%</span>}
             </div>
             <p className="mt-2 text-[14px] font-bold leading-tight text-ink">{s.title}</p>
             <p className="mt-0.5 text-[11px] leading-snug text-muted line-clamp-2">{s.blurb}</p>
-            <div className="mt-2"><ProgressBar value={s.progress} tone={s.progress === 100 ? "success" : "primary"} /></div>
+            {journey.id !== "custom" && <div className="mt-2"><ProgressBar value={s.progress} tone={s.progress === 100 ? "success" : "primary"} /></div>}
           </Card>
         ))}
       </div>
@@ -82,7 +85,7 @@ export function PassportSection({ sectionId, onBack }: { sectionId: string; onBa
             <PassportCardView key={c.id} card={c} onOpen={() => nav.push(c.id.includes("bank") ? "bankFlow" : "passportCard", { card: c })} />
           ))}
         </div>
-        {section.cards.length === 0 && <Notice tone="primary" icon="info" title="Coming soon" body="Detailed guidance for this section is being reviewed by local students." />}
+        {section.cards.length === 0 && <div className="flex items-start gap-2"><Mascot pose="think" size={56} /><Notice tone="primary" icon="info" title="Coming soon" body="Detailed guidance for this section is being reviewed by local students." /></div>}
       </Scroll>
     </div>
   );

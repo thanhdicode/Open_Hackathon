@@ -1,0 +1,2791 @@
+{
+  "status": "PARTIAL",
+  "stage": "viewport-and-tour-sweep-complete",
+  "results": [
+    {
+      "name": "welcome-320-short",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-320x568",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 138,
+        "right": 308,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 303.5,
+        "right": 308,
+        "bottom": 496.921875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 336.21875,
+        "right": 308,
+        "bottom": 509.5,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-320x568",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 223,
+        "right": 308,
+        "bottom": 416.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 304.375,
+        "right": 308,
+        "bottom": 497.796875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-320x568",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 251,
+        "right": 308,
+        "bottom": 444.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 342.4375,
+        "right": 308,
+        "bottom": 556,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 183,
+        "right": 308,
+        "bottom": 396.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-320x568",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 241.828125,
+        "right": 308,
+        "bottom": 435.25,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 277.6875,
+        "right": 308,
+        "bottom": 491.25,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-320x568",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 323,
+        "right": 308,
+        "bottom": 516.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 87.4375,
+        "right": 308,
+        "bottom": 301,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-360x640",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 138,
+        "right": 312,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 48,
+        "top": 339,
+        "right": 348,
+        "bottom": 532.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 30,
+        "top": 371.71875,
+        "right": 330,
+        "bottom": 545,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-360x640",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 223,
+        "right": 312,
+        "bottom": 416.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 30,
+        "top": 356.453125,
+        "right": 330,
+        "bottom": 549.875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-360x640",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 251,
+        "right": 312,
+        "bottom": 444.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 30,
+        "top": 414.4375,
+        "right": 330,
+        "bottom": 628,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 30,
+        "top": 183,
+        "right": 330,
+        "bottom": 396.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-360x640",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 276.875,
+        "right": 312,
+        "bottom": 470.296875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 312.734375,
+        "right": 312,
+        "bottom": 526.296875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-360x640",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 323,
+        "right": 312,
+        "bottom": 516.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "popover": {
+        "left": 30,
+        "top": 353,
+        "right": 330,
+        "bottom": 566.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-390x844",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 138,
+        "right": 312,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 73,
+        "top": 439.578125,
+        "right": 373,
+        "bottom": 633,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 45,
+        "top": 440.5,
+        "right": 345,
+        "bottom": 613.78125,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-390x844",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 223,
+        "right": 312,
+        "bottom": 416.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 45,
+        "top": 609.375,
+        "right": 345,
+        "bottom": 802.796875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-390x844",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 251,
+        "right": 312,
+        "bottom": 444.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 45,
+        "top": 613.5,
+        "right": 345,
+        "bottom": 827.0625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 45,
+        "top": 183,
+        "right": 345,
+        "bottom": 396.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-390x844",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 613.578125,
+        "right": 312,
+        "bottom": 807,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 378.015625,
+        "right": 312,
+        "bottom": 591.578125,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-390x844",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 323,
+        "right": 312,
+        "bottom": 516.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "popover": {
+        "left": 45,
+        "top": 353,
+        "right": 345,
+        "bottom": 566.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-430x932",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 138,
+        "right": 312,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 93,
+        "top": 691,
+        "right": 393,
+        "bottom": 884.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 65,
+        "top": 704.21875,
+        "right": 365,
+        "bottom": 877.5,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-430x932",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 223,
+        "right": 312,
+        "bottom": 416.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 65,
+        "top": 609.375,
+        "right": 365,
+        "bottom": 802.796875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-430x932",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 251,
+        "right": 312,
+        "bottom": 444.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 65,
+        "top": 594,
+        "right": 365,
+        "bottom": 807.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 65,
+        "top": 183,
+        "right": 365,
+        "bottom": 396.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-430x932",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 641.734375,
+        "right": 312,
+        "bottom": 835.15625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 676.234375,
+        "right": 312,
+        "bottom": 889.796875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-430x932",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 323,
+        "right": 312,
+        "bottom": 516.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "popover": {
+        "left": 65,
+        "top": 353,
+        "right": 365,
+        "bottom": 566.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-768x1024",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 138,
+        "right": 312,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 300,
+        "top": 671.5,
+        "right": 600,
+        "bottom": 864.921875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 272,
+        "top": 684.71875,
+        "right": 572,
+        "bottom": 858,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-768x1024",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 223,
+        "right": 312,
+        "bottom": 416.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 272,
+        "top": 589.875,
+        "right": 572,
+        "bottom": 783.296875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-768x1024",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 251,
+        "right": 312,
+        "bottom": 444.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 272,
+        "top": 594,
+        "right": 572,
+        "bottom": 807.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 272,
+        "top": 183,
+        "right": 572,
+        "bottom": 396.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-768x1024",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 663.5,
+        "right": 312,
+        "bottom": 856.921875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 16.125,
+        "top": 698,
+        "right": 316.125,
+        "bottom": 911.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-768x1024",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 323,
+        "right": 312,
+        "bottom": 516.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "popover": {
+        "left": 272,
+        "top": 353,
+        "right": 572,
+        "bottom": 566.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-1024x768",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 143.59375,
+        "top": 138,
+        "right": 443.59375,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 500,
+        "top": 420.078125,
+        "right": 800,
+        "bottom": 613.5,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 472,
+        "top": 442,
+        "right": 772,
+        "bottom": 615.28125,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-1024x768",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 151.59375,
+        "top": 223,
+        "right": 451.59375,
+        "bottom": 416.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 472,
+        "top": 336.953125,
+        "right": 772,
+        "bottom": 530.375,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-1024x768",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 143.59375,
+        "top": 251,
+        "right": 443.59375,
+        "bottom": 444.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 362,
+        "top": 542.4375,
+        "right": 662,
+        "bottom": 756,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 472,
+        "top": 183,
+        "right": 772,
+        "bottom": 396.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-1024x768",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 362.203125,
+        "top": 453.53125,
+        "right": 662.203125,
+        "bottom": 646.953125,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 399.265625,
+        "top": 488.71875,
+        "right": 699.265625,
+        "bottom": 702.28125,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-1024x768",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 143.59375,
+        "top": 323,
+        "right": 443.59375,
+        "bottom": 516.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "popover": {
+        "left": 472,
+        "top": 353,
+        "right": 772,
+        "bottom": 566.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-1440x900",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 351.59375,
+        "top": 138,
+        "right": 651.59375,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 708,
+        "top": 671.5,
+        "right": 1008,
+        "bottom": 864.921875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 150,
+        "top": 714.71875,
+        "right": 450,
+        "bottom": 888,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-1440x900",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 359.59375,
+        "top": 223,
+        "right": 659.59375,
+        "bottom": 416.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 680,
+        "top": 589.875,
+        "right": 980,
+        "bottom": 783.296875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-1440x900",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 351.59375,
+        "top": 251,
+        "right": 651.59375,
+        "bottom": 444.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 680,
+        "top": 574.5,
+        "right": 980,
+        "bottom": 788.0625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 680,
+        "top": 183,
+        "right": 980,
+        "bottom": 396.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-1440x900",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 351.59375,
+        "top": 631.5,
+        "right": 651.59375,
+        "bottom": 824.921875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 370.125,
+        "top": 666,
+        "right": 670.125,
+        "bottom": 879.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-1440x900",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 351.59375,
+        "top": 323,
+        "right": 651.59375,
+        "bottom": 516.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "popover": {
+        "left": 680,
+        "top": 353,
+        "right": 980,
+        "bottom": 566.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-844x390",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "today-tour-1",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 12,
+        "top": 138,
+        "right": 312,
+        "bottom": 351.5625,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-2",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 338,
+        "top": 12,
+        "right": 638,
+        "bottom": 205.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "today-tour-3",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 310,
+        "top": 23.71875,
+        "right": 610,
+        "bottom": 197,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-844x390",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "passport-tour-1",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 232.203125,
+        "top": 85.28125,
+        "right": 532.203125,
+        "bottom": 278.703125,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "passport-tour-2",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 310,
+        "top": 12,
+        "right": 610,
+        "bottom": 205.421875,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-844x390",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "lens-tour-1",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 216.203125,
+        "top": 115.28125,
+        "right": 516.203125,
+        "bottom": 308.703125,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-2",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 272,
+        "top": 164.4375,
+        "right": 572,
+        "bottom": 378,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "lens-tour-3",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 272,
+        "top": 164.4375,
+        "right": 572,
+        "bottom": 378,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-844x390",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "explore-tour-1",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 216.203125,
+        "top": 184.578125,
+        "right": 516.203125,
+        "bottom": 378,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore-tour-2",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 253.265625,
+        "top": 164.4375,
+        "right": 553.265625,
+        "bottom": 378,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-844x390",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": null
+    },
+    {
+      "name": "connect-tour-1",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 216.203125,
+        "top": 184.578125,
+        "right": 516.203125,
+        "bottom": 378,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 55.59375,
+            "height": 44
+          }
+        ]
+      }
+    },
+    {
+      "name": "connect-tour-2",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "popover": {
+        "left": 310,
+        "top": 87.4375,
+        "right": 610,
+        "bottom": 301,
+        "buttons": [
+          {
+            "width": 44,
+            "height": 44
+          },
+          {
+            "width": 57.9375,
+            "height": 44
+          },
+          {
+            "width": 60.296875,
+            "height": 44
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "apiCalls": []
+}

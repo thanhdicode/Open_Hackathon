@@ -6,6 +6,7 @@ import { Scroll, useContextPanel, useContextPanelClaim } from "../components/she
 import { Card, Button, Segmented, RiskBadge, ConfidenceBadge, Badge, Notice, Toast } from "../components/ui";
 import { Icon, type IconName } from "../components/icons";
 import { AiActivity, AiProvenance } from "../components/ai-activity";
+import YepGuide from "../components/yep-guide";
 import { LENS_SAMPLES, type ReplyTone } from "../data/lens";
 import { COUNTRIES } from "../data/countries";
 import { useAiActivity } from "../lib/ai/activity";
@@ -258,10 +259,10 @@ export default function Lens() {
   const busy = activity.isBusy;
 
   return (
-    <div className="flex h-full flex-col">
+    <div data-tour-screen="lens" className="flex h-full flex-col">
       <div className="px-5 pt-2">
         <h1 className="mb-3 text-[22px] font-extrabold tracking-tight text-ink">YapLens</h1>
-        <Segmented<Mode>
+        <div data-yep="modes"><Segmented<Mode>
           value={mode}
           onChange={(next) => {
             reset();
@@ -271,7 +272,7 @@ export default function Lens() {
             value,
             label: <Icon name={MODE_ICON[value]} size={18} />,
           }))}
-        />
+        /></div>
       </div>
 
       {mode === "conversation" ? (
@@ -313,6 +314,8 @@ export default function Lens() {
           )}
 
           {!scene && !textResult && !busy && (
+            <div data-yep="input">
+            {!recording && <YepGuide key={mode} screen="lens" title="Let’s understand it together" pose={mode === "voice" ? "practice" : "think"}>{mode === "text" ? "Paste a message, then interpret it. I’ll help explain likely intent; you choose what to do next." : mode === "voice" ? "Hold to record, or upload audio. Read the interpretation before replying; microphone permission is optional." : "Choose a screenshot or photo. Review what was read and the AI’s confidence before following its suggestions."}</YepGuide>}
             <InputPanel
               mode={mode}
               text={text}
@@ -329,7 +332,7 @@ export default function Lens() {
               onCapture={captureImage}
               onRunText={() => runText(text)}
               onUseSample={() => setText(LENS_SAMPLES[journey.host].original)}
-            />
+            /></div>
           )}
 
           {ocrProgress !== null && (

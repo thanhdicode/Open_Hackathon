@@ -1,3 +1,5 @@
+import Mascot from "../components/mascot";
+import YepGuide from "../components/yep-guide";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ScreenHeader, Scroll } from "../components/shell";
 import { Card, Button, Badge, Avatar, Notice, Chip, EmptyState, Toast } from "../components/ui";
@@ -172,7 +174,7 @@ export function SaveJourneyCard({ onSaved, compact = false }: { onSaved?: () => 
 
   return (
     <Card className={compact ? "p-4" : "p-4"}>
-      <p className="text-[15px] font-bold text-ink">Save your YapYep journey</p>
+      <div className="flex items-center gap-2">{step === "offer" && <Mascot size={48} />}<p className="text-[15px] font-bold text-ink">Save your YapYep journey</p></div>
       <p className="mt-1 text-[12px] leading-relaxed text-muted">
         You are using YapYep as a guest. A guest session cannot be restored if you change device or clear your browser, so your Passport and progress would be lost.
       </p>
@@ -248,7 +250,8 @@ export function Settings({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex h-full flex-col bg-canvas">
       <ScreenHeader title="Settings" onBack={onBack} />
-      <Scroll className="px-5 py-4">
+      <Scroll tourScreen="help" className="px-5 py-4">
+        <YepGuide screen="help" title="Need a hand?">Open Yep’s guide on a screen whenever you need it. Short tours explain the controls; you stay in charge of every action.</YepGuide>
         {isGuest && (
           <div className="mb-5">
             <SaveJourneyCard compact />
@@ -463,7 +466,7 @@ export function EditProfile({ onBack }: { onBack: () => void }) {
       localHelper: localHelper || role === "local",
     });
     // Keep the in-app journey (Today, Passport, PairDNA) consistent with the edit.
-    setCustom({
+      setCustom({
       name: displayName.trim(),
       home,
       host,
@@ -1099,6 +1102,7 @@ export function About({ onBack }: { onBack: () => void }) {
     <div className="flex h-full flex-col bg-canvas">
       <ScreenHeader title="About YapYep" onBack={onBack} />
       <Scroll className="px-5 py-4">
+        <Mascot size={96} className="mx-auto mb-3 block" label="Yep, the YapYep mascot" />
         <Card className="p-4">
           <p className="text-[18px] font-extrabold tracking-tight text-ink">YapYep</p>
           <p className="mt-1 text-[13px] leading-relaxed text-muted">

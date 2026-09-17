@@ -3,6 +3,7 @@ import { ScreenHeader, Scroll } from "../components/shell";
 import { Card, Button, Notice } from "../components/ui";
 import { Icon } from "../components/icons";
 import { STUDY_MODES, STUDY_SAMPLES } from "../data/study";
+import YepGuide from "../components/yep-guide";
 
 export default function Study({ onBack }: { onBack: () => void }) {
   const [modeId, setModeId] = useState<string | null>(null);
@@ -48,9 +49,10 @@ export default function Study({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex h-full flex-col bg-canvas">
       <ScreenHeader title="Study Copilot" onBack={onBack} />
-      <Scroll className="px-5 py-4">
+      <Scroll tourScreen="study" className="px-5 py-4">
+        <YepGuide screen="study" title="Explore study examples" pose="think">These are demo examples of how YapYep explains academic material. Choose a mode to see a sample input and explanation.</YepGuide>
         <Notice tone="primary" icon="info" title="Academic support, not answer-cheating" body="YapYep helps you understand lectures, slides and communication — so you can do the work with confidence." />
-        <div className="mt-4 space-y-3">
+        <div data-yep="modes" className="mt-4 space-y-3">
           {STUDY_MODES.map((m) => (
             <Card key={m.id} className="flex items-center gap-3 p-4" onClick={() => setModeId(m.id)}>
               <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-canvas text-[20px]">{m.icon}</div>

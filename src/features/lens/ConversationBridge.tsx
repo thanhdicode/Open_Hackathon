@@ -1,3 +1,4 @@
+import YepGuide from "../../components/yep-guide";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Badge, Button, Card, Notice } from "../../components/ui";
 import { Icon } from "../../components/icons";
@@ -211,7 +212,7 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
   const busy = activity.state.status === "working" || activity.state.status === "validating";
 
   return (
-    <div className="flex h-full flex-col">
+    <div data-tour-screen="conversation" className="flex h-full flex-col">
       <div className="px-5 pb-2">
         <Card className="p-3">
           <div className="flex items-center justify-between text-[12px]">
@@ -224,12 +225,7 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
 
       <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-4">
         {turns.length === 0 && (
-          <Card className="p-4">
-            <p className="text-[14px] leading-relaxed text-ink">
-              Hold the button when the other person speaks. YapYep transcribes what they said, translates it, then works out what they need from you — and asks you
-              before anything is said on your behalf.
-            </p>
-          </Card>
+          <YepGuide screen="conversation" title="Listen, understand, then reply" pose="practice">Hold to record or type what was said. Read the translation and coaching, choose your response, then confirm before speaking it to the other person.</YepGuide>
         )}
 
         <div className="mt-3 space-y-3">
@@ -372,7 +368,7 @@ export function ConversationBridge({ journey, userLanguage, localLanguage, level
       <div className="border-t border-line bg-surface px-5 py-4">
         <AiActivity state={activity.state} onCancel={activity.reset} />
         {!busy && (
-          <div className="flex items-center gap-3">
+          <div data-yep="controls" className="flex items-center gap-3">
             {voiceEnabled ? (
               <button
                 onPointerDown={recordLocal}

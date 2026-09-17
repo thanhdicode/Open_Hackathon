@@ -4,6 +4,8 @@ import { ScreenHeader, Scroll } from "../components/shell";
 import { Card, Button, Badge, ScoreBarRow, Notice } from "../components/ui";
 import { Icon } from "../components/icons";
 import { AiActivity, AiProvenance } from "../components/ai-activity";
+import YepGuide from "../components/yep-guide";
+import Mascot from "../components/mascot";
 import { useAiActivity } from "../lib/ai/activity";
 import { callAi } from "../lib/ai-contracts/client";
 import { SIM_SCORE_DIMENSIONS, SimFeedbackSchema, SimScenarioSchema, SimTurnSchema, averageScore, type SimFeedback, type SimScenario } from "../lib/ai-contracts/sim";
@@ -303,7 +305,8 @@ export default function YapSim({
     return (
       <div className="flex h-full flex-col bg-canvas">
         <ScreenHeader title="YapSim · Practice" onBack={onBack} />
-        <Scroll className="px-5 py-4">
+        <Scroll tourScreen="sim" className="px-5 py-4">
+          <YepGuide screen="sim" title="Practise with Yep" pose="practice">Pick a situation and an optional goal. AI will play the conversation partner; we’ll review what you can try next.</YepGuide>
           {fromLens && <div className="mb-4"><Notice tone="primary" icon="lens" title="From your Lens result" body="This practice is built from the situation you just scanned." /></div>}
           {greenbook && (
             <div className="mb-4">
@@ -333,7 +336,7 @@ export default function YapSim({
           )}
 
           <div className="mt-5">
-            <p className="mb-2 text-[13px] font-bold text-ink">Situation</p>
+            <p data-yep="situation" className="mb-2 text-[13px] font-bold text-ink">Situation</p>
             <div className="flex flex-wrap gap-2">
               {DOMAINS.map((entry) => (
                 <button
@@ -374,7 +377,7 @@ export default function YapSim({
             </div>
           )}
 
-          <div className="mt-6">
+          <div data-yep="start" className="mt-6">
             <Button size="lg" full disabled={busy} onClick={start}>
               {busy ? "Setting up…" : "Start roleplay"}
             </Button>
@@ -490,6 +493,7 @@ export default function YapSim({
     <div className="flex h-full flex-col bg-canvas">
       <ScreenHeader title="Your feedback" onBack={onBack} />
       <Scroll className="px-5 py-4">
+        <div className="mb-3 flex items-center gap-2"><Mascot pose="celebrate" size={64} /><p className="text-[13px] text-muted">You gave it a try. Let’s find one thing to practise next.</p></div>
         <Card className="mb-4 flex items-center justify-between p-4">
           <div>
             <p className="text-[13px] text-muted">Attempt {attemptNumber} score</p>

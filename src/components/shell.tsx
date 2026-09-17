@@ -267,6 +267,6 @@ export function ScreenHeader({ title, onBack, right }: { title: string; onBack: 
   );
 }
 
-export function Scroll({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`scroll-area flex-1 overflow-y-auto ${className}`}>{children}</div>;
+export function Scroll({ children, className = "", tourScreen }: { children: ReactNode; className?: string; tourScreen?: string }) {
+  return <div data-tour-screen={tourScreen} className={`scroll-area min-h-0 flex-1 overflow-y-auto ${className}`}>{children}</div>;
 }

@@ -130,3 +130,49 @@ body {
   border: 2px solid var(--color-primary);
   animation: yy-ring 1.8s ease-out infinite;
 }
+
+/* Yep tours stay in the visible viewport; app content keeps its own scrollers. */
+.driver-popover.yep-tour {
+  --yep-safe-top: env(safe-area-inset-top, 0px);
+  --yep-safe-bottom: env(safe-area-inset-bottom, 0px);
+  font-family: var(--font-sans);
+  width: 300px;
+  min-width: 0;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  padding: 14px;
+  color: var(--color-ink);
+}
+.yep-tour .driver-popover-title {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding-right: 30px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.yep-tour-mascot { object-fit: contain; flex-shrink: 0; }
+.yep-tour .driver-popover-description { font-size: 13px; line-height: 1.55; margin-top: 8px; }
+.yep-tour .driver-popover-footer { gap: 8px; margin-top: 10px; }
+.yep-tour .driver-popover-footer-btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font: 600 13px var(--font-sans);
+  text-shadow: none;
+}
+.yep-tour .driver-popover-next-btn { background: var(--color-ink); color: white; border-color: var(--color-ink); }
+.yep-tour .driver-popover-next-btn:hover, .yep-tour .driver-popover-next-btn:focus { background: #303030; }
+.yep-tour .driver-popover-close-btn { width: 44px; height: 44px; right: 4px; top: 4px; color: var(--color-muted); }
+.yep-tour button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .yy-fade, .yy-pulse, .yy-skeleton, .yy-ring::after { animation: none; }
+}

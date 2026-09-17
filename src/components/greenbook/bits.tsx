@@ -1,3 +1,4 @@
+import Mascot from "../mascot";
 /**
  * Shared Greenbook UI primitives.
  *
@@ -146,7 +147,8 @@ export function ChapterRow({
  */
 export function AiThinking({ steps }: { steps: string[] }) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5" role="status" aria-live="polite">
+      <Mascot pose="think" size={40} />
       {steps.map((step, index) => (
         <div key={step} className="flex items-center gap-2 text-[12px] text-muted">
           <span className={`h-1.5 w-1.5 rounded-full ${index === steps.length - 1 ? "yy-pulse bg-primary" : "bg-line"}`} />
