@@ -193,7 +193,7 @@ function buildPacket({ countryCode, question, allFacts, sourcesById, chapter = n
   const sources = sourceIds.map((id) => sourcesById.get(id)).filter(Boolean);
   steps.push(`evidence packet: ${facts.length} fact(s), ${sources.length} source(s)`);
 
-  return { countryCode, chapter, facts: facts.slice(0, 40), sources, retrievalSteps: steps, retrievedAt: new Date().toISOString() };
+  return { countryCode, chapter, facts: facts.slice(0, 20), sources, retrievalSteps: steps, retrievedAt: new Date().toISOString() };
 }
 
 /* --------------------------------- harness -------------------------------- */

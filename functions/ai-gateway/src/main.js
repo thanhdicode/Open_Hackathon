@@ -73,10 +73,10 @@ export default async ({ req, res, error }) => {
       const preflight = preflightGreenbook(input);
       if (preflight) return send(res, { ok: true, data: { answer: preflight.answer, whatToDo: [], whatToPrepare: [], whatToSay: [], warnings: [], confidence: "low", citedSourceIds: [] } }, 200);
       if (!input.sources.length) return send(res, { ok: false, code: "BAD_REQUEST", message: "Verified sources are required.", retryable: false }, 400);
-      const endpoint = process.env.VITE_APPWRITE_ENDPOINT || process.env.APPWRITE_FUNCTION_API_ENDPOINT;
-      const project = process.env.VITE_APPWRITE_PROJECT_ID || process.env.APPWRITE_FUNCTION_PROJECT_ID;
+      const endpoint = process.env.APPWRITE_ENDPOINT || process.env.VITE_APPWRITE_ENDPOINT || process.env.APPWRITE_FUNCTION_API_ENDPOINT;
+      const project = process.env.APPWRITE_PROJECT_ID || process.env.VITE_APPWRITE_PROJECT_ID || process.env.APPWRITE_FUNCTION_PROJECT_ID;
       const key = process.env.APPWRITE_API_KEY || req.headers?.["x-appwrite-key"];
-      const databaseId = process.env.VITE_APPWRITE_DATABASE_ID;
+      const databaseId = process.env.APPWRITE_DATABASE_ID || process.env.VITE_APPWRITE_DATABASE_ID;
       if (!endpoint || !project || !key || !databaseId) return send(res, { ok: false, code: "NOT_CONFIGURED", message: "Verified guidance is temporarily unavailable.", retryable: true }, 503);
       const tables = new TablesDB(new Client().setEndpoint(endpoint).setProject(project).setKey(key));
       const [facts, sources] = await Promise.all([

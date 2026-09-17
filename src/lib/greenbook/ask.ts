@@ -196,7 +196,7 @@ export async function retrieveEvidence(query: GreenbookQuery): Promise<EvidenceP
   return {
     countryCode,
     chapter: query.chapter ?? null,
-    facts: facts.slice(0, 40),
+    facts: facts.slice(0, 20),
     sources,
     retrievalSteps: steps,
     retrievedAt: new Date().toISOString(),
